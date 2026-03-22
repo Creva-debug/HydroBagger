@@ -1,0 +1,16 @@
+---
+description: Adres bazy zdjęć/obrazków (Bunny CDN) dla hydrobagger.pl
+alwaysApply: true
+---
+
+# Zdjęcia i obrazy – Bunny CDN
+
+Wszystkie zdjęcia i obrazy implementowane na stronie pochodzą z **Bunny CDN** i mają stały adres bazowy:
+
+**Bazowy URL:** `https://creva.b-cdn.net/Hydrobagger/`
+
+Pełny adres pliku to: **`https://creva.b-cdn.net/Hydrobagger/{NAZWA_PLIKU}`**, gdzie `{NAZWA_PLIKU}` to nazwa pliku wraz z rozszerzeniem (np. `logo_hydrobagger.png`, `hero.jpg`).
+
+- Nie hostuj zdjęć w `/public` – używaj wyłącznie tego CDN.
+- W kodzie używaj helpera `imageUrl('nazwa_pliku.png')` z `@/lib/images` lub stałej `IMAGES_BASE_URL`.
+- Nowe pliki: użytkownik będzie załączał nazwy plików; zawsze składaj URL jako `IMAGES_BASE_URL + nazwa_pliku`.

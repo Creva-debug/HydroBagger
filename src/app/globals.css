@@ -1,26 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&display=swap");
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
+  --hb-navy:   #071e32;
+  --hb-deep:   #0a2744;
+  --hb-water:  #0e7490;
+  --hb-teal:   #14b8a6;
+  --hb-green:  #16a34a;
+  --hb-lime:   #84cc16;
+  --hb-sand:   #f5f0e8;
+  --hb-mud:    #6b5c45;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Barlow Condensed", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* ── Sekcja-label ───────────────────────────────────────── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hb-teal);
+}
+.section-label::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--hb-teal);
+  border-radius: 2px;
+}
+.section-label--light {
+  color: rgba(255,255,255,0.55);
+}
+.section-label--light::before {
+  background: rgba(255,255,255,0.35);
+}
+
+/* ── Heading display ────────────────────────────────────── */
+.display-heading {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+/* ── Przycisk CTA pulsujący ─────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(20,184,166,.45); }
+  70%  { box-shadow: 0 0 0 12px rgba(20,184,166,0); }
+  100% { box-shadow: 0 0 0 0 rgba(20,184,166,0); }
+}
+.btn-pulse { animation: pulse-ring 2.4s ease-out infinite; }
+
+/* ── Card hover lift ────────────────────────────────────── */
+.card-lift {
+  transition: transform 0.28s cubic-bezier(.22,1,.36,1), box-shadow 0.28s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -8px rgba(7,30,50,.18);
+}
+
+/* ── Separator fala ─────────────────────────────────────── */
+.wave-sep { display: block; width: 100%; overflow: hidden; line-height: 0; }
+
+/* ── Fullbleed image card ────────────────────────────────── */
+.img-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+}
+.img-card img,
+.img-card .img-fill {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(.22,1,.36,1);
+}
+.img-card:hover .img-fill,
+.img-card:hover img {
+  transform: scale(1.04);
+}
+.img-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7,30,50,.82) 0%, rgba(7,30,50,.1) 60%, transparent 100%);
+  pointer-events: none;
+}
+.img-card .card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+}
+
+/* ── Nawigacja – mega-dropdown ───────────────────────────── */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.375rem 0.625rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.nav-link:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+.nav-link svg {
+  transition: transform 0.2s;
+}
+.group:hover .nav-link svg {
+  transform: rotate(180deg);
+}
+
+.mega-panel {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.18s ease, visibility 0.18s;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: #0a1f35;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 1rem;
+  box-shadow: 0 32px 64px rgba(0,0,0,.6);
+  min-width: 240px;
+  padding: 0.5rem;
+}
+.group:hover .mega-panel {
+  visibility: visible;
+  opacity: 1;
+}
+.mega-link {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.6rem 0.875rem;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.72);
+  transition: background 0.12s, color 0.12s;
+  white-space: nowrap;
+}
+.mega-link:hover {
+  background: rgba(20,184,166,0.12);
+  color: #fff;
+}
+.mega-link-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hb-teal);
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+.mega-link:hover .mega-link-dot { opacity: 1; }
