@@ -13,13 +13,6 @@ export const metadata: Metadata = (() => {
    DANE
 ════════════════════════════════════════════════════════════ */
 
-const STATS = [
-  { value: "15+",  label: "lat doświadczenia" },
-  { value: "200+", label: "zrealizowanych projektów" },
-  { value: "12",   label: "maszyn specjalistycznych" },
-  { value: "24h",  label: "czas reakcji" },
-] as const;
-
 const USLUGI = [
   {
     title: "Kopanie w trudnym terenie",
@@ -52,12 +45,74 @@ const USLUGI = [
 ] as const;
 
 const SEKTORY = [
-  { title: "Sektor Budowlany",        desc: "Wspieramy wykonawców przy pracach ziemnych w trudnym terenie – na torfowiskach, bagnach i wodzie.", href: "/dla-kogo/sektor-budowlany" },
-  { title: "Ochrona Środowiska",      desc: "Realizujemy działania renaturyzacyjne i ochrony bioróżnorodności – z Parkami Krajobrazowymi i RDOŚ.", href: "/dla-kogo/ochrona-srodowiska" },
-  { title: "Jednostki Administracyjne", desc: "Wspieramy miasta, gminy i powiaty w utrzymaniu zbiorników wodnych i infrastruktury hydrotechnicznej.", href: "/dla-kogo/jednostki-administracyjne" },
-  { title: "Rolnicy i Hodowcy Ryb",   desc: "Czyszczenie rowów, stawów hodowlanych i poprawa retencji na terenach rolnych.", href: "/dla-kogo/rolnicy-i-hodowcy-ryb" },
-  { title: "Obiekty Turystyczne",     desc: "Estetyka i funkcjonalność stawów, jezior i linii brzegowych przy hotelach i obiektach wypoczynkowych.", href: "/dla-kogo/obiekty-turystyczne" },
-  { title: "Osoby Prywatne",          desc: "Kompleksowe prace przy oczkach wodnych, stawach i trudno dostępnych działkach.", href: "/dla-kogo/osoby-prywatne" },
+  { 
+    title: "Sektor Budowlany",        
+    desc: "Wspieramy wykonawców przy pracach ziemnych w trudnym terenie – na torfowiskach, bagnach i wodzie.", 
+    href: "/dla-kogo/sektor-budowlany",
+    icon: (
+      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+      </svg>
+    )
+  },
+  { 
+    title: "Ochrona Środowiska",      
+    desc: "Realizujemy działania renaturyzacyjne i ochrony bioróżnorodności – z Parkami Krajobrazowymi i RDOŚ.", 
+    href: "/dla-kogo/ochrona-srodowiska",
+    icon: (
+      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    )
+  },
+  { 
+    title: "Jednostki Administracyjne", 
+    desc: "Wspieramy miasta, gminy i powiaty w utrzymaniu zbiorników wodnych i infrastruktury hydrotechnicznej.", 
+    href: "/dla-kogo/jednostki-administracyjne",
+    icon: (
+      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+      </svg>
+    )
+  },
+  { 
+    title: "Rolnicy i Hodowcy Ryb",   
+    desc: "Czyszczenie rowów, stawów hodowlanych i poprawa retencji na terenach rolnych.", 
+    href: "/dla-kogo/rolnicy-i-hodowcy-ryb",
+    icon: (
+      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="22" x2="12" y2="3" />
+        <line x1="12" y1="8"  x2="8"  y2="5" />
+        <line x1="12" y1="8"  x2="16" y2="5" />
+        <line x1="12" y1="11" x2="8"  y2="8" />
+        <line x1="12" y1="11" x2="16" y2="8" />
+        <line x1="12" y1="14" x2="8"  y2="11" />
+        <line x1="12" y1="14" x2="16" y2="11" />
+        <line x1="12" y1="17" x2="9"  y2="14.5" />
+        <line x1="12" y1="17" x2="15" y2="14.5" />
+      </svg>
+    )
+  },
+  { 
+    title: "Obiekty Turystyczne",     
+    desc: "Estetyka i funkcjonalność stawów, jezior i linii brzegowych przy hotelach i obiektach wypoczynkowych.", 
+    href: "/dla-kogo/obiekty-turystyczne",
+    icon: (
+      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    )
+  },
+  { 
+    title: "Osoby Prywatne",          
+    desc: "Kompleksowe prace przy oczkach wodnych, stawach i trudno dostępnych działkach.", 
+    href: "/dla-kogo/osoby-prywatne",
+    icon: (
+      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+    )
+  },
 ] as const;
 
 const FILARY = [
@@ -92,21 +147,6 @@ function ArrowRight({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-function WaveSep({ from, to, flip = false }: { from: string; to: string; flip?: boolean }) {
-  return (
-    <div className="wave-sep" style={{ background: from }}>
-      <svg
-        viewBox="0 0 1440 56"
-        preserveAspectRatio="none"
-        style={{ display: "block", height: 56, transform: flip ? "scaleY(-1)" : undefined }}
-        aria-hidden
-      >
-        <path d="M0,28 C360,56 720,0 1080,28 C1260,42 1380,14 1440,28 L1440,56 L0,56 Z" fill={to} />
-      </svg>
-    </div>
-  );
-}
-
 /* ════════════════════════════════════════════════════════════
    PAGE
 ════════════════════════════════════════════════════════════ */
@@ -126,8 +166,9 @@ export default function HomePage() {
           <source src={videoUrl("video-tlo.mp4")} type="video/mp4" />
         </video>
 
-        {/* Warstwa ciemności – ciemniejszy dół, żeby stats były czytelne */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, rgba(7,30,50,.68) 0%, rgba(7,30,50,.45) 40%, rgba(7,30,50,.82) 100%)" }} />
+        {/* Warstwa ciemności – profesjonalny, gładki overlay */}
+        <div className="absolute inset-0 bg-slate-950/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30" />
 
         {/* Dekoracyjny ukośny separator po prawej */}
         <div
@@ -137,36 +178,32 @@ export default function HomePage() {
 
         {/* Treść */}
         <div className="relative z-10 flex flex-1 flex-col">
-          <div className="mx-auto flex w-full max-w-7xl flex-1 items-center px-4 py-32 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
+          <div className="mx-auto flex w-full max-w-7xl flex-1 items-center justify-center px-4 py-32 sm:px-6 lg:px-8">
+            <div className="max-w-4xl text-center flex flex-col items-center">
               <SL light>Specjaliści od trudnego terenu</SL>
 
-              <h1
-                className="display-heading mt-5 text-white"
-                style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
-              >
-                Prace hydro­techniczne<br />
-                <span style={{ color: "#2dd4bf" }}>w trudnym terenie</span><br />
-                i wodzie
+              <h1 className="display-heading mt-6 text-white text-5xl sm:text-6xl lg:text-7xl leading-[1.1] tracking-tight max-w-4xl">
+                Prace hydrotechniczne<br />
+                <span className="text-[#7dd3fc]">w trudnym terenie</span>
               </h1>
 
-              <p className="mt-6 max-w-xl text-lg leading-relaxed" style={{ color: "rgba(255,255,255,.75)" }}>
+              <p className="mt-8 max-w-2xl text-lg sm:text-xl text-slate-200 leading-relaxed font-medium">
                 Wchodzimy tam, gdzie inni się cofają.{" "}
-                <strong className="text-white font-semibold">Bagna, torfy, cieki wodne</strong> – to nasz codzienny teren pracy.
+                <span className="text-white font-bold">Bagna, torfy, cieki wodne</span> – to nasz codzienny teren pracy.
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
                 <Link
                   href="/darmowa-konsultacja"
-                  className="btn-pulse inline-flex items-center gap-2 rounded-full bg-teal-500 px-8 py-4 text-base font-bold text-white transition hover:bg-teal-400"
+                  className="btn-pulse flex w-full sm:w-auto items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white transition hover:opacity-90 shadow-lg shadow-sky-900/20"
+                  style={{ background: "var(--hb-water)" }}
                 >
                   Potrzebuję wsparcia
                   <ArrowRight />
                 </Link>
                 <Link
                   href="/realizacje"
-                  className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white transition hover:bg-white/10"
-                  style={{ border: "1.5px solid rgba(255,255,255,.3)" }}
+                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white transition-all bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:border-white/30"
                 >
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
@@ -175,21 +212,6 @@ export default function HomePage() {
                   Zobacz realizacje
                 </Link>
               </div>
-            </div>
-          </div>
-
-          {/* Stats bar przyklejony do dołu hero */}
-          <div style={{ background: "rgba(7,22,40,0.88)", borderTop: "1px solid rgba(255,255,255,.07)" }}
-            className="relative z-10 backdrop-blur-sm">
-            <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/[.07] sm:grid-cols-4">
-              {STATS.map((s) => (
-                <div key={s.label} className="px-6 py-6 text-center">
-                  <div className="display-heading text-3xl text-teal-400 sm:text-4xl">{s.value}</div>
-                  <div className="mt-1 text-[0.7rem] font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,.45)" }}>
-                    {s.label}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
@@ -209,43 +231,50 @@ export default function HomePage() {
                 <span className="relative">
                   dla Ciebie
                   <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 200 8" preserveAspectRatio="none" aria-hidden>
-                    <path d="M0,6 Q50,0 100,5 T200,4" fill="none" stroke="#14b8a6" strokeWidth="3" strokeLinecap="round" />
+                    <path d="M0,6 Q50,0 100,5 T200,4" fill="none" stroke="var(--hb-water)" strokeWidth="3" strokeLinecap="round" />
                   </svg>
                 </span>{" "}
                 zrobić?
               </h2>
             </div>
-            <Link href="/uslugi" className="hidden items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-800 sm:flex">
+            <Link href="/uslugi" className="hidden items-center gap-2 text-sm font-semibold hover:opacity-80 sm:flex" style={{ color: "var(--hb-water)" }}>
               Wszystkie usługi <ArrowRight />
             </Link>
           </div>
 
-          {/* 4 karty fullbleed ze zdjęciami */}
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* 4 karty ze zdjęciami i tekstem poniżej */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {USLUGI.map((item) => (
-              <Link key={item.href} href={item.href} className="img-card card-lift block" style={{ height: 420 }}>
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group flex flex-col overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              >
                 {/* Zdjęcie */}
-                <Image
-                  src={imageUrl(item.img)}
-                  alt={item.title}
-                  fill
-                  className="img-fill"
-                  sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,25vw"
-                />
-                {/* Treść na zdjęciu */}
-                <div className="card-content">
-                  <p className="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.15em]" style={{ color: "#2dd4bf" }}>
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={imageUrl(item.img)}
+                    alt={item.title}
+                    fill
+                    className="object-cover opacity-85 transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,25vw"
+                  />
+                </div>
+                {/* Treść */}
+                <div className="flex flex-1 flex-col p-6 sm:p-8">
+                  <p className="mb-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#0284c7]">
                     {item.short}
                   </p>
-                  <h3 className="display-heading text-xl text-white leading-tight mb-3">
+                  <h3 className="display-heading mb-3 text-2xl text-slate-900 leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-[0.8rem] leading-relaxed mb-4" style={{ color: "rgba(255,255,255,.72)" }}>
+                  <p className="mb-6 flex-1 text-sm leading-relaxed text-slate-600">
                     {item.desc}
                   </p>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-teal-300">
-                    Dowiedz się więcej <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
+                  <div className="mt-auto flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#0284c7] transition-colors group-hover:text-[#0369a1]">
+                    Dowiedz się więcej 
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </div>
                 </div>
               </Link>
             ))}
@@ -256,14 +285,24 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           3. DLA KOGO – ciemne tło
       ══════════════════════════════════════════════════════ */}
-      <WaveSep from="#ffffff" to="#071e32" />
-      <section className="py-24 lg:py-32" style={{ background: "linear-gradient(155deg,#071e32 0%,#0a2a1e 55%,#071e32 100%)" }}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 lg:py-32">
+        {/* Tło sekcji ze zdjęciem */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={imageUrl("koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg")}
+            alt="Tło"
+            fill
+            className="object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-slate-950" style={{ opacity: 0.82 }} />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Nagłówek */}
           <div className="mb-16 text-center">
             <SL light>Grupy klientów</SL>
             <h2 className="display-heading mt-4 text-white" style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)" }}>
-              Z jakimi sektorami <span style={{ color: "#2dd4bf" }}>współpracujemy?</span>
+              Z jakimi sektorami <span className="text-[#38bdf8]">współpracujemy?</span>
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-base" style={{ color: "rgba(255,255,255,.55)" }}>
               Obsługujemy zarówno inwestycje komercyjne, jak i projekty wymagające szczególnej wrażliwości środowiskowej.
@@ -271,32 +310,39 @@ export default function HomePage() {
           </div>
 
           {/* Siatka – 3 kolumny na desktop, każda karta z lewą akcentową kreską */}
-          <div className="grid gap-px sm:grid-cols-2 lg:grid-cols-3" style={{ background: "rgba(255,255,255,.05)" }}>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {SEKTORY.map((item, i) => (
-              <article
+              <Link
                 key={item.href}
-                className="group relative flex flex-col p-8 transition"
-                style={{ background: "linear-gradient(155deg,#0a1f35,#071e32)" }}
+                href={item.href}
+                className="group relative flex flex-col rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(2,132,199,0.18)]"
+                style={{ background: "#0f172a", border: "1px solid rgba(255,255,255,.1)" }}
               >
-                {/* Numer */}
-                <span className="display-heading mb-4 block text-5xl" style={{ color: "rgba(255,255,255,.07)" }}>
+                {/* Niebieska lewa krawędź pokazująca się przy hover */}
+                <span className="pointer-events-none absolute inset-y-0 left-0 w-[3px] rounded-l-2xl bg-[#0284c7] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                {/* Numer w tle */}
+                <span className="display-heading absolute right-6 top-6 text-6xl font-black transition-all duration-300 group-hover:text-[#38bdf8]/10" style={{ color: "rgba(255,255,255,.03)" }}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                {/* Lewa kreska */}
-                <div className="absolute left-0 top-8 h-10 w-1 rounded-r bg-teal-500 opacity-0 transition-opacity group-hover:opacity-100" />
-                <h3 className="mb-3 text-lg font-bold text-white">{item.title}</h3>
-                <p className="mb-5 flex-1 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,.55)" }}>
+
+                <span className="transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.6)] w-fit">
+                  {item.icon}
+                </span>
+
+                <h3 className="mb-3 text-lg font-bold text-white transition-colors duration-300 group-hover:text-[#38bdf8]">{item.title}</h3>
+                <p className="mb-6 flex-1 text-sm leading-relaxed transition-colors duration-300 group-hover:text-white/80" style={{ color: "rgba(255,255,255,.6)" }}>
                   {item.desc}
                 </p>
-                <Link href={item.href} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-teal-400 transition hover:text-teal-300">
-                  Dowiedz się więcej <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </article>
+
+                <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#38bdf8]">
+                  Dowiedz się więcej <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
-      <WaveSep from="#071e32" to="#f8fafc" flip />
 
       {/* ══════════════════════════════════════════════════════
           4. DLACZEGO HYDROBAGGER – split layout
@@ -306,24 +352,29 @@ export default function HomePage() {
           <div className="grid items-center gap-16 lg:grid-cols-2">
             {/* Lewa – zdjęcie */}
             <div className="relative order-2 lg:order-1">
-              <div className="img-card" style={{ height: 560 }}>
-                <div
-                  className="img-fill h-full w-full rounded-2xl"
-                  style={{ background: "linear-gradient(135deg,#0e7490,#14532d)", opacity: 0.25 }}
-                  data-placeholder="dlaczego-zdjecie"
+              <div className="img-card overflow-hidden rounded-2xl" style={{ height: 560 }}>
+                <Image
+                  src={imageUrl("koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg")}
+                  alt="Koparka pływająca z zestawem refulacyjnym HydroBagger"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width:1024px) 100vw, 50vw"
                 />
-                {/* placeholder label */}
-                <div className="absolute inset-0 flex items-center justify-center rounded-2xl">
-                  <p className="text-sm text-white/40">← zdjęcie z CDN</p>
-                </div>
               </div>
-              {/* Odznaka */}
+              {/* Kafelek – unikalna przewaga */}
               <div
-                className="absolute -right-4 -bottom-6 rounded-2xl px-6 py-5 text-white shadow-2xl lg:-right-8"
-                style={{ background: "#0e7490" }}
+                className="absolute -bottom-5 -right-4 lg:-right-8 max-w-[260px] rounded-2xl p-5 shadow-2xl"
+                style={{ background: "linear-gradient(135deg, #0f172a 0%, #0c2d4a 100%)", border: "1px solid rgba(56,189,248,0.2)" }}
               >
-                <div className="display-heading text-4xl">15+</div>
-                <div className="text-[0.65rem] font-bold uppercase tracking-widest opacity-75">lat doświadczenia</div>
+                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "rgba(2,132,199,0.2)" }}>
+                  <svg className="h-5 w-5 text-[#38bdf8]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                  </svg>
+                </div>
+                <p className="text-xs font-bold uppercase tracking-widest text-[#38bdf8] mb-1.5">Unikalna przewaga</p>
+                <p className="text-sm font-semibold leading-snug text-white">
+                  Pogłębiamy i odsysamy muł w tym samym czasie.
+                </p>
               </div>
             </div>
 
@@ -331,7 +382,7 @@ export default function HomePage() {
             <div className="order-1 lg:order-2">
               <SL>Nasza przewaga</SL>
               <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2.2rem,4vw,3rem)" }}>
-                Dlaczego <span className="text-teal-600">HydroBagger?</span>
+                Dlaczego <span style={{ color: "var(--hb-water)" }}>HydroBagger?</span>
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-slate-600">
                 Mamy sprzęt, który dociera tam, gdzie inni nie mogą. Koparki pływające, gąsienicowe, amfibie – to nasz codzienny arsenał.
@@ -342,7 +393,7 @@ export default function HomePage() {
                   <div key={p.n} className="flex gap-5">
                     <span
                       className="display-heading mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm text-white"
-                      style={{ background: "linear-gradient(135deg,#0e7490,#0f766e)" }}
+                      style={{ background: "linear-gradient(135deg, var(--hb-water), #0369a1)" }}
                     >
                       {p.n}
                     </span>
@@ -357,7 +408,8 @@ export default function HomePage() {
               <div className="mt-10">
                 <Link
                   href="/o-nas"
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-teal-600 px-7 py-3 text-sm font-bold text-teal-700 transition hover:bg-teal-600 hover:text-white"
+                  className="inline-flex items-center gap-2 rounded-full border-2 px-7 py-3 text-sm font-bold transition hover:text-white hover:bg-[var(--hb-water)]"
+                  style={{ borderColor: "var(--hb-water)", color: "var(--hb-water)" }}
                 >
                   Poznaj nasz zespół <ArrowRight />
                 </Link>
@@ -375,7 +427,7 @@ export default function HomePage() {
           <div className="mb-16 text-center">
             <SL>Referencje</SL>
             <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)" }}>
-              Co mówią o nas <span className="text-teal-600">klienci?</span>
+              Co mówią o nas <span style={{ color: "var(--hb-water)" }}>klienci?</span>
             </h2>
           </div>
 
@@ -384,10 +436,10 @@ export default function HomePage() {
               <blockquote
                 key={i}
                 className="card-lift flex flex-col rounded-2xl p-8"
-                style={{ background: i === 1 ? "linear-gradient(135deg,#071e32,#0e7490)" : "#f8fafc", border: "1px solid", borderColor: i === 1 ? "transparent" : "#e2e8f0" }}
+                style={{ background: i === 1 ? "linear-gradient(135deg, #0f172a, var(--hb-water))" : "#ffffff", border: "1px solid", borderColor: i === 1 ? "transparent" : "#e2e8f0" }}
               >
                 {/* Cudzysłów */}
-                <div className="mb-5 text-5xl font-black leading-none" style={{ color: i === 1 ? "rgba(45,212,191,.4)" : "#2dd4bf", lineHeight: 1 }}>
+                <div className="mb-5 text-5xl font-black leading-none" style={{ color: i === 1 ? "rgba(56, 189, 248, 0.4)" : "var(--hb-water)", lineHeight: 1 }}>
                   &ldquo;
                 </div>
                 <p className={`mb-6 flex-1 text-[0.95rem] leading-relaxed italic ${i === 1 ? "text-white/90" : "text-slate-700"}`}>
@@ -396,14 +448,14 @@ export default function HomePage() {
                 <footer className="flex items-center gap-3">
                   <div
                     className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-black text-white"
-                    style={{ background: i === 1 ? "rgba(255,255,255,.15)" : "#0e7490" }}
+                    style={{ background: i === 1 ? "rgba(255,255,255,.15)" : "var(--hb-water)" }}
                   >
                     {item.author.charAt(0)}
                   </div>
                   <cite className="not-italic">
                     <span className={`block text-sm font-bold ${i === 1 ? "text-white" : "text-slate-900"}`}>{item.author}</span>
                     <span className={`block text-xs ${i === 1 ? "text-white/60" : "text-slate-500"}`}>{item.role}</span>
-                    <span className={`block text-xs font-semibold ${i === 1 ? "text-teal-300" : "text-teal-600"}`}>{item.company}</span>
+                    <span className={`block text-xs font-semibold ${i === 1 ? "#7dd3fc" : "var(--hb-water)"}`} style={i === 1 ? { color: "#7dd3fc" } : { color: "var(--hb-water)" }}>{item.company}</span>
                   </cite>
                 </footer>
               </blockquote>
@@ -415,20 +467,39 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           6. MARKI
       ══════════════════════════════════════════════════════ */}
-      <section className="bg-slate-50 py-14">
+      <section className="bg-slate-50 py-14 border-t border-slate-100 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="mb-10 text-center text-[0.68rem] font-bold uppercase tracking-[0.2em] text-slate-400">
             Marki, które nam zaufały
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div
-                key={i}
-                className="flex h-14 w-36 items-center justify-center rounded-xl border bg-white text-xs text-slate-300"
-                style={{ borderColor: "#e2e8f0" }}
-                data-placeholder="logo-firmy"
-              >
-                Logo {i}
+        </div>
+        {/* Maska fade po bokach */}
+        <div className="relative" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+          <div className="marquee-track">
+            {[
+              "Logo_eko_folwark.png",
+              "Logo_PORR.png",
+              "Logo_ujscie_warty.png",
+              "Logo_uniwersystet_przyrodniczy_w_poznaniu.png",
+              "Logo_uniwersystet_warminsko_mazurski_w_olsztynie.png",
+              "Logo_wody_polski.png",
+              "Logo_budimex-1.png",
+              "Logo_eko_folwark.png",
+              "Logo_PORR.png",
+              "Logo_ujscie_warty.png",
+              "Logo_uniwersystet_przyrodniczy_w_poznaniu.png",
+              "Logo_uniwersystet_warminsko_mazurski_w_olsztynie.png",
+              "Logo_wody_polski.png",
+              "Logo_budimex-1.png",
+            ].map((logo, idx) => (
+              <div key={idx} className="relative mx-8 h-20 w-48 shrink-0">
+                <Image
+                  src={imageUrl(logo)}
+                  alt={logo.replace(/Logo_|\.png/g, "").replace(/_/g, " ")}
+                  fill
+                  className="object-contain"
+                  sizes="192px"
+                />
               </div>
             ))}
           </div>
@@ -438,34 +509,30 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           7. CTA + FORMULARZ
       ══════════════════════════════════════════════════════ */}
-      <WaveSep from="#f8fafc" to="#071e32" />
-      <section
-        className="py-24 lg:py-32"
-        style={{ background: "linear-gradient(150deg,#071e32 0%,#0a2a1a 100%)" }}
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-slate-100 pt-24 lg:pt-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 pb-24 lg:pb-32">
           <div className="grid items-start gap-14 lg:grid-cols-2">
             {/* Lewa */}
             <div>
-              <SL light>Bezpłatna konsultacja</SL>
-              <h2 className="display-heading mt-4 text-white" style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)" }}>
+              <SL>Bezpłatna konsultacja</SL>
+              <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)" }}>
                 Prace w trudnym terenie?{" "}
-                <span style={{ color: "#2dd4bf" }}>Zacznijmy od rozmowy!</span>
+                <span style={{ color: "var(--hb-water)" }}>Zacznijmy od rozmowy!</span>
               </h2>
-              <p className="mt-5 text-lg leading-relaxed" style={{ color: "rgba(255,255,255,.7)" }}>
+              <p className="mt-5 text-lg leading-relaxed text-slate-600">
                 Skorzystaj z bezpłatnej 20-minutowej konsultacji – opowiesz nam o swojej sytuacji, a my podpowiemy możliwe rozwiązania.
               </p>
-              <p className="mt-3 text-base" style={{ color: "rgba(255,255,255,.45)" }}>
+              <p className="mt-3 text-base text-slate-500">
                 Nie musisz mieć gotowego planu ani dokumentacji – wystarczy chęć, by coś z tym zrobić.
               </p>
 
               <div className="mt-8 flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full text-lg font-black text-white" style={{ background: "#0e7490" }}>
+                <div className="flex h-14 w-14 items-center justify-center rounded-full text-lg font-black text-white" style={{ background: "var(--hb-water)" }}>
                   LB
                 </div>
                 <div>
-                  <div className="font-bold text-white">Leszek Białasik</div>
-                  <div className="text-sm text-teal-400">HydroBagger.pl</div>
+                  <div className="font-bold text-slate-900">Leszek Białasik</div>
+                  <div className="text-sm" style={{ color: "var(--hb-water)" }}>HydroBagger.pl</div>
                 </div>
               </div>
 
@@ -475,12 +542,12 @@ export default function HomePage() {
                   "Szybka wycena bez zobowiązań",
                   "Znajomość trudnych terenów i regulacji środowiskowych",
                 ].map((t) => (
-                  <li key={t} className="flex items-start gap-3" style={{ color: "rgba(255,255,255,.7)" }}>
+                  <li key={t} className="flex items-start gap-3 text-slate-600">
                     <span
                       className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
-                      style={{ background: "rgba(20,184,166,.2)" }}
+                      style={{ background: "rgba(2, 132, 199, 0.1)" }}
                     >
-                      <svg className="h-3 w-3 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-3 w-3" style={{ color: "var(--hb-water)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                     </span>
@@ -490,55 +557,80 @@ export default function HomePage() {
               </ul>
             </div>
 
-            {/* Prawa – formularz */}
-            <div
-              className="rounded-2xl p-8 lg:p-10"
-              style={{ background: "rgba(255,255,255,.04)", border: "1px solid rgba(255,255,255,.08)" }}
-            >
-              <h3 className="mb-6 text-xl font-bold text-white">Napisz do nas</h3>
+            {/* Prawa – formularz z gąsienicą */}
+            <div className="track-border p-8 lg:p-10 mt-4 lg:mt-0">
+              <div className="mb-7">
+                <h3 className="text-2xl font-bold text-slate-900">Napisz do nas</h3>
+                <p className="mt-1.5 text-sm text-slate-500">Odpowiemy w ciągu 24 godzin roboczych.</p>
+              </div>
               <form className="flex flex-col gap-4" action="#" method="post" noValidate>
-                {[
-                  { id: "name",    label: "Imię i nazwisko", type: "text",  ph: "Jan Kowalski",       req: true  },
-                  { id: "email",   label: "E-mail",           type: "email", ph: "jan@example.com",    req: true  },
-                  { id: "phone",   label: "Telefon",          type: "tel",   ph: "+48 123 456 789",    req: false },
-                ].map((f) => (
-                  <div key={f.id}>
-                    <label htmlFor={`contact-${f.id}`} className="mb-1.5 block text-sm font-medium" style={{ color: "rgba(255,255,255,.6)" }}>
-                      {f.label}
-                    </label>
+
+                {/* Imię + Telefon obok siebie */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="contact-name" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Imię i nazwisko <span className="text-[#0284c7]">*</span></label>
                     <input
-                      id={`contact-${f.id}`}
-                      type={f.type}
-                      name={f.id}
-                      required={f.req}
-                      placeholder={f.ph}
-                      className="w-full rounded-xl px-4 py-3 text-white placeholder-slate-500 outline-none transition focus:ring-2 focus:ring-teal-500/40"
-                      style={{ background: "rgba(255,255,255,.07)", border: "1px solid rgba(255,255,255,.12)" }}
+                      id="contact-name"
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="Jan Kowalski"
+                      className="w-full rounded-xl px-4 py-3 text-slate-900 placeholder-slate-300 outline-none transition focus:ring-2 border border-slate-200 bg-white focus:border-[#0284c7] text-sm"
+                      style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as React.CSSProperties}
                     />
                   </div>
-                ))}
-                <div>
-                  <label htmlFor="contact-msg" className="mb-1.5 block text-sm font-medium" style={{ color: "rgba(255,255,255,.6)" }}>
-                    Wiadomość
-                  </label>
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="contact-phone" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Telefon</label>
+                    <input
+                      id="contact-phone"
+                      type="tel"
+                      name="phone"
+                      placeholder="+48 000 000 000"
+                      className="w-full rounded-xl px-4 py-3 text-slate-900 placeholder-slate-300 outline-none transition focus:ring-2 border border-slate-200 bg-white focus:border-[#0284c7] text-sm"
+                      style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as React.CSSProperties}
+                    />
+                  </div>
+                </div>
+
+                {/* E-mail */}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Adres e-mail <span className="text-[#0284c7]">*</span></label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="jan@firma.pl"
+                    className="w-full rounded-xl px-4 py-3 text-slate-900 placeholder-slate-300 outline-none transition focus:ring-2 border border-slate-200 bg-white focus:border-[#0284c7] text-sm"
+                    style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as React.CSSProperties}
+                  />
+                </div>
+
+                {/* Wiadomość */}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="contact-msg" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Opis projektu <span className="text-[#0284c7]">*</span></label>
                   <textarea
                     id="contact-msg"
                     name="message"
                     rows={4}
-                    placeholder="Opowiedz nam o swoim projekcie..."
-                    className="w-full rounded-xl px-4 py-3 text-white placeholder-slate-500 outline-none transition focus:ring-2 focus:ring-teal-500/40"
-                    style={{ background: "rgba(255,255,255,.07)", border: "1px solid rgba(255,255,255,.12)" }}
+                    placeholder="Opisz krótko swój projekt – lokalizację, rodzaj prac, termin..."
+                    className="w-full rounded-xl px-4 py-3 text-slate-900 placeholder-slate-300 outline-none transition focus:ring-2 border border-slate-200 bg-white focus:border-[#0284c7] text-sm resize-none"
+                    style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as React.CSSProperties}
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="btn-pulse mt-2 w-full rounded-full bg-teal-500 py-4 text-base font-bold text-white transition hover:bg-teal-400"
-                >
-                  Wyślij wiadomość
-                </button>
-                <p className="text-center text-xs" style={{ color: "rgba(255,255,255,.3)" }}>
-                  Odpowiadamy zwykle w ciągu 24 godzin.
-                </p>
+
+                <div className="flex items-center justify-between gap-4 mt-2 flex-wrap">
+                  <button
+                    type="submit"
+                    className="btn-pulse rounded-full px-9 py-3.5 text-base font-bold text-white transition hover:opacity-90"
+                    style={{ background: "var(--hb-water)", boxShadow: "0 8px 20px -4px rgba(2, 132, 199, 0.45)" }}
+                  >
+                    Wyślij wiadomość →
+                  </button>
+                  <p className="text-xs text-slate-400 leading-relaxed max-w-[200px]">
+                    Twoje dane są chronione zgodnie z <Link href="/polityka-prywatnosci" className="underline hover:text-slate-600">Polityką Prywatności</Link>.
+                  </p>
+                </div>
               </form>
             </div>
           </div>

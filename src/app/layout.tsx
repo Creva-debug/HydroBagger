@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const montserrat = Montserrat({
+  variable: "--font-display",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
 });
 
 const defaultMetadata = {
@@ -23,7 +25,14 @@ const defaultMetadata = {
     "Prace hydrotechniczne z lądu i wody. Bagna, torfy, cieki – wchodzimy tam, gdzie inni się poddają.",
 };
 
-export const metadata: Metadata = defaultMetadata;
+export const metadata: Metadata = {
+  ...defaultMetadata,
+  icons: {
+    icon: "https://creva.b-cdn.net/Hydrobagger/cropped-favicon.png",
+    shortcut: "https://creva.b-cdn.net/Hydrobagger/cropped-favicon.png",
+    apple: "https://creva.b-cdn.net/Hydrobagger/cropped-favicon.png",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -34,7 +43,7 @@ export default function RootLayout({
     <html lang="pl">
       <body
         id="top"
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
+        className={`${inter.variable} ${montserrat.variable} font-sans flex min-h-screen flex-col antialiased`}
       >
         <Header />
         <div className="flex-1">{children}</div>
