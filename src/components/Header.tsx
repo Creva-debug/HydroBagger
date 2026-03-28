@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { imageUrl } from "@/lib/images";
 
 const NAV_DLA_KOGO = [
@@ -38,8 +41,16 @@ const NAV_DLA_KOGO = [
     label: "Rolnicy i hodowcy ryb",
     desc: "Czyszczenie rowów i stawów hodowlanych.",
     icon: (
-      <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="22" x2="12" y2="3" />
+        <line x1="12" y1="8"  x2="8"  y2="5" />
+        <line x1="12" y1="8"  x2="16" y2="5" />
+        <line x1="12" y1="11" x2="8"  y2="8" />
+        <line x1="12" y1="11" x2="16" y2="8" />
+        <line x1="12" y1="14" x2="8"  y2="11" />
+        <line x1="12" y1="14" x2="16" y2="11" />
+        <line x1="12" y1="17" x2="9"  y2="14.5" />
+        <line x1="12" y1="17" x2="15" y2="14.5" />
       </svg>
     )
   },
@@ -72,7 +83,7 @@ const NAV_USLUGI = [
     desc: "Prace ziemne na bagnach, torfach i w wodzie.",
     icon: (
       <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 5.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
       </svg>
     )
   },
@@ -82,7 +93,7 @@ const NAV_USLUGI = [
     desc: "Usuwanie roślinności wodnej i brzegowej.",
     icon: (
       <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7.848 8.25l1.536.54m5.232 1.86l1.536.54M4.5 18.75l2.548-2.548m0 0a3.375 3.375 0 000-4.773m0 4.773a3.375 3.375 0 004.773 0m-4.773 0L4.5 18.75m4.773-4.773l5.428-5.428m0 0a3.375 3.375 0 104.773-4.773 3.375 3.375 0 00-4.773 4.773z" />
       </svg>
     )
   },
@@ -92,7 +103,7 @@ const NAV_USLUGI = [
     desc: "Oczyszczanie zbiorników z zalegającego mułu.",
     icon: (
       <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
       </svg>
     )
   },
@@ -102,24 +113,37 @@ const NAV_USLUGI = [
     desc: "Dowóz sprzętu i materiałów przez błoto i wodę.",
     icon: (
       <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
       </svg>
     )
   },
 ] as const;
 
 const NAV_SPRZET = [
-  { href: "/sprzet/koparki-gasienicowe", label: "Koparki gąsienicowe", desc: "Ciężki sprzęt do prac ziemnych na lądzie." },
-  { href: "/sprzet/koparki-plywajace", label: "Koparki pływające", desc: "Maszyny amfibijne do prac na wodzie i bagnach." },
-  { href: "/sprzet/kosiarki-plywajace", label: "Kosiarki pływające", desc: "Sprzęt do koszenia roślinności z powierzchni wody." },
-  { href: "/sprzet/kosiarki-samobiezne", label: "Kosiarki samobieżne", desc: "Kosiarki gąsienicowe do trudnego terenu." },
-  { href: "/sprzet/pompy-refulacyjne", label: "Pompy refulacyjne", desc: "Wydajne pompy do odsysania osadów i mułu." },
-  { href: "/sprzet/wozidla-budowlane", label: "Wozidła budowlane", desc: "Transport urobku w trudnych warunkach." },
+  { href: "/sprzet/koparki-plywajace",    label: "Koparki pływające",    desc: "Maszyny amfibijne pracujące bezpośrednio na wodzie, bagnach i mokradłach." },
+  { href: "/sprzet/koparki-gasienicowe",  label: "Koparki gąsienicowe",  desc: "Ciężki sprzęt gąsienicowy do głębokich prac ziemnych w trudnym terenie." },
+  { href: "/sprzet/kosiarki-plywajace",   label: "Kosiarki pływające",   desc: "Pływające maszyny do koszenia i mulczowania roślinności wodnej i brzegowej." },
+  { href: "/sprzet/kosiarki-samobiezne",  label: "Kosiarki samobieżne",  desc: "Gąsienicowe kosiarki do mulczowania skarp, rowów i podmokłych terenów." },
+  { href: "/sprzet/pompy-refulacyjne",    label: "Pompy refulacyjne",    desc: "Wysokowydajne pompy do hydraulicznego odsysania osadów dennych i mułu." },
+  { href: "/sprzet/wozidla-budowlane",    label: "Wozidła budowlane",    desc: "Gąsienicowe pojazdy transportowe do pracy w błocie i terenie podmokłym." },
 ] as const;
 
 const NAV_PRACA = [
-  { href: "/praca/inzynier-robot-hydrotechnicznych", label: "Inżynier robót hydrotechnicznych", desc: "Nadzór i koordynacja projektów." },
-  { href: "/praca/operator-koparki", label: "Operator koparki", desc: "Obsługa sprzętu pływającego i gąsienicowego." },
+  { href: "/praca/inzynier-robot-hydrotechnicznych", label: "Inżynier robót hydrotechnicznych", desc: "Planowanie i nadzór techniczny nad realizacją prac hydrotechnicznych w terenie." },
+  { href: "/praca/operator-koparki",                 label: "Operator koparki",                 desc: "Obsługa specjalistycznych koparek pływających i gąsienicowych w terenie." },
+] as const;
+
+const NAV_DIRECT = [
+  { href: "/referencje", label: "Referencje" },
+  { href: "/o-nas",      label: "O nas" },
+  { href: "/wiedza",     label: "Wiedza" },
+] as const;
+
+const NAV_SECTIONS = [
+  { label: "Dla kogo?",  href: "/dla-kogo", items: NAV_DLA_KOGO },
+  { label: "Usługi",     href: "/uslugi",   items: NAV_USLUGI },
+  { label: "Sprzęt",     href: "/sprzet",   items: NAV_SPRZET },
+  { label: "Praca",      href: "/praca",    items: NAV_PRACA },
 ] as const;
 
 function DropdownMenu({
@@ -140,9 +164,9 @@ function DropdownMenu({
         </svg>
       </Link>
       <div className="mega-panel">
-        <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:w-[600px]">
+        <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:w-[640px]">
           {items.map((item) => (
-            <Link key={item.href} href={item.href} className="flex items-start gap-3 p-3 rounded-lg transition-colors hover:bg-slate-50 group/item">
+            <Link key={item.href} href={item.href} className="flex items-start gap-3 p-3 rounded-lg transition-colors hover:bg-sky-50 group/item">
               {item.icon && (
                 <div className="mt-0.5 shrink-0 rounded-md bg-sky-50 p-2 text-sky-600 transition-colors group-hover/item:bg-sky-100 group-hover/item:text-sky-700">
                   {item.icon}
@@ -152,7 +176,7 @@ function DropdownMenu({
                 <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300 transition-colors group-hover/item:bg-[#0284c7]" />
               )}
               <div>
-                <div className="font-semibold text-slate-800 transition-colors group-hover/item:text-[#0284c7]">
+                <div className="whitespace-nowrap font-semibold text-slate-800 transition-colors group-hover/item:text-[#0284c7]">
                   {item.label}
                 </div>
                 {item.desc && (
@@ -169,58 +193,205 @@ function DropdownMenu({
   );
 }
 
-export function Header() {
+function MobileAccordion({
+  label,
+  href,
+  items,
+  onLinkClick,
+}: {
+  label: string;
+  href: string;
+  items: readonly { href: string; label: string; desc?: string; icon?: React.ReactNode }[];
+  onLinkClick: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="sticky top-0 z-50 w-full">
-      <header
-        className="bg-white/95 backdrop-blur-md shadow-sm"
-        style={{ borderBottom: "1px solid #e2e8f0", borderTop: "4px solid var(--hb-water)" }}
+    <div className="border-b border-slate-100">
+      <button
+        type="button"
+        className="flex w-full items-center justify-between py-4 text-left text-base font-semibold text-slate-800"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
       >
-        <div className="mx-auto flex h-[80px] w-full max-w-[1400px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-          {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center" aria-label="HydroBagger">
+        <span>{label}</span>
+        <svg
+          className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="pb-2 pl-2">
+          <Link
+            href={href}
+            onClick={onLinkClick}
+            className="mb-1 flex items-center gap-1.5 pb-2 text-xs font-semibold uppercase tracking-wider text-[#0284c7]"
+          >
+            Wszystkie <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+          </Link>
+          {items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={onLinkClick}
+              className="flex items-center gap-3 rounded-lg py-2.5 text-sm text-slate-700 transition-colors hover:text-[#0284c7]"
+            >
+              {item.icon && (
+                <span className="shrink-0 text-[#0284c7]">{item.icon}</span>
+              )}
+              {!item.icon && (
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300" />
+              )}
+              <span className="font-medium">{item.label}</span>
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const close = () => setMobileOpen(false);
+
+  return (
+    <>
+      <div className="sticky top-0 z-50 w-full">
+        <header
+          className="bg-white/95 backdrop-blur-md shadow-sm"
+          style={{ borderBottom: "1px solid #e2e8f0", borderTop: "4px solid var(--hb-water)" }}
+        >
+          <div className="mx-auto flex h-[80px] w-full max-w-[1400px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+            {/* Logo */}
+            <Link href="/" className="flex shrink-0 items-center" aria-label="HydroBagger" onClick={close}>
+              <Image
+                src={imageUrl("logo_hydrobagger.png")}
+                alt="HydroBagger"
+                width={220}
+                height={60}
+                className="h-14 w-auto object-contain"
+                priority
+              />
+            </Link>
+
+            {/* Nav desktop */}
+            <nav className="hidden items-center gap-2 lg:flex" aria-label="Główne menu">
+              <DropdownMenu label="Dla kogo?" items={NAV_DLA_KOGO} href="/dla-kogo" />
+              <DropdownMenu label="Usługi" items={NAV_USLUGI} href="/uslugi" />
+              <DropdownMenu label="Sprzęt" items={NAV_SPRZET} href="/sprzet" />
+              <DropdownMenu label="Praca" items={NAV_PRACA} href="/praca" />
+              <Link href="/referencje" className="nav-link">Referencje</Link>
+              <Link href="/o-nas" className="nav-link">O nas</Link>
+              <Link href="/wiedza" className="nav-link">Wiedza</Link>
+            </nav>
+
+            {/* CTA desktop */}
+            <Link
+              href="/darmowa-konsultacja"
+              className="btn-pulse hidden shrink-0 rounded-full px-6 py-2.5 text-sm font-bold text-white transition-all lg:block"
+              style={{ background: "var(--hb-water)", boxShadow: "0 4px 14px -2px rgba(14, 116, 144, 0.4)" }}
+            >
+              BEZPŁATNA KONSULTACJA
+            </Link>
+
+            {/* Mobile burger */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 lg:hidden"
+              aria-label="Otwórz menu"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </header>
+      </div>
+
+      {/* Mobile menu overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-[60] bg-slate-950/50 backdrop-blur-sm lg:hidden"
+          onClick={close}
+          aria-hidden
+        />
+      )}
+
+      {/* Mobile menu drawer */}
+      <div
+        className={`fixed right-0 top-0 z-[70] flex h-full w-[85vw] max-w-sm flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+          mobileOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        aria-label="Menu mobilne"
+        role="dialog"
+        aria-modal="true"
+      >
+        {/* Drawer header */}
+        <div
+          className="flex items-center justify-between px-5 py-4"
+          style={{ borderBottom: "1px solid #e2e8f0", borderTop: "4px solid var(--hb-water)" }}
+        >
+          <Link href="/" onClick={close} aria-label="HydroBagger">
             <Image
               src={imageUrl("logo_hydrobagger.png")}
               alt="HydroBagger"
-              width={220}
-              height={60}
-              className="h-14 w-auto object-contain"
-              priority
+              width={160}
+              height={44}
+              className="h-10 w-auto object-contain"
             />
           </Link>
-
-          {/* Nav */}
-          <nav className="hidden items-center gap-2 lg:flex" aria-label="Główne menu">
-            <DropdownMenu label="Dla kogo?" items={NAV_DLA_KOGO} href="/dla-kogo" />
-            <DropdownMenu label="Usługi" items={NAV_USLUGI} href="/uslugi" />
-            <DropdownMenu label="Sprzęt" items={NAV_SPRZET} href="/sprzet" />
-            <DropdownMenu label="Praca" items={NAV_PRACA} href="/praca" />
-            <Link href="/referencje" className="nav-link">Referencje</Link>
-            <Link href="/o-nas" className="nav-link">O nas</Link>
-            <Link href="/wiedza" className="nav-link">Wiedza</Link>
-          </nav>
-
-          {/* CTA */}
-          <Link
-            href="/darmowa-konsultacja"
-            className="btn-pulse hidden shrink-0 rounded-full px-6 py-2.5 text-sm font-bold text-white transition hover:opacity-90 lg:block"
-            style={{ background: "var(--hb-water)", boxShadow: "0 4px 14px -2px rgba(14, 116, 144, 0.4)" }}
-          >
-            BEZPŁATNA KONSULTACJA
-          </Link>
-
-          {/* Mobile burger */}
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 lg:hidden"
-            aria-label="Otwórz menu"
+            onClick={close}
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100"
+            aria-label="Zamknij menu"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
-      </header>
-    </div>
+
+        {/* Drawer nav */}
+        <nav className="flex-1 overflow-y-auto px-5 py-2">
+          {NAV_SECTIONS.map((sec) => (
+            <MobileAccordion
+              key={sec.href}
+              label={sec.label}
+              href={sec.href}
+              items={sec.items}
+              onLinkClick={close}
+            />
+          ))}
+          {NAV_DIRECT.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={close}
+              className="block border-b border-slate-100 py-4 text-base font-semibold text-slate-800 transition-colors hover:text-[#0284c7]"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Drawer CTA */}
+        <div className="px-5 py-5" style={{ borderTop: "1px solid #e2e8f0" }}>
+          <Link
+            href="/darmowa-konsultacja"
+            onClick={close}
+            className="btn-pulse flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-bold text-white"
+            style={{ background: "var(--hb-water)" }}
+          >
+            BEZPŁATNA KONSULTACJA
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { imageUrl } from "@/lib/images";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,9 +29,9 @@ const defaultMetadata = {
 export const metadata: Metadata = {
   ...defaultMetadata,
   icons: {
-    icon: "https://creva.b-cdn.net/Hydrobagger/cropped-favicon.png",
-    shortcut: "https://creva.b-cdn.net/Hydrobagger/cropped-favicon.png",
-    apple: "https://creva.b-cdn.net/Hydrobagger/cropped-favicon.png",
+    icon: [{ url: imageUrl("cropped-favicon.png"), type: "image/png" }],
+    shortcut: imageUrl("cropped-favicon.png"),
+    apple: imageUrl("cropped-favicon.png"),
   },
 };
 

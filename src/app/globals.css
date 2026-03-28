@@ -88,6 +88,10 @@ body {
   100% { box-shadow: 0 0 0 0 rgba(14, 116, 144, 0); }
 }
 .btn-pulse { animation: pulse-ring 2.4s ease-out infinite; }
+.btn-pulse:hover {
+  filter: brightness(1.14);
+  box-shadow: 0 6px 20px -4px rgba(2, 132, 199, 0.6);
+}
 
 /* ── Card hover lift ────────────────────────────────────── */
 .card-lift {
@@ -201,8 +205,8 @@ body {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.18s ease, visibility 0.18s;
-  position: absolute;
-  top: calc(100% + 8px);
+  position: fixed;
+  top: 84px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;

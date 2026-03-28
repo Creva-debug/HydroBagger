@@ -1,3 +1,6 @@
+import { BrandsMarquee } from "@/components/BrandsMarquee";
+import { ContactConsultationSection } from "@/components/ContactConsultationSection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -15,28 +18,28 @@ export const metadata: Metadata = (() => {
 
 const USLUGI = [
   {
-    title: "Kopanie w trudnym terenie",
+    title: "Kopanie w\ntrudnym terenie",
     short: "Bagna · torfy · woda",
     desc: "Koparka nie wjedzie? My wpływamy. Kopiemy w bagnach, torfach i wodzie – tam, gdzie inni nie dojadą.",
     href: "/uslugi/kopanie-w-trudnym-terenie",
     img: "koparka-plywajaca-kopanie-torfowisko01.jpg",
   },
   {
-    title: "Koszenie roślinności i mulczowanie",
+    title: "Koszenie roślinności\ni mulczowanie",
     short: "Brzegi · kanały · zbiorniki",
-    desc: "Zarośnięte brzegi i dna? Czyścimy to. Usuwamy roślinność nad wodą i pod wodą.",
+    desc: "Zarośnięte brzegi i dna? Czyścimy to gruntownie. Usuwamy roślinność nad wodą i pod wodą.",
     href: "/uslugi/koszenie-i-mulczowanie-roslinnosci",
     img: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg",
   },
   {
-    title: "Refulacja i odwadnianie osadów",
+    title: "Refulacja i\nodwadnianie osadów",
     short: "Muł · osady · zbiorniki",
     desc: "Zalegający muł? Odessany i odwodniony. Oczyszczamy zbiorniki z osadów metodą refulacji.",
     href: "/uslugi/refulacia-i-odwadnianie-osadow",
     img: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg",
   },
   {
-    title: "Transport w trudnym terenie",
+    title: "Transport w\ntrudnym terenie",
     short: "Błoto · torf · woda",
     desc: "Gdzie nie wjedzie nikt – my dowozimy. Transportujemy sprzęt i materiały przez błoto i wodę.",
     href: "/uslugi/transport-w-trudnym-terenie",
@@ -77,7 +80,7 @@ const SEKTORY = [
   },
   { 
     title: "Rolnicy i Hodowcy Ryb",   
-    desc: "Czyszczenie rowów, stawów hodowlanych i poprawa retencji na terenach rolnych.", 
+    desc: "Pomagamy w utrzymaniu melioracji, czyszczeniu rowów, stawów hodowlanych i poprawie retencji na terenach rolnych.", 
     href: "/dla-kogo/rolnicy-i-hodowcy-ryb",
     icon: (
       <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
@@ -95,7 +98,7 @@ const SEKTORY = [
   },
   { 
     title: "Obiekty Turystyczne",     
-    desc: "Estetyka i funkcjonalność stawów, jezior i linii brzegowych przy hotelach i obiektach wypoczynkowych.", 
+    desc: "Dbamy o estetykę i funkcjonalność stawów, jezior i linii brzegowych przy hotelach i obiektach wypoczynkowych.", 
     href: "/dla-kogo/obiekty-turystyczne",
     icon: (
       <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -105,7 +108,7 @@ const SEKTORY = [
   },
   { 
     title: "Osoby Prywatne",          
-    desc: "Kompleksowe prace przy oczkach wodnych, stawach i trudno dostępnych działkach.", 
+    desc: "Oferujemy kompleksowe prace przy oczkach wodnych, stawach i trudno dostępnych działkach.", 
     href: "/dla-kogo/osoby-prywatne",
     icon: (
       <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -119,12 +122,6 @@ const FILARY = [
   { n: "01", title: "Specjalistyczny sprzęt",     body: "Koparki pływające, gąsienicowe, amfibie – nasz codzienny arsenał. Docieramy tam, gdzie inni odmawiają." },
   { n: "02", title: "Kompleksowa realizacja",      body: "Refulacja, kopanie, koszenie, transport – jeden zespół, jeden plan, jeden efekt. Bez podwykonawców." },
   { n: "03", title: "Odpowiedzialność za efekt",   body: "Bierzemy odpowiedzialność za całość – od planowania po ostatni etap. Raz, a dobrze. Zgodnie z harmonogramem." },
-] as const;
-
-const OPINIE = [
-  { quote: "Prace wykonane przez HydroBagger w naszym obiekcie przebiegły sprawnie i profesjonalnie.", author: "Damian Rapacki", role: "Kierownik Projektu", company: "Budimex S.A." },
-  { quote: "Zdecydowanie polecam każdemu, kto szuka partnera z misją, pasją i odpowiedzialnym podejściem.", author: "Piotr Chara", role: "Przedstawiciel", company: "Fundacja Zielonej Doliny Odry i Warty" },
-  { quote: "To firma, która potrafi dostosować się do wysokich wymagań – z pełnym przekonaniem polecam ich do współpracy.", author: "Jacek Forycki", role: "Dyrektor", company: "Poznańskie Ośrodki Sportu i Rekreacji | Malta" },
 ] as const;
 
 /* ════════════════════════════════════════════════════════════
@@ -178,24 +175,24 @@ export default function HomePage() {
 
         {/* Treść */}
         <div className="relative z-10 flex flex-1 flex-col">
-          <div className="mx-auto flex w-full max-w-7xl flex-1 items-center justify-center px-4 py-32 sm:px-6 lg:px-8">
+          <div className="mx-auto flex w-full max-w-7xl flex-1 items-center justify-center px-4 py-20 sm:py-32 sm:px-6 lg:px-8">
             <div className="max-w-4xl text-center flex flex-col items-center">
               <SL light>Specjaliści od trudnego terenu</SL>
 
-              <h1 className="display-heading mt-6 text-white text-5xl sm:text-6xl lg:text-7xl leading-[1.1] tracking-tight max-w-4xl">
+              <h1 className="display-heading mt-5 text-white text-4xl sm:text-6xl lg:text-7xl leading-[1.1] tracking-tight max-w-4xl">
                 Prace hydrotechniczne<br />
                 <span className="text-[#7dd3fc]">w trudnym terenie</span>
               </h1>
 
-              <p className="mt-8 max-w-2xl text-lg sm:text-xl text-slate-200 leading-relaxed font-medium">
+              <p className="mt-6 max-w-2xl text-base sm:text-xl text-slate-200 leading-relaxed font-medium">
                 Wchodzimy tam, gdzie inni się cofają.{" "}
                 <span className="text-white font-bold">Bagna, torfy, cieki wodne</span> – to nasz codzienny teren pracy.
               </p>
 
-              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto sm:gap-4">
                 <Link
                   href="/darmowa-konsultacja"
-                  className="btn-pulse flex w-full sm:w-auto items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white transition hover:opacity-90 shadow-lg shadow-sky-900/20"
+                  className="btn-pulse flex w-full sm:w-auto items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white transition-all shadow-lg shadow-sky-900/20"
                   style={{ background: "var(--hb-water)" }}
                 >
                   Potrzebuję wsparcia
@@ -248,24 +245,33 @@ export default function HomePage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group flex flex-col overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                className="group @container/uslugi flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-500 ease-in-out hover:shadow-xl"
               >
-                {/* Zdjęcie */}
+                {/* Zdjęcie – lekka korekta koloru + subtelny gradient marki */}
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
                   <Image
                     src={imageUrl(item.img)}
-                    alt={item.title}
+                    alt={item.title.replace(/\n/g, " ")}
                     fill
-                    className="object-cover opacity-85 transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover brightness-[1.02] contrast-[1.02] saturate-[0.92] transition-transform duration-700 ease-in-out will-change-transform group-hover:scale-[1.04]"
                     sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,25vw"
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a2744]/18 via-sky-700/[0.04] to-white/25"
+                    aria-hidden
                   />
                 </div>
                 {/* Treść */}
-                <div className="flex flex-1 flex-col p-6 sm:p-8">
-                  <p className="mb-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#0284c7]">
+                <div className="flex flex-1 flex-col p-5 sm:p-6 lg:p-5 xl:p-8">
+                  <p className="mb-5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-slate-500">
                     {item.short}
                   </p>
-                  <h3 className="display-heading mb-3 text-2xl text-slate-900 leading-tight">
+                  <h3
+                    className="display-heading mb-3 min-h-[2.5lh] whitespace-pre-line leading-tight text-slate-900"
+                    style={{
+                      fontSize: "clamp(0.875rem, 0.55rem + 3.8cqi, 1.375rem)",
+                    }}
+                  >
                     {item.title}
                   </h3>
                   <p className="mb-6 flex-1 text-sm leading-relaxed text-slate-600">
@@ -292,9 +298,9 @@ export default function HomePage() {
             src={imageUrl("koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg")}
             alt="Tło"
             fill
-            className="object-cover opacity-20"
+            className="object-cover opacity-25 saturate-[0.6] brightness-[0.8]"
           />
-          <div className="absolute inset-0 bg-slate-950" style={{ opacity: 0.82 }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(7,30,50,0.92) 0%, rgba(10,39,68,0.86) 50%, rgba(7,30,50,0.92) 100%)" }} />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -304,7 +310,7 @@ export default function HomePage() {
             <h2 className="display-heading mt-4 text-white" style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)" }}>
               Z jakimi sektorami <span className="text-[#38bdf8]">współpracujemy?</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-base" style={{ color: "rgba(255,255,255,.55)" }}>
+            <p className="mx-auto mt-4 max-w-lg text-base text-slate-300">
               Obsługujemy zarówno inwestycje komercyjne, jak i projekty wymagające szczególnej wrażliwości środowiskowej.
             </p>
           </div>
@@ -331,7 +337,7 @@ export default function HomePage() {
                 </span>
 
                 <h3 className="mb-3 text-lg font-bold text-white transition-colors duration-300 group-hover:text-[#38bdf8]">{item.title}</h3>
-                <p className="mb-6 flex-1 text-sm leading-relaxed transition-colors duration-300 group-hover:text-white/80" style={{ color: "rgba(255,255,255,.6)" }}>
+                <p className="mb-6 flex-1 text-sm leading-relaxed text-white/60 transition-colors duration-300 group-hover:text-white/90">
                   {item.desc}
                 </p>
 
@@ -363,16 +369,18 @@ export default function HomePage() {
               </div>
               {/* Kafelek – unikalna przewaga */}
               <div
-                className="absolute -bottom-5 -right-4 lg:-right-8 max-w-[260px] rounded-2xl p-5 shadow-2xl"
-                style={{ background: "linear-gradient(135deg, #0f172a 0%, #0c2d4a 100%)", border: "1px solid rgba(56,189,248,0.2)" }}
+                className="absolute -bottom-4 -right-3 lg:-right-6 max-w-[205px] rounded-xl p-4 shadow-xl"
+                style={{ background: "linear-gradient(135deg, #0f172a 0%, #0c2d4a 100%)", border: "1px solid rgba(56,189,248,0.18)" }}
               >
-                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "rgba(2,132,199,0.2)" }}>
-                  <svg className="h-5 w-5 text-[#38bdf8]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                  </svg>
+                <div className="mb-2.5 flex items-center justify-between gap-2">
+                  <p className="text-[0.7rem] font-bold uppercase tracking-widest text-[#38bdf8] leading-tight whitespace-nowrap">Unikalna przewaga</p>
+                  <div className="shrink-0 flex h-5 w-5 items-center justify-center rounded" style={{ background: "rgba(2,132,199,0.18)" }}>
+                    <svg className="h-3 w-3 text-[#38bdf8]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                    </svg>
+                  </div>
                 </div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#38bdf8] mb-1.5">Unikalna przewaga</p>
-                <p className="text-sm font-semibold leading-snug text-white">
+                <p className="text-[0.72rem] leading-snug text-white">
                   Pogłębiamy i odsysamy muł w tym samym czasie.
                 </p>
               </div>
@@ -385,7 +393,7 @@ export default function HomePage() {
                 Dlaczego <span style={{ color: "var(--hb-water)" }}>HydroBagger?</span>
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-slate-600">
-                Mamy sprzęt, który dociera tam, gdzie inni nie mogą. Koparki pływające, gąsienicowe, amfibie – to nasz codzienny arsenał.
+                Nie ma terenu, który by nas zatrzymał. Działamy tam, gdzie standardowy sprzęt i ekipy mówią „nie da rady" – i właśnie to nas wyróżnia.
               </p>
 
               <div className="mt-10 space-y-7">
@@ -408,8 +416,7 @@ export default function HomePage() {
               <div className="mt-10">
                 <Link
                   href="/o-nas"
-                  className="inline-flex items-center gap-2 rounded-full border-2 px-7 py-3 text-sm font-bold transition hover:text-white hover:bg-[var(--hb-water)]"
-                  style={{ borderColor: "var(--hb-water)", color: "var(--hb-water)" }}
+                  className="inline-flex items-center gap-2 rounded-full border border-[#0284c7] px-7 py-3 text-sm font-bold text-[#0284c7] transition-all hover:bg-[#0284c7] hover:text-white"
                 >
                   Poznaj nasz zespół <ArrowRight />
                 </Link>
@@ -419,223 +426,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          5. OPINIE
-      ══════════════════════════════════════════════════════ */}
-      <section className="bg-white py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
-            <SL>Referencje</SL>
-            <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)" }}>
-              Co mówią o nas <span style={{ color: "var(--hb-water)" }}>klienci?</span>
-            </h2>
-          </div>
+      <TestimonialsSection />
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {OPINIE.map((item, i) => (
-              <blockquote
-                key={i}
-                className="card-lift flex flex-col rounded-2xl p-8"
-                style={{ background: i === 1 ? "linear-gradient(135deg, #0f172a, var(--hb-water))" : "#ffffff", border: "1px solid", borderColor: i === 1 ? "transparent" : "#e2e8f0" }}
-              >
-                {/* Cudzysłów */}
-                <div className="mb-5 text-5xl font-black leading-none" style={{ color: i === 1 ? "rgba(56, 189, 248, 0.4)" : "var(--hb-water)", lineHeight: 1 }}>
-                  &ldquo;
-                </div>
-                <p className={`mb-6 flex-1 text-[0.95rem] leading-relaxed italic ${i === 1 ? "text-white/90" : "text-slate-700"}`}>
-                  {item.quote}
-                </p>
-                <footer className="flex items-center gap-3">
-                  <div
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-black text-white"
-                    style={{ background: i === 1 ? "rgba(255,255,255,.15)" : "var(--hb-water)" }}
-                  >
-                    {item.author.charAt(0)}
-                  </div>
-                  <cite className="not-italic">
-                    <span className={`block text-sm font-bold ${i === 1 ? "text-white" : "text-slate-900"}`}>{item.author}</span>
-                    <span className={`block text-xs ${i === 1 ? "text-white/60" : "text-slate-500"}`}>{item.role}</span>
-                    <span className={`block text-xs font-semibold ${i === 1 ? "#7dd3fc" : "var(--hb-water)"}`} style={i === 1 ? { color: "#7dd3fc" } : { color: "var(--hb-water)" }}>{item.company}</span>
-                  </cite>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
+      <BrandsMarquee />
 
-      {/* ══════════════════════════════════════════════════════
-          6. MARKI
-      ══════════════════════════════════════════════════════ */}
-      <section className="bg-slate-50 py-14 border-t border-slate-100 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="mb-10 text-center text-[0.68rem] font-bold uppercase tracking-[0.2em] text-slate-400">
-            Marki, które nam zaufały
-          </p>
-        </div>
-        {/* Maska fade po bokach */}
-        <div className="relative" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
-          <div className="marquee-track">
-            {[
-              "Logo_eko_folwark.png",
-              "Logo_PORR.png",
-              "Logo_ujscie_warty.png",
-              "Logo_uniwersystet_przyrodniczy_w_poznaniu.png",
-              "Logo_uniwersystet_warminsko_mazurski_w_olsztynie.png",
-              "Logo_wody_polski.png",
-              "Logo_budimex-1.png",
-              "Logo_eko_folwark.png",
-              "Logo_PORR.png",
-              "Logo_ujscie_warty.png",
-              "Logo_uniwersystet_przyrodniczy_w_poznaniu.png",
-              "Logo_uniwersystet_warminsko_mazurski_w_olsztynie.png",
-              "Logo_wody_polski.png",
-              "Logo_budimex-1.png",
-            ].map((logo, idx) => (
-              <div key={idx} className="relative mx-8 h-20 w-48 shrink-0">
-                <Image
-                  src={imageUrl(logo)}
-                  alt={logo.replace(/Logo_|\.png/g, "").replace(/_/g, " ")}
-                  fill
-                  className="object-contain"
-                  sizes="192px"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          7. CTA + FORMULARZ
-      ══════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-slate-100 pt-24 lg:pt-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 pb-24 lg:pb-32">
-          <div className="grid items-start gap-14 lg:grid-cols-2">
-            {/* Lewa */}
-            <div>
-              <SL>Bezpłatna konsultacja</SL>
-              <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)" }}>
-                Prace w trudnym terenie?{" "}
-                <span style={{ color: "var(--hb-water)" }}>Zacznijmy od rozmowy!</span>
-              </h2>
-              <p className="mt-5 text-lg leading-relaxed text-slate-600">
-                Skorzystaj z bezpłatnej 20-minutowej konsultacji – opowiesz nam o swojej sytuacji, a my podpowiemy możliwe rozwiązania.
-              </p>
-              <p className="mt-3 text-base text-slate-500">
-                Nie musisz mieć gotowego planu ani dokumentacji – wystarczy chęć, by coś z tym zrobić.
-              </p>
-
-              <div className="mt-8 flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full text-lg font-black text-white" style={{ background: "var(--hb-water)" }}>
-                  LB
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900">Leszek Białasik</div>
-                  <div className="text-sm" style={{ color: "var(--hb-water)" }}>HydroBagger.pl</div>
-                </div>
-              </div>
-
-              <ul className="mt-8 space-y-3">
-                {[
-                  "Bezpłatna 20-minutowa konsultacja",
-                  "Szybka wycena bez zobowiązań",
-                  "Znajomość trudnych terenów i regulacji środowiskowych",
-                ].map((t) => (
-                  <li key={t} className="flex items-start gap-3 text-slate-600">
-                    <span
-                      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
-                      style={{ background: "rgba(2, 132, 199, 0.1)" }}
-                    >
-                      <svg className="h-3 w-3" style={{ color: "var(--hb-water)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </span>
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Prawa – formularz z gąsienicą */}
-            <div className="track-border p-8 lg:p-10 mt-4 lg:mt-0">
-              <div className="mb-7">
-                <h3 className="text-2xl font-bold text-slate-900">Napisz do nas</h3>
-                <p className="mt-1.5 text-sm text-slate-500">Odpowiemy w ciągu 24 godzin roboczych.</p>
-              </div>
-              <form className="flex flex-col gap-4" action="#" method="post" noValidate>
-
-                {/* Imię + Telefon obok siebie */}
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-name" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Imię i nazwisko <span className="text-[#0284c7]">*</span></label>
-                    <input
-                      id="contact-name"
-                      type="text"
-                      name="name"
-                      required
-                      placeholder="Jan Kowalski"
-                      className="w-full rounded-xl px-4 py-3 text-slate-900 placeholder-slate-300 outline-none transition focus:ring-2 border border-slate-200 bg-white focus:border-[#0284c7] text-sm"
-                      style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as React.CSSProperties}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-phone" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Telefon</label>
-                    <input
-                      id="contact-phone"
-                      type="tel"
-                      name="phone"
-                      placeholder="+48 000 000 000"
-                      className="w-full rounded-xl px-4 py-3 text-slate-900 placeholder-slate-300 outline-none transition focus:ring-2 border border-slate-200 bg-white focus:border-[#0284c7] text-sm"
-                      style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as React.CSSProperties}
-                    />
-                  </div>
-                </div>
-
-                {/* E-mail */}
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Adres e-mail <span className="text-[#0284c7]">*</span></label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    name="email"
-                    required
-                    placeholder="jan@firma.pl"
-                    className="w-full rounded-xl px-4 py-3 text-slate-900 placeholder-slate-300 outline-none transition focus:ring-2 border border-slate-200 bg-white focus:border-[#0284c7] text-sm"
-                    style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as React.CSSProperties}
-                  />
-                </div>
-
-                {/* Wiadomość */}
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="contact-msg" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Opis projektu <span className="text-[#0284c7]">*</span></label>
-                  <textarea
-                    id="contact-msg"
-                    name="message"
-                    rows={4}
-                    placeholder="Opisz krótko swój projekt – lokalizację, rodzaj prac, termin..."
-                    className="w-full rounded-xl px-4 py-3 text-slate-900 placeholder-slate-300 outline-none transition focus:ring-2 border border-slate-200 bg-white focus:border-[#0284c7] text-sm resize-none"
-                    style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as React.CSSProperties}
-                  />
-                </div>
-
-                <div className="flex items-center justify-between gap-4 mt-2 flex-wrap">
-                  <button
-                    type="submit"
-                    className="btn-pulse rounded-full px-9 py-3.5 text-base font-bold text-white transition hover:opacity-90"
-                    style={{ background: "var(--hb-water)", boxShadow: "0 8px 20px -4px rgba(2, 132, 199, 0.45)" }}
-                  >
-                    Wyślij wiadomość →
-                  </button>
-                  <p className="text-xs text-slate-400 leading-relaxed max-w-[200px]">
-                    Twoje dane są chronione zgodnie z <Link href="/polityka-prywatnosci" className="underline hover:text-slate-600">Polityką Prywatności</Link>.
-                  </p>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ContactConsultationSection />
     </>
   );
 }

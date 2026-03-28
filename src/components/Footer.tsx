@@ -29,14 +29,13 @@ function WaveSection() {
   );
 }
 
-function TrackEdge() {
+function TrackEdgeRaw({ teeth }: { teeth: number }) {
   const toothW = 50;
   const botW = 36;
   const taper = (toothW - botW) / 2;
   const gap = 16;
   const h = 20;
   const r = 9;
-  const teeth = 26;
   const totalW = teeth * (toothW + gap);
 
   const toothPath = (x: number) =>
@@ -45,16 +44,32 @@ function TrackEdge() {
   return (
     <div className="relative w-full flex-shrink-0 overflow-hidden" style={{ height: h }} aria-hidden>
       <svg className="block h-full w-full" viewBox={`0 0 ${totalW} ${h}`} preserveAspectRatio="none">
-        {/* Niebieskie tło – woda widoczna między zębami */}
         <rect x="0" y="0" width={totalW} height={h} fill="#0284c7" />
-        {/* Zęby – trapezoidalne, szersze u góry, zwężające się ku dołowi */}
         {Array.from({ length: teeth }, (_, i) => (
           <path key={i} d={toothPath(i * (toothW + gap))} fill="#020617" />
         ))}
-        {/* Czarny pasek zamykający dół – eliminuje niebieskie przerwy przy footerze */}
         <rect x="0" y={h - 3} width={totalW} height="3" fill="#020617" />
       </svg>
     </div>
+  );
+}
+
+function TrackEdge() {
+  return (
+    <>
+      {/* Mobile: mniejsza liczba zębów */}
+      <div className="sm:hidden">
+        <TrackEdgeRaw teeth={9} />
+      </div>
+      {/* Tablet */}
+      <div className="hidden sm:block lg:hidden">
+        <TrackEdgeRaw teeth={16} />
+      </div>
+      {/* Desktop */}
+      <div className="hidden lg:block">
+        <TrackEdgeRaw teeth={26} />
+      </div>
+    </>
   );
 }
 
@@ -111,17 +126,22 @@ export function Footer() {
       <div className="relative text-white">
         <div className="bg-slate-950 pt-4">
           {/* CTA */}
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 border-b border-slate-800 px-4 py-8 sm:flex-row sm:px-6 lg:px-8">
-            <h3 className="text-center text-lg font-bold text-white sm:text-left sm:text-xl">
-              Potrzebujesz wsparcia w trudnym terenie?
-            </h3>
-            <div className="hidden sm:block flex-1 mx-8 border-t border-dashed border-slate-700" />
-            <Link
-              href="/darmowa-konsultacja"
-              className="shrink-0 rounded-xl border border-[#0284c7] px-6 py-2.5 text-sm font-bold text-[#38bdf8] transition hover:bg-[#0284c7] hover:text-white"
-            >
-              Bezpłatna Konsultacja →
-            </Link>
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 border-b border-slate-800 px-4 py-8 sm:grid-cols-4 sm:items-center sm:gap-0 lg:grid-cols-[1fr_1fr_1.5fr_1.6fr] sm:px-6 lg:px-8">
+            {/* Tekst */}
+            <div className="flex items-center sm:col-span-3">
+              <h3 className="shrink-0 text-center text-xl font-bold text-white sm:text-left sm:text-2xl sm:whitespace-nowrap">
+                Potrzebujesz wsparcia w trudnym terenie?
+              </h3>
+            </div>
+            {/* Przycisk – wyrównany z kolumną Dane kontaktowe */}
+            <div className="flex sm:justify-start sm:col-span-1 sm:pl-[30px]">
+              <Link
+                href="/darmowa-konsultacja"
+                className="inline-flex items-center gap-2 rounded-full border border-[#0284c7] px-6 py-2.5 text-sm font-semibold text-[#38bdf8] transition-all hover:bg-[#0284c7] hover:border-[#0284c7] hover:text-white"
+              >
+                Bezpłatna konsultacja
+              </Link>
+            </div>
           </div>
 
           {/* Kolumny linków */}
