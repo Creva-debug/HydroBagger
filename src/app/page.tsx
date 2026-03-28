@@ -157,7 +157,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════════════════ */}
-      <section className="relative flex min-h-[calc(100svh-5.25rem)] flex-col overflow-hidden">
+      <section className="relative flex flex-col overflow-hidden" style={{ minHeight: "calc(var(--real-vh, 100svh) - 5.25rem)" }}>
         <div className="pointer-events-none absolute inset-0 lg:hidden" aria-hidden>
           <Image
             src={imageUrl(HERO_MOBILE_POSTER)}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ViewportHeightFix } from "@/components/ViewportHeightFix";
 import { imageUrl } from "@/lib/images";
 import "./globals.css";
 
@@ -46,6 +47,7 @@ export default function RootLayout({
         id="top"
         className={`${inter.variable} ${montserrat.variable} font-sans flex min-h-screen flex-col antialiased`}
       >
+        <ViewportHeightFix />
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />
