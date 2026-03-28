@@ -149,11 +149,10 @@ export function Footer() {
                 <span className="block sm:inline">w trudnym terenie?</span>
               </h3>
             </div>
-            {/* Przycisk – na mobile pełna szerokość w kontenerze px-4 */}
-            <div className="flex w-full justify-center sm:col-span-1 sm:w-auto sm:justify-start sm:pl-[30px]">
+            <div className="flex justify-center sm:col-span-1 sm:justify-start sm:pl-[30px]">
               <Link
                 href="/darmowa-konsultacja"
-                className="flex w-full max-w-full items-center justify-center gap-2 rounded-full border border-[#0284c7] px-6 py-2.5 text-sm font-semibold text-[#38bdf8] transition-all hover:bg-[#0284c7] hover:border-[#0284c7] hover:text-white sm:inline-flex sm:w-auto"
+                className="inline-flex items-center gap-2 rounded-full border border-[#0284c7] px-6 py-2.5 text-sm font-semibold text-[#38bdf8] transition-all hover:bg-[#0284c7] hover:border-[#0284c7] hover:text-white"
               >
                 Bezpłatna konsultacja
               </Link>

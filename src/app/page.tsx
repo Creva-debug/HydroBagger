@@ -426,10 +426,10 @@ export default function HomePage() {
                 ))}
               </div>
 
-              <div className="mt-10">
+              <div className="mt-10 flex justify-center sm:justify-start">
                 <Link
                   href="/o-nas"
-                  className="flex w-full max-w-full items-center justify-center gap-2 rounded-full border border-[#0284c7] px-7 py-3 text-sm font-bold text-[#0284c7] transition-all hover:bg-[#0284c7] hover:text-white sm:inline-flex sm:w-auto"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#0284c7] px-7 py-3 text-sm font-bold text-[#0284c7] transition-all hover:bg-[#0284c7] hover:text-white"
                 >
                   Poznaj nasz zespół <ArrowRight />
                 </Link>

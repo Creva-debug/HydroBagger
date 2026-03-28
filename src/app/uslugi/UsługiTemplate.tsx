@@ -52,7 +52,7 @@ export function UsługiTemplate({
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[65vh] items-end overflow-hidden pb-14 lg:pb-20">
+      <section className="relative flex min-h-[65svh] items-end overflow-hidden pb-14 lg:pb-20">
         <Image src={imageUrl(heroImage)} alt={breadcrumbLabel} fill priority className="object-cover brightness-[0.62] saturate-[0.8]" sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/35 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/25 to-transparent" />

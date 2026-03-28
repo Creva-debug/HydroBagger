@@ -7,7 +7,7 @@ type PagePlaceholderProps = {
 
 export function PagePlaceholder({ title, path }: PagePlaceholderProps) {
   return (
-    <main className="min-h-screen px-6 py-12">
+    <main className="min-h-[100svh] px-6 py-12">
       <div className="mx-auto max-w-3xl">
         <nav className="mb-8 text-sm text-zinc-500">
           <Link href="/" className="hover:text-zinc-900 hover:underline">

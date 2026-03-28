@@ -44,7 +44,7 @@ export default function RootLayout({
     <html lang="pl">
       <body
         id="top"
-        className={`${inter.variable} ${montserrat.variable} font-sans flex min-h-screen flex-col antialiased`}
+        className={`${inter.variable} ${montserrat.variable} font-sans flex min-h-[100svh] flex-col antialiased`}
       >
         <Header />
         <div className="flex-1">{children}</div>
