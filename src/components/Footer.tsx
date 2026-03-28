@@ -79,10 +79,9 @@ export function Footer() {
       <section
         className="relative overflow-hidden bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
-        {/* Fala na górze – mobile: niższa, łagodniejsza krzywa; lg+: bez zmian */}
-        <div className="absolute left-0 right-0 top-0 h-14 w-full overflow-hidden leading-none sm:h-[72px]">
+        <div className="absolute left-0 right-0 top-0 h-[64px] w-full overflow-hidden leading-none sm:h-[72px]">
           <svg
-            viewBox="0 0 1440 56"
+            viewBox="0 0 1440 72"
             preserveAspectRatio="none"
             className="block h-full w-full sm:hidden"
             aria-hidden
@@ -90,12 +89,12 @@ export function Footer() {
             <defs>
               <linearGradient id="footerWaveFillMobile" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#f8fafc" />
-                <stop offset="50%" stopColor="#e0f2fe" />
-                <stop offset="100%" stopColor="#bae6fd" />
+                <stop offset="45%" stopColor="#e0f2fe" />
+                <stop offset="100%" stopColor="#7dd3fc" />
               </linearGradient>
             </defs>
             <path
-              d="M0,0 L1440,0 L1440,0 C1080,28 720,34 360,26 C180,22 0,30 0,30 Z"
+              d="M0,0 L1440,0 L1440,0 C1080,58 720,62 360,42 C200,34 0,50 0,50 Z"
               fill="url(#footerWaveFillMobile)"
             />
           </svg>
