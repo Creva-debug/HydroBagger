@@ -1,8 +1,11 @@
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <span className="section-label">{children}</span>;
+const FORM_FIELD_CLASS =
+  "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition-colors hover:border-[#0284c7] focus:border-[#0284c7] focus:outline-none focus-visible:border-[#0284c7] focus:ring-0 focus-visible:ring-0";
+
+function SectionLabel({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <span className={className ? `section-label ${className}` : "section-label"}>{children}</span>;
 }
 
 export type ContactConsultationSectionProps = {
@@ -25,13 +28,28 @@ export function ContactConsultationSection({
   const minH = isPageLead ? "min-h-dvh flex flex-col justify-center" : "";
 
   return (
-    <section id={id} className={`relative overflow-hidden bg-slate-50 ${sectionPt} ${minH}`}>
+    <section id={id} className={`relative overflow-x-hidden bg-slate-50 ${sectionPt} ${minH}`}>
       <div className="relative z-10 mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
         {topSlot}
-        <div className="grid items-center gap-14 lg:grid-cols-2">
-          <div className={formFirst ? "order-2 lg:order-2" : undefined}>
-            <SectionLabel>Bezpłatna konsultacja</SectionLabel>
-            <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)" }}>
+        <div className="grid grid-cols-1 gap-8 gap-x-14 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:items-start lg:gap-y-6">
+          <SectionLabel
+            className={
+              formFirst ? "order-2 lg:order-none lg:col-span-2 lg:row-start-1" : "lg:col-span-2 lg:row-start-1"
+            }
+          >
+            Bezpłatna konsultacja
+          </SectionLabel>
+          <div
+            className={
+              formFirst
+                ? "order-3 lg:order-none lg:col-start-1 lg:row-start-2 lg:min-w-0"
+                : "lg:col-start-1 lg:row-start-2 lg:min-w-0"
+            }
+          >
+            <h2
+              className="display-heading mt-4 text-slate-900 lg:mt-0"
+              style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)" }}
+            >
               Prace w trudnym terenie?{" "}
               <span style={{ color: "var(--hb-water)" }}>Zacznijmy od rozmowy!</span>
             </h2>
@@ -79,56 +97,44 @@ export function ContactConsultationSection({
           </div>
 
           <div
-            className={`track-border p-8 lg:p-10 ${formFirst ? "order-1 lg:order-1 mt-0" : "mt-4 lg:mt-0"}`}
+            className={`track-border p-8 lg:p-10 lg:col-start-2 lg:row-start-2 lg:min-w-0 ${
+              formFirst ? "order-1 mt-0 lg:order-none lg:mt-0" : "mt-4 lg:mt-0"
+            }`}
           >
-            <div className="mb-7">
-              <h3 className="text-2xl font-bold text-slate-900">Napisz do nas</h3>
-              <p className="mt-1.5 text-sm text-slate-500">Odpowiemy w ciągu 24 godzin roboczych.</p>
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold tracking-tight text-slate-900">Napisz do nas</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-500">Odpowiemy w ciągu 24 godzin roboczych.</p>
             </div>
-            <form className="flex flex-col gap-4" action="#" method="post" noValidate>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <form className="flex flex-col gap-5" action="#" method="post" noValidate>
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="contact-name" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Imię i nazwisko <span className="text-[#0284c7]">*</span>
+                  <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    Adres e-mail <span className="text-[#0284c7]">*</span>
                   </label>
                   <input
-                    id="contact-name"
-                    type="text"
-                    name="name"
+                    id="contact-email"
+                    type="email"
+                    name="email"
                     required
-                    placeholder="Jan Kowalski"
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2"
-                    style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as CSSProperties}
+                    autoComplete="email"
+                    placeholder="jan@firma.pl"
+                    className={FORM_FIELD_CLASS}
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="contact-phone" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Telefon
+                    Numer telefonu <span className="text-[#0284c7]">*</span>
                   </label>
                   <input
                     id="contact-phone"
                     type="tel"
                     name="phone"
+                    required
+                    autoComplete="tel"
                     placeholder="+48 000 000 000"
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2"
-                    style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as CSSProperties}
+                    className={FORM_FIELD_CLASS}
                   />
                 </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                  Adres e-mail <span className="text-[#0284c7]">*</span>
-                </label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="jan@firma.pl"
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2"
-                  style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as CSSProperties}
-                />
               </div>
 
               <div className="flex flex-col gap-1.5">
@@ -140,22 +146,22 @@ export function ContactConsultationSection({
                   name="message"
                   rows={4}
                   placeholder="Opisz krótko swój projekt – lokalizację, rodzaj prac, termin..."
-                  className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2"
-                  style={{ "--tw-ring-color": "rgba(2, 132, 199, 0.25)" } as CSSProperties}
+                  className={`${FORM_FIELD_CLASS} resize-none`}
                 />
               </div>
 
-              <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
+              <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between">
                 <button
                   type="submit"
-                  className="btn-pulse rounded-full px-9 py-3.5 text-base font-bold text-white transition-all"
+                  className="btn-pulse w-full shrink-0 rounded-full px-9 py-3.5 text-base font-bold text-white transition-all sm:w-auto"
                   style={{ background: "var(--hb-water)", boxShadow: "0 8px 20px -4px rgba(2, 132, 199, 0.45)" }}
                 >
                   Wyślij wiadomość →
                 </button>
-                <p className="max-w-[200px] text-xs leading-relaxed text-slate-400">
-                  Twoje dane są chronione zgodnie z{" "}
-                  <Link href="/polityka-prywatnosci" className="underline hover:text-slate-600">
+                <p className="max-w-full text-[0.625rem] leading-relaxed text-slate-500 sm:max-w-md lg:max-w-lg">
+                  Podając swój adres e-mail oraz numer telefonu, a następnie przesyłając formularz, wyrażasz zgodę na
+                  skontaktowanie się z Tobą w celu odpowiedzi na zadane pytanie. Zapoznaj się z naszą{" "}
+                  <Link href="/polityka-prywatnosci" className="text-slate-600 underline underline-offset-1 hover:text-[#0284c7]">
                     Polityką Prywatności
                   </Link>
                   .

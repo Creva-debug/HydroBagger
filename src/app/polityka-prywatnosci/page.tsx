@@ -79,12 +79,12 @@ export default function PolitykaPrywatnosciPage() {
         </tbody>
       </table>
 
-      <p>10. <strong>Kontakt e-mailowy, formularz kontaktowy.</strong> Kontaktując się z nami za pośrednictwem poczty elektronicznej, przekazujesz nam swój adres e-mail jako adres nadawcy wiadomości. Kontaktując się z nami za pośrednictwem formularza kontaktowego przekazujesz nam swój adres e-mail, numer telefonu, imię i nazwisko. Podanie danych jest dobrowolne, ale niezbędne, by nawiązać z nami kontakt.</p>
+      <p>10. <strong>Kontakt e-mailowy, formularz kontaktowy.</strong> Kontaktując się z nami za pośrednictwem poczty elektronicznej, przekazujesz nam swój adres e-mail jako adres nadawcy wiadomości. Kontaktując się za pośrednictwem formularza konsultacyjnego przekazujesz nam swój adres e-mail, numer telefonu oraz treść wiadomości (w tym opis projektu). W formularzu dotyczącym m.in. aplikacji o pracę możesz dodatkowo podać imię i nazwisko. Podanie danych jest dobrowolne, ale niezbędne, by nawiązać z nami kontakt w wybranym celu.</p>
       <p>Twoje dane są w tym przypadku przetwarzane w celu kontaktu z Tobą, a podstawą przetwarzania jest art. 6 ust. 1 lit. a RODO (Twoja zgoda). Treść korespondencji może podlegać archiwizacji przez okres nie dłuższy niż 5 lat.</p>
 
       <h2>§ 4 KATEGORIE DANYCH OSOBOWYCH</h2>
       <p>1. Administrator danych osobowych może przetwarzać następujące kategorie danych osobowych:</p>
-      <p>a) dane osobowe podane w celu skorzystania z formularza kontaktowego, przesyłane za pośrednictwem e-mail lub podczas składania reklamacji: imię i nazwisko; adres e-mail; numer telefonu kontaktowego; adres;</p>
+      <p>a) dane osobowe podane w celu skorzystania z formularza kontaktowego lub formularza rekrutacyjnego, przesyłane za pośrednictwem e-mail lub podczas składania reklamacji: w zależności od formularza – adres e-mail, numer telefonu kontaktowego, treść wiadomości; w przypadku formularza rekrutacyjnego także imię i nazwisko; adres lub inne dane – jeśli je podasz;</p>
       <p>b) inne dane uzyskane w oparciu o aktywność Użytkownika w Internecie, w tym za pośrednictwem Serwisu Internetowego z wykorzystaniem cookies i podobnych technologii: dane o logach użytkownika, informacje o urządzeniu Użytkownika.</p>
 
       <h2>§ 5 ODBIORCY DANYCH OSOBOWYCH</h2>

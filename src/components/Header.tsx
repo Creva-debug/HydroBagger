@@ -76,14 +76,32 @@ const NAV_DLA_KOGO = [
   },
 ] as const;
 
+const USLUGI_WATER_SURFACE_PATH =
+  "M2 20.5Q6 17.5 10 20.5Q14 23.5 18 20.5Q20 17.5 22.5 20.5";
+
 const NAV_USLUGI = [
   { 
     href: "/uslugi/kopanie-w-trudnym-terenie", 
     label: "Kopanie w trudnym terenie",
     desc: "Prace ziemne na bagnach, torfach i w wodzie.",
     icon: (
-      <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 5.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+      <svg
+        className="h-5 w-5 text-[#0284c7]"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        shapeRendering="geometricPrecision"
+      >
+        <g transform="translate(0 -1)">
+          <path d={USLUGI_WATER_SURFACE_PATH} />
+          <path d="M4 18.5V12.5L6 9.5H10V12.5V18.5H4z" />
+          <path d="M10 12.5L15 7.5" />
+          <path d="M15 7.5L18 10.5" />
+          <path d="M18 10.5L18.5 15.5L22 16L20.5 12.5z" />
+        </g>
       </svg>
     )
   },
@@ -92,12 +110,25 @@ const NAV_USLUGI = [
     label: "Koszenie i mulczowanie",
     desc: "Usuwanie roślinności wodnej i brzegowej.",
     icon: (
-      <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="6" cy="17.5" r="2.5" />
-        <circle cx="6" cy="6.5" r="2.5" />
-        <line x1="8.2" y1="16.1" x2="20" y2="4" />
-        <line x1="8.2" y1="7.9" x2="20" y2="20" />
-        <circle cx="13.2" cy="12" r="0.6" fill="currentColor" stroke="none" />
+      <svg
+        className="h-5 w-5 text-[#0284c7]"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        shapeRendering="geometricPrecision"
+      >
+        <g transform="translate(0 -1)">
+          <path d={USLUGI_WATER_SURFACE_PATH} />
+          <path d="M4.5 15.5V12.5Q6 10.5 9 11H12L13 12.5V15.5H4.5z" />
+          <circle cx="7.5" cy="18.5" r="1.65" />
+          <circle cx="11" cy="18.5" r="1.65" />
+          <path d="M15.5 20.5Q17.5 16 20 10.5" />
+          <path d="M17 20.5Q18.5 14.5 21 11" />
+          <path d="M18.5 20.5Q19.5 17 22 13.5" />
+        </g>
       </svg>
     )
   },
@@ -106,8 +137,23 @@ const NAV_USLUGI = [
     label: "Refulacja i odwadnianie osadów",
     desc: "Oczyszczanie zbiorników z zalegającego mułu.",
     icon: (
-      <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
+      <svg
+        className="h-5 w-5 text-[#0284c7]"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        shapeRendering="geometricPrecision"
+      >
+        <g transform="translate(0 -3.75)">
+          <path d="M2 20.5h20" />
+          <path d="M4 11h16v7H4z" />
+          <path d="M7 11v7M10 11v7M13 11v7M16 11v7" />
+          <path d="M1.5 14.5H4" />
+          <path d="M20 14.5h2.5V18.75M22.5 14.5V10.25" />
+        </g>
       </svg>
     )
   },
@@ -116,8 +162,23 @@ const NAV_USLUGI = [
     label: "Transport w trudnym terenie",
     desc: "Dowóz sprzętu i materiałów przez błoto i wodę.",
     icon: (
-      <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+      <svg
+        className="h-5 w-5 text-[#0284c7]"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        shapeRendering="geometricPrecision"
+      >
+        <g transform="translate(0 -4.25)">
+          <path d={USLUGI_WATER_SURFACE_PATH} />
+          <path d="M3.5 15.5V12.5H13.5L14.5 10.5H17.5L19.5 12.5V15.5H14H3.5z" />
+          <circle cx="6.5" cy="18.35" r="1.65" />
+          <circle cx="9.75" cy="18.35" r="1.65" />
+          <circle cx="16.75" cy="18.35" r="1.65" />
+        </g>
       </svg>
     )
   },

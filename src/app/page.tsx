@@ -22,28 +22,28 @@ const USLUGI = [
     short: "Bagna · torfy · woda",
     desc: "Koparka nie wjedzie? My wpływamy. Kopiemy w bagnach, torfach i wodzie – tam, gdzie inni nie dojadą.",
     href: "/uslugi/kopanie-w-trudnym-terenie",
-    img: "koparka-plywajaca-kopanie-torfowisko01.jpg",
+    img: "koparka-plywajaca-kopanie-torfowisko-2_.png",
   },
   {
     title: "Koszenie roślinności\ni mulczowanie",
     short: "Brzegi · kanały · zbiorniki",
     desc: "Zarośnięte brzegi i dna? Czyścimy to gruntownie. Usuwamy roślinność nad wodą i pod wodą.",
     href: "/uslugi/koszenie-i-mulczowanie-roslinnosci",
-    img: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg",
+    img: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji_.png",
   },
   {
     title: "Refulacja i\nodwadnianie osadów",
     short: "Muł · osady · zbiorniki",
     desc: "Zalegający muł? Odessany i odwodniony. Oczyszczamy zbiorniki z osadów metodą refulacji.",
     href: "/uslugi/refulacia-i-odwadnianie-osadow",
-    img: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg",
+    img: "koparka-plywajaca-pompa-refulacyjna-odmulanie2_.png",
   },
   {
     title: "Transport w\ntrudnym terenie",
     short: "Błoto · torf · woda",
     desc: "Gdzie nie wjedzie nikt – my dowozimy. Transportujemy sprzęt i materiały przez błoto i wodę.",
     href: "/uslugi/transport-w-trudnym-terenie",
-    img: "wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg",
+    img: "wozidlo-gasienicowe-transport-koparka-podmokly-teren2_.png",
   },
 ] as const;
 
@@ -154,7 +154,8 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════════════════ */}
-      <section className="relative flex min-h-screen flex-col overflow-hidden">
+      {/* min-h: viewport minus sticky header (4px top bar + 80px bar) so first screen = hero only */}
+      <section className="relative flex min-h-[calc(100dvh-5.25rem)] flex-col overflow-hidden">
         {/* BG video */}
         <video
           autoPlay muted loop playsInline
@@ -247,17 +248,20 @@ export default function HomePage() {
                 href={item.href}
                 className="group @container/uslugi flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-500 ease-in-out hover:shadow-xl"
               >
-                {/* Zdjęcie – lekka korekta koloru + subtelny gradient marki */}
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
                   <Image
                     src={imageUrl(item.img)}
                     alt={item.title.replace(/\n/g, " ")}
                     fill
-                    className="object-cover brightness-[1.02] contrast-[1.02] saturate-[0.92] transition-transform duration-700 ease-in-out will-change-transform group-hover:scale-[1.04]"
+                    className="object-cover brightness-[1.02] contrast-[1.04] saturate-[1.06] transition-transform duration-700 ease-in-out will-change-transform group-hover:scale-[1.04]"
                     sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,25vw"
                   />
                   <div
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a2744]/18 via-sky-700/[0.04] to-white/25"
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a2744]/18 via-sky-700/[0.04] to-white/12"
+                    aria-hidden
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-200/[0.04] via-transparent to-[#0284c7]/[0.07]"
                     aria-hidden
                   />
                 </div>
@@ -298,19 +302,29 @@ export default function HomePage() {
             src={imageUrl("koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg")}
             alt="Tło"
             fill
-            className="object-cover opacity-25 saturate-[0.6] brightness-[0.8]"
+            className="object-cover opacity-[0.44] saturate-[0.72] brightness-[0.88] contrast-[1.05]"
           />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(7,30,50,0.92) 0%, rgba(10,39,68,0.86) 50%, rgba(7,30,50,0.92) 100%)" }} />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(7,30,50,0.78) 0%, rgba(10,39,68,0.62) 42%, rgba(7,30,50,0.78) 100%)",
+            }}
+          />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Nagłówek */}
           <div className="mb-16 text-center">
             <SL light>Grupy klientów</SL>
-            <h2 className="display-heading mt-4 text-white" style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)" }}>
-              Z jakimi sektorami <span className="text-[#38bdf8]">współpracujemy?</span>
+            <h2
+              className="display-heading mt-4 text-white"
+              style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)" }}
+            >
+              Z jakimi sektorami{" "}
+              <span className="font-semibold text-[#38bdf8]">współpracujemy?</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-base text-slate-300">
+            <p className="mx-auto mt-4 max-w-lg text-base text-slate-100">
               Obsługujemy zarówno inwestycje komercyjne, jak i projekty wymagające szczególnej wrażliwości środowiskowej.
             </p>
           </div>
@@ -337,7 +351,7 @@ export default function HomePage() {
                 </span>
 
                 <h3 className="mb-3 text-lg font-bold text-white transition-colors duration-300 group-hover:text-[#38bdf8]">{item.title}</h3>
-                <p className="mb-6 flex-1 text-sm leading-relaxed text-white/60 transition-colors duration-300 group-hover:text-white/90">
+                <p className="mb-6 flex-1 text-sm leading-relaxed text-white/75 transition-colors duration-300 group-hover:text-white/95">
                   {item.desc}
                 </p>
 

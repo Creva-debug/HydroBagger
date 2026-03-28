@@ -3,6 +3,10 @@ import Link from "next/link";
 /** Kolor wody / główny akcent stopki – spójny z głównym motywem strony */
 const FOOTER_WATER = "var(--hb-water)"; /* #0284c7 */
 
+/** Sekcja kontakt + gąsienica – wyraźniejszy przebieg jasny → brand → głęboki błękit */
+const FOOTER_CONTACT_GRADIENT =
+  "linear-gradient(135deg, #38bdf8 0%, #0284c7 38%, #0369a1 72%, #0c4a6e 100%)";
+
 function WaveSection() {
   return (
     <div className="relative h-16 w-full overflow-hidden bg-slate-50 sm:h-24" aria-hidden>
@@ -42,7 +46,7 @@ function TrackEdgeRaw({ teeth }: { teeth: number }) {
     `M ${x + r},0 L ${x + toothW - r},0 Q ${x + toothW},0 ${x + toothW},${r} L ${x + toothW - taper},${h} L ${x + taper},${h} L ${x},${r} Q ${x},0 ${x + r},0 Z`;
 
   return (
-    <div className="relative w-full flex-shrink-0 overflow-hidden" style={{ height: h, background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 45%, #0369a1 100%)" }} aria-hidden>
+    <div className="relative w-full flex-shrink-0 overflow-hidden bg-transparent" style={{ height: h }} aria-hidden>
       <svg className="block h-full w-full" viewBox={`0 0 ${totalW} ${h}`} preserveAspectRatio="none">
         {Array.from({ length: teeth }, (_, i) => (
           <path key={i} d={toothPath(i * (toothW + gap))} fill="#020617" />
@@ -75,15 +79,25 @@ function TrackEdge() {
 export function Footer() {
   return (
     <footer className="mt-auto">
-      {/* Pasek kontaktu – woda / hydro */}
+      {/* Jeden gradient na sekcję kontaktu + gąsienicę – między zębami widać tę samą barwę co u dołu fali */}
+      <div className="relative" style={{ background: FOOTER_CONTACT_GRADIENT }}>
       <section
-        className="relative px-4 py-20 text-slate-900 sm:px-6 lg:px-8 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 45%, #0369a1 100%)" }}
+        className="relative overflow-hidden bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
-        {/* Fala na górze – przejście z tła strony w sekcję kontaktową */}
+        {/* Fala na górze – gradient w wypełnieniu (jasne tło → ton wody przy styku z sekcją) */}
         <div className="absolute top-0 left-0 right-0 w-full overflow-hidden leading-none" style={{ height: 72 }}>
-          <svg viewBox="0 0 1440 72" preserveAspectRatio="none" className="block w-full h-full">
-            <path d="M0,0 L1440,0 L1440,0 C1080,72 720,72 360,36 C180,18 0,54 0,54 Z" fill="#f8fafc" />
+          <svg viewBox="0 0 1440 72" preserveAspectRatio="none" className="block h-full w-full">
+            <defs>
+              <linearGradient id="footerWaveFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#f8fafc" />
+                <stop offset="45%" stopColor="#e0f2fe" />
+                <stop offset="100%" stopColor="#7dd3fc" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M0,0 L1440,0 L1440,0 C1080,72 720,72 360,36 C180,18 0,54 0,54 Z"
+              fill="url(#footerWaveFill)"
+            />
           </svg>
         </div>
 
@@ -118,8 +132,9 @@ export function Footer() {
         </div>
       </section>
 
-      {/* Gąsienica – zęby oddzielające niebieską sekcję od czarnej stopki */}
+      {/* Gąsienica – zęby oddzielające niebieską sekcję od czarnej stopki (tło = ten sam gradient co wyżej) */}
       <TrackEdge />
+      </div>
 
       {/* Czarna stopka: CTA + kolumny + dół */}
       <div className="relative -mt-px text-white">

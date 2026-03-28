@@ -7,12 +7,15 @@ export type JobApplicationSectionProps = {
 
 export function JobApplicationSection({ jobTitle }: JobApplicationSectionProps) {
   return (
-    <section className="bg-slate-50 py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <span className="section-label">Aplikuj</span>
-            <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2rem,3.8vw,3rem)" }}>
+    <section className="relative overflow-x-hidden bg-slate-50 py-20 lg:py-28">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 gap-x-14 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:items-start lg:gap-y-6">
+          <span className="section-label lg:col-span-2 lg:row-start-1">Aplikuj</span>
+          <div className="lg:col-start-1 lg:row-start-2 lg:min-w-0">
+            <h2
+              className="display-heading mt-4 text-slate-900 lg:mt-0"
+              style={{ fontSize: "clamp(2rem,3.8vw,3rem)" }}
+            >
               Gotowy na współpracę?{" "}
               <span style={{ color: "var(--hb-water)" }}>Zrób pierwszy krok.</span>
             </h2>
@@ -40,10 +43,10 @@ export function JobApplicationSection({ jobTitle }: JobApplicationSectionProps) 
               </a>
             </div>
           </div>
-          <div className="track-border p-8 lg:p-10">
-            <div className="mb-7">
-              <h3 className="text-2xl font-bold text-slate-900">Wyślij zgłoszenie</h3>
-              <p className="mt-1.5 text-sm text-slate-500">Odpowiemy w ciągu 24–48 godzin roboczych.</p>
+          <div className="track-border mt-4 p-8 lg:col-start-2 lg:row-start-2 lg:mt-0 lg:min-w-0 lg:p-10">
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold tracking-tight text-slate-900">Wyślij zgłoszenie</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-500">Odpowiemy w ciągu 24–48 godzin roboczych.</p>
             </div>
             <form className="flex flex-col gap-4" action="#" method="post" noValidate>
               <input type="hidden" name="position" value={jobTitle} />

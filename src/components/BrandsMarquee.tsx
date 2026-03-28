@@ -25,7 +25,7 @@ export function BrandsMarquee() {
   return (
     <section className="overflow-hidden border-t border-slate-100 bg-slate-50 py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="mb-10 text-center text-[0.68rem] font-bold uppercase tracking-[0.2em] text-slate-400">
+        <p className="mb-10 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-500 sm:text-sm">
           Marki, które nam zaufały
         </p>
       </div>
