@@ -3,10 +3,6 @@ import Link from "next/link";
 /** Kolor wody / główny akcent stopki – spójny z głównym motywem strony */
 const FOOTER_WATER = "var(--hb-water)"; /* #0284c7 */
 
-/** Sekcja kontakt + gąsienica – wyraźniejszy przebieg jasny → brand → głęboki błękit */
-const FOOTER_CONTACT_GRADIENT =
-  "linear-gradient(135deg, #38bdf8 0%, #0284c7 38%, #0369a1 72%, #0c4a6e 100%)";
-
 function WaveSection() {
   return (
     <div className="relative h-16 w-full overflow-hidden bg-slate-50 sm:h-24" aria-hidden>
@@ -79,8 +75,7 @@ function TrackEdge() {
 export function Footer() {
   return (
     <footer className="mt-auto bg-slate-50">
-      {/* max-sm:-mt-2: mocniejsze nachodzenie na sekcję wyżej = brak widocznej kreski na mobile */}
-      <div className="relative z-[1] -mt-2 sm:-mt-px" style={{ background: FOOTER_CONTACT_GRADIENT }}>
+      <div className="footer-contact-gradient relative z-[1] -mt-3 sm:-mt-px">
       <section
         className="relative overflow-hidden bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
