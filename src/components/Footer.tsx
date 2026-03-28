@@ -78,7 +78,7 @@ function TrackEdge() {
 
 export function Footer() {
   return (
-    <footer className="mt-auto">
+    <footer className="mt-auto bg-slate-50">
       {/* -mt-px: usuwa subpikselową szczelinę (ciemną kreskę) między treścią a falą na mobile */}
       <div className="relative z-[1] -mt-px" style={{ background: FOOTER_CONTACT_GRADIENT }}>
       <section
@@ -86,7 +86,7 @@ export function Footer() {
       >
         {/* Fala na górze – gradient w wypełnieniu (jasne tło → ton wody przy styku z sekcją) */}
         <div className="absolute top-0 left-0 right-0 w-full overflow-hidden leading-none" style={{ height: 72 }}>
-          <svg viewBox="0 0 1440 72" preserveAspectRatio="none" className="block h-full w-full">
+          <svg viewBox="0 0 1440 72" preserveAspectRatio="none" className="block h-full w-full opacity-40 sm:opacity-100">
             <defs>
               <linearGradient id="footerWaveFill" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#f8fafc" />

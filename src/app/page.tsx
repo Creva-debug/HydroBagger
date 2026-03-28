@@ -124,9 +124,6 @@ const FILARY = [
   { n: "03", title: "Odpowiedzialność za efekt",   body: "Bierzemy odpowiedzialność za całość – od planowania po ostatni etap. Raz, a dobrze. Zgodnie z harmonogramem." },
 ] as const;
 
-/** Mobile: obraz zamiast mp4 (mniej problemów z GPU). Desktop: wideo. */
-const HERO_MOBILE_POSTER = "koparka-plywajaca-kopanie-torfowisko01.jpg";
-
 /* ════════════════════════════════════════════════════════════
    HELPERS
 ════════════════════════════════════════════════════════════ */
@@ -158,22 +155,12 @@ export default function HomePage() {
           1. HERO
       ══════════════════════════════════════════════════════ */}
       <section className="relative flex flex-col overflow-hidden" style={{ minHeight: "calc(var(--real-vh, 100svh) - 5.25rem)" }}>
-        <div className="pointer-events-none absolute inset-0 lg:hidden" aria-hidden>
-          <Image
-            src={imageUrl(HERO_MOBILE_POSTER)}
-            alt=""
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-center lg:block"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
         >
           <source src={videoUrl("video-tlo.mp4")} type="video/mp4" />
         </video>

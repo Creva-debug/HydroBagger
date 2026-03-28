@@ -71,13 +71,6 @@ export function SprzętTemplate({
         <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/35 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/25 to-transparent" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-white/60" aria-label="Breadcrumb">
-            <Link href="/" className="transition-colors hover:text-white">HydroBagger</Link>
-            <svg className="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-            <Link href="/sprzet" className="transition-colors hover:text-white">Sprzęt</Link>
-            <svg className="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-            <span className="text-white/90">{breadcrumbLabel}</span>
-          </nav>
           <SL light>Sprzęt</SL>
           <h1 className="display-heading mt-3 text-white" style={{ fontSize: "clamp(2.4rem,5vw,4rem)" }}>{heroTitle}</h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-200">{heroLead}</p>
