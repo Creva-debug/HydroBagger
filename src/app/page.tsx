@@ -124,7 +124,7 @@ const FILARY = [
   { n: "03", title: "Odpowiedzialność za efekt",   body: "Bierzemy odpowiedzialność za całość – od planowania po ostatni etap. Raz, a dobrze. Zgodnie z harmonogramem." },
 ] as const;
 
-/** Tło hero na mobile: statyczny obraz (wideo powoduje glitch przy scrollu w iOS/Chrome). Na lg+ zostaje mp4. */
+/** Mobile: obraz zamiast mp4 (mniej problemów z GPU). Desktop: wideo. */
 const HERO_MOBILE_POSTER = "koparka-plywajaca-kopanie-torfowisko01.jpg";
 
 /* ════════════════════════════════════════════════════════════
@@ -157,7 +157,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════════════════ */}
-      <section className="relative flex min-h-[calc(100lvh-5.25rem)] flex-col overflow-hidden">
+      <section className="relative flex min-h-[calc(100svh-5.25rem)] flex-col overflow-hidden">
         <div className="pointer-events-none absolute inset-0 lg:hidden" aria-hidden>
           <Image
             src={imageUrl(HERO_MOBILE_POSTER)}
@@ -215,7 +215,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/realizacje"
-                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white transition-all bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:border-white/30"
+                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/20"
                 >
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />

@@ -55,7 +55,7 @@ export default function ONasPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[70lvh] items-end overflow-hidden pb-16 lg:min-h-[80lvh] lg:pb-24">
+      <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16 lg:min-h-[80vh] lg:pb-24">
         <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Koparka pływająca w terenie podmokłym" fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/30 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/40 to-transparent" />

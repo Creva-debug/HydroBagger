@@ -43,9 +43,7 @@ export function BrandsMarquee() {
               <div
                 key={`${logo}-${idx}`}
                 className={`relative shrink-0 mx-3 sm:mx-8 ${
-                  large
-                    ? "h-20 w-48 sm:h-28 sm:w-64"
-                    : "h-14 w-32 sm:h-20 sm:w-48"
+                  large ? "h-20 w-48 sm:h-28 sm:w-64" : "h-14 w-32 sm:h-20 sm:w-48"
                 }`}
               >
                 <Image
