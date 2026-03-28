@@ -86,7 +86,7 @@ export function Footer() {
       >
         {/* Fala na górze – gradient w wypełnieniu (jasne tło → ton wody przy styku z sekcją) */}
         <div className="absolute top-0 left-0 right-0 w-full overflow-hidden leading-none" style={{ height: 72 }}>
-          <svg viewBox="0 0 1440 72" preserveAspectRatio="none" className="block h-full w-full opacity-40 sm:opacity-100">
+          <svg viewBox="0 0 1440 72" preserveAspectRatio="none" className="block h-full w-full">
             <defs>
               <linearGradient id="footerWaveFill" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#f8fafc" />
