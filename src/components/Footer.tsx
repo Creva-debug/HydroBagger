@@ -42,9 +42,8 @@ function TrackEdgeRaw({ teeth }: { teeth: number }) {
     `M ${x + r},0 L ${x + toothW - r},0 Q ${x + toothW},0 ${x + toothW},${r} L ${x + toothW - taper},${h} L ${x + taper},${h} L ${x},${r} Q ${x},0 ${x + r},0 Z`;
 
   return (
-    <div className="relative w-full flex-shrink-0 overflow-hidden" style={{ height: h }} aria-hidden>
+    <div className="relative w-full flex-shrink-0 overflow-hidden" style={{ height: h, background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 45%, #0369a1 100%)" }} aria-hidden>
       <svg className="block h-full w-full" viewBox={`0 0 ${totalW} ${h}`} preserveAspectRatio="none">
-        <rect x="0" y="0" width={totalW} height={h} fill="#0284c7" />
         {Array.from({ length: teeth }, (_, i) => (
           <path key={i} d={toothPath(i * (toothW + gap))} fill="#020617" />
         ))}
@@ -79,9 +78,9 @@ export function Footer() {
       {/* Pasek kontaktu – woda / hydro */}
       <section
         className="relative px-4 py-20 text-slate-900 sm:px-6 lg:px-8 overflow-hidden"
-        style={{ backgroundColor: FOOTER_WATER }}
+        style={{ background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 45%, #0369a1 100%)" }}
       >
-        {/* Fala na górze – przejście z tła strony w niebieską sekcję */}
+        {/* Fala na górze – przejście z tła strony w sekcję kontaktową */}
         <div className="absolute top-0 left-0 right-0 w-full overflow-hidden leading-none" style={{ height: 72 }}>
           <svg viewBox="0 0 1440 72" preserveAspectRatio="none" className="block w-full h-full">
             <path d="M0,0 L1440,0 L1440,0 C1080,72 720,72 360,36 C180,18 0,54 0,54 Z" fill="#f8fafc" />
