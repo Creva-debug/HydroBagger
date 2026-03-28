@@ -27,7 +27,7 @@ export default function DlaKogoPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[55svh] items-end overflow-hidden pb-14 lg:min-h-[60svh] lg:pb-20">
+      <section className="relative flex min-h-[55lvh] items-end overflow-hidden pb-14 lg:min-h-[60lvh] lg:pb-20">
         <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Dla kogo – usługi HydroBagger" fill priority className="object-cover brightness-[0.6] saturate-[0.8]" sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/30 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/30 to-transparent" />

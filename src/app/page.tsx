@@ -154,11 +154,11 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════════════════ */}
-      {/* 100svh zamiast 100dvh — stabilna wysokość na mobile (dvh „pływa” z paskiem przeglądarki). */}
-      <section className="relative flex min-h-[calc(100svh-5.25rem)] flex-col overflow-hidden">
+      {/* 100lvh: „large viewport” — stała wysokość przy chowanych paskach (svh/dvh potrafią przeliczać object-fit wideo). */}
+      <section className="relative flex min-h-[calc(100lvh-5.25rem)] flex-col overflow-hidden">
         <video
           autoPlay muted loop playsInline
-          className="absolute inset-0 h-full w-full object-cover [transform:translateZ(0)]"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
         >
           <source src={videoUrl("video-tlo.mp4")} type="video/mp4" />
         </video>
