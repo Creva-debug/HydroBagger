@@ -18,8 +18,8 @@ export const SEO_PAGES: Record<string, PageSEO> = {
     metaDescription:
       "Prace hydrotechniczne z lądu i wody. Bagna, torfy, cieki – wchodzimy tam, gdzie inni się poddają. Skutecznie, bezpiecznie i na czas.",
   },
-  "/ciasteczka-cookies": {
-    path: "/ciasteczka-cookies",
+  "/polityka-cookies": {
+    path: "/polityka-cookies",
     keyword: "brak",
     metaTitle: "Polityka Cookies w HydroBagger.pl",
     metaDescription:
