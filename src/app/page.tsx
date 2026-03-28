@@ -124,6 +124,9 @@ const FILARY = [
   { n: "03", title: "Odpowiedzialność za efekt",   body: "Bierzemy odpowiedzialność za całość – od planowania po ostatni etap. Raz, a dobrze. Zgodnie z harmonogramem." },
 ] as const;
 
+/** Tło hero na mobile: statyczny obraz (wideo powoduje glitch przy scrollu w iOS/Chrome). Na lg+ zostaje mp4. */
+const HERO_MOBILE_POSTER = "koparka-plywajaca-kopanie-torfowisko01.jpg";
+
 /* ════════════════════════════════════════════════════════════
    HELPERS
 ════════════════════════════════════════════════════════════ */
@@ -154,11 +157,23 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════════════════ */}
-      {/* 100lvh: „large viewport” — stała wysokość przy chowanych paskach (svh/dvh potrafią przeliczać object-fit wideo). */}
       <section className="relative flex min-h-[calc(100lvh-5.25rem)] flex-col overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 lg:hidden" aria-hidden>
+          <Image
+            src={imageUrl(HERO_MOBILE_POSTER)}
+            alt=""
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        </div>
         <video
-          autoPlay muted loop playsInline
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-center lg:block"
         >
           <source src={videoUrl("video-tlo.mp4")} type="video/mp4" />
         </video>
