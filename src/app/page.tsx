@@ -154,12 +154,11 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════════════════ */}
-      {/* min-h: viewport minus sticky header (4px top bar + 80px bar) so first screen = hero only */}
-      <section className="relative flex min-h-[calc(100dvh-5.25rem)] flex-col overflow-hidden">
-        {/* BG video */}
+      {/* 100svh zamiast 100dvh — stabilna wysokość na mobile (dvh „pływa” z paskiem przeglądarki). */}
+      <section className="relative flex min-h-[calc(100svh-5.25rem)] flex-col overflow-hidden">
         <video
           autoPlay muted loop playsInline
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover [transform:translateZ(0)]"
         >
           <source src={videoUrl("video-tlo.mp4")} type="video/mp4" />
         </video>
@@ -430,7 +429,7 @@ export default function HomePage() {
               <div className="mt-10">
                 <Link
                   href="/o-nas"
-                  className="inline-flex items-center gap-2 rounded-full border border-[#0284c7] px-7 py-3 text-sm font-bold text-[#0284c7] transition-all hover:bg-[#0284c7] hover:text-white"
+                  className="flex w-full max-w-full items-center justify-center gap-2 rounded-full border border-[#0284c7] px-7 py-3 text-sm font-bold text-[#0284c7] transition-all hover:bg-[#0284c7] hover:text-white sm:inline-flex sm:w-auto"
                 >
                   Poznaj nasz zespół <ArrowRight />
                 </Link>

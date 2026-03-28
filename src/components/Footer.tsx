@@ -79,8 +79,8 @@ function TrackEdge() {
 export function Footer() {
   return (
     <footer className="mt-auto">
-      {/* Jeden gradient na sekcję kontaktu + gąsienicę – między zębami widać tę samą barwę co u dołu fali */}
-      <div className="relative" style={{ background: FOOTER_CONTACT_GRADIENT }}>
+      {/* -mt-px: usuwa subpikselową szczelinę (ciemną kreskę) między treścią a falą na mobile */}
+      <div className="relative z-[1] -mt-px" style={{ background: FOOTER_CONTACT_GRADIENT }}>
       <section
         className="relative overflow-hidden bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
@@ -143,15 +143,17 @@ export function Footer() {
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 border-b border-slate-800 px-4 py-8 sm:grid-cols-4 sm:items-center sm:gap-0 lg:grid-cols-[1fr_1fr_1.5fr_1.6fr] sm:px-6 lg:px-8">
             {/* Tekst */}
             <div className="flex items-center sm:col-span-3">
-              <h3 className="text-center text-xl font-bold text-white sm:text-left sm:text-2xl">
-                Potrzebujesz wsparcia w trudnym terenie?
+              <h3 className="w-full text-center text-xl font-bold text-white sm:text-left sm:text-2xl">
+                <span className="block sm:inline">Potrzebujesz wsparcia</span>
+                <span className="hidden sm:inline"> </span>
+                <span className="block sm:inline">w trudnym terenie?</span>
               </h3>
             </div>
-            {/* Przycisk – wyrównany z kolumną Dane kontaktowe */}
-            <div className="flex sm:justify-start sm:col-span-1 sm:pl-[30px]">
+            {/* Przycisk – na mobile pełna szerokość w kontenerze px-4 */}
+            <div className="flex w-full justify-center sm:col-span-1 sm:w-auto sm:justify-start sm:pl-[30px]">
               <Link
                 href="/darmowa-konsultacja"
-                className="inline-flex items-center gap-2 rounded-full border border-[#0284c7] px-6 py-2.5 text-sm font-semibold text-[#38bdf8] transition-all hover:bg-[#0284c7] hover:border-[#0284c7] hover:text-white"
+                className="flex w-full max-w-full items-center justify-center gap-2 rounded-full border border-[#0284c7] px-6 py-2.5 text-sm font-semibold text-[#38bdf8] transition-all hover:bg-[#0284c7] hover:border-[#0284c7] hover:text-white sm:inline-flex sm:w-auto"
               >
                 Bezpłatna konsultacja
               </Link>
