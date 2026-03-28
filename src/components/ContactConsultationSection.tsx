@@ -22,12 +22,13 @@ export function ContactConsultationSection({
   topSlot,
 }: ContactConsultationSectionProps = {}) {
   const sectionPt = isPageLead ? "pt-12 lg:pt-16" : "pt-24 lg:pt-32";
+  const minH = isPageLead ? "min-h-dvh flex flex-col justify-center" : "";
 
   return (
-    <section id={id} className={`relative overflow-hidden bg-slate-100 ${sectionPt}`}>
+    <section id={id} className={`relative overflow-hidden bg-slate-50 ${sectionPt} ${minH}`}>
       <div className="relative z-10 mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
         {topSlot}
-        <div className="grid items-start gap-14 lg:grid-cols-2">
+        <div className="grid items-center gap-14 lg:grid-cols-2">
           <div className={formFirst ? "order-2 lg:order-2" : undefined}>
             <SectionLabel>Bezpłatna konsultacja</SectionLabel>
             <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)" }}>

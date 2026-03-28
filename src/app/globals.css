@@ -28,6 +28,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* ── Sekcja-label ───────────────────────────────────────── */
@@ -205,8 +206,8 @@ body {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.18s ease, visibility 0.18s;
-  position: fixed;
-  top: 84px;
+  position: absolute;
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;

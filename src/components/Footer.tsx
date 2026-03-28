@@ -5,24 +5,24 @@ const FOOTER_WATER = "var(--hb-water)"; /* #0284c7 */
 
 function WaveSection() {
   return (
-    <div className="relative h-24 w-full overflow-hidden bg-white">
+    <div className="relative h-16 w-full overflow-hidden bg-slate-50 sm:h-24" aria-hidden>
       <svg
         className="absolute inset-0 h-full w-full"
-        viewBox="0 0 1200 120"
+        viewBox="0 0 1200 96"
         preserveAspectRatio="none"
         aria-hidden
       >
         <path
-          d="M0,60 Q300,20 600,60 T1200,60 L1200,120 L0,120 Z"
-          fill="rgba(2, 132, 199, 0.14)"
+          d="M0,48 Q300,16 600,48 T1200,48 L1200,96 L0,96 Z"
+          fill="rgba(2, 132, 199, 0.12)"
         />
         <path
-          d="M0,70 Q250,30 500,70 T1000,70 T1200,70 L1200,120 L0,120 Z"
-          fill="rgba(2, 132, 199, 0.2)"
+          d="M0,56 Q250,24 500,56 T1000,56 T1200,56 L1200,96 L0,96 Z"
+          fill="rgba(2, 132, 199, 0.18)"
         />
         <path
-          d="M0,65 Q400,25 800,65 T1200,65 L1200,120 L0,120 Z"
-          fill="rgba(2, 132, 199, 0.1)"
+          d="M0,52 Q400,20 800,52 T1200,52 L1200,96 L0,96 Z"
+          fill="rgba(2, 132, 199, 0.09)"
         />
       </svg>
     </div>
@@ -81,10 +81,10 @@ export function Footer() {
         className="relative px-4 py-20 text-slate-900 sm:px-6 lg:px-8 overflow-hidden"
         style={{ backgroundColor: FOOTER_WATER }}
       >
-        {/* Fala na górze – przejście z szarego tła sekcji formularza */}
+        {/* Fala na górze – przejście z tła strony w niebieską sekcję */}
         <div className="absolute top-0 left-0 right-0 w-full overflow-hidden leading-none" style={{ height: 72 }}>
           <svg viewBox="0 0 1440 72" preserveAspectRatio="none" className="block w-full h-full">
-            <path d="M0,0 L1440,0 L1440,0 C1080,72 720,72 360,36 C180,18 0,54 0,54 Z" fill="#f1f5f9" />
+            <path d="M0,0 L1440,0 L1440,0 C1080,72 720,72 360,36 C180,18 0,54 0,54 Z" fill="#f8fafc" />
           </svg>
         </div>
 
@@ -92,7 +92,7 @@ export function Footer() {
           <h2 className="mb-10 text-center text-3xl font-light tracking-tight sm:text-4xl md:text-5xl text-white">
             Bezpośredni <span className="font-bold">kontakt</span>
           </h2>
-          <div className="flex flex-col items-center justify-center gap-8 sm:flex-row sm:gap-20">
+          <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-center sm:gap-20">
             <a
               href="mailto:kontakt@hydrobagger.pl"
               className="flex items-center gap-4 text-white/90 transition hover:text-white group"
@@ -123,13 +123,13 @@ export function Footer() {
       <TrackEdge />
 
       {/* Czarna stopka: CTA + kolumny + dół */}
-      <div className="relative text-white">
+      <div className="relative -mt-px text-white">
         <div className="bg-slate-950 pt-4">
           {/* CTA */}
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 border-b border-slate-800 px-4 py-8 sm:grid-cols-4 sm:items-center sm:gap-0 lg:grid-cols-[1fr_1fr_1.5fr_1.6fr] sm:px-6 lg:px-8">
             {/* Tekst */}
             <div className="flex items-center sm:col-span-3">
-              <h3 className="shrink-0 text-center text-xl font-bold text-white sm:text-left sm:text-2xl sm:whitespace-nowrap">
+              <h3 className="text-center text-xl font-bold text-white sm:text-left sm:text-2xl">
                 Potrzebujesz wsparcia w trudnym terenie?
               </h3>
             </div>
@@ -171,7 +171,7 @@ export function Footer() {
                 <li><Link href="/sprzet/koparki-gasienicowe" className="transition hover:text-[#38bdf8]">Koparki gąsienicowe</Link></li>
               </ul>
             </div>
-            <div>
+            <div className="col-span-2 sm:col-span-1">
               <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-400">
                 Usługi
               </p>

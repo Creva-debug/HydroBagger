@@ -358,7 +358,7 @@ export default function HomePage() {
           <div className="grid items-center gap-16 lg:grid-cols-2">
             {/* Lewa – zdjęcie */}
             <div className="relative order-2 lg:order-1">
-              <div className="img-card overflow-hidden rounded-2xl" style={{ height: 560 }}>
+              <div className="img-card overflow-hidden rounded-2xl aspect-[4/3] lg:aspect-auto lg:h-[560px]">
                 <Image
                   src={imageUrl("koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg")}
                   alt="Koparka pływająca z zestawem refulacyjnym HydroBagger"

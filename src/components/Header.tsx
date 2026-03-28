@@ -92,8 +92,12 @@ const NAV_USLUGI = [
     label: "Koszenie i mulczowanie",
     desc: "Usuwanie roślinności wodnej i brzegowej.",
     icon: (
-      <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7.848 8.25l1.536.54m5.232 1.86l1.536.54M4.5 18.75l2.548-2.548m0 0a3.375 3.375 0 000-4.773m0 4.773a3.375 3.375 0 004.773 0m-4.773 0L4.5 18.75m4.773-4.773l5.428-5.428m0 0a3.375 3.375 0 104.773-4.773 3.375 3.375 0 00-4.773 4.773z" />
+      <svg className="h-5 w-5 text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="6" cy="17.5" r="2.5" />
+        <circle cx="6" cy="6.5" r="2.5" />
+        <line x1="8.2" y1="16.1" x2="20" y2="4" />
+        <line x1="8.2" y1="7.9" x2="20" y2="20" />
+        <circle cx="13.2" cy="12" r="0.6" fill="currentColor" stroke="none" />
       </svg>
     )
   },
@@ -324,7 +328,7 @@ export function Header() {
 
       {/* Mobile menu drawer */}
       <div
-        className={`fixed right-0 top-0 z-[70] flex h-full w-[85vw] max-w-sm flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed right-0 top-0 z-[70] flex h-dvh w-[85vw] max-w-sm flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
         aria-label="Menu mobilne"

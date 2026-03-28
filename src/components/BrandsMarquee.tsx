@@ -2,14 +2,22 @@ import Image from "next/image";
 import { imageUrl } from "@/lib/images";
 
 const LOGOS = [
-  "Logo_eko_folwark.png",
+  "Logo_budimex-1.png",
+  "Logo_uniwersystet_przyrodniczy_w_poznaniu.png",
   "Logo_PORR.png",
+  "Logo_uniwersystet_warminsko_mazurski_w_olsztynie.png",
   "Logo_ujscie_warty.png",
+  "Logo_wody_polski.png",
+  "Logo_eko_folwark.png",
+] as const;
+
+/** Logotypy wymagające większego wyświetlania */
+const LARGE_LOGOS = new Set([
   "Logo_uniwersystet_przyrodniczy_w_poznaniu.png",
   "Logo_uniwersystet_warminsko_mazurski_w_olsztynie.png",
+  "Logo_ujscie_warty.png",
   "Logo_wody_polski.png",
-  "Logo_budimex-1.png",
-] as const;
+]);
 
 const MARQUEE_LOGOS = [...LOGOS, ...LOGOS] as string[];
 
@@ -24,22 +32,32 @@ export function BrandsMarquee() {
       <div
         className="relative"
         style={{
-          maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+          maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
         }}
       >
         <div className="marquee-track">
-          {MARQUEE_LOGOS.map((logo, idx) => (
-            <div key={`${logo}-${idx}`} className="relative mx-8 h-20 w-48 shrink-0">
-              <Image
-                src={imageUrl(logo)}
-                alt={logo.replace(/Logo_|\.png/g, "").replace(/_/g, " ")}
-                fill
-                className="object-contain"
-                sizes="192px"
-              />
-            </div>
-          ))}
+          {MARQUEE_LOGOS.map((logo, idx) => {
+            const large = LARGE_LOGOS.has(logo);
+            return (
+              <div
+                key={`${logo}-${idx}`}
+                className={`relative shrink-0 mx-3 sm:mx-8 ${
+                  large
+                    ? "h-20 w-48 sm:h-28 sm:w-64"
+                    : "h-14 w-32 sm:h-20 sm:w-48"
+                }`}
+              >
+                <Image
+                  src={imageUrl(logo)}
+                  alt={logo.replace(/Logo_|\.png/g, "").replace(/_/g, " ")}
+                  fill
+                  className="object-contain"
+                  sizes="224px"
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
