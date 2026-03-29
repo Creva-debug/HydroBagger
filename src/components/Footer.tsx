@@ -77,12 +77,17 @@ function TrackEdge() {
 export function Footer() {
   return (
     <footer className="mt-auto bg-slate-50">
-      {/* Mobile: bez ujemnego marginesu (unika „prześwietlenia” niebieskiego tła nad slate-50); sm+: -mt-px jak wcześniej */}
+      {/* Pas slate-50 maskuje szczelinę ze sekcją nad stopką (tylko mobile); bez overflow na fali – unika obcięcia SVG w rogu. */}
       <div className="footer-contact-gradient relative z-[1] mt-0 sm:-mt-px">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 z-[5] h-1 bg-[#f8fafc] sm:hidden"
+          aria-hidden
+        />
       <section
-        className="relative overflow-hidden bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
+        className="relative overflow-x-visible bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
-        <div className="pointer-events-none absolute left-0 right-0 top-0 z-20 h-[64px] w-full overflow-hidden leading-none sm:h-[72px]">
+        {/* Full-bleed: 100% + overflow-x na sekcji obcinało prawy górny róg fali w WebKit (subpiksele). */}
+        <div className="pointer-events-none absolute left-1/2 top-0 z-20 h-[64px] w-screen max-w-none -translate-x-1/2 leading-none sm:h-[72px]">
           <svg
             viewBox="0 0 1440 72"
             preserveAspectRatio="none"
