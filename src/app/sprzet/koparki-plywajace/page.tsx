@@ -90,25 +90,42 @@ export default function KoparkiPlywajacePage() {
       machines={{
         title: "Poznaj nasze koparki pływające",
         cols: 4,
+        imageCrop: "4/3",
         items: [
-          { name: "Koparka pływająca REMU BIG FLOAT E2200", image: "koparka-plywajaca-remu-big-float-e2200-na-brzegu-zbiornika.jpg", specs: [{ label: "Waga", value: "33 000 kg" }, { label: "Zasięg ramienia", value: "16,0 m" }, { label: "Głębokość kopania", value: "13,0 m" }] },
-          { name: "Koparka pływająca REMU BIG FLOAT E15", image: "koparka-plywajaca-remu-big-float-e15-w-zalanym-lesie.jpg", specs: [{ label: "Waga", value: "25 000 kg" }, { label: "Zasięg ramienia", value: "13,0 m" }, { label: "Głębokość kopania", value: "10,0 m" }] },
-          { name: "Koparka pływająca EIK AM70", image: "koparka-plywajaca-eik-am70-praca-w-roslinnosci-wodnej.jpg", specs: [{ label: "Waga", value: "11 000 kg" }, { label: "Zasięg ramienia", value: "6,5 m" }, { label: "Głębokość kopania", value: "4,0 m" }] },
-          { name: "Koparka pływająca Waterking WK20", image: "koparka-plywajaca-waterking-wk20-czyszczenie-rowu.jpg", specs: [{ label: "Waga", value: "4 100 kg" }, { label: "Zasięg ramienia", value: "5,5 m" }, { label: "Głębokość kopania", value: "3,0 m" }] },
+          {
+            name: "Koparka pływająca REMU BIG FLOAT E2200",
+            image: "7cae237d-813e-43f2-9bcc-81685b4a464b-koparka-plywajaca-remu-big-float-e2200-na-podmoklym-terenie.png",
+            specs: [{ label: "Waga", value: "33 000 kg" }, { label: "Zasięg ramienia", value: "16,0 m" }, { label: "Głębokość kopania", value: "13,0 m" }],
+          },
+          {
+            name: "Koparka pływająca REMU BIG FLOAT E15",
+            image: "e5be200b-8e1f-4324-9bf2-73d25ff5099b-koparka-plywajaca-remu-big-float-e15-w-zalanym-lesie.png",
+            specs: [{ label: "Waga", value: "25 000 kg" }, { label: "Zasięg ramienia", value: "13,0 m" }, { label: "Głębokość kopania", value: "10,0 m" }],
+          },
+          {
+            name: "Koparka pływająca EIK AM70",
+            image: "716b08a7-bc46-4d98-a9ec-1035dd743734-koparka-plywajaca-eik-am70-praca-w-roslinnosci-wodnej.png",
+            specs: [{ label: "Waga", value: "11 000 kg" }, { label: "Zasięg ramienia", value: "6,5 m" }, { label: "Głębokość kopania", value: "4,0 m" }],
+          },
+          {
+            name: "Koparka pływająca Waterking WK20",
+            image: "4a404f59-e317-4d01-acd9-c553fa141f8f-koparka-plywajaca-waterking-wk20-czyszczenie-rowupng.png",
+            specs: [{ label: "Waga", value: "4 100 kg" }, { label: "Zasięg ramienia", value: "5,5 m" }, { label: "Głębokość kopania", value: "3,0 m" }],
+          },
         ],
       }}
       gallery={[
-        { src: "transport-koparka-plywajaca-remu-2200.jpg", alt: "Transport koparki pływającej REMU 2200" },
-        { src: "koparka-plywajaca-remu-2200-pod-mostem.jpg", alt: "Koparka pływająca REMU 2200 – prace pod mostem" },
-        { src: "koparka-plywajaca-wk20-czyszczenie-rowu.jpg", alt: "Koparka Waterking WK20 – czyszczenie rowu" },
-        { src: "koparka-plywajaca-wk20-mulczowanie-brzegu.jpg", alt: "Koparka WK20 – mulczowanie brzegu" },
+        { src: "transport-koparka-plywajaca-remu-2200 (1).jpg", alt: "Transport koparki pływającej REMU 2200" },
+        { src: "koparka-plywajaca-remu-2200-pod-mostem (1).jpg", alt: "Koparka pływająca REMU 2200 – prace pod mostem" },
+        { src: "koparka-plywajaca-waterking-wk20-czyszczenie-rowu.jpg", alt: "Koparka Waterking WK20 – czyszczenie rowu" },
+        { src: "koparka-plywajaca-wk20-mulczowanie-brzegu (1).jpg", alt: "Koparka WK20 – mulczowanie brzegu" },
         { src: "realizacja-koparka-plywajaca-prace-w-terenie-zalewowym.jpg", alt: "Koparka pływająca – prace w terenie zalewowym" },
         { src: "remu-big-float-e15-bokiem.jpg", alt: "REMU Big Float E15 – widok z boku" },
         { src: "remu-big-float-e15-bloto.jpg", alt: "REMU Big Float E15 w błocie" },
         { src: "remu-big-float-e15-front.jpg", alt: "REMU Big Float E15 – przód maszyny" },
         { src: "koparka-plywajaca-w-trzcinie.jpg", alt: "Koparka pływająca w trzcinie" },
         { src: "koparka-bagna-wycinka-drzew.jpg", alt: "Koparka na bagnie – wycinka zatorów" },
-        { src: "koparka-plywajaca-zestaw-refulacyjny-na-wodzie-1.jpg", alt: "Zestaw refulacyjny koparki na wodzie" },
+        { src: "koparka-plywajaca-zestaw-refulacyjny-na-wodzie-1 (1).jpg", alt: "Zestaw refulacyjny koparki na wodzie" },
         { src: "koparka-plywajaca-refulacja-zbiornik-wodny-gora.jpg", alt: "Refulacja zbiornika wodnego – ujęcie z góry" },
       ]}
     />

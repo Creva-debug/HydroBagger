@@ -52,10 +52,14 @@ export default function PompyRefulacyjnePage() {
           },
         ],
       }}
+      galleryCols={3}
       gallery={[
         { src: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg", alt: "Pompa refulacyjna w trakcie odmulania zbiornika" },
         { src: "koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg", alt: "Zestaw refulacyjny HydroBagger na zbiorniku" },
-        { src: "koparka-plywajaca-kopanie-torfowisko01.jpg", alt: "Prace refulacyjne w terenie podmokłym" },
+        { src: "refulacja-w-akcji.jpg", alt: "Refulacja w akcji" },
+        { src: "koparka-plywajaca-zestaw-refulacyjny-na-wodzie-1 (1).jpg", alt: "Zestaw refulacyjny koparki pływającej na wodzie" },
+        { src: "truxor-realizacja-02.jpg", alt: "Truxor – prace refulacyjne z wody" },
+        { src: "truxor-realizacja-03.jpg", alt: "Truxor – realizacja refulacyjna" },
       ]}
     />
   );

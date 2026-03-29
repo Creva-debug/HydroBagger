@@ -86,8 +86,8 @@ export function Footer() {
       <section
         className="relative z-[10] overflow-x-visible bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
-        {/* h-[72px] jak viewBox – 64px obcinało dół; overflow visible + szerszy viewBox = brak clipu WebKit przy prawej krawędzi. */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[72px] w-full min-w-0 overflow-visible leading-none">
+        {/* Mobile: szerszy viewBox + overflow visible (WebKit iPhone). Desktop: klasyczne 1440×72 – szerszy viewBox psuł skalowanie na szerokim ekranie. */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[72px] w-full min-w-0 leading-none">
           <svg
             viewBox="0 0 1456 72"
             preserveAspectRatio="none"
@@ -108,10 +108,9 @@ export function Footer() {
             />
           </svg>
           <svg
-            viewBox="0 0 1456 72"
+            viewBox="0 0 1440 72"
             preserveAspectRatio="none"
-            overflow="visible"
-            className="hidden h-full w-full overflow-visible sm:block"
+            className="hidden h-full w-full sm:block"
             aria-hidden
           >
             <defs>

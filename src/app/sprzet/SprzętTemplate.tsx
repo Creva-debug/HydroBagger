@@ -14,6 +14,13 @@ export type SprzętMachine = {
   specs: { label: string; value: string }[];
 };
 
+export type SprzętGalleryItem = {
+  src: string;
+  alt: string;
+  /** Nadpisuje domyślne filtry (np. stonowanie nadmiernej saturacji). */
+  imageClassName?: string;
+};
+
 export type SprzętTemplateProps = {
   breadcrumbLabel: string;
   heroImage: string;
@@ -22,8 +29,11 @@ export type SprzętTemplateProps = {
   heroDetails?: string[];
   applications?: { title: string; items: SprzętItem[] };
   features?: { title: string; items: SprzętItem[] };
-  machines?: { title: string; cols?: 2 | 3 | 4; items: SprzętMachine[] };
-  gallery?: { src: string; alt: string }[];
+  /** `imageCrop: "4/3"` – jednolity kadr kafelków (object-cover), gdy zdjęcia mają te same proporcje. */
+  machines?: { title: string; cols?: 2 | 3 | 4; items: SprzętMachine[]; imageCrop?: "4/3" };
+  gallery?: SprzętGalleryItem[];
+  /** Siatka galerii „Realizacje” na lg+ (domyślnie 4 kolumny przy >3 zdjęciach). */
+  galleryCols?: 3 | 4;
 };
 
 function SL({ children, light = false }: { children: ReactNode; light?: boolean }) {
@@ -36,7 +46,7 @@ function ItemCard({ item }: { item: SprzętItem }) {
       <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: "linear-gradient(135deg, var(--hb-water), #0369a1)" }}>
         <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>{item.icon}</svg>
       </div>
-      <h3 className="font-bold text-slate-900">{item.title}</h3>
+      <h3 className="text-lg font-bold leading-snug text-slate-900 sm:text-xl">{item.title}</h3>
       <p className="text-sm leading-relaxed text-slate-500">{item.body}</p>
     </div>
   );
@@ -45,6 +55,8 @@ function ItemCard({ item }: { item: SprzętItem }) {
 function getMachCols(n: number) {
   if (n <= 2) return "sm:grid-cols-2";
   if (n === 3) return "sm:grid-cols-2 lg:grid-cols-3";
+  /* 4 kafelki: do 2xl szersze kolumny (2×2), od ~1536px z powrotem 4 w rzędzie */
+  if (n === 4) return "sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-4";
   return "sm:grid-cols-2 lg:grid-cols-4";
 }
 
@@ -58,20 +70,33 @@ export function SprzętTemplate({
   features,
   machines,
   gallery = [],
+  galleryCols,
 }: SprzętTemplateProps) {
   const featBg = applications ? "bg-white" : "bg-slate-50";
   const machCols = machines ? getMachCols(machines.cols ?? machines.items.length) : "";
-  const gallCols =
+  const gallColsDefault =
     gallery.length <= 2
       ? "sm:grid-cols-2"
       : gallery.length === 3
         ? "sm:grid-cols-2 lg:grid-cols-3"
         : "sm:grid-cols-2 lg:grid-cols-4";
+  const gallCols =
+    galleryCols === 3
+      ? gallery.length === 1
+        ? "grid-cols-1"
+        : gallery.length === 2
+          ? "sm:grid-cols-2"
+          : "sm:grid-cols-2 lg:grid-cols-3"
+      : gallColsDefault;
+  const galleryImageSizes =
+    galleryCols === 3
+      ? "(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+      : "(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw";
 
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16 lg:min-h-[80vh] lg:pb-24">
+      <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20">
         <Image src={imageUrl(heroImage)} alt={heroTitle} fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
         <div className="absolute inset-0 bg-[#071e32]/45" aria-hidden />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/35 to-transparent" />
@@ -128,21 +153,29 @@ export function SprzętTemplate({
               <SL light>Park maszynowy</SL>
               <h2 className="display-heading mt-4 text-white" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>{machines.title}</h2>
             </div>
-            <div className={`grid gap-5 ${machCols}`}>
+            <div className={`mx-auto grid max-w-5xl gap-4 sm:gap-5 ${machCols}`}>
               {machines.items.map((m) => (
-                <div key={m.name} className="overflow-hidden rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900/50">
+                <div key={m.name} className="overflow-hidden rounded-xl sm:rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
+                  <div
+                    className={`relative w-full overflow-hidden bg-slate-950/70 ${machines.imageCrop === "4/3" ? "aspect-[4/3]" : ""}`}
+                  >
                     <Image
                       src={imageUrl(m.image ?? heroImage)}
                       alt={m.name}
-                      fill
-                      className="object-cover brightness-[1.02] contrast-[1.04] saturate-[1.06]"
-                      sizes="(max-width:1024px) 100vw, 280px"
+                      fill={machines.imageCrop === "4/3"}
+                      width={machines.imageCrop === "4/3" ? undefined : 1200}
+                      height={machines.imageCrop === "4/3" ? undefined : 800}
+                      sizes="(max-width:1024px) 100vw, 400px"
+                      className={
+                        machines.imageCrop === "4/3"
+                          ? "object-cover object-center brightness-[1.02] contrast-[1.04] saturate-[1.06]"
+                          : "h-auto w-full brightness-[1.02] contrast-[1.04] saturate-[1.06]"
+                      }
                     />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071e32]/55 via-transparent to-transparent" aria-hidden />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071e32]/45 via-transparent to-transparent" aria-hidden />
                   </div>
-                  <div className="p-6">
-                  <p className="mb-4 text-sm font-bold leading-snug text-white">{m.name}</p>
+                  <div className="p-4 sm:p-5">
+                  <p className="mb-3 text-base font-bold leading-snug text-white sm:mb-4 sm:text-lg">{m.name}</p>
                   <div className="space-y-2.5">
                     {m.specs.map((s) => (
                       <div key={s.label} className="flex items-center justify-between gap-3 border-b border-white/10 pb-2 last:border-b-0 last:pb-0">
@@ -171,13 +204,16 @@ export function SprzętTemplate({
             </div>
             <div className={`grid gap-4 ${gallCols}`}>
               {gallery.map((img) => (
-                <div key={img.src} className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <div key={`${img.src}-${img.alt}`} className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                   <Image
                     src={imageUrl(img.src)}
                     alt={img.alt}
                     fill
-                    className="object-cover brightness-[1.02] contrast-[1.04] saturate-[1.06] transition-transform duration-500 ease-in-out hover:scale-[1.04]"
-                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
+                    className={
+                      img.imageClassName ??
+                      "object-cover brightness-[1.02] contrast-[1.04] saturate-[1.06] transition-transform duration-500 ease-in-out hover:scale-[1.04]"
+                    }
+                    sizes={galleryImageSizes}
                   />
                 </div>
               ))}

@@ -35,7 +35,7 @@ export default function KoszenieIMulczowaniePage() {
         { n: "04", title: "Wywóz i sprzątanie", body: "Zbieramy skoszoną roślinność i wywozimy poza teren prac. Zostawiamy czysty brzeg, zbiornik i teren." },
       ]}
       gallery={[
-        { src: "truxor-realizacja-05.jpg", alt: "Realizacja koszenia i prac przybrzeżnych – Truxor" },
+        { src: "truxor-t40-amfibia-kosiarka-plywajaca.jpg", alt: "Truxor T40 – amfibijna kosiarka pływająca" },
         { src: "kosiarka-lesna-bcs-630-ws.jpg", alt: "Kosiarka leśna BCS 630 WS" },
         { src: "kosiarka-ecotech-k34-predator.jpg", alt: "Kosiarka Ecotech K34 Predator" },
       ]}

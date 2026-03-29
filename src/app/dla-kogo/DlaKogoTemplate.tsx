@@ -86,7 +86,7 @@ export function DlaKogoTemplate({
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: "linear-gradient(135deg, var(--hb-water), #0369a1)" }}>
                   <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>{area.icon}</svg>
                 </div>
-                <h3 className="font-bold text-slate-900">{area.title}</h3>
+                <h3 className="text-lg font-bold leading-snug text-slate-900 sm:text-xl">{area.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-500">{area.body}</p>
               </div>
             ))}

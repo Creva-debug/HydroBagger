@@ -52,11 +52,6 @@ export default function KoparkiGasienicowePage() {
           },
         ],
       }}
-      gallery={[
-        { src: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg", alt: "Koparka gąsienicowa na terenie podmokłym" },
-        { src: "koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg", alt: "Ciężki sprzęt przy robotach ziemnych" },
-        { src: "wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg", alt: "Koparki i wozidła w akcji" },
-      ]}
     />
   );
 }

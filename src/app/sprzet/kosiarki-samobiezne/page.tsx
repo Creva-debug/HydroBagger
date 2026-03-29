@@ -57,9 +57,15 @@ export default function KosiarkiSamobieznePage() {
         { src: "kosiarka-ecotech-k34-predator.jpg", alt: "Kosiarka Ecotech K34 Predator" },
         { src: "kosiarka-herder-massey-ferguson.jpg", alt: "Kosiarka Herder na ciągniku Massey Ferguson" },
         { src: "kosiarka-samobiezna-irus-deltrak-20.jpg", alt: "Kosiarka samobieżna Irus Deltrak 20" },
-        { src: "kosiarka-lesna-bcs-630-ws-transport-1.jpg", alt: "Transport kosiarki leśnej BCS 630 WS" },
+        { src: "osiarka-lesna-bcs-630-ws-transport-1.jpg", alt: "Transport kosiarki leśnej BCS 630 WS" },
         { src: "kosiarka-mulczujaca-na-ciagniku-boczny-ramie.jpg", alt: "Kosiarka mulczująca na ciągniku – ramię boczne" },
-        { src: "kosiarka-samobiezna-koszenie-zarosnietych-rowow-terenie.jpg", alt: "Kosiarka samobieżna – koszenie zarośniętych rowów" },
+        { src: "Lesne-urzadzene.png", alt: "Leśne urządzenie – kosiarka w trudnym terenie" },
+        {
+          src: "kosiarka-samobiezna-koszenie-zarosnietych-rowow-terenie.jpg",
+          alt: "Kosiarka samobieżna – koszenie zarośniętych rowów",
+          imageClassName:
+            "object-cover object-[center_14%] brightness-[0.97] saturate-[0.72] contrast-[1.02] transition-transform duration-500 ease-in-out hover:scale-[1.04]",
+        },
       ]}
     />
   );

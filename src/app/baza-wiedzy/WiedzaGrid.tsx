@@ -24,12 +24,12 @@ const ARTYKULY: {
   img: string;
   gradient: string;
 }[] = [
-  { id: 1, kategoria: "poglebiane", tytul: "Jak przebiega odmulanie stawu – krok po kroku", opis: "Od oceny stanu zbiornika, przez dobór sprzętu, aż po wywóz urobku. Kompleksowy przewodnik po procesie pogłębiania.", czas: "8 min czytania", img: "koparka-plywajaca-kopanie-torfowisko01.jpg", gradient: "from-sky-900/60 to-[#071e32]/80" },
+  { id: 1, kategoria: "poglebiane", tytul: "Jak przebiega odmulanie stawu – krok po kroku", opis: "Od oceny stanu zbiornika, przez dobór sprzętu, aż po wywóz urobku. Kompleksowy przewodnik po procesie pogłębiania.", czas: "8 min czytania", img: "koparka-plywajaca-remu-big-float-e2200-na-brzegu-zbiornika.jpg", gradient: "from-sky-900/60 to-[#071e32]/80" },
   { id: 2, kategoria: "refulacja", tytul: "Refulacja osadów – na czym polega i kiedy warto?", opis: "Hydrauliczne odsysanie mułu bez opuszczania wody ze zbiornika. Kiedy to jedyna skuteczna metoda?", czas: "6 min czytania", img: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg", gradient: "from-teal-900/60 to-[#071e32]/80" },
   { id: 3, kategoria: "koszenie", tytul: "Koszenie roślinności wodnej – metody i dobór sprzętu", opis: "Porównanie kosiarek pływających i samobieżnych, sezonowość prac oraz co zrobić z zebraną biomasą.", czas: "7 min czytania", img: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg", gradient: "from-green-900/60 to-[#071e32]/80" },
-  { id: 4, kategoria: "sprzet", tytul: "Koparka pływająca vs. gąsienicowa – kiedy co wybrać?", opis: "Różnice, ograniczenia terenu, nośność podłoża i typy prac. Praktyczny przewodnik dla inwestorów i wykonawców.", czas: "5 min czytania", img: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg", gradient: "from-blue-900/60 to-[#071e32]/80" },
-  { id: 5, kategoria: "srodowisko", tytul: "Jak odtworzyć retencję wodną na terenie rolnym?", opis: "Melioracje, rowy, zbiorniki retencyjne – co wymaga pozwolenia, jak planować prace i na co zwrócić uwagę.", czas: "9 min czytania", img: "koparka-plywajaca-kopanie-torfowisko01.jpg", gradient: "from-emerald-900/60 to-[#071e32]/80" },
-  { id: 6, kategoria: "poglebiane", tytul: "Pogłębianie w trudnym terenie – bagna, torfy, woda", opis: "Specyfika pracy na gruntach podmokłych. Jak zabezpieczamy teren, sprzęt i jakie ryzyka bierzemy pod uwagę.", czas: "7 min czytania", img: "koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg", gradient: "from-slate-800/60 to-[#071e32]/80" },
+  { id: 4, kategoria: "sprzet", tytul: "Koparka pływająca vs. gąsienicowa – kiedy co wybrać?", opis: "Różnice, ograniczenia terenu, nośność podłoża i typy prac. Praktyczny przewodnik dla inwestorów i wykonawców.", czas: "5 min czytania", img: "wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg", gradient: "from-blue-900/60 to-[#071e32]/80" },
+  { id: 5, kategoria: "srodowisko", tytul: "Jak odtworzyć retencję wodną na terenie rolnym?", opis: "Melioracje, rowy, zbiorniki retencyjne – co wymaga pozwolenia, jak planować prace i na co zwrócić uwagę.", czas: "9 min czytania", img: "koparka-plywajaca-waterking-wk20-czyszczenie-rowu.jpg", gradient: "from-emerald-900/60 to-[#071e32]/80" },
+  { id: 6, kategoria: "poglebiane", tytul: "Pogłębianie w trudnym terenie – bagna, torfy, woda", opis: "Specyfika pracy na gruntach podmokłych. Jak zabezpieczamy teren, sprzęt i jakie ryzyka bierzemy pod uwagę.", czas: "7 min czytania", img: "koparka-plywajaca-kopanie-torfowisko01.jpg", gradient: "from-slate-800/60 to-[#071e32]/80" },
 ];
 
 function ArticleCard({ art }: { art: (typeof ARTYKULY)[number] }) {
@@ -47,7 +47,7 @@ function ArticleCard({ art }: { art: (typeof ARTYKULY)[number] }) {
         </div>
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="line-clamp-2 text-base font-bold leading-snug text-slate-900 transition-colors group-hover:text-[#0284c7]">{art.tytul}</h3>
+        <h3 className="line-clamp-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl transition-colors group-hover:text-[#0284c7]">{art.tytul}</h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500 line-clamp-3">{art.opis}</p>
         <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
           <span className="text-xs text-slate-400">{art.czas}</span>
