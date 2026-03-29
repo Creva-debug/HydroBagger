@@ -164,18 +164,38 @@ export function CookieConsent() {
 
   return (
     <>
+      {/* ── Baner – pierwszy widok ───────────────────────────── */}
       {showBanner && !showSettings && (
-        <div className="fixed inset-x-0 bottom-0 z-[100] p-4 sm:p-6">
-          <div className="mx-auto flex max-w-5xl flex-col gap-4 rounded-lg border bg-background p-5 shadow-2xl sm:flex-row sm:items-center sm:gap-6 sm:p-6">
-            <div className="flex-1 text-sm leading-relaxed text-muted-foreground">
-              <p className="mb-1 font-semibold text-foreground">
-                Ta strona używa plików cookies
-              </p>
-              <p>
-                Korzystamy z cookies, aby analizować ruch i poprawiać skuteczność
-                działań marketingowych. Możesz zaakceptować wszystkie lub dostosować wybór.
-              </p>
+        <div className="fixed inset-x-0 bottom-0 z-[100] p-3 sm:p-5">
+          <div
+            className="mx-auto flex max-w-5xl flex-col gap-5 rounded-xl p-5 shadow-2xl sm:flex-row sm:items-center sm:gap-8 sm:p-6"
+            style={{
+              background: "var(--hb-navy)",
+              borderTop: "3px solid var(--hb-water)",
+              border: "1px solid #134a6e",
+              borderTopWidth: "3px",
+            }}
+          >
+            {/* Ikona + tekst */}
+            <div className="flex items-start gap-4 flex-1">
+              <span
+                className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                style={{ background: "rgba(2,132,199,0.15)" }}
+              >
+                <Cookie className="h-4 w-4" style={{ color: "var(--hb-water)" }} />
+              </span>
+              <div className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
+                <p className="mb-1 font-semibold text-white">
+                  Ta strona używa plików cookies
+                </p>
+                <p>
+                  Korzystamy z cookies, aby analizować ruch i poprawiać skuteczność
+                  działań marketingowych. Możesz zaakceptować wszystkie lub dostosować swój wybór.
+                </p>
+              </div>
             </div>
+
+            {/* Przyciski – bez "Tylko niezbędne" w widoku głównym */}
             <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
               <button
                 type="button"
@@ -183,21 +203,29 @@ export function CookieConsent() {
                   setDraftConsent(savedConsent ?? DEFAULT_CONSENT)
                   setShowSettings(true)
                 }}
-                className="rounded border px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="rounded-full px-5 py-2.5 text-sm font-semibold transition-all"
+                style={{
+                  border: "1px solid var(--hb-water)",
+                  color: "var(--hb-water)",
+                  background: "transparent",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(2,132,199,0.12)"
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent"
+                }}
               >
                 Ustawienia
               </button>
               <button
                 type="button"
-                onClick={rejectAll}
-                className="rounded border px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Tylko niezbędne
-              </button>
-              <button
-                type="button"
                 onClick={acceptAll}
-                className="rounded bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+                className="btn-pulse rounded-full px-6 py-2.5 text-sm font-bold text-white transition-all"
+                style={{
+                  background: "var(--hb-water)",
+                  boxShadow: "0 4px 14px -2px rgba(14,116,144,0.5)",
+                }}
               >
                 Akceptuję wszystko
               </button>
@@ -206,6 +234,7 @@ export function CookieConsent() {
         </div>
       )}
 
+      {/* ── Przycisk-ikona po zaakceptowaniu ────────────────── */}
       {hasSaved && !showBanner && !showSettings && (
         <button
           type="button"
@@ -213,13 +242,19 @@ export function CookieConsent() {
             setDraftConsent(savedConsent ?? DEFAULT_CONSENT)
             setShowSettings(true)
           }}
-          className="fixed bottom-4 left-4 z-[100] flex h-10 w-10 items-center justify-center rounded-full border bg-background shadow-lg transition-colors hover:text-primary"
+          className="fixed bottom-4 left-4 z-[100] flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition-all hover:scale-110"
+          style={{
+            background: "var(--hb-navy)",
+            border: "1px solid #134a6e",
+            color: "var(--hb-water)",
+          }}
           aria-label="Ustawienia cookies"
         >
           <Cookie className="h-5 w-5" />
         </button>
       )}
 
+      {/* ── Dialog ustawień ──────────────────────────────────── */}
       <Dialog open={showSettings} onOpenChange={setShowSettings}>
         <DialogContent showCloseButton className="sm:max-w-lg">
           <DialogHeader>
@@ -262,14 +297,15 @@ export function CookieConsent() {
             <button
               type="button"
               onClick={rejectAll}
-              className="rounded border px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="rounded-full border px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               Tylko niezbędne
             </button>
             <button
               type="button"
               onClick={saveCustom}
-              className="rounded bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
+              className="rounded-full px-5 py-2 text-sm font-bold text-white transition-all hover:opacity-90"
+              style={{ background: "var(--hb-water)" }}
             >
               Zapisz wybór
             </button>
