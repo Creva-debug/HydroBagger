@@ -17,7 +17,7 @@ const KATEGORIE = [
     desc: "Wspieramy wykonawców robót budowlanych w realizacji zadań ziemnych i hydrotechnicznych w trudnym terenie – jako podwykonawcy lub partnerzy techniczni.",
     badge: "Firmy budowlane",
     icon: (
-      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="mb-4 h-14 w-14 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
       </svg>
     ),
@@ -28,7 +28,7 @@ const KATEGORIE = [
     desc: "Realizujemy prace hydrotechniczne na potrzeby renaturyzacji, retencji i przywracania bioróżnorodności. Działamy zgodnie z dokumentacją środowiskową.",
     badge: "NGO i instytucje",
     icon: (
-      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="mb-4 h-14 w-14 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -39,7 +39,7 @@ const KATEGORIE = [
     desc: "Oferujemy usługi dla miast, gmin i starostw – utrzymanie infrastruktury wodnej, retencja, odmulanie i prace w trudno dostępnych miejscach.",
     badge: "Gminy i miasta",
     icon: (
-      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="mb-4 h-14 w-14 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
       </svg>
     ),
@@ -50,7 +50,7 @@ const KATEGORIE = [
     desc: "Udrażniamy rowy, czyścimy stawy hodowlane, zwiększamy retencję i modernizujemy systemy melioracyjne na terenach rolnych i hodowlanych.",
     badge: "Rolnictwo i ryby",
     icon: (
-      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <svg className="mb-4 h-14 w-14 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
         <line x1="12" y1="22" x2="12" y2="3" />
         <line x1="12" y1="8"  x2="8"  y2="5" />
         <line x1="12" y1="8"  x2="16" y2="5" />
@@ -69,7 +69,7 @@ const KATEGORIE = [
     desc: "Pomagamy hotelom, spa i ośrodkom wypoczynkowym w utrzymaniu stawów, linii brzegowej i zbiorników wodnych – estetycznie i bez zakłóceń.",
     badge: "Hotele i ośrodki",
     icon: (
-      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="mb-4 h-14 w-14 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
       </svg>
     ),
@@ -80,7 +80,7 @@ const KATEGORIE = [
     desc: "Budujemy oczka wodne, pogłębiamy stawy, czyścimy zbiorniki i dojeżdżamy w najtrudniejsze miejsca – dla właścicieli działek i posesji.",
     badge: "Działki i posesje",
     icon: (
-      <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="mb-4 h-14 w-14 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
       </svg>
     ),
@@ -137,8 +137,8 @@ export default function DlaKogoPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {KATEGORIE.map((kat) => (
               <Link key={kat.href} href={kat.href} className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl" style={{ border: "1px solid #e2e8f0" }}>
-                <div className="flex items-center justify-center bg-slate-50 py-10 transition-colors duration-300 group-hover:bg-[#f0f9ff]">
-                  <span className="transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(2,132,199,0.25)]">
+                <div className="flex items-center justify-center bg-slate-200 py-10 transition-colors duration-300 group-hover:bg-[#bfdbfe]">
+                  <span className="transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(2,132,199,0.35)]">
                     {kat.icon}
                   </span>
                 </div>

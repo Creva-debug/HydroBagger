@@ -68,12 +68,12 @@ export function UsługiTemplate({
               {d}
             </p>
           ))}
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/darmowa-konsultacja" className="btn-pulse inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white" style={{ background: "var(--hb-water)" }}>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link href="/darmowa-konsultacja" className="btn-pulse inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white sm:w-auto" style={{ background: "var(--hb-water)" }}>
               Bezpłatna konsultacja
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </Link>
-            <a href="tel:+48504026042" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/20">
+            <a href="tel:+48504026042" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/20 sm:w-auto">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
               +48 504 026 042
             </a>
@@ -97,7 +97,7 @@ export function UsługiTemplate({
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-black text-white" style={{ background: "var(--hb-water)" }}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-sm font-semibold leading-snug text-slate-800">{item}</span>
+                <span className="text-base font-semibold leading-snug text-slate-800 sm:text-sm">{item}</span>
               </div>
             ))}
           </div>
@@ -143,8 +143,8 @@ export function UsługiTemplate({
                 <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl text-xl font-black text-white shadow-md" style={{ background: "linear-gradient(135deg, var(--hb-water), #0369a1)" }}>
                   {step.n}
                 </div>
-                <h3 className="text-base font-bold text-slate-900">{step.title}</h3>
-                <p className="text-sm leading-relaxed text-slate-500">{step.body}</p>
+                <h3 className="text-lg font-bold text-slate-900 sm:text-base">{step.title}</h3>
+                <p className="text-base leading-relaxed text-slate-500 sm:text-sm">{step.body}</p>
               </div>
             ))}
           </div>
