@@ -1,5 +1,7 @@
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 import { imageUrl } from "@/lib/images";
+import { USLUGI_ZAKRES_CARDS } from "@/lib/uslugi-zakres-cards";
+import { UsługiZakresCard } from "@/components/UsługiZakresCard";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
@@ -82,7 +84,7 @@ export default function ONasPage() {
       {/* CZYM SIĘ ZAJMUJEMY */}
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
               <SL>Zakres działalności</SL>
               <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2rem,3.8vw,3rem)" }}>
@@ -104,17 +106,9 @@ export default function ONasPage() {
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
               </Link>
             </div>
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              {[
-                { img: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg", label: "Pogłębianie" },
-                { img: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg", label: "Koszenie" },
-                { img: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg", label: "Refulacja" },
-                { img: "wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg", label: "Transport" },
-              ].map((item, i) => (
-                <div key={item.label} className={`img-card ${i === 0 ? "row-span-2" : ""}`} style={{ height: i === 0 ? "100%" : "160px" }}>
-                  <Image src={imageUrl(item.img)} alt={item.label} fill className="img-fill object-cover brightness-[0.92] saturate-[0.88]" sizes="(max-width:640px) 50vw, 30vw" />
-                  <div className="card-content"><span className="text-xs font-bold uppercase tracking-wider text-white/80">{item.label}</span></div>
-                </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {USLUGI_ZAKRES_CARDS.map((item) => (
+                <UsługiZakresCard key={item.href} item={item} />
               ))}
             </div>
           </div>

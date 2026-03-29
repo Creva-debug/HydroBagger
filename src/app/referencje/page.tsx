@@ -29,7 +29,7 @@ const REFERENCJE = [
     quote:
       "To była trudna technicznie lecz bardzo owocna w osiągnięciu przyrodniczych efektów współpraca. I, co muszę tu wspomnieć, bardzo przyjemna w ludzkim wymiarze. Leszek i jego zespół fachowców, z uwagą i uznaniem wsłuchują się w zależności, których ostatecznym celem ma być pomoc ginącej przyrodzie. W nieprzyjaznych dla ludzi i sprzętu warunkach działali skutecznie, z profesjonalizmem i radością (!) wiedząc jaki cel przyświeca tym pracom. Nasz zespół merytoryczny, ornitologów i hydrobiologów natychmiast złapał kontakt z zespołem technicznym (firmą Hydrobagger), trudno mi było sobie wyobrazić lepszy team. Zdecydowanie polecam każdemu, kto szuka partnera z misją, pasją i odpowiedzialnym podejściem.",
     author: "Piotr Chara",
-    role: "Prezes",
+    role: "Współzałożyciel i prezes",
     company: "Fundacja Zielonej Doliny Odry i Warty",
     initials: "PC",
     tag: "Ochrona środowiska",
@@ -46,7 +46,7 @@ const REFERENCJE = [
     company: "Poznańskie Ośrodki Sportu i Rekreacji | Malta",
     initials: "JF",
     tag: "Sport i rekreacja",
-    pdf: "https://hydrobagger.pl/wp-content/uploads/2025/08/MA.401.8.2025-referencje-DIUNA.pdf",
+    pdf: imageUrl("MA.401.8.2025-referencje-DIUNA.pdf"),
     logo: "Logo_posir1.png",
     logoBg: "#ffffff",
   },
@@ -111,14 +111,14 @@ export default function ReferencjePage() {
       <section className="bg-slate-50 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-10">
-            {REFERENCJE.map((ref, index) => (
+            {REFERENCJE.map((ref) => (
               <article
                 key={ref.id}
                 className="overflow-hidden rounded-3xl bg-white shadow-sm"
                 style={{ border: "1px solid #e2e8f0" }}
               >
-                {/* Treść po lewej, logo po prawej (na mobile: treść, potem logo na dole) */}
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px]">
+                {/* Treść ~2/3, grafika ~1/3 szerokości (na mobile: treść, potem grafika na dole) */}
+                <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
                   <div className="flex flex-col justify-between p-8 sm:p-10 lg:p-12">
                     <div className="mb-6">
                       <span
@@ -138,11 +138,7 @@ export default function ReferencjePage() {
                     </p>
 
                     <blockquote className="-mt-4 flex-1">
-                      <p
-                        className={`text-base italic leading-relaxed text-slate-700 sm:text-[1.05rem] ${
-                          index === 0 ? "columns-1 md:columns-2 md:[column-gap:2rem]" : ""
-                        }`}
-                      >
+                      <p className="text-base italic leading-relaxed text-slate-700 sm:text-[1.05rem]">
                         {ref.quote}
                       </p>
                     </blockquote>
@@ -181,16 +177,16 @@ export default function ReferencjePage() {
                   </div>
 
                   <div
-                    className="flex min-h-[200px] items-center justify-center border-t border-slate-100 p-8 lg:min-h-0 lg:border-l lg:border-t-0 lg:p-6"
+                    className="flex min-h-[200px] items-center justify-center border-t border-slate-100 p-6 sm:p-8 lg:min-h-0 lg:border-l lg:border-t-0 lg:p-8 lg:py-10"
                     style={{ backgroundColor: ref.logoBg }}
                   >
-                    <div className="relative aspect-square w-full max-w-[220px] lg:max-w-[260px]">
+                    <div className="relative aspect-square w-full max-w-[min(100%,280px)] lg:max-w-none">
                       <Image
                         src={imageUrl(ref.logo)}
                         alt={ref.company}
                         fill
-                        className="object-contain p-6 lg:p-10"
-                        sizes="(max-width:1024px) 220px, 260px"
+                        className="object-contain p-5 sm:p-6 lg:p-8"
+                        sizes="(max-width:1024px) min(280px, 85vw), 33vw"
                       />
                     </div>
                   </div>
