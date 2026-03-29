@@ -93,6 +93,7 @@ export default function KosiarkiPlywajacePage() {
         items: [
           {
             name: "Kosiarka pływająca TRUXOR DM5045",
+            image: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg",
             specs: [
               { label: "Waga", value: "1 400 kg" },
               { label: "Zasięg pracy", value: "do 2,4 m" },
@@ -101,6 +102,7 @@ export default function KosiarkiPlywajacePage() {
           },
           {
             name: "Kosiarka pływająca TRUXOR DM5065",
+            image: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg",
             specs: [
               { label: "Waga", value: "2 500 kg" },
               { label: "Zasięg koszenia", value: "1,7 m" },

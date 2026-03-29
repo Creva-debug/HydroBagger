@@ -18,8 +18,10 @@ export type UsługiStep = { n: string; title: string; body: string };
 export type UsługiTemplateProps = {
   breadcrumbLabel: string;
   heroImage: string;
-  heroTitleAccent: string;
-  heroTitleRest: string;
+  /** Pierwsza linia nagłówka hero (biała). */
+  heroTitleLine1: string;
+  /** Druga linia (akcent #7dd3fc). */
+  heroTitleLine2: string;
   heroLead: string;
   heroDetails?: string[];
   praceName: string;
@@ -36,8 +38,8 @@ function SL({ children, light = false }: { children: ReactNode; light?: boolean 
 export function UsługiTemplate({
   breadcrumbLabel,
   heroImage,
-  heroTitleAccent,
-  heroTitleRest,
+  heroTitleLine1,
+  heroTitleLine2,
   heroLead,
   heroDetails = [],
   praceName,
@@ -54,15 +56,23 @@ export function UsługiTemplate({
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16 lg:min-h-[80vh] lg:pb-24">
         <Image src={imageUrl(heroImage)} alt={breadcrumbLabel} fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/40 to-transparent" />
+        <div className="absolute inset-0 bg-[#071e32]/45" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/45 to-transparent" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SL light>Usługi</SL>
           <h1 className="display-heading mt-3 text-white" style={{ fontSize: "clamp(2.2rem,4.5vw,3.8rem)" }}>
-            <span style={{ color: "#7dd3fc" }}>{heroTitleAccent}</span>{heroTitleRest}
+            <span className="block">{heroTitleLine1}</span>
+            <span className="mt-2 block leading-tight" style={{ color: "#7dd3fc" }}>
+              {heroTitleLine2}
+            </span>
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-200">{heroLead}</p>
-          {heroDetails.map((d, i) => <p key={i} className="mt-2 max-w-2xl text-base leading-relaxed text-slate-300">{d}</p>)}
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-100">{heroLead}</p>
+          {heroDetails.map((d, i) => (
+            <p key={i} className="mt-2 max-w-2xl text-base leading-relaxed text-slate-200">
+              {d}
+            </p>
+          ))}
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/darmowa-konsultacja" className="btn-pulse inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white" style={{ background: "var(--hb-water)" }}>
               Bezpłatna konsultacja
@@ -156,8 +166,10 @@ export function UsługiTemplate({
                   <Image src={imageUrl(s.img)} alt={s.title} fill className="object-cover brightness-[0.85] saturate-[0.82] transition-transform duration-700 group-hover:scale-[1.05]" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/60 to-transparent" />
                 </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="mb-2 font-bold text-slate-900 transition-colors group-hover:text-[#0284c7]">{s.title}</h3>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-[#0284c7] sm:text-xl sm:leading-tight">
+                    {s.title}
+                  </h3>
                   <p className="flex-1 text-sm leading-relaxed text-slate-500">{s.tagline}</p>
                   <div className="mt-4 flex items-center gap-1.5 text-sm font-semibold transition-colors group-hover:text-[#0284c7]" style={{ color: "var(--hb-water)" }}>
                     Dowiedz się więcej

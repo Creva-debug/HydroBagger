@@ -91,10 +91,10 @@ export default function KoparkiPlywajacePage() {
         title: "Poznaj nasze koparki pływające",
         cols: 4,
         items: [
-          { name: "Koparka pływająca REMU BIG FLOAT E2200", specs: [{ label: "Waga", value: "33 000 kg" }, { label: "Zasięg ramienia", value: "16,0 m" }, { label: "Głębokość kopania", value: "13,0 m" }] },
-          { name: "Koparka pływająca REMU BIG FLOAT E15", specs: [{ label: "Waga", value: "25 000 kg" }, { label: "Zasięg ramienia", value: "13,0 m" }, { label: "Głębokość kopania", value: "10,0 m" }] },
-          { name: "Koparka pływająca EIK AM70", specs: [{ label: "Waga", value: "11 000 kg" }, { label: "Zasięg ramienia", value: "6,5 m" }, { label: "Głębokość kopania", value: "4,0 m" }] },
-          { name: "Koparka pływająca Waterking WK20", specs: [{ label: "Waga", value: "4 100 kg" }, { label: "Zasięg ramienia", value: "5,5 m" }, { label: "Głębokość kopania", value: "3,0 m" }] },
+          { name: "Koparka pływająca REMU BIG FLOAT E2200", image: "koparka-plywajaca-kopanie-torfowisko01.jpg", specs: [{ label: "Waga", value: "33 000 kg" }, { label: "Zasięg ramienia", value: "16,0 m" }, { label: "Głębokość kopania", value: "13,0 m" }] },
+          { name: "Koparka pływająca REMU BIG FLOAT E15", image: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg", specs: [{ label: "Waga", value: "25 000 kg" }, { label: "Zasięg ramienia", value: "13,0 m" }, { label: "Głębokość kopania", value: "10,0 m" }] },
+          { name: "Koparka pływająca EIK AM70", image: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg", specs: [{ label: "Waga", value: "11 000 kg" }, { label: "Zasięg ramienia", value: "6,5 m" }, { label: "Głębokość kopania", value: "4,0 m" }] },
+          { name: "Koparka pływająca Waterking WK20", image: "koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg", specs: [{ label: "Waga", value: "4 100 kg" }, { label: "Zasięg ramienia", value: "5,5 m" }, { label: "Głębokość kopania", value: "3,0 m" }] },
         ],
       }}
       gallery={[

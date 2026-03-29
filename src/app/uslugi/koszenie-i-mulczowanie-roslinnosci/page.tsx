@@ -11,8 +11,8 @@ export default function KoszenieIMulczowaniePage() {
     <UsługiTemplate
       breadcrumbLabel="Koszenie i mulczowanie roślinności"
       heroImage="koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg"
-      heroTitleAccent="Koszenie i mulczowanie"
-      heroTitleRest=" roślinności – z lądu i z wody"
+      heroTitleLine1="Koszenie i mulczowanie roślinności"
+      heroTitleLine2="nad wodą, pod wodą, przy brzegu"
       heroLead="Zajmujemy się koszeniem i usuwaniem roślinności nad wodą oraz pod wodą. Wykorzystujemy specjalistyczny sprzęt do pracy na wodzie i w terenie podmokłym – nawet tam, gdzie nie da się dojechać standardową maszyną."
       heroDetails={[
         "Mulczujemy zakrzaczenia, roślinność przybrzeżną i nadrzeczną, które utrudniają przepływ wody lub użytkowanie terenu. Działamy szybko, precyzyjnie i z minimalnym wpływem na otoczenie – również w strefach chronionych.",

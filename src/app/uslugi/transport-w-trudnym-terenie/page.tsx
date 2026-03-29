@@ -11,8 +11,8 @@ export default function TransportWTrudnymTereniePage() {
     <UsługiTemplate
       breadcrumbLabel="Transport w trudnym terenie"
       heroImage="wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg"
-      heroTitleAccent="Transport"
-      heroTitleRest=" w trudnym terenie – przez wodę, błoto, bezdroża"
+      heroTitleLine1="Transport w trudnym terenie"
+      heroTitleLine2="przez wodę, błoto, bezdroża"
       heroLead="Dostarczamy sprzęt i materiały tam, gdzie standardowe pojazdy nie mają szans – przez podmokłe łąki, bagna, rozlewiska i brzegi zbiorników. Działamy bez utwardzonej drogi."
       heroDetails={[
         "Dysponujemy pływającymi zestawami i pojazdami przystosowanymi do grząskiego terenu. Dzięki temu możemy zapewnić ciągłość pracy nawet w miejscach bez dróg i utwardzonych dojazdów.",

@@ -11,8 +11,8 @@ export default function KopanieWTrudnymTereniePage() {
     <UsługiTemplate
       breadcrumbLabel="Kopanie w trudnym terenie"
       heroImage="koparka-plywajaca-kopanie-torfowisko01.jpg"
-      heroTitleAccent="Kopanie"
-      heroTitleRest=" w trudnym terenie, tam, gdzie inni nie dojadą"
+      heroTitleLine1="Kopanie w trudnym terenie,"
+      heroTitleLine2="tam, gdzie inni nie dojadą"
       heroLead="Specjalizujemy się w pracach ziemnych na podmokłych, bagnistych i niedostępnych terenach. Dzięki amfibijnemu i gąsienicowemu sprzętowi docieramy tam, gdzie standardowe maszyny nie mają szans."
       heroDetails={[
         "Nasze zaplecze pozwala prowadzić prace bezpiecznie i z minimalnym wpływem na otoczenie. Działamy tam, gdzie liczy się precyzja i kontrola – w pobliżu cieków wodnych, infrastruktury technicznej czy terenów chronionych.",

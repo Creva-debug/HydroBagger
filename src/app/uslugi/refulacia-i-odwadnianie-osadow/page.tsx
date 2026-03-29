@@ -11,8 +11,8 @@ export default function RefulacjaIOdwadnianiePage() {
     <UsługiTemplate
       breadcrumbLabel="Refulacja i odwadnianie osadów"
       heroImage="koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg"
-      heroTitleAccent="Refulacja i odwadnianie"
-      heroTitleRest=" osadów – precyzyjnie, bezpiecznie, skutecznie"
+      heroTitleLine1="Refulacja i odwadnianie osadów"
+      heroTitleLine2="bez spuszczania wody"
       heroLead="Specjalizujemy się w refulacji i usuwaniu osadów z dna zbiorników wodnych – stawów, jezior i kanałów. Odsysamy urobek z wody, bez konieczności jej spuszczania i bez naruszania linii brzegowej."
       heroDetails={[
         "Stosujemy pływające pompy, mobilne stacje odwadniające i koparki pływające, które pozwalają prowadzić kilka etapów prac jednocześnie. Działamy precyzyjnie, bezpiecznie – także na terenach wrażliwych przyrodniczo.",

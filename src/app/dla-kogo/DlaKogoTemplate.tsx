@@ -46,15 +46,23 @@ export function DlaKogoTemplate({
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16 lg:min-h-[80vh] lg:pb-24">
         <Image src={imageUrl(heroImage)} alt={breadcrumbLabel} fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/40 to-transparent" />
+        <div className="absolute inset-0 bg-[#071e32]/45" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/45 to-transparent" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SL light>Dla kogo?</SL>
           <h1 className="display-heading mt-3 text-white" style={{ fontSize: "clamp(2.2rem,4.5vw,3.8rem)" }}>
-            Wsparcie dla{" "}<span style={{ color: "#7dd3fc" }}>{heroAccent}</span>
+            <span className="block">Wsparcie dla</span>
+            <span className="mt-2 block leading-tight" style={{ color: "#7dd3fc" }}>
+              {heroAccent}
+            </span>
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-200">{heroLead}</p>
-          {heroDetails.map((d, i) => <p key={i} className="mt-2 max-w-2xl text-base leading-relaxed text-slate-300">{d}</p>)}
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-100">{heroLead}</p>
+          {heroDetails.map((d, i) => (
+            <p key={i} className="mt-2 max-w-2xl text-base leading-relaxed text-slate-200">
+              {d}
+            </p>
+          ))}
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/darmowa-konsultacja" className="btn-pulse inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white" style={{ background: "var(--hb-water)" }}>
               Bezpłatna konsultacja

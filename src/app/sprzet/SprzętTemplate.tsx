@@ -7,7 +7,12 @@ import { ContactConsultationSection } from "@/components/ContactConsultationSect
 import { imageUrl } from "@/lib/images";
 
 export type SprzętItem = { icon: ReactNode; title: string; body: string };
-export type SprzętMachine = { name: string; specs: { label: string; value: string }[] };
+export type SprzętMachine = {
+  name: string;
+  /** Zdjęcie maszyny (CDN); brak = fallback jak zdjęcie hero strony. */
+  image?: string;
+  specs: { label: string; value: string }[];
+};
 
 export type SprzętTemplateProps = {
   breadcrumbLabel: string;
@@ -68,8 +73,9 @@ export function SprzętTemplate({
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16 lg:min-h-[80vh] lg:pb-24">
         <Image src={imageUrl(heroImage)} alt={heroTitle} fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/40 to-transparent" />
+        <div className="absolute inset-0 bg-[#071e32]/45" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/45 to-transparent" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SL light>Sprzęt</SL>
           <h1 className="display-heading mt-3 text-white" style={{ fontSize: "clamp(2.4rem,5vw,4rem)" }}>{heroTitle}</h1>
@@ -124,7 +130,18 @@ export function SprzętTemplate({
             </div>
             <div className={`grid gap-5 ${machCols}`}>
               {machines.items.map((m) => (
-                <div key={m.name} className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
+                <div key={m.name} className="overflow-hidden rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900/50">
+                    <Image
+                      src={imageUrl(m.image ?? heroImage)}
+                      alt={m.name}
+                      fill
+                      className="object-cover brightness-[0.92] saturate-[0.88]"
+                      sizes="(max-width:1024px) 100vw, 280px"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071e32]/55 via-transparent to-transparent" aria-hidden />
+                  </div>
+                  <div className="p-6">
                   <p className="mb-4 text-sm font-bold leading-snug text-white">{m.name}</p>
                   <div className="space-y-2.5">
                     {m.specs.map((s) => (
@@ -133,6 +150,7 @@ export function SprzętTemplate({
                         <span className="text-right text-xs font-bold" style={{ color: "#7dd3fc" }}>{s.value}</span>
                       </div>
                     ))}
+                  </div>
                   </div>
                 </div>
               ))}
