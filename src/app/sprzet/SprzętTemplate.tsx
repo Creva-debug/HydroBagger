@@ -32,8 +32,10 @@ export type SprzętTemplateProps = {
   /** `imageCrop: "4/3"` – jednolity kadr kafelków (object-cover), gdy zdjęcia mają te same proporcje. */
   machines?: { title: string; cols?: 2 | 3 | 4; items: SprzętMachine[]; imageCrop?: "4/3" };
   gallery?: SprzętGalleryItem[];
-  /** Siatka galerii „Realizacje” na lg+ (domyślnie 4 kolumny przy >3 zdjęciach). */
+  /** Siatka galerii „Realizacje" na lg+ (domyślnie 4 kolumny przy >3 zdjęciach). */
   galleryCols?: 3 | 4;
+  /** Gdy true, sekcja „Park maszynowy" pojawia się przed „Zaletami". */
+  machinesFirst?: boolean;
 };
 
 function SL({ children, light = false }: { children: ReactNode; light?: boolean }) {
@@ -71,6 +73,7 @@ export function SprzętTemplate({
   machines,
   gallery = [],
   galleryCols,
+  machinesFirst = false,
 }: SprzętTemplateProps) {
   const featBg = applications ? "bg-white" : "bg-slate-50";
   const machCols = machines ? getMachCols(machines.cols ?? machines.items.length) : "";
@@ -92,6 +95,52 @@ export function SprzętTemplate({
     galleryCols === 3
       ? "(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
       : "(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw";
+
+  const machinesSection = machines && (
+    <section className="py-16 lg:py-20" style={{ background: "linear-gradient(135deg, #071e32, #0a2744)" }}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <SL light>Park maszynowy</SL>
+          <h2 className="display-heading mt-4 text-white" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>{machines.title}</h2>
+        </div>
+        <div className={`mx-auto grid max-w-5xl gap-4 sm:gap-5 ${machCols}`}>
+          {machines.items.map((m) => (
+            <div key={m.name} className="overflow-hidden rounded-xl sm:rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
+              <div
+                className={`relative w-full overflow-hidden bg-slate-950/70 ${machines.imageCrop === "4/3" ? "aspect-[4/3]" : ""}`}
+              >
+                <Image
+                  src={imageUrl(m.image ?? heroImage)}
+                  alt={m.name}
+                  fill={machines.imageCrop === "4/3"}
+                  width={machines.imageCrop === "4/3" ? undefined : 1200}
+                  height={machines.imageCrop === "4/3" ? undefined : 800}
+                  sizes="(max-width:1024px) 100vw, 400px"
+                  className={
+                    machines.imageCrop === "4/3"
+                      ? "object-cover object-center brightness-[1.02] contrast-[1.04] saturate-[1.06]"
+                      : "h-auto w-full brightness-[1.02] contrast-[1.04] saturate-[1.06]"
+                  }
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071e32]/45 via-transparent to-transparent" aria-hidden />
+              </div>
+              <div className="p-4 sm:p-5">
+              <p className="mb-3 text-base font-bold leading-snug text-white sm:mb-4 sm:text-lg">{m.name}</p>
+              <div className="space-y-2.5">
+                {m.specs.map((s) => (
+                  <div key={s.label} className="flex items-center justify-between gap-3 border-b border-white/10 pb-2 last:border-b-0 last:pb-0">
+                    <span className="text-xs text-slate-400">{s.label}</span>
+                    <span className="text-right text-xs font-bold" style={{ color: "#7dd3fc" }}>{s.value}</span>
+                  </div>
+                ))}
+              </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 
   return (
     <>
@@ -134,6 +183,9 @@ export function SprzętTemplate({
         </section>
       )}
 
+      {/* MACHINES przed FEATURES gdy machinesFirst=true */}
+      {machinesFirst && machinesSection}
+
       {/* FEATURES */}
       {features && (
         <section className={`${featBg} py-16 lg:py-20`}>
@@ -149,52 +201,8 @@ export function SprzętTemplate({
         </section>
       )}
 
-      {/* MACHINES */}
-      {machines && (
-        <section className="py-16 lg:py-20" style={{ background: "linear-gradient(135deg, #071e32, #0a2744)" }}>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <SL light>Park maszynowy</SL>
-              <h2 className="display-heading mt-4 text-white" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>{machines.title}</h2>
-            </div>
-            <div className={`mx-auto grid max-w-5xl gap-4 sm:gap-5 ${machCols}`}>
-              {machines.items.map((m) => (
-                <div key={m.name} className="overflow-hidden rounded-xl sm:rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
-                  <div
-                    className={`relative w-full overflow-hidden bg-slate-950/70 ${machines.imageCrop === "4/3" ? "aspect-[4/3]" : ""}`}
-                  >
-                    <Image
-                      src={imageUrl(m.image ?? heroImage)}
-                      alt={m.name}
-                      fill={machines.imageCrop === "4/3"}
-                      width={machines.imageCrop === "4/3" ? undefined : 1200}
-                      height={machines.imageCrop === "4/3" ? undefined : 800}
-                      sizes="(max-width:1024px) 100vw, 400px"
-                      className={
-                        machines.imageCrop === "4/3"
-                          ? "object-cover object-center brightness-[1.02] contrast-[1.04] saturate-[1.06]"
-                          : "h-auto w-full brightness-[1.02] contrast-[1.04] saturate-[1.06]"
-                      }
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071e32]/45 via-transparent to-transparent" aria-hidden />
-                  </div>
-                  <div className="p-4 sm:p-5">
-                  <p className="mb-3 text-base font-bold leading-snug text-white sm:mb-4 sm:text-lg">{m.name}</p>
-                  <div className="space-y-2.5">
-                    {m.specs.map((s) => (
-                      <div key={s.label} className="flex items-center justify-between gap-3 border-b border-white/10 pb-2 last:border-b-0 last:pb-0">
-                        <span className="text-xs text-slate-400">{s.label}</span>
-                        <span className="text-right text-xs font-bold" style={{ color: "#7dd3fc" }}>{s.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* MACHINES po FEATURES gdy machinesFirst=false (domyślnie) */}
+      {!machinesFirst && machinesSection}
 
       {/* GALLERY */}
       {gallery.length > 0 && (

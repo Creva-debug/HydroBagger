@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { type ReactNode, useRef, useState } from "react";
 
 const FORM_FIELD_CLASS =
   "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition-colors hover:border-[#0284c7] focus:border-[#0284c7] focus:outline-none focus-visible:border-[#0284c7] focus:ring-0 focus-visible:ring-0";
@@ -18,6 +20,8 @@ export type ContactConsultationSectionProps = {
   topSlot?: ReactNode;
 };
 
+type FormStatus = "idle" | "loading" | "success" | "error";
+
 export function ContactConsultationSection({
   formFirst = false,
   isPageLead = false,
@@ -26,6 +30,47 @@ export function ContactConsultationSection({
 }: ContactConsultationSectionProps = {}) {
   const sectionPt = isPageLead ? "pt-12 lg:pt-16" : "pt-24 lg:pt-32";
   const minH = isPageLead ? "min-h-dvh flex flex-col justify-center" : "";
+
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (status === "loading") return;
+
+    const form = e.currentTarget;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+    const phone = (form.elements.namedItem("phone") as HTMLInputElement).value.trim();
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
+
+    if (!email || !phone || !message) {
+      setErrorMsg("Wypełnij wszystkie wymagane pola.");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch("/api/contact", { method: "POST", body: formData });
+      const json = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(json.error ?? "Coś poszło nie tak. Spróbuj ponownie.");
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+      formRef.current?.reset();
+    } catch {
+      setErrorMsg("Nie udało się wysłać wiadomości. Sprawdź połączenie internetowe.");
+      setStatus("error");
+    }
+  }
 
   return (
     <section id={id} className={`relative overflow-x-hidden bg-slate-50 ${sectionPt} ${minH}`}>
@@ -136,83 +181,111 @@ export function ContactConsultationSection({
               <h3 className="text-2xl font-bold tracking-tight text-slate-900">Napisz do nas</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-500">Odpowiemy w ciągu 24 godzin roboczych.</p>
             </div>
-            <form className="flex flex-col gap-5" action="#" method="post" encType="multipart/form-data" noValidate>
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Adres e-mail <span className="text-[#0284c7]">*</span>
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    name="email"
-                    required
-                    autoComplete="email"
-                    placeholder="jan@firma.pl"
-                    className={FORM_FIELD_CLASS}
-                  />
+
+            {status === "success" ? (
+              <div className="flex flex-col items-start gap-4 rounded-2xl border border-green-200 bg-green-50 px-7 py-8">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                  <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <div>
+                  <p className="text-base font-bold text-green-800">Wiadomość wysłana!</p>
+                  <p className="mt-1 text-sm text-green-700">Dziękujemy za kontakt. Odpiszemy w ciągu 24 godzin roboczych.</p>
                 </div>
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="contact-phone" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Numer telefonu <span className="text-[#0284c7]">*</span>
-                  </label>
-                  <input
-                    id="contact-phone"
-                    type="tel"
-                    name="phone"
-                    required
-                    autoComplete="tel"
-                    placeholder="+48 000 000 000"
-                    className={FORM_FIELD_CLASS}
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="contact-msg" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                  Opis projektu <span className="text-[#0284c7]">*</span>
-                </label>
-                <textarea
-                  id="contact-msg"
-                  name="message"
-                  rows={4}
-                  placeholder="Opisz krótko swój projekt – lokalizację, rodzaj prac, termin..."
-                  className={`${FORM_FIELD_CLASS} resize-none`}
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="contact-attachments" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                  Załączniki <span className="font-normal normal-case text-slate-400">(opcjonalnie)</span>
-                </label>
-                <input
-                  id="contact-attachments"
-                  type="file"
-                  name="attachments"
-                  multiple
-                  accept=".pdf,.doc,.docx,image/png,image/jpeg,image/jpg,image/webp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                  className="w-full cursor-pointer rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 file:mr-3 file:cursor-pointer file:rounded-lg file:border file:border-slate-300 file:bg-slate-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-100"
-                />
-              </div>
-
-              <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between">
                 <button
-                  type="submit"
-                  className="btn-pulse w-full shrink-0 rounded-full px-9 py-3.5 text-base font-bold text-white transition-all sm:w-auto"
-                  style={{ background: "var(--hb-water)", boxShadow: "0 8px 20px -4px rgba(2, 132, 199, 0.45)" }}
+                  onClick={() => setStatus("idle")}
+                  className="mt-1 text-sm font-semibold text-green-700 underline underline-offset-2 hover:text-green-900"
                 >
-                  Wyślij wiadomość →
+                  Wyślij kolejną wiadomość
                 </button>
-                <p className="max-w-full text-[0.625rem] leading-relaxed text-slate-500 sm:max-w-md lg:max-w-lg">
-                  Podając swój adres e-mail oraz numer telefonu, a następnie przesyłając formularz, wyrażasz zgodę na
-                  skontaktowanie się z Tobą w celu odpowiedzi na zadane pytanie. Zapoznaj się z naszą{" "}
-                  <Link href="/polityka-prywatnosci" className="text-slate-600 underline underline-offset-1 hover:text-[#0284c7]">
-                    Polityką Prywatności
-                  </Link>
-                  .
-                </p>
               </div>
-            </form>
+            ) : (
+              <form ref={formRef} className="flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                      Adres e-mail <span className="text-[#0284c7]">*</span>
+                    </label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      name="email"
+                      required
+                      autoComplete="email"
+                      placeholder="jan@firma.pl"
+                      className={FORM_FIELD_CLASS}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="contact-phone" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                      Numer telefonu <span className="text-[#0284c7]">*</span>
+                    </label>
+                    <input
+                      id="contact-phone"
+                      type="tel"
+                      name="phone"
+                      required
+                      autoComplete="tel"
+                      placeholder="+48 000 000 000"
+                      className={FORM_FIELD_CLASS}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="contact-msg" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    Opis projektu <span className="text-[#0284c7]">*</span>
+                  </label>
+                  <textarea
+                    id="contact-msg"
+                    name="message"
+                    rows={4}
+                    placeholder="Opisz krótko swój projekt – lokalizację, rodzaj prac, termin..."
+                    className={`${FORM_FIELD_CLASS} resize-none`}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="contact-attachments" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    Załączniki <span className="font-normal normal-case text-slate-400">(opcjonalnie, maks. 10 MB łącznie)</span>
+                  </label>
+                  <input
+                    id="contact-attachments"
+                    type="file"
+                    name="attachments"
+                    multiple
+                    accept=".pdf,.doc,.docx,image/png,image/jpeg,image/jpg,image/webp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    className="w-full cursor-pointer rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 file:mr-3 file:cursor-pointer file:rounded-lg file:border file:border-slate-300 file:bg-slate-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-100"
+                  />
+                </div>
+
+                {status === "error" && (
+                  <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                    {errorMsg}
+                  </p>
+                )}
+
+                <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between">
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="btn-pulse w-full shrink-0 rounded-full px-9 py-3.5 text-base font-bold text-white transition-all disabled:opacity-60 sm:w-auto"
+                    style={{ background: "var(--hb-water)", boxShadow: "0 8px 20px -4px rgba(2, 132, 199, 0.45)" }}
+                  >
+                    {status === "loading" ? "Wysyłanie…" : "Wyślij wiadomość →"}
+                  </button>
+                  <p className="max-w-full text-[0.625rem] leading-relaxed text-slate-500 sm:max-w-md lg:max-w-lg">
+                    Podając swój adres e-mail oraz numer telefonu, a następnie przesyłając formularz, wyrażasz zgodę na
+                    skontaktowanie się z Tobą w celu odpowiedzi na zadane pytanie. Zapoznaj się z naszą{" "}
+                    <Link href="/polityka-prywatnosci" className="text-slate-600 underline underline-offset-1 hover:text-[#0284c7]">
+                      Polityką Prywatności
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </div>

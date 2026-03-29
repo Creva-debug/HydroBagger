@@ -87,6 +87,7 @@ export default function KoparkiPlywajacePage() {
           },
         ],
       }}
+      machinesFirst
       machines={{
         title: "Poznaj nasze koparki pływające",
         cols: 4,

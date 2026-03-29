@@ -87,6 +87,7 @@ export default function KosiarkiPlywajacePage() {
           },
         ],
       }}
+      machinesFirst
       machines={{
         title: "Poznaj nasze kosiarki pływające",
         cols: 2,

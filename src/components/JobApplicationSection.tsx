@@ -1,11 +1,60 @@
+"use client";
+
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { type CSSProperties, useRef, useState } from "react";
+
+const FIELD_CLASS =
+  "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2";
+const RING_STYLE: CSSProperties = { "--tw-ring-color": "rgba(2,132,199,0.25)" } as CSSProperties;
 
 export type JobApplicationSectionProps = {
   jobTitle: string;
 };
 
+type FormStatus = "idle" | "loading" | "success" | "error";
+
 export function JobApplicationSection({ jobTitle }: JobApplicationSectionProps) {
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (status === "loading") return;
+
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
+
+    if (!name || !email || !message) {
+      setErrorMsg("Wypełnij wszystkie wymagane pola (imię i nazwisko, e-mail, doświadczenie).");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch("/api/job-application", { method: "POST", body: formData });
+      const json = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(json.error ?? "Coś poszło nie tak. Spróbuj ponownie.");
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+      formRef.current?.reset();
+    } catch {
+      setErrorMsg("Nie udało się wysłać zgłoszenia. Sprawdź połączenie internetowe.");
+      setStatus("error");
+    }
+  }
+
   return (
     <section className="relative overflow-x-hidden bg-slate-50 py-20 lg:py-28">
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -62,53 +111,94 @@ export function JobApplicationSection({ jobTitle }: JobApplicationSectionProps) 
               </div>
             </div>
           </div>
+
           <div className="track-border mt-4 p-8 lg:col-start-2 lg:row-start-2 lg:mt-0 lg:min-w-0 lg:p-10">
             <div className="mb-6">
               <h3 className="text-2xl font-bold tracking-tight text-slate-900">Wyślij zgłoszenie</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-500">Odpowiemy w ciągu 24–48 godzin roboczych.</p>
             </div>
-            <form className="flex flex-col gap-4" action="#" method="post" encType="multipart/form-data" noValidate>
-              <input type="hidden" name="position" value={jobTitle} />
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="job-name" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Imię i nazwisko <span className="text-[#0284c7]">*</span></label>
-                  <input id="job-name" type="text" name="name" required placeholder="Jan Kowalski" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2" style={{ "--tw-ring-color": "rgba(2,132,199,0.25)" } as CSSProperties} />
+
+            {status === "success" ? (
+              <div className="flex flex-col items-start gap-4 rounded-2xl border border-green-200 bg-green-50 px-7 py-8">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                  <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <div>
+                  <p className="text-base font-bold text-green-800">Zgłoszenie wysłane!</p>
+                  <p className="mt-1 text-sm text-green-700">Dziękujemy za aplikację. Odezwiemy się w ciągu 24–48 godzin roboczych.</p>
+                </div>
+              </div>
+            ) : (
+              <form ref={formRef} className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
+                <input type="hidden" name="position" value={jobTitle} />
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="job-name" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                      Imię i nazwisko <span className="text-[#0284c7]">*</span>
+                    </label>
+                    <input id="job-name" type="text" name="name" required placeholder="Jan Kowalski" className={FIELD_CLASS} style={RING_STYLE} />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="job-phone" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Telefon</label>
+                    <input id="job-phone" type="tel" name="phone" placeholder="+48 000 000 000" className={FIELD_CLASS} style={RING_STYLE} />
+                  </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="job-phone" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Telefon</label>
-                  <input id="job-phone" type="tel" name="phone" placeholder="+48 000 000 000" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2" style={{ "--tw-ring-color": "rgba(2,132,199,0.25)" } as CSSProperties} />
+                  <label htmlFor="job-email" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    Adres e-mail <span className="text-[#0284c7]">*</span>
+                  </label>
+                  <input id="job-email" type="email" name="email" required placeholder="jan@firma.pl" className={FIELD_CLASS} style={RING_STYLE} />
                 </div>
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="job-email" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Adres e-mail <span className="text-[#0284c7]">*</span></label>
-                <input id="job-email" type="email" name="email" required placeholder="jan@firma.pl" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2" style={{ "--tw-ring-color": "rgba(2,132,199,0.25)" } as CSSProperties} />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="job-msg" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Doświadczenie i motywacja <span className="text-[#0284c7]">*</span></label>
-                <textarea id="job-msg" name="message" rows={4} placeholder="Opisz krótko swoje doświadczenie, posiadane uprawnienia i dlaczego chcesz dołączyć do HydroBagger..." className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2" style={{ "--tw-ring-color": "rgba(2,132,199,0.25)" } as CSSProperties} />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="job-cv" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                  CV i referencje <span className="font-normal normal-case text-slate-400">(opcjonalnie)</span>
-                </label>
-                <input
-                  id="job-cv"
-                  type="file"
-                  name="cv"
-                  accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                  className="w-full cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 file:mr-3 file:cursor-pointer file:rounded-lg file:border file:border-slate-300 file:bg-slate-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-100"
-                />
-              </div>
-              <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
-                <button type="submit" className="btn-pulse rounded-full px-9 py-3.5 text-base font-bold text-white transition-all" style={{ background: "var(--hb-water)", boxShadow: "0 8px 20px -4px rgba(2,132,199,0.45)" }}>
-                  Wyślij zgłoszenie →
-                </button>
-                <p className="max-w-[200px] text-xs leading-relaxed text-slate-400">
-                  Dane są chronione zgodnie z{" "}
-                  <Link href="/polityka-prywatnosci" className="underline hover:text-slate-600">Polityką Prywatności</Link>.
-                </p>
-              </div>
-            </form>
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="job-msg" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    Doświadczenie i motywacja <span className="text-[#0284c7]">*</span>
+                  </label>
+                  <textarea
+                    id="job-msg"
+                    name="message"
+                    rows={4}
+                    placeholder="Opisz krótko swoje doświadczenie, posiadane uprawnienia i dlaczego chcesz dołączyć do HydroBagger..."
+                    className={`${FIELD_CLASS} resize-none`}
+                    style={RING_STYLE}
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="job-cv" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    CV i referencje <span className="font-normal normal-case text-slate-400">(opcjonalnie, maks. 10 MB)</span>
+                  </label>
+                  <input
+                    id="job-cv"
+                    type="file"
+                    name="cv"
+                    accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    className="w-full cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 file:mr-3 file:cursor-pointer file:rounded-lg file:border file:border-slate-300 file:bg-slate-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-100"
+                  />
+                </div>
+
+                {status === "error" && (
+                  <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                    {errorMsg}
+                  </p>
+                )}
+
+                <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="btn-pulse rounded-full px-9 py-3.5 text-base font-bold text-white transition-all disabled:opacity-60"
+                    style={{ background: "var(--hb-water)", boxShadow: "0 8px 20px -4px rgba(2,132,199,0.45)" }}
+                  >
+                    {status === "loading" ? "Wysyłanie…" : "Wyślij zgłoszenie →"}
+                  </button>
+                  <p className="max-w-[200px] text-xs leading-relaxed text-slate-400">
+                    Dane są chronione zgodnie z{" "}
+                    <Link href="/polityka-prywatnosci" className="underline hover:text-slate-600">Polityką Prywatności</Link>.
+                  </p>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </div>
