@@ -260,22 +260,9 @@ body {
 .legal-content td { padding: 0.625rem 0.75rem; border: 1px solid #e2e8f0; color: #475569; vertical-align: top; }
 .legal-content tr:nth-child(even) td { background: #f8fafc; }
 
-/* Stopka kontakt: na wąskich ekranach wygaszenie u góry do slate-50 (styk z sekcją nad stopką). */
+/* Stopka kontakt – jeden gradient; przejście u góry robi SVG fali (bez drugiej warstwy białej na mobile, żeby nie „prażyło” przez szczeliny przy fali). */
 .footer-contact-gradient {
   background: linear-gradient(135deg, #38bdf8 0%, #0284c7 38%, #0369a1 72%, #0c4a6e 100%);
-}
-@media (max-width: 639px) {
-  .footer-contact-gradient {
-    background-image: linear-gradient(
-        to bottom,
-        #f8fafc 0%,
-        #f8fafc 14px,
-        rgba(248, 250, 252, 0) 36px
-      ),
-      linear-gradient(135deg, #38bdf8 0%, #0284c7 38%, #0369a1 72%, #0c4a6e 100%);
-    background-repeat: no-repeat;
-    background-size: 100% 100%, 100% 100%;
-  }
 }
 
 /* Unos kart (referencje, opinie) + delikatny wariant (kafelki na /darmowa-konsultacja) – w @layer utilities,

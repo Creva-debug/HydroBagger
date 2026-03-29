@@ -81,7 +81,7 @@ export function Footer() {
       <section
         className="relative overflow-hidden bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
-        <div className="absolute left-0 right-0 top-0 h-[64px] w-full overflow-hidden leading-none sm:h-[72px]">
+        <div className="pointer-events-none absolute left-0 right-0 top-0 z-20 h-[64px] w-full overflow-hidden leading-none sm:h-[72px]">
           <svg
             viewBox="0 0 1440 72"
             preserveAspectRatio="none"
