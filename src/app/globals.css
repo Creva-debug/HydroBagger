@@ -89,19 +89,13 @@ body {
   70%  { box-shadow: 0 0 0 12px rgba(14, 116, 144, 0); }
   100% { box-shadow: 0 0 0 0 rgba(14, 116, 144, 0); }
 }
-.btn-pulse { animation: pulse-ring 2.4s ease-out infinite; }
+.btn-pulse {
+  animation: pulse-ring 2.4s ease-out infinite;
+  transition: filter 0.2s ease, box-shadow 0.2s ease;
+}
 .btn-pulse:hover {
   filter: brightness(1.14);
   box-shadow: 0 6px 20px -4px rgba(2, 132, 199, 0.6);
-}
-
-/* ── Card hover lift ────────────────────────────────────── */
-.card-lift {
-  transition: transform 0.28s cubic-bezier(.22,1,.36,1), box-shadow 0.28s ease;
-}
-.card-lift:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px -8px rgba(7,30,50,.18);
 }
 
 /* ── Separator fala ─────────────────────────────────────── */
@@ -281,5 +275,43 @@ body {
       linear-gradient(135deg, #38bdf8 0%, #0284c7 38%, #0369a1 72%, #0c4a6e 100%);
     background-repeat: no-repeat;
     background-size: 100% 100%, 100% 100%;
+  }
+}
+
+/* Unos kart (referencje, opinie) + delikatny wariant (kafelki na /darmowa-konsultacja) – w @layer utilities,
+   żeby transition i box-shadow nie przegrywały z innymi klasami Tailwinda. */
+@layer utilities {
+  .card-lift {
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease;
+    transform: translateZ(0);
+  }
+  .card-lift:hover {
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 24px 48px -8px rgba(7, 30, 50, 0.18);
+  }
+
+  .card-lift-soft {
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease;
+    transform: translateZ(0);
+  }
+  .card-lift-soft:hover {
+    transform: translate3d(0, -3px, 0);
+    box-shadow: 0 16px 32px -10px rgba(7, 30, 50, 0.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-lift,
+  .card-lift-soft {
+    transition: none;
+  }
+  .card-lift:hover {
+    transform: translateZ(0);
+    box-shadow: none;
+  }
+  .card-lift-soft:hover {
+    transform: translateZ(0);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   }
 }

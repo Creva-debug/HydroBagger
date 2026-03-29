@@ -59,16 +59,43 @@ export default function OperatorKoparkiPage() {
                 ))}
               </div>
             </div>
-            <div className="rounded-2xl p-6" style={{ background: "rgba(2,132,199,0.05)", border: "1px solid rgba(2,132,199,0.2)" }}>
+            <div
+              className="mx-auto w-full max-w-md rounded-2xl p-5 sm:p-6 lg:mx-0 lg:max-w-none"
+              style={{ background: "rgba(2,132,199,0.05)", border: "1px solid rgba(2,132,199,0.2)" }}
+            >
               <p className="text-sm font-semibold text-slate-700">Zainteresowany tą ofertą?</p>
-              <p className="mt-1 text-xs text-slate-500">Wypełnij formularz poniżej lub napisz bezpośrednio.</p>
-              <a href="#aplikuj" className="btn-pulse mt-4 flex w-full items-center justify-center gap-2 rounded-full py-3 text-sm font-bold text-white" style={{ background: "var(--hb-water)" }}>
+              <p className="mt-1 text-xs leading-relaxed text-slate-500">Wypełnij formularz poniżej lub napisz bezpośrednio.</p>
+              <a
+                href="#aplikuj"
+                className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold text-white transition-all hover:brightness-110"
+                style={{ background: "var(--hb-water)", boxShadow: "0 6px 16px -4px rgba(2, 132, 199, 0.4)" }}
+              >
                 Aplikuj teraz
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
               </a>
-              <div className="mt-4 flex items-center gap-3 border-t border-slate-200 pt-4">
-                <a href="mailto:kontakt@hydrobagger.pl" className="flex-1 rounded-xl bg-white py-2.5 text-center text-xs font-semibold text-slate-600 shadow-sm transition-colors hover:text-[#0284c7]" style={{ border: "1px solid #e2e8f0" }}>E-mail</a>
-                <a href="tel:+48504026042" className="flex-1 rounded-xl bg-white py-2.5 text-center text-xs font-semibold text-slate-600 shadow-sm transition-colors hover:text-[#0284c7]" style={{ border: "1px solid #e2e8f0" }}>Telefon</a>
+              <div className="mt-4 flex items-center gap-3 border-t border-slate-200/80 pt-4">
+                <a
+                  href="mailto:kontakt@hydrobagger.pl"
+                  className="group flex flex-1 items-center justify-center gap-2 rounded-xl bg-white py-2.5 text-xs font-semibold text-slate-600 shadow-sm transition-colors hover:text-[#0284c7]"
+                  style={{ border: "1px solid #e2e8f0" }}
+                >
+                  <svg className="h-4 w-4 shrink-0 text-slate-500 transition-colors group-hover:text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  E-mail
+                </a>
+                <a
+                  href="tel:+48504026042"
+                  className="group flex flex-1 items-center justify-center gap-2 rounded-xl bg-white py-2.5 text-xs font-semibold text-slate-600 shadow-sm transition-colors hover:text-[#0284c7]"
+                  style={{ border: "1px solid #e2e8f0" }}
+                >
+                  <svg className="h-4 w-4 shrink-0 text-slate-500 transition-colors group-hover:text-[#0284c7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  Telefon
+                </a>
               </div>
             </div>
           </div>
@@ -80,22 +107,30 @@ export default function OperatorKoparkiPage() {
           <div className="mb-10 overflow-hidden rounded-2xl lg:hidden"><div className="relative aspect-[16/7]"><Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Koparka pływająca w pracy" fill className="object-cover brightness-[0.88] saturate-[0.88]" sizes="100vw" /></div></div>
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="rounded-2xl bg-white p-7 shadow-sm" style={{ border: "1px solid #e2e8f0" }}>
-              <div className="mb-5 flex items-center gap-2">
+              <div className="mb-8 flex items-center gap-2">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: "linear-gradient(135deg, var(--hb-water), #0369a1)" }}><svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg></div>
                 <h2 className="text-lg font-bold text-slate-900">Zakres obowiązków</h2>
               </div>
               <ul className="space-y-3">{OBOWIAZKI.map((o) => <Li key={o}>{o}</Li>)}</ul>
             </div>
             <div className="rounded-2xl bg-white p-7 shadow-sm" style={{ border: "1px solid #e2e8f0" }}>
-              <div className="mb-5 flex items-center gap-2">
+              <div className="mb-8 flex items-center gap-2">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: "linear-gradient(135deg, #0f172a, #1e3a5f)" }}><svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg></div>
                 <h2 className="text-lg font-bold text-slate-900">Nasze wymagania</h2>
               </div>
               <ul className="space-y-3">{WYMAGANIA.map((w) => <Li key={w}>{w}</Li>)}</ul>
             </div>
             <div className="rounded-2xl p-7" style={{ background: "linear-gradient(145deg, #071e32, #0a2744)" }}>
-              <div className="mb-5 flex items-center gap-2">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: "rgba(2,132,199,0.25)" }}><svg className="h-5 w-5 text-[#7dd3fc]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4H5z" /></svg></div>
+              <div className="mb-8 flex items-center gap-2">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: "rgba(2,132,199,0.25)" }}>
+                  <svg className="h-5 w-5 text-[#7dd3fc]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1014.625 7.5H12m-8.25 3.75h16.5M4.5 9.75h15v2.25a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z"
+                    />
+                  </svg>
+                </div>
                 <h2 className="text-lg font-bold text-white">Co oferujemy</h2>
               </div>
               <ul className="space-y-3">{OFERUJEMY.map((o) => <Li key={o} dark>{o}</Li>)}</ul>

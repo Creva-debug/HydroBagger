@@ -194,7 +194,7 @@ export default function HomePage() {
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto sm:gap-4">
                 <Link
                   href="/darmowa-konsultacja"
-                  className="btn-pulse flex w-full sm:w-auto items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white transition-all shadow-lg shadow-sky-900/20"
+                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white shadow-lg shadow-sky-900/20 transition-all hover:brightness-110"
                   style={{ background: "var(--hb-water)" }}
                 >
                   Potrzebuję wsparcia

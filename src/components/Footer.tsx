@@ -36,7 +36,7 @@ function TrackEdgeRaw({ teeth }: { teeth: number }) {
   const gap = 16;
   const h = 20;
   const r = 9;
-  const totalW = teeth * (toothW + gap);
+  const totalW = (teeth - 1) * (toothW + gap) + toothW;
 
   const toothPath = (x: number) =>
     `M ${x + r},0 L ${x + toothW - r},0 Q ${x + toothW},0 ${x + toothW},${r} L ${x + toothW - taper},${h} L ${x + taper},${h} L ${x},${r} Q ${x},0 ${x + r},0 Z`;
@@ -47,7 +47,6 @@ function TrackEdgeRaw({ teeth }: { teeth: number }) {
         {Array.from({ length: teeth }, (_, i) => (
           <path key={i} d={toothPath(i * (toothW + gap))} fill="#020617" />
         ))}
-        <rect x="0" y={h - 3} width={totalW} height="3" fill="#020617" />
       </svg>
     </div>
   );
@@ -55,20 +54,23 @@ function TrackEdgeRaw({ teeth }: { teeth: number }) {
 
 function TrackEdge() {
   return (
-    <>
-      {/* Mobile: mniejsza liczba zębów */}
-      <div className="sm:hidden">
-        <TrackEdgeRaw teeth={9} />
+    <div className="relative">
+      <div className="px-2 sm:px-3 lg:px-4">
+        <div className="sm:hidden">
+          <TrackEdgeRaw teeth={9} />
+        </div>
+        <div className="hidden sm:block lg:hidden">
+          <TrackEdgeRaw teeth={16} />
+        </div>
+        <div className="hidden lg:block">
+          <TrackEdgeRaw teeth={26} />
+        </div>
       </div>
-      {/* Tablet */}
-      <div className="hidden sm:block lg:hidden">
-        <TrackEdgeRaw teeth={16} />
-      </div>
-      {/* Desktop */}
-      <div className="hidden lg:block">
-        <TrackEdgeRaw teeth={26} />
-      </div>
-    </>
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 right-0 z-[1] h-[3px] bg-[#020617]"
+        aria-hidden
+      />
+    </div>
   );
 }
 
@@ -154,7 +156,7 @@ export function Footer() {
       </div>
 
       {/* Czarna stopka: CTA + kolumny + dół */}
-      <div className="relative -mt-px text-white">
+      <div className="relative -mt-px max-sm:-mt-[3px] text-white">
         <div className="bg-slate-950 pt-4">
           {/* CTA */}
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 border-b border-slate-800 px-4 py-8 sm:grid-cols-4 sm:items-center sm:gap-0 lg:grid-cols-[1fr_1fr_1.5fr_1.6fr] sm:px-6 lg:px-8">
@@ -169,7 +171,7 @@ export function Footer() {
             <div className="flex justify-center sm:col-span-1 sm:justify-start sm:pl-[30px]">
               <Link
                 href="/darmowa-konsultacja"
-                className="inline-flex items-center gap-2 rounded-full border border-[#0284c7] px-6 py-2.5 text-sm font-semibold text-[#38bdf8] transition-all hover:bg-[#0284c7] hover:border-[#0284c7] hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full border border-[#0284c7] px-6 py-2.5 text-sm font-bold text-[#0284c7] transition-all hover:bg-[#0284c7] hover:text-white"
               >
                 Bezpłatna konsultacja
               </Link>
@@ -187,7 +189,7 @@ export function Footer() {
                 <li><Link href="/praca" className="transition hover:text-[#38bdf8]">Praca</Link></li>
                 <li><Link href="/realizacje" className="transition hover:text-[#38bdf8]">Realizacje</Link></li>
                 <li><Link href="/referencje" className="transition hover:text-[#38bdf8]">Referencje</Link></li>
-                <li><Link href="/wiedza" className="transition hover:text-[#38bdf8]">Wiedza</Link></li>
+                <li><Link href="/baza-wiedzy" className="transition hover:text-[#38bdf8]">Baza wiedzy</Link></li>
               </ul>
             </div>
             <div>

@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [{ source: "/wiedza", destination: "/baza-wiedzy", permanent: true }];
+  },
 };
 
 export default nextConfig;

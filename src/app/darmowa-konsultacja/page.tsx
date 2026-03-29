@@ -113,7 +113,7 @@ export default function DarmowaKonsultacjaPage() {
               <div className="mt-8">
                 <Link
                   href="#formularz-konsultacji"
-                  className="inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-bold text-white transition-all"
+                  className="inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-bold text-white transition-all hover:brightness-110"
                   style={{ background: "var(--hb-water)" }}
                 >
                   Zapytaj nas
@@ -147,7 +147,7 @@ export default function DarmowaKonsultacjaPage() {
                 {KLIENCI.map((row) => (
                   <li
                     key={row.text}
-                    className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5 shadow-sm transition-shadow hover:shadow"
+                    className="card-lift-soft flex cursor-default items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5"
                   >
                     <span
                       className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-lg"

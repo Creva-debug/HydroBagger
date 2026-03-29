@@ -4,7 +4,7 @@ import Link from "next/link";
 import { WiedzaGrid } from "./WiedzaGrid";
 
 export const metadata: Metadata = (() => {
-  const seo = getSEO("/wiedza");
+  const seo = getSEO("/baza-wiedzy");
   return seo ? metadataFromSEO(seo) : {};
 })();
 
@@ -12,7 +12,7 @@ function SL({ children }: { children: React.ReactNode }) {
   return <span className="section-label">{children}</span>;
 }
 
-export default function WiedzaPage() {
+export default function BazaWiedzyPage() {
   return (
     <>
       {/* HERO */}
@@ -21,7 +21,7 @@ export default function WiedzaPage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <SL>Wiedza</SL>
+              <SL>Baza wiedzy</SL>
               <h1 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2.4rem,4.5vw,3.6rem)" }}>
                 Baza wiedzy <span style={{ color: "var(--hb-water)" }}>hydrotechnicznej</span>
               </h1>

@@ -66,10 +66,10 @@ export function SprzętTemplate({
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[65vh] items-end overflow-hidden pb-14 lg:pb-20">
-        <Image src={imageUrl(heroImage)} alt={heroTitle} fill priority className="object-cover brightness-[0.62] saturate-[0.8]" sizes="100vw" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/35 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/25 to-transparent" />
+      <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16 lg:min-h-[80vh] lg:pb-24">
+        <Image src={imageUrl(heroImage)} alt={heroTitle} fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/40 to-transparent" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SL light>Sprzęt</SL>
           <h1 className="display-heading mt-3 text-white" style={{ fontSize: "clamp(2.4rem,5vw,4rem)" }}>{heroTitle}</h1>

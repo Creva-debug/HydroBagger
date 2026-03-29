@@ -32,15 +32,34 @@ export function JobApplicationSection({ jobTitle }: JobApplicationSectionProps) 
                 <div className="text-sm" style={{ color: "var(--hb-water)" }}>HydroBagger.pl</div>
               </div>
             </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href="mailto:kontakt@hydrobagger.pl" className="flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-[#0284c7] hover:text-[#0284c7]">
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                kontakt@hydrobagger.pl
-              </a>
-              <a href="tel:+48504026042" className="flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-[#0284c7] hover:text-[#0284c7]">
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                +48 504 026 042
-              </a>
+
+            <div className="mt-8 rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50/90 p-4 shadow-sm sm:mt-10 sm:p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Kontakt bezpośredni</p>
+              <p className="mt-1 text-sm text-slate-600">Wolisz od razu zadzwonić lub napisać? Skorzystaj z danych poniżej.</p>
+              <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+                <a
+                  href="mailto:kontakt@hydrobagger.pl"
+                  className="inline-flex flex-1 items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm transition-all hover:border-[#0284c7] hover:text-[#0284c7] sm:min-w-0 sm:flex-1"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-[#0284c7]">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </span>
+                  <span className="min-w-0 break-all">kontakt@hydrobagger.pl</span>
+                </a>
+                <a
+                  href="tel:+48504026042"
+                  className="inline-flex flex-1 items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm transition-all hover:border-[#0284c7] hover:text-[#0284c7] sm:min-w-0 sm:flex-1"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-[#0284c7]">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </span>
+                  <span>+48 504 026 042</span>
+                </a>
+              </div>
             </div>
           </div>
           <div className="track-border mt-4 p-8 lg:col-start-2 lg:row-start-2 lg:mt-0 lg:min-w-0 lg:p-10">
@@ -48,7 +67,7 @@ export function JobApplicationSection({ jobTitle }: JobApplicationSectionProps) 
               <h3 className="text-2xl font-bold tracking-tight text-slate-900">Wyślij zgłoszenie</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-500">Odpowiemy w ciągu 24–48 godzin roboczych.</p>
             </div>
-            <form className="flex flex-col gap-4" action="#" method="post" noValidate>
+            <form className="flex flex-col gap-4" action="#" method="post" encType="multipart/form-data" noValidate>
               <input type="hidden" name="position" value={jobTitle} />
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
@@ -67,6 +86,18 @@ export function JobApplicationSection({ jobTitle }: JobApplicationSectionProps) 
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="job-msg" className="text-xs font-semibold uppercase tracking-wider text-slate-500">Doświadczenie i motywacja <span className="text-[#0284c7]">*</span></label>
                 <textarea id="job-msg" name="message" rows={4} placeholder="Opisz krótko swoje doświadczenie, posiadane uprawnienia i dlaczego chcesz dołączyć do HydroBagger..." className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2" style={{ "--tw-ring-color": "rgba(2,132,199,0.25)" } as CSSProperties} />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="job-cv" className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  CV i referencje <span className="font-normal normal-case text-slate-400">(opcjonalnie)</span>
+                </label>
+                <input
+                  id="job-cv"
+                  type="file"
+                  name="cv"
+                  accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                  className="w-full cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 file:mr-3 file:cursor-pointer file:rounded-lg file:border file:border-slate-300 file:bg-slate-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-100"
+                />
               </div>
               <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
                 <button type="submit" className="btn-pulse rounded-full px-9 py-3.5 text-base font-bold text-white transition-all" style={{ background: "var(--hb-water)", boxShadow: "0 8px 20px -4px rgba(2,132,199,0.45)" }}>

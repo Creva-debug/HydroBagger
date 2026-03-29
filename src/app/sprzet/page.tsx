@@ -63,10 +63,10 @@ export default function SprzętPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[55vh] items-end overflow-hidden pb-14 lg:min-h-[60vh] lg:pb-20">
-        <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Sprzęt hydrotechniczny HydroBagger" fill priority className="object-cover brightness-[0.6] saturate-[0.8]" sizes="100vw" />
+      <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16 lg:min-h-[80vh] lg:pb-24">
+        <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Sprzęt hydrotechniczny HydroBagger" fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/40 to-transparent" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SL light>Sprzęt</SL>
           <h1 className="display-heading mt-3 text-white" style={{ fontSize: "clamp(2.6rem,5.5vw,4.5rem)" }}>
@@ -80,7 +80,7 @@ export default function SprzętPage() {
               Bezpłatna konsultacja
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </Link>
-            <Link href="/uslugi" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/20">
+            <Link href="/uslugi" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/20">
               Nasze usługi
             </Link>
           </div>
@@ -137,7 +137,7 @@ export default function SprzętPage() {
               </h2>
               <p className="mt-3 max-w-lg text-slate-300">Opisz nam problem – dobierzemy maszynę i zaproponujemy rozwiązanie. Bezpłatna konsultacja, bez zobowiązań.</p>
             </div>
-            <Link href="/darmowa-konsultacja" className="btn-pulse shrink-0 inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white" style={{ background: "var(--hb-water)" }}>
+            <Link href="/darmowa-konsultacja" className="inline-flex shrink-0 items-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white transition-all hover:brightness-110" style={{ background: "var(--hb-water)" }}>
               Umów konsultację
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </Link>

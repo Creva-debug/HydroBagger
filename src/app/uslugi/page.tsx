@@ -18,7 +18,7 @@ const USLUGI = [
     akcent: "Kopanie",
     tagline: "Koparka nie wjedzie? My wpływamy.",
     desc: "Specjalizujemy się w pracach ziemnych na podmokłych, bagnistych i niedostępnych terenach. Dzięki amfibijnemu i gąsienicowemu sprzętowi docieramy tam, gdzie standardowe maszyny nie mają szans.",
-    img: "koparka-plywajaca-kopanie-torfowisko01.jpg",
+    img: "koparka-plywajaca-kopanie-torfowisko-2_.png",
     prace: ["Odmulanie i pogłębianie zbiorników", "Budowa i modernizacja cieków", "Rekultywacja terenów", "Odtwarzanie retencji"],
   },
   {
@@ -27,7 +27,7 @@ const USLUGI = [
     akcent: "Koszenie",
     tagline: "Zarośnięte brzegi? Czyścimy to.",
     desc: "Zajmujemy się koszeniem i usuwaniem roślinności nad wodą oraz pod wodą. Wykorzystujemy specjalistyczny sprzęt pływający i samobieżny – nawet tam, gdzie nie da się dojechać standardową maszyną.",
-    img: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg",
+    img: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji_.png",
     prace: ["Koszenie roślinności wodnej", "Mulczowanie zakrzaczeń", "Udrażnianie zarośniętych rowów", "Oczyszczanie brzegów"],
   },
   {
@@ -36,7 +36,7 @@ const USLUGI = [
     akcent: "Refulacja",
     tagline: "Zalegający muł? Odessany i odwodniony.",
     desc: "Specjalizujemy się w refulacji i usuwaniu osadów z dna zbiorników – stawów, jezior i kanałów. Odsysamy urobek z wody bez konieczności jej spuszczania i bez naruszania linii brzegowej.",
-    img: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg",
+    img: "koparka-plywajaca-pompa-refulacyjna-odmulanie2_.png",
     prace: ["Odsysanie osadów z dna", "Odwadnianie urobku", "Refulacja stawów i akwenów", "Czyszczenie infrastruktury"],
   },
   {
@@ -45,7 +45,7 @@ const USLUGI = [
     akcent: "Transport",
     tagline: "Gdzie nie wjedzie nikt – my dowozimy.",
     desc: "Dostarczamy sprzęt i materiały tam, gdzie standardowe pojazdy nie mają szans – przez podmokłe łąki, bagna, rozlewiska i brzegi zbiorników. Działamy bez utwardzonej drogi.",
-    img: "wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg",
+    img: "wozidlo-gasienicowe-transport-koparka-podmokly-teren2_.png",
     prace: ["Transport na bagna i torfowiska", "Wywóz urobku z terenu", "Dostawy materiałów", "Przeładunki w trudnym gruncie"],
   },
 ] as const;
@@ -58,10 +58,10 @@ export default function UsługiPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[55vh] items-end overflow-hidden pb-14 lg:min-h-[60vh] lg:pb-20">
-        <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Usługi HydroBagger" fill priority className="object-cover brightness-[0.6] saturate-[0.8]" sizes="100vw" />
+      <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16 lg:min-h-[80vh] lg:pb-24">
+        <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Usługi HydroBagger" fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/40 to-transparent" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SL>Usługi</SL>
           <h1 className="display-heading mt-3 text-white" style={{ fontSize: "clamp(2.6rem,5.5vw,4.5rem)" }}>
@@ -76,7 +76,7 @@ export default function UsługiPage() {
               Bezpłatna konsultacja
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </Link>
-            <Link href="/sprzet" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/20">
+            <Link href="/sprzet" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/20">
               Nasz sprzęt
             </Link>
           </div>
@@ -101,9 +101,16 @@ export default function UsługiPage() {
           <div className="grid gap-6 lg:grid-cols-2">
             {USLUGI.map((usluga) => (
               <article key={usluga.href} className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl" style={{ border: "1px solid #e2e8f0" }}>
-                <div className="relative aspect-[16/8] overflow-hidden">
-                  <Image src={imageUrl(usluga.img)} alt={usluga.title} fill className="object-cover brightness-[0.82] saturate-[0.82] transition-transform duration-700 group-hover:scale-[1.04]" sizes="(max-width:1024px) 100vw, 50vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/70 to-transparent" />
+                <div className="relative aspect-[16/8] overflow-hidden bg-slate-100">
+                  <Image
+                    src={imageUrl(usluga.img)}
+                    alt={usluga.title}
+                    fill
+                    className="object-cover brightness-[1.02] contrast-[1.04] saturate-[1.06] transition-transform duration-700 ease-in-out will-change-transform group-hover:scale-[1.04]"
+                    sizes="(max-width:1024px) 100vw, 50vw"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a2744]/18 via-sky-700/[0.04] to-white/12" aria-hidden />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-200/[0.04] via-transparent to-[#0284c7]/[0.07]" aria-hidden />
                   <div className="absolute bottom-4 left-5">
                     <span className="rounded-xl bg-white/90 px-3 py-1.5 text-sm font-bold text-slate-900 shadow">{usluga.tagline}</span>
                   </div>
@@ -122,7 +129,7 @@ export default function UsługiPage() {
                     ))}
                   </ul>
                   <div className="mt-6 border-t border-slate-100 pt-4">
-                    <Link href={usluga.href} className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition-all" style={{ background: "var(--hb-water)" }}>
+                    <Link href={usluga.href} className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition-all hover:brightness-110" style={{ background: "var(--hb-water)" }}>
                       Dowiedz się więcej
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
                     </Link>
@@ -145,7 +152,7 @@ export default function UsługiPage() {
               </h2>
               <p className="mt-3 max-w-lg text-slate-300">Opisz nam sytuację – dobierzemy usługę i zaproponujemy rozwiązanie. Bezpłatna konsultacja, 20 minut, bez zobowiązań.</p>
             </div>
-            <Link href="/darmowa-konsultacja" className="btn-pulse shrink-0 inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white" style={{ background: "var(--hb-water)" }}>
+            <Link href="/darmowa-konsultacja" className="inline-flex shrink-0 items-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white transition-all hover:brightness-110" style={{ background: "var(--hb-water)" }}>
               Umów konsultację
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </Link>

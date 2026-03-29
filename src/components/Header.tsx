@@ -201,7 +201,7 @@ const NAV_PRACA = [
 const NAV_DIRECT = [
   { href: "/referencje", label: "Referencje" },
   { href: "/o-nas",      label: "O nas" },
-  { href: "/wiedza",     label: "Wiedza" },
+  { href: "/baza-wiedzy", label: "Baza wiedzy" },
 ] as const;
 
 const NAV_SECTIONS = [
@@ -351,7 +351,7 @@ export function Header() {
               <DropdownMenu label="Praca" items={NAV_PRACA} href="/praca" />
               <Link href="/referencje" className="nav-link">Referencje</Link>
               <Link href="/o-nas" className="nav-link">O nas</Link>
-              <Link href="/wiedza" className="nav-link">Wiedza</Link>
+              <Link href="/baza-wiedzy" className="nav-link">Baza wiedzy</Link>
             </nav>
 
             {/* CTA desktop */}

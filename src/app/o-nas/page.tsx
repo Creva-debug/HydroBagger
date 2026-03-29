@@ -98,7 +98,7 @@ export default function ONasPage() {
                   </li>
                 ))}
               </ul>
-              <Link href="/uslugi" className="btn-pulse mt-10 inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white" style={{ background: "var(--hb-water)" }}>
+              <Link href="/uslugi" className="mt-10 inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white transition-all hover:brightness-110" style={{ background: "var(--hb-water)" }}>
                 Sprawdź nasze usługi
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
               </Link>
@@ -134,7 +134,7 @@ export default function ONasPage() {
             Dostarczamy specjalistyczne usługi ziemno-wodne wszędzie tam, gdzie inni nie dają rady – wykorzystując unikalny sprzęt pływający, wyspecjalizowane zespoły i odpowiedzialne podejście do efektu końcowego.
           </p>
           <div className="mt-10">
-            <Link href="/darmowa-konsultacja" className="btn-pulse inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white" style={{ background: "var(--hb-water)" }}>
+            <Link href="/darmowa-konsultacja" className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white transition-all hover:brightness-110" style={{ background: "var(--hb-water)" }}>
               Skorzystaj z bezpłatnej konsultacji
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </Link>

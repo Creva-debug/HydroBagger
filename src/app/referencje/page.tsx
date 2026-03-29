@@ -294,7 +294,7 @@ export default function ReferencjePage() {
             </Link>
             <Link
               href="/realizacje"
-              className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:border-white/30 hover:bg-white/20 sm:w-auto"
+              className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/20 sm:w-auto"
             >
               Zobacz realizacje
             </Link>

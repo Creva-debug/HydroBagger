@@ -349,11 +349,11 @@ Wszystkie zdjęcia i obrazy na stronie są hostowane na **Bunny CDN**. Używaj w
 
 ---
 
-## Wiedza
+## Baza wiedzy
 
 | Pole | Wartość |
 |------|--------|
-| **URL** | `/wiedza` |
-| **Fraza kluczowa** | wiedza hydrotechniczna |
-| **Meta title** | Wiedza hydrotechniczna i praktyczne porady \| HydroBagger |
+| **URL** | `/baza-wiedzy` |
+| **Fraza kluczowa** | baza wiedzy hydrotechniczna |
+| **Meta title** | Baza wiedzy hydrotechnicznej i praktyczne porady \| HydroBagger |
 | **Meta description** | Poznaj praktyczną wiedzę hydrotechniczną - porady, przykłady realizacji i sprawdzone rozwiązania z terenu. Zobacz, jak działa HydroBagger. |

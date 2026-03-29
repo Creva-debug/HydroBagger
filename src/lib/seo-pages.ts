@@ -221,10 +221,10 @@ export const SEO_PAGES: Record<string, PageSEO> = {
     metaDescription:
       "Realizujemy transport w błocie, torfie i na terenach zalanych. Dowozimy sprzęt i wywozimy urobek tam, gdzie inni nie wjadą. Sprawdź!",
   },
-  "/wiedza": {
-    path: "/wiedza",
-    keyword: "wiedza hydrotechniczna",
-    metaTitle: "Wiedza hydrotechniczna i praktyczne porady | HydroBagger",
+  "/baza-wiedzy": {
+    path: "/baza-wiedzy",
+    keyword: "baza wiedzy hydrotechniczna",
+    metaTitle: "Baza wiedzy hydrotechnicznej i praktyczne porady | HydroBagger",
     metaDescription:
       "Poznaj praktyczną wiedzę hydrotechniczną - porady, przykłady realizacji i sprawdzone rozwiązania z terenu. Zobacz, jak działa HydroBagger.",
   },

@@ -88,7 +88,7 @@ export default function PracaPage() {
                     ))}
                   </ul>
                   <div className="mt-6 border-t border-slate-100 pt-4">
-                    <Link href={oferta.href} className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition-all" style={{ background: "var(--hb-water)" }}>
+                    <Link href={oferta.href} className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition-all hover:brightness-110" style={{ background: "var(--hb-water)" }}>
                       Aplikuj na to stanowisko
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
                     </Link>
