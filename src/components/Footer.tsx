@@ -86,12 +86,13 @@ export function Footer() {
       <section
         className="relative z-[10] overflow-x-visible bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
-        {/* Bez w-screen: 100vw > szerokość layoutu przy overflow-x na body → obcięcie fali po prawej. */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[64px] w-full min-w-0 leading-none sm:h-[72px]">
+        {/* h-[72px] jak viewBox – 64px obcinało dół; overflow visible + szerszy viewBox = brak clipu WebKit przy prawej krawędzi. */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[72px] w-full min-w-0 overflow-visible leading-none">
           <svg
-            viewBox="0 0 1440 72"
+            viewBox="0 0 1456 72"
             preserveAspectRatio="none"
-            className="block h-full w-full sm:hidden"
+            overflow="visible"
+            className="block h-full w-full overflow-visible sm:hidden"
             aria-hidden
           >
             <defs>
@@ -107,9 +108,10 @@ export function Footer() {
             />
           </svg>
           <svg
-            viewBox="0 0 1440 72"
+            viewBox="0 0 1456 72"
             preserveAspectRatio="none"
-            className="hidden h-full w-full sm:block"
+            overflow="visible"
+            className="hidden h-full w-full overflow-visible sm:block"
             aria-hidden
           >
             <defs>
