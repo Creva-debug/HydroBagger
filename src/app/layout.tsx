@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter, Montserrat, Geist } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ViewportHeightFix } from "@/components/ViewportHeightFix";
 import { imageUrl } from "@/lib/images";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const montserrat = Montserrat({
   variable: "--font-display",
@@ -42,10 +39,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
+    <html lang="pl" className={cn("font-sans", geist.variable)}>
       <body
         id="top"
-        className={`${inter.variable} ${montserrat.variable} font-sans flex min-h-screen flex-col antialiased`}
+        className={`${geist.variable} ${montserrat.variable} font-sans flex min-h-screen flex-col antialiased`}
       >
         <ViewportHeightFix />
         <Header />
