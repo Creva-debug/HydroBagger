@@ -4,14 +4,9 @@ import type { ReactNode } from "react";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
+import { UsługiZakresCard } from "@/components/UsługiZakresCard";
+import { USLUGI_ZAKRES_CARDS } from "@/lib/uslugi-zakres-cards";
 import { imageUrl } from "@/lib/images";
-
-const INNE_USLUGI_DATA = [
-  { slug: "kopanie-w-trudnym-terenie", href: "/uslugi/kopanie-w-trudnym-terenie", title: "Kopanie w trudnym terenie", tagline: "Kopiemy w bagnach, torfach i wodzie – tam, gdzie inni nie dojadą.", img: "koparka-plywajaca-kopanie-torfowisko01.jpg" },
-  { slug: "koszenie-i-mulczowanie-roslinnosci", href: "/uslugi/koszenie-i-mulczowanie-roslinnosci", title: "Koszenie i mulczowanie roślinności", tagline: "Usuwamy roślinność nad wodą i pod wodą, przy brzegach i w kanałach.", img: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg" },
-  { slug: "refulacia-i-odwadnianie-osadow", href: "/uslugi/refulacia-i-odwadnianie-osadow", title: "Refulacja i odwadnianie osadów", tagline: "Oczyszczamy zbiorniki z osadów metodą refulacji – bez spuszczania wody.", img: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg" },
-  { slug: "transport-w-trudnym-terenie", href: "/uslugi/transport-w-trudnym-terenie", title: "Transport w trudnym terenie", tagline: "Transportujemy sprzęt i materiały przez błoto, wodę i bezdroża.", img: "wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg" },
-] as const;
 
 export type UsługiStep = { n: string; title: string; body: string };
 
@@ -48,7 +43,7 @@ export function UsługiTemplate({
   gallery = [],
   currentSlug,
 }: UsługiTemplateProps) {
-  const otherServices = INNE_USLUGI_DATA.filter((s) => s.slug !== currentSlug);
+  const otherServices = USLUGI_ZAKRES_CARDS.filter((s) => s.slug !== currentSlug);
   const gallCols = gallery.length <= 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3";
 
   return (
@@ -150,33 +145,18 @@ export function UsługiTemplate({
         </div>
       </section>
 
-      {/* INNE USŁUGI */}
+      {/* INNE USŁUGI – te same kafelki co „Zakres prac” na stronie głównej */}
       <section className="bg-slate-50 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10">
+          <div className="mb-10 sm:mb-12">
             <SL>Inne usługi</SL>
             <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(1.8rem,3.5vw,2.4rem)" }}>
               Co jeszcze możemy <span style={{ color: "var(--hb-water)" }}>dla Ciebie zrobić?</span>
             </h2>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {otherServices.map((s) => (
-              <Link key={s.href} href={s.href} className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-lg" style={{ border: "1px solid #e2e8f0" }}>
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image src={imageUrl(s.img)} alt={s.title} fill className="object-cover brightness-[0.85] saturate-[0.82] transition-transform duration-700 group-hover:scale-[1.05]" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/60 to-transparent" />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-[#0284c7] sm:text-xl sm:leading-tight">
-                    {s.title}
-                  </h3>
-                  <p className="flex-1 text-sm leading-relaxed text-slate-500">{s.tagline}</p>
-                  <div className="mt-4 flex items-center gap-1.5 text-sm font-semibold transition-colors group-hover:text-[#0284c7]" style={{ color: "var(--hb-water)" }}>
-                    Dowiedz się więcej
-                    <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-                  </div>
-                </div>
-              </Link>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {otherServices.map((item) => (
+              <UsługiZakresCard key={item.href} item={item} />
             ))}
           </div>
         </div>

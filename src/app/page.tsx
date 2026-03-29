@@ -1,6 +1,8 @@
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { UsługiZakresCard } from "@/components/UsługiZakresCard";
+import { USLUGI_ZAKRES_CARDS } from "@/lib/uslugi-zakres-cards";
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -15,37 +17,6 @@ export const metadata: Metadata = (() => {
 /* ════════════════════════════════════════════════════════════
    DANE
 ════════════════════════════════════════════════════════════ */
-
-const USLUGI = [
-  {
-    title: "Kopanie w\ntrudnym terenie",
-    short: "Bagna · torfy · woda",
-    desc: "Koparka nie wjedzie? My wpływamy. Kopiemy w bagnach, torfach i wodzie – tam, gdzie inni nie dojadą.",
-    href: "/uslugi/kopanie-w-trudnym-terenie",
-    img: "koparka-plywajaca-kopanie-torfowisko-2_.png",
-  },
-  {
-    title: "Koszenie roślinności\ni mulczowanie",
-    short: "Brzegi · kanały · zbiorniki",
-    desc: "Zarośnięte brzegi i dna? Czyścimy to gruntownie. Usuwamy roślinność nad wodą i pod wodą.",
-    href: "/uslugi/koszenie-i-mulczowanie-roslinnosci",
-    img: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji_.png",
-  },
-  {
-    title: "Refulacja i\nodwadnianie osadów",
-    short: "Muł · osady · zbiorniki",
-    desc: "Zalegający muł? Odessany i odwodniony. Oczyszczamy zbiorniki z osadów metodą refulacji.",
-    href: "/uslugi/refulacia-i-odwadnianie-osadow",
-    img: "koparka-plywajaca-pompa-refulacyjna-odmulanie2_.png",
-  },
-  {
-    title: "Transport w\ntrudnym terenie",
-    short: "Błoto · torf · woda",
-    desc: "Gdzie nie wjedzie nikt – my dowozimy. Transportujemy sprzęt i materiały przez błoto i wodę.",
-    href: "/uslugi/transport-w-trudnym-terenie",
-    img: "wozidlo-gasienicowe-transport-koparka-podmokly-teren2_.png",
-  },
-] as const;
 
 const SEKTORY = [
   { 
@@ -243,51 +214,8 @@ export default function HomePage() {
 
           {/* 4 karty ze zdjęciami i tekstem poniżej */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {USLUGI.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="group @container/uslugi flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-500 ease-in-out hover:shadow-xl"
-              >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
-                  <Image
-                    src={imageUrl(item.img)}
-                    alt={item.title.replace(/\n/g, " ")}
-                    fill
-                    className="object-cover brightness-[1.02] contrast-[1.04] saturate-[1.06] transition-transform duration-700 ease-in-out will-change-transform group-hover:scale-[1.04]"
-                    sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,25vw"
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a2744]/18 via-sky-700/[0.04] to-white/12"
-                    aria-hidden
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-200/[0.04] via-transparent to-[#0284c7]/[0.07]"
-                    aria-hidden
-                  />
-                </div>
-                {/* Treść */}
-                <div className="flex flex-1 flex-col p-5 sm:p-6 lg:p-5 xl:p-8">
-                  <p className="mb-5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    {item.short}
-                  </p>
-                  <h3
-                    className="display-heading mb-3 min-h-[2.5lh] whitespace-pre-line leading-tight text-slate-900"
-                    style={{
-                      fontSize: "clamp(0.875rem, 0.55rem + 3.8cqi, 1.375rem)",
-                    }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p className="mb-6 flex-1 text-sm leading-relaxed text-slate-600">
-                    {item.desc}
-                  </p>
-                  <div className="mt-auto flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#0284c7] transition-colors group-hover:text-[#0369a1]">
-                    Dowiedz się więcej 
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </Link>
+            {USLUGI_ZAKRES_CARDS.map((item) => (
+              <UsługiZakresCard key={item.href} item={item} />
             ))}
           </div>
         </div>

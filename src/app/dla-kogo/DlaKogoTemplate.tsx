@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { imageUrl } from "@/lib/images";
+import { UsługiZakresCard } from "@/components/UsługiZakresCard";
+import { USLUGI_ZAKRES_CARDS } from "@/lib/uslugi-zakres-cards";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
@@ -19,13 +21,6 @@ export type DlaKogoTemplateProps = {
   faqTitle: string;
   faqItems: FAQItem[];
 };
-
-const USLUGI_CARDS = [
-  { href: "/uslugi/kopanie-w-trudnym-terenie", title: "Kopanie w trudnym terenie", tagline: "Koparka nie wjedzie? My wpływamy. Kopiemy w bagnach, torfach i wodzie – tam, gdzie inni nie dojadą.", img: "koparka-plywajaca-kopanie-torfowisko01.jpg" },
-  { href: "/uslugi/koszenie-i-mulczowanie-roslinnosci", title: "Koszenie roślinności i mulczowanie", tagline: "Zarośnięte brzegi i dna? Czyścimy to. Usuwamy roślinność nad wodą i pod wodą.", img: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg" },
-  { href: "/uslugi/refulacia-i-odwadnianie-osadow", title: "Refulacja i odwadnianie osadów", tagline: "Zalegający muł? Odessany i odwodniony. Oczyszczamy zbiorniki z osadów metodą refulacji.", img: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg" },
-  { href: "/uslugi/transport-w-trudnym-terenie", title: "Transport w trudnym terenie", tagline: "Gdzie nie wjedzie nikt – my dowozimy. Transportujemy sprzęt i materiały przez błoto i wodę.", img: "wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg" },
-] as const;
 
 function SL({ children, light = false }: { children: ReactNode; light?: boolean }) {
   return <span className={`section-label${light ? " section-label--light" : ""}`}>{children}</span>;
@@ -99,31 +94,18 @@ export function DlaKogoTemplate({
         </div>
       </section>
 
-      {/* USŁUGI CROSS-LINKS */}
-      <section className="bg-white py-16 lg:py-20">
+      {/* USŁUGI – kafelki jak w sekcji „Zakres prac” na stronie głównej */}
+      <section className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
+          <div className="mb-10 text-center sm:mb-16">
             <SL>Nasze usługi</SL>
             <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
               Co możemy <span style={{ color: "var(--hb-water)" }}>dla Ciebie zrobić?</span>
             </h2>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {USLUGI_CARDS.map((s) => (
-              <Link key={s.href} href={s.href} className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-lg" style={{ border: "1px solid #e2e8f0" }}>
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image src={imageUrl(s.img)} alt={s.title} fill className="object-cover brightness-[0.82] saturate-[0.82] transition-transform duration-700 group-hover:scale-[1.05]" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/60 to-transparent" />
-                </div>
-                <div className="flex flex-1 flex-col p-4">
-                  <h3 className="mb-1.5 text-sm font-bold text-slate-900 transition-colors group-hover:text-[#0284c7]">{s.title}</h3>
-                  <p className="flex-1 text-xs leading-relaxed text-slate-500">{s.tagline}</p>
-                  <div className="mt-3 flex items-center gap-1 text-xs font-semibold transition-colors group-hover:text-[#0284c7]" style={{ color: "var(--hb-water)" }}>
-                    Dowiedz się więcej
-                    <svg className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-                  </div>
-                </div>
-              </Link>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {USLUGI_ZAKRES_CARDS.map((item) => (
+              <UsługiZakresCard key={item.href} item={item} />
             ))}
           </div>
         </div>
