@@ -143,7 +143,7 @@ export function UsługiTemplate({
                 <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl text-xl font-black text-white shadow-md" style={{ background: "linear-gradient(135deg, var(--hb-water), #0369a1)" }}>
                   {step.n}
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 sm:text-base">{step.title}</h3>
+                <h3 className="text-xl font-bold text-slate-900 sm:text-base">{step.title}</h3>
                 <p className="text-base leading-relaxed text-slate-500 sm:text-sm">{step.body}</p>
               </div>
             ))}

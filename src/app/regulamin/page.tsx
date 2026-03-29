@@ -15,7 +15,7 @@ export default function RegulaminPage() {
         Żadnego pytania nie pozostawiamy bez odpowiedzi.
       </p>
       <p>
-        <strong>Tel:</strong> +48 504 026 045 &nbsp;|&nbsp; <strong>E-mail:</strong> kontakt@hydrobagger.pl<br />
+        <strong>Tel:</strong> +48 504 026 042 &nbsp;|&nbsp; <strong>E-mail:</strong> kontakt@hydrobagger.pl<br />
         Dane firmy: Firma Usługowo Handlowa DIUNA Leszek Białasik ul. 17 Stycznia 5/1, 64-400 Międzychód
       </p>
 
@@ -27,7 +27,7 @@ export default function RegulaminPage() {
       <p><strong>1.2.</strong> Serwis Internetowy jest prowadzony przez Leszka Białasika działającego pod firmą Firma Usługowo Handlowa DIUNA Leszek Białasik z siedzibą w Międzchodzie przy ul. 17 Stycznia 5/1, 64-400 Międzychód, NIP: 5951211839, REGON: 634229921 (dalej: Właściciel).</p>
       <p><strong>1.3.</strong> Kontakt ze Serwisem Internetowym jest możliwy:<br />
         <strong>a.</strong> pod adresem e-mail: kontakt@hydrobagger.pl<br />
-        <strong>b.</strong> pod numerem telefonu: +48 504 026 045 (call center czynne w godzinach: od 8 do 16, od poniedziałku do piątku, poza dniami ustawowo wolnymi od pracy);<br />
+        <strong>b.</strong> pod numerem telefonu: +48 504 026 042 (call center czynne w godzinach: od 8 do 16, od poniedziałku do piątku, poza dniami ustawowo wolnymi od pracy);<br />
         <strong>c.</strong> z wykorzystaniem adresu do korespondencji: Firma Usługowo Handlowa DIUNA Leszek Białasik z siedzibą w Międzchodzie przy ul. 17 Stycznia 5/1, 64-400 Międzychód;<br />
         <strong>d.</strong> za pomocą formularza kontaktowego dostępnego w Serwisie Internetowym.
       </p>
@@ -111,8 +111,8 @@ export default function RegulaminPage() {
 
       <h3>6. OCHRONA DANYCH OSOBOWYCH</h3>
       <p>Sprawdź, jak dbamy o Twoje dane osobowe.</p>
-      <p><strong>6.1.</strong> Zasady ochrony danych osobowych określa dokument „Polityka Prywatności".</p>
-      <p><strong>6.2.</strong> Zasady stosowania plików cookies na Stronie Internetowej określa dokument „Polityka Cookies".</p>
+      <p><strong>6.1.</strong> Zasady ochrony danych osobowych określa dokument <a href="/polityka-prywatnosci">„Polityka Prywatności"</a>.</p>
+      <p><strong>6.2.</strong> Zasady stosowania plików cookies na Stronie Internetowej określa dokument <a href="/polityka-cookies">„Polityka Cookies"</a>.</p>
 
       <h3>7. POSTANOWIENIA KOŃCOWE</h3>
       <p><strong>7.1.</strong> Regulamin w wersji 1.0. wchodzi w życie z dniem 11.07.2025 r.</p>

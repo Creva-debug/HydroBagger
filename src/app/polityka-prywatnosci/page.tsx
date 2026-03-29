@@ -37,6 +37,7 @@ export default function PolitykaPrywatnosciPage() {
       <p>6. Podanie danych osobowych przez Użytkownika jest dobrowolne, lecz niezbędne w celu skorzystania z określonych funkcjonalności Serwisu Internetowego (np. formularzy kontaktowych).</p>
 
       <p><strong>8. Cele i podstawy prawne przetwarzania danych osobowych:</strong></p>
+      <div className="table-wrap">
       <table>
         <thead>
           <tr>
@@ -78,6 +79,7 @@ export default function PolitykaPrywatnosciPage() {
           </tr>
         </tbody>
       </table>
+      </div>
 
       <p>10. <strong>Kontakt e-mailowy, formularz kontaktowy.</strong> Kontaktując się z nami za pośrednictwem poczty elektronicznej, przekazujesz nam swój adres e-mail jako adres nadawcy wiadomości. Kontaktując się za pośrednictwem formularza konsultacyjnego przekazujesz nam swój adres e-mail, numer telefonu oraz treść wiadomości (w tym opis projektu). W formularzu dotyczącym m.in. aplikacji o pracę możesz dodatkowo podać imię i nazwisko. Podanie danych jest dobrowolne, ale niezbędne, by nawiązać z nami kontakt w wybranym celu.</p>
       <p>Twoje dane są w tym przypadku przetwarzane w celu kontaktu z Tobą, a podstawą przetwarzania jest art. 6 ust. 1 lit. a RODO (Twoja zgoda). Treść korespondencji może podlegać archiwizacji przez okres nie dłuższy niż 5 lat.</p>
@@ -94,10 +96,11 @@ export default function PolitykaPrywatnosciPage() {
         b) partnerom Administratora – dostawcom usług hostingu, oprogramowania, wsparcia marketingowego, usług prawnych i doradczych oraz księgowości;<br />
         c) podmiotom, z którymi współpracujemy – wyłącznie w postaci w pełni zanonimizowanej.
       </p>
-      <p>3. W ramach działalności marketingowej Administrator korzysta z usług podmiotów trzecich stosujących pliki cookies, piksele lub funkcjonalności zbliżone do cookies. Katalog tych podmiotów wskazany jest w Polityce Cookies.</p>
+      <p>3. W ramach działalności marketingowej Administrator korzysta z usług podmiotów trzecich stosujących pliki cookies, piksele lub funkcjonalności zbliżone do cookies. Katalog tych podmiotów wskazany jest w <a href="/polityka-cookies">Polityce Cookies</a>.</p>
 
       <h2>§ 6 ARCHIWIZACJA DANYCH OSOBOWYCH</h2>
       <p>1. Administrator będzie przechowywać dane osobowe Użytkowników tak długo, jak jest to niezbędne dla celów określonych w niniejszej Polityce prywatności i/lub w celu spełnienia ciążących na Administratorze obowiązków wynikających z przepisów prawa.</p>
+      <div className="table-wrap">
       <table>
         <thead>
           <tr>
@@ -128,6 +131,7 @@ export default function PolitykaPrywatnosciPage() {
           </tr>
         </tbody>
       </table>
+      </div>
       <p>3. W każdym przypadku dane osobowe będą przechowywane również wtedy, gdy przepisy prawa zobowiązują Administratora do ich przetwarzania lub gdy zachodzi potrzeba dochodzenia roszczeń. W zależności od zakresu danych i celów ich przetwarzania mogą być one przechowywane przez różny okres – w każdym przypadku decyduje dłuższy termin.</p>
 
       <h2>§ 7 UPRAWNIENIA, UZYSKIWANIE DOSTĘPU I AKTUALIZACJA DANYCH OSOBOWYCH</h2>
@@ -143,7 +147,7 @@ export default function PolitykaPrywatnosciPage() {
       <h2>§ 8 PRZETWARZANIE DANYCH OSOBOWYCH W SPOSÓB ZAUTOMATYZOWANY, POLITYKA COOKIES</h2>
       <p>1. Nasz Serwis Internetowy, podobnie jak niemal wszystkie inne strony internetowe, wykorzystuje pliki cookies, czyli ciasteczka. Polityka cookies dotyczy każdej osoby, która przegląda zasoby Serwisu Internetowego.</p>
       <p>2. Polityka cookies stanowi dokument będący integralną część niniejszej Polityki prywatności.</p>
-      <p>3. Wybrane pliki cookies przetwarzają Państwa dane osobowe. Przetwarzanie danych osobowych z plików cookies odbywa się w celach zapewnienia funkcjonowania Strony, dostosowania do preferencji Użytkownika i celach analitycznych. Podstawą prawną przetwarzania w celach reklamowych jest Państwa zgoda wyrażona podczas akceptacji cookies.</p>
+      <p>3. Wybrane pliki cookies przetwarzają Państwa dane osobowe. Przetwarzanie danych osobowych z plików cookies odbywa się w celach zapewnienia funkcjonowania Strony, dostosowania do preferencji Użytkownika i celach analitycznych. Podstawą prawną przetwarzania w celach reklamowych jest Państwa zgoda wyrażona podczas akceptacji cookies. Szczegółowe informacje zawiera <a href="/polityka-cookies">Polityka Cookies</a>.</p>
       <p>4. Strona Internetowa korzysta z profilowania. Dzięki cookies możliwe jest zapoznawanie się przez Administratora z preferencjami Użytkownika – np. poprzez analizę tego jak często odwiedza Stronę Internetową lub jakie treści przegląda. Analiza zachowań w Internecie pomaga lepiej zrozumieć zwyczaje i oczekiwania Użytkowników.</p>
 
       <h2>§ 9 ZMIANY POLITYKI PRYWATNOŚCI</h2>

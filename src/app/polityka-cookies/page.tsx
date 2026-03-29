@@ -20,7 +20,7 @@ export default function CiasteczkaCookiesPage() {
         <li>w jaki sposób i do jakich celów wykorzystujemy dane,</li>
         <li>przez jaki czas przechowujemy informacje zawarte w cookies.</li>
       </ul>
-      <p>Polityka cookies Serwisu Internetowego www.hydrobagger.pl nie stanowi źródła obowiązków dla Użytkownika. Ma ona charakter wyłącznie informacyjny, nie jest umową ani regulaminem. We wszelkich kwestiach nieuregulowanych Polityką Cookies, znajduje zastosowanie Polityka Prywatności i/lub Regulamin Serwisu Internetowego.</p>
+      <p>Polityka cookies Serwisu Internetowego www.hydrobagger.pl nie stanowi źródła obowiązków dla Użytkownika. Ma ona charakter wyłącznie informacyjny, nie jest umową ani regulaminem. We wszelkich kwestiach nieuregulowanych Polityką Cookies, znajduje zastosowanie <a href="/polityka-prywatnosci">Polityka Prywatności</a> i/lub <a href="/regulamin">Regulamin Serwisu Internetowego</a>.</p>
       <p><strong>Dane kontaktowe:</strong> Leszek Białasik działający pod firmą Firma Usługowo Handlowa DIUNA Leszek Białasik z siedzibą w Międzychodzie przy ul. 17 Stycznia 5/1, 64-400 Międzychód, NIP: 5951211839, REGON: 634229921, adres mailowy: kontakt@hydrobagger.pl.</p>
 
       <h3>1. Czy nasza Strona Internetowa korzysta z cookies?</h3>
