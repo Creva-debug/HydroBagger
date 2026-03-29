@@ -137,7 +137,7 @@ export default function DlaKogoPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {KATEGORIE.map((kat) => (
               <Link key={kat.href} href={kat.href} className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl" style={{ border: "1px solid #e2e8f0" }}>
-                <div className="flex items-center justify-center bg-slate-200 py-10 transition-colors duration-300 group-hover:bg-[#bfdbfe]">
+                <div className="flex items-center justify-center py-10 transition-colors duration-300" style={{ background: "#0f172a" }}>
                   <span className="transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(2,132,199,0.35)]">
                     {kat.icon}
                   </span>
