@@ -36,7 +36,7 @@ const KATEGORIE = [
     href: "/sprzet/kosiarki-samobiezne",
     title: "Kosiarki samobieżne",
     desc: "Wszechstronne maszyny do koszenia i mulczowania na groblach, łąkach, poboczach i terenach podmokłych.",
-    img: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg",
+    img: "kosiarka-samobiezna-koszenie-zarosnietych-rowow-terenie.jpg",
     badge: "Trudny teren",
   },
   {
@@ -50,7 +50,7 @@ const KATEGORIE = [
     href: "/sprzet/koparki-gasienicowe",
     title: "Koparki gąsienicowe",
     desc: "Ciężki sprzęt do robót ziemnych w trudnych warunkach – wykopy, przygotowanie terenu i prace liniowe na miękkim gruncie.",
-    img: "koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg",
+    img: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg",
     badge: "Do 1200mm gąsienice",
   },
 ] as const;
