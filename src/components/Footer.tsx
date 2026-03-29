@@ -77,8 +77,8 @@ function TrackEdge() {
 export function Footer() {
   return (
     <footer className="mt-auto bg-slate-50">
-      {/* -mt-px: minimalna nakładka – ukrywa subpikselową szczelinę; -mt-3 na mobile dawało widoczną linię łączenia */}
-      <div className="footer-contact-gradient relative z-[1] -mt-px">
+      {/* Mobile: bez ujemnego marginesu (unika „prześwietlenia” niebieskiego tła nad slate-50); sm+: -mt-px jak wcześniej */}
+      <div className="footer-contact-gradient relative z-[1] mt-0 sm:-mt-px">
       <section
         className="relative overflow-hidden bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >

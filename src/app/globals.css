@@ -262,9 +262,12 @@ body {
 .legal-content td { padding: 0.625rem 0.75rem; border: 1px solid #e2e8f0; color: #475569; vertical-align: top; }
 .legal-content tr:nth-child(even) td { background: #f8fafc; }
 
-/* Stopka kontakt – jeden gradient; przejście u góry robi SVG fali (bez drugiej warstwy białej na mobile, żeby nie „prażyło” przez szczeliny przy fali). */
+/* Stopka kontakt: cienki pas #f8fafc (jak bg-slate-50) nad gradientem – maskuje subpikselową kreskę na styku z sekcją nad stopką (mobile). */
 .footer-contact-gradient {
-  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 38%, #0369a1 72%, #0c4a6e 100%);
+  background-image: linear-gradient(#f8fafc, #f8fafc), linear-gradient(135deg, #38bdf8 0%, #0284c7 38%, #0369a1 72%, #0c4a6e 100%);
+  background-size: 100% 8px, 100% 100%;
+  background-repeat: no-repeat;
+  background-position: top left, top left;
 }
 
 /* Unos kart (referencje, opinie) + delikatny wariant (kafelki na /darmowa-konsultacja) – w @layer utilities,
