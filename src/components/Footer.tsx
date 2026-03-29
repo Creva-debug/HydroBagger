@@ -84,10 +84,10 @@ export function Footer() {
           aria-hidden
         />
       <section
-        className="relative overflow-x-visible bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
+        className="relative z-[10] overflow-x-visible bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
-        {/* Full-bleed: 100% + overflow-x na sekcji obcinało prawy górny róg fali w WebKit (subpiksele). */}
-        <div className="pointer-events-none absolute left-1/2 top-0 z-20 h-[64px] w-screen max-w-none -translate-x-1/2 leading-none sm:h-[72px]">
+        {/* Bez w-screen: 100vw > szerokość layoutu przy overflow-x na body → obcięcie fali po prawej. */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[64px] w-full min-w-0 leading-none sm:h-[72px]">
           <svg
             viewBox="0 0 1440 72"
             preserveAspectRatio="none"
