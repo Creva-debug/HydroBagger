@@ -121,38 +121,35 @@ export default function DlaKogoPage() {
       </section>
 
       {/* KATEGORIE GRID */}
-      <section className="py-16 lg:py-24" style={{ background: "linear-gradient(135deg, #071e32, #0a2744)" }}>
+      <section className="bg-slate-50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-14 text-center">
-            <SL light>Grupy klientów</SL>
-            <h2 className="display-heading mt-4 text-white" style={{ fontSize: "clamp(2rem,3.8vw,3rem)" }}>
-              6 grup <span style={{ color: "#38bdf8" }}>klientów</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-base text-slate-300">
-              Każda grupa ma inne potrzeby – dlatego podchodzimy do każdego zlecenia indywidualnie.
+          <div className="mb-14 grid gap-6 lg:grid-cols-[1fr,2fr] lg:items-end">
+            <div>
+              <SL>Grupy klientów</SL>
+              <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2rem,3.8vw,3rem)" }}>
+                6 grup <span style={{ color: "var(--hb-water)" }}>klientów</span>
+              </h2>
+            </div>
+            <p className="text-lg leading-relaxed text-slate-600 lg:pb-1">
+              Każda grupa ma inne potrzeby – dlatego podchodzimy do każdego zlecenia indywidualnie. Sprawdź, jakie rozwiązania przygotowaliśmy dla Ciebie.
             </p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {KATEGORIE.map((kat, i) => (
-              <Link
-                key={kat.href}
-                href={kat.href}
-                className="group relative flex flex-col rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(2,132,199,0.18)]"
-                style={{ background: "#0f172a", border: "1px solid rgba(255,255,255,.1)" }}
-              >
-                <span className="pointer-events-none absolute inset-y-0 left-0 w-[3px] rounded-l-2xl bg-[#0284c7] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <span className="display-heading absolute right-6 top-6 text-6xl font-black transition-all duration-300 group-hover:text-[#38bdf8]/10" style={{ color: "rgba(255,255,255,.03)" }}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.6)] w-fit">
-                  {kat.icon}
-                </span>
-                <h3 className="mb-3 text-lg font-bold text-white transition-colors duration-300 group-hover:text-[#38bdf8]">{kat.title}</h3>
-                <p className="mb-6 flex-1 text-sm leading-relaxed text-white/75 transition-colors duration-300 group-hover:text-white/95">{kat.desc}</p>
-                <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#38bdf8]">
-                  Sprawdź szczegóły
-                  <svg className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-                </span>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {KATEGORIE.map((kat) => (
+              <Link key={kat.href} href={kat.href} className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl" style={{ border: "1px solid #e2e8f0" }}>
+                <div className="flex items-center justify-center bg-slate-50 py-10 transition-colors duration-300 group-hover:bg-[#f0f9ff]">
+                  <span className="transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(2,132,199,0.25)]">
+                    {kat.icon}
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="mb-2 text-lg font-bold text-slate-900 transition-colors group-hover:text-[#0284c7]">{kat.title}</h3>
+                  <p className="flex-1 text-sm leading-relaxed text-slate-500">{kat.desc}</p>
+                  <div className="mt-5 flex items-center gap-1.5 text-sm font-semibold transition-colors group-hover:text-[#0284c7]" style={{ color: "var(--hb-water)" }}>
+                    Sprawdź szczegóły
+                    <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                  </div>
+                </div>
               </Link>
             ))}
           </div>
