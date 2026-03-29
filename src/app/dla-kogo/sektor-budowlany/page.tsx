@@ -10,7 +10,7 @@ export default function SektorBudowlanyPage() {
   return (
     <DlaKogoTemplate
       breadcrumbLabel="Sektor budowlany"
-      heroImage="koparka-plywajaca-kopanie-torfowisko01.jpg"
+      heroImage="remu-big-float-e15-bokiem.jpg"
       heroAccent="Sektora Budowlanego"
       heroLead="Wspieramy wykonawców robót budowlanych w realizacji zadań ziemnych i hydrotechnicznych w trudnym terenie – na torfowiskach, rozlewiskach, gruntach podmokłych i w wodzie."
       heroDetails={["Działamy jako podwykonawcy lub partnerzy techniczni – z własnym sprzętem i doświadczonym zespołem. Pracujemy sprawnie, precyzyjnie i zgodnie z harmonogramem inwestycji."]}

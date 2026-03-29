@@ -10,7 +10,7 @@ export default function RolnicyHodowcyRybPage() {
   return (
     <DlaKogoTemplate
       breadcrumbLabel="Rolnicy i hodowcy ryb"
-      heroImage="koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg"
+      heroImage="kosiarka-mulczujaca-na-ciagniku-boczny-ramie.jpg"
       heroAccent="Rolników i Hodowców Ryb"
       heroLead="Realizujemy prace ziemno-wodne dla rolników i hodowców ryb: utrzymanie, rozbudowa i modernizacja systemów melioracyjnych oraz zbiorników retencyjnych."
       heroDetails={["Znamy ograniczenia sprzętowe i warunki w trudnym terenie: podmokłym, bagnistym, niedostępnym. Łączymy specjalistyczny sprzęt i doświadczenie, by skutecznie chronić infrastrukturę rolną."]}

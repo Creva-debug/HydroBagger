@@ -10,7 +10,7 @@ export default function ObiektyTurystycznePage() {
   return (
     <DlaKogoTemplate
       breadcrumbLabel="Obiekty turystyczne"
-      heroImage="koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg"
+      heroImage="koparka-plywajaca-remu-big-float-e2200-na-brzegu-zbiornika.jpg"
       heroAccent="Obiektów Turystycznych"
       heroLead="Prace hydrotechniczne dla hoteli, spa i ośrodków wypoczynkowych. Pomagamy w utrzymaniu i modernizacji stawów, jezior oraz linii brzegowej."
       heroDetails={["Wiemy, że liczy się estetyka, czas i spokój gości. Dlatego działamy bezpiecznie, szybko i bez zakłócania pracy obiektu – nawet w wodzie i błocie."]}

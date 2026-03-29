@@ -10,7 +10,7 @@ export default function JednostkiAdministracyjnePage() {
   return (
     <DlaKogoTemplate
       breadcrumbLabel="Jednostki administracyjne"
-      heroImage="koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg"
+      heroImage="truxor-realizacja-01.jpg"
       heroAccent="Jednostek Administracyjnych"
       heroLead="Oferujemy usługi hydrotechniczne dla miast, gmin, starostw i innych jednostek samorządowych – w zakresie retencji, gospodarowania wodą i ochrony środowiska."
       heroDetails={["Działamy zgodnie z dokumentacją, rozumiemy zasady zamówień publicznych i formalne procedury. Nasz sprzęt działa skutecznie nawet w trudnym, zalanym czy podmokłym terenie."]}

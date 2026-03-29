@@ -10,7 +10,7 @@ export default function OchronaSrodowiskaPage() {
   return (
     <DlaKogoTemplate
       breadcrumbLabel="Ochrona środowiska"
-      heroImage="koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg"
+      heroImage="koparka-bagna-wycinka-drzew.jpg"
       heroAccent="Ochrony Środowiska"
       heroLead="Realizujemy prace hydrotechniczne na potrzeby ochrony środowiska – w ramach renaturyzacji, retencji i przywracania bioróżnorodności."
       heroDetails={["Działamy przy zbiornikach, mokradłach i ciekach wodnych, zgodnie z dokumentacją środowiskową oraz we współpracy z RDOŚ, parkami krajobrazowymi i NGO."]}

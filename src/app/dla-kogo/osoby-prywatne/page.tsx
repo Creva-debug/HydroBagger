@@ -10,7 +10,7 @@ export default function OsobyPrywatnaPage() {
   return (
     <DlaKogoTemplate
       breadcrumbLabel="Osoby prywatne"
-      heroImage="koparka-plywajaca-kopanie-torfowisko01.jpg"
+      heroImage="koparka-plywajaca-eik-am70-praca-w-roslinnosci-wodnej.jpg"
       heroAccent="Osób Prywatnych"
       heroLead="Realizujemy prace ziemno-wodne dla właścicieli działek, posesji i ogrodów. Budujemy oczka wodne, pogłębiamy stawy, czyścimy linie brzegowe i odmulamy zbiorniki."
       heroDetails={["Pracujemy precyzyjnie, bezpiecznie i z poszanowaniem otoczenia – zostawiając porządek i efekt, który cieszy oko. Dojeżdżamy tam, gdzie inni się wycofują."]}
