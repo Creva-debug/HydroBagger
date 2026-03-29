@@ -35,8 +35,9 @@ export default function KoszenieIMulczowaniePage() {
         { n: "04", title: "Wywóz i sprzątanie", body: "Zbieramy skoszoną roślinność i wywozimy poza teren prac. Zostawiamy czysty brzeg, zbiornik i teren." },
       ]}
       gallery={[
-        { src: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg", alt: "Kosiarka pływająca – koszenie trzcin i roślinności wodnej" },
-        { src: "koparka-plywajaca-kopanie-torfowisko01.jpg", alt: "Prace w terenie podmokłym przy zbiorniku" },
+        { src: "truxor-realizacja-05.jpg", alt: "Realizacja koszenia i prac przybrzeżnych – Truxor" },
+        { src: "kosiarka-lesna-bcs-630-ws.jpg", alt: "Kosiarka leśna BCS 630 WS" },
+        { src: "kosiarka-ecotech-k34-predator.jpg", alt: "Kosiarka Ecotech K34 Predator" },
       ]}
       currentSlug="koszenie-i-mulczowanie-roslinnosci"
     />

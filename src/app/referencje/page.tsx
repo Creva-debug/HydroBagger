@@ -52,19 +52,8 @@ const REFERENCJE = [
   },
 ] as const;
 
-const KROTKIE_OPINIE = [
-  {
-    quote: "Prace wykonane przez HydroBagger w naszym obiekcie przebiegły sprawnie i profesjonalnie.",
-    author: "Damian Rapacki",
-    role: "Kierownik Projektu",
-    company: "Budimex S.A.",
-    initials: "DR",
-  },
-] as const;
-
 const STATS = [
   { n: "100+", label: "zrealizowanych projektów" },
-  { n: "3+", label: "pisemne referencje" },
   { n: "6+", label: "rodzajów sprzętu" },
 ] as const;
 
@@ -122,16 +111,15 @@ export default function ReferencjePage() {
       <section className="bg-slate-50 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-10">
-            {REFERENCJE.map((ref) => (
+            {REFERENCJE.map((ref, index) => (
               <article
                 key={ref.id}
                 className="overflow-hidden rounded-3xl bg-white shadow-sm"
                 style={{ border: "1px solid #e2e8f0" }}
               >
-                <div className="grid lg:grid-cols-[1fr,260px]">
-                  {/* Treść cytatu */}
+                {/* Treść po lewej, logo po prawej (na mobile: treść, potem logo na dole) */}
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px]">
                   <div className="flex flex-col justify-between p-8 sm:p-10 lg:p-12">
-                    {/* Tag kategorii */}
                     <div className="mb-6">
                       <span
                         className="rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider"
@@ -141,7 +129,6 @@ export default function ReferencjePage() {
                       </span>
                     </div>
 
-                    {/* Cudzysłów dekoracyjny */}
                     <p
                       className="display-heading mb-3 font-black select-none"
                       style={{ fontSize: "4.5rem", color: "rgba(2,132,199,0.12)", lineHeight: 1 }}
@@ -150,14 +137,16 @@ export default function ReferencjePage() {
                       &ldquo;
                     </p>
 
-                    {/* Cytat */}
                     <blockquote className="-mt-4 flex-1">
-                      <p className="text-base italic leading-relaxed text-slate-700 sm:text-[1.05rem]">
+                      <p
+                        className={`text-base italic leading-relaxed text-slate-700 sm:text-[1.05rem] ${
+                          index === 0 ? "columns-1 md:columns-2 md:[column-gap:2rem]" : ""
+                        }`}
+                      >
                         {ref.quote}
                       </p>
                     </blockquote>
 
-                    {/* Autor + opcjonalny PDF */}
                     <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                       <footer className="flex items-center gap-4">
                         <div
@@ -191,18 +180,17 @@ export default function ReferencjePage() {
                     </div>
                   </div>
 
-                  {/* Logo – kwadratowa kolumna po prawej */}
                   <div
-                    className="hidden items-center justify-center border-l border-slate-100 lg:flex"
+                    className="flex min-h-[200px] items-center justify-center border-t border-slate-100 p-8 lg:min-h-0 lg:border-l lg:border-t-0 lg:p-6"
                     style={{ backgroundColor: ref.logoBg }}
                   >
-                    <div className="relative aspect-square w-full max-w-[260px]">
+                    <div className="relative aspect-square w-full max-w-[220px] lg:max-w-[260px]">
                       <Image
                         src={imageUrl(ref.logo)}
                         alt={ref.company}
                         fill
-                        className="object-contain p-10"
-                        sizes="260px"
+                        className="object-contain p-6 lg:p-10"
+                        sizes="(max-width:1024px) 220px, 260px"
                       />
                     </div>
                   </div>
@@ -214,58 +202,7 @@ export default function ReferencjePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════
-          3. KRÓTKIE OPINIE
-      ══════════════════════════════════════════════════ */}
-      <section className="bg-white py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <SL>Inne opinie</SL>
-            <h2
-              className="display-heading mt-4 text-slate-900"
-              style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}
-            >
-              Co jeszcze{" "}
-              <span style={{ color: "var(--hb-water)" }}>mówią klienci?</span>
-            </h2>
-          </div>
-
-          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-1">
-            {KROTKIE_OPINIE.map((op) => (
-              <blockquote
-                key={op.author}
-                className="card-lift flex flex-col rounded-2xl p-8"
-                style={{
-                  background: "linear-gradient(135deg, #0f172a, var(--hb-water))",
-                  border: "1px solid transparent",
-                }}
-              >
-                <div
-                  className="mb-4 text-5xl font-black leading-none"
-                  style={{ color: "rgba(56,189,248,0.35)", lineHeight: 1 }}
-                >
-                  &ldquo;
-                </div>
-                <p className="flex-1 text-[1rem] italic leading-relaxed text-white/90">
-                  {op.quote}
-                </p>
-                <footer className="mt-6 flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-black text-white" style={{ background: "rgba(255,255,255,0.15)" }}>
-                    {op.initials}
-                  </div>
-                  <cite className="not-italic">
-                    <span className="block text-sm font-bold text-white">{op.author}</span>
-                    <span className="block text-xs text-white/60">{op.role}</span>
-                    <span className="block text-xs font-semibold" style={{ color: "#7dd3fc" }}>{op.company}</span>
-                  </cite>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-          4. CTA
+          3. CTA
       ══════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-24" style={{ background: "var(--hb-navy)" }}>
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
@@ -303,12 +240,12 @@ export default function ReferencjePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════
-          5. MARKI
+          4. MARKI
       ══════════════════════════════════════════════════ */}
       <BrandsMarquee />
 
       {/* ══════════════════════════════════════════════════
-          6. KONTAKT
+          5. KONTAKT
       ══════════════════════════════════════════════════ */}
       <ContactConsultationSection />
     </>

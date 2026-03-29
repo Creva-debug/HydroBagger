@@ -111,7 +111,13 @@ export function UsługiTemplate({
             <div className={`grid gap-4 ${gallCols}`}>
               {gallery.map((img) => (
                 <div key={img.src} className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-                  <Image src={imageUrl(img.src)} alt={img.alt} fill className="object-cover brightness-[0.88] saturate-[0.85] transition-transform duration-500 hover:scale-[1.04]" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw" />
+                  <Image
+                    src={imageUrl(img.src)}
+                    alt={img.alt}
+                    fill
+                    className="object-cover brightness-[1.02] contrast-[1.04] saturate-[1.06] transition-transform duration-500 ease-in-out hover:scale-[1.04]"
+                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+                  />
                 </div>
               ))}
             </div>

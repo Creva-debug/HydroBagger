@@ -53,8 +53,9 @@ export default function WozidlaBudowlanePage() {
         ],
       }}
       gallery={[
-        { src: "wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg", alt: "Wozidło gąsienicowe w terenie podmokłym" },
-        { src: "koparka-plywajaca-kopanie-torfowisko01.jpg", alt: "Transport materiałów na trudnym terenie" },
+        { src: "wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg", alt: "Wozidło gąsienicowe – transport w trudnym terenie" },
+        { src: "wozidlo-budowlane-hydrema-912c.jpg", alt: "Wozidło budowlane Hydrema 912C" },
+        { src: "wozidla-budowlane-hydrobagger-transport-gruntu-terenie.jpg", alt: "Wozidła budowlane HydroBagger – transport gruntu" },
       ]}
     />
   );

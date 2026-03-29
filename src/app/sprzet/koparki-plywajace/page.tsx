@@ -91,17 +91,25 @@ export default function KoparkiPlywajacePage() {
         title: "Poznaj nasze koparki pływające",
         cols: 4,
         items: [
-          { name: "Koparka pływająca REMU BIG FLOAT E2200", image: "koparka-plywajaca-kopanie-torfowisko01.jpg", specs: [{ label: "Waga", value: "33 000 kg" }, { label: "Zasięg ramienia", value: "16,0 m" }, { label: "Głębokość kopania", value: "13,0 m" }] },
-          { name: "Koparka pływająca REMU BIG FLOAT E15", image: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg", specs: [{ label: "Waga", value: "25 000 kg" }, { label: "Zasięg ramienia", value: "13,0 m" }, { label: "Głębokość kopania", value: "10,0 m" }] },
-          { name: "Koparka pływająca EIK AM70", image: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg", specs: [{ label: "Waga", value: "11 000 kg" }, { label: "Zasięg ramienia", value: "6,5 m" }, { label: "Głębokość kopania", value: "4,0 m" }] },
-          { name: "Koparka pływająca Waterking WK20", image: "koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg", specs: [{ label: "Waga", value: "4 100 kg" }, { label: "Zasięg ramienia", value: "5,5 m" }, { label: "Głębokość kopania", value: "3,0 m" }] },
+          { name: "Koparka pływająca REMU BIG FLOAT E2200", image: "koparka-plywajaca-remu-big-float-e2200-na-brzegu-zbiornika.jpg", specs: [{ label: "Waga", value: "33 000 kg" }, { label: "Zasięg ramienia", value: "16,0 m" }, { label: "Głębokość kopania", value: "13,0 m" }] },
+          { name: "Koparka pływająca REMU BIG FLOAT E15", image: "koparka-plywajaca-remu-big-float-e15-w-zalanym-lesie.jpg", specs: [{ label: "Waga", value: "25 000 kg" }, { label: "Zasięg ramienia", value: "13,0 m" }, { label: "Głębokość kopania", value: "10,0 m" }] },
+          { name: "Koparka pływająca EIK AM70", image: "koparka-plywajaca-eik-am70-praca-w-roslinnosci-wodnej.jpg", specs: [{ label: "Waga", value: "11 000 kg" }, { label: "Zasięg ramienia", value: "6,5 m" }, { label: "Głębokość kopania", value: "4,0 m" }] },
+          { name: "Koparka pływająca Waterking WK20", image: "koparka-plywajaca-waterking-wk20-czyszczenie-rowu.jpg", specs: [{ label: "Waga", value: "4 100 kg" }, { label: "Zasięg ramienia", value: "5,5 m" }, { label: "Głębokość kopania", value: "3,0 m" }] },
         ],
       }}
       gallery={[
-        { src: "koparka-plywajaca-kopanie-torfowisko01.jpg", alt: "Koparka pływająca REMU w pracy na torfowisku" },
-        { src: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg", alt: "Koparka pływająca odmulanie terenu podmokłego" },
-        { src: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg", alt: "Koparka pływająca z pompą refulacyjną" },
-        { src: "koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg", alt: "Zestaw refulacyjny HydroBagger" },
+        { src: "transport-koparka-plywajaca-remu-2200.jpg", alt: "Transport koparki pływającej REMU 2200" },
+        { src: "koparka-plywajaca-remu-2200-pod-mostem.jpg", alt: "Koparka pływająca REMU 2200 – prace pod mostem" },
+        { src: "koparka-plywajaca-wk20-czyszczenie-rowu.jpg", alt: "Koparka Waterking WK20 – czyszczenie rowu" },
+        { src: "koparka-plywajaca-wk20-mulczowanie-brzegu.jpg", alt: "Koparka WK20 – mulczowanie brzegu" },
+        { src: "realizacja-koparka-plywajaca-prace-w-terenie-zalewowym.jpg", alt: "Koparka pływająca – prace w terenie zalewowym" },
+        { src: "remu-big-float-e15-bokiem.jpg", alt: "REMU Big Float E15 – widok z boku" },
+        { src: "remu-big-float-e15-bloto.jpg", alt: "REMU Big Float E15 w błocie" },
+        { src: "remu-big-float-e15-front.jpg", alt: "REMU Big Float E15 – przód maszyny" },
+        { src: "koparka-plywajaca-w-trzcinie.jpg", alt: "Koparka pływająca w trzcinie" },
+        { src: "koparka-bagna-wycinka-drzew.jpg", alt: "Koparka na bagnie – wycinka zatorów" },
+        { src: "koparka-plywajaca-zestaw-refulacyjny-na-wodzie-1.jpg", alt: "Zestaw refulacyjny koparki na wodzie" },
+        { src: "koparka-plywajaca-refulacja-zbiornik-wodny-gora.jpg", alt: "Refulacja zbiornika wodnego – ujęcie z góry" },
       ]}
     />
   );

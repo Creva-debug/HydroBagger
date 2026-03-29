@@ -53,8 +53,13 @@ export default function KosiarkiSamobieznePage() {
         ],
       }}
       gallery={[
-        { src: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg", alt: "Praca na terenie podmokłym" },
-        { src: "koparka-plywajaca-kopanie-torfowisko01.jpg", alt: "Koszenie w terenie trudno dostępnym" },
+        { src: "kosiarka-lesna-bcs-630-ws.jpg", alt: "Kosiarka leśna BCS 630 WS" },
+        { src: "kosiarka-ecotech-k34-predator.jpg", alt: "Kosiarka Ecotech K34 Predator" },
+        { src: "kosiarka-herder-massey-ferguson.jpg", alt: "Kosiarka Herder na ciągniku Massey Ferguson" },
+        { src: "kosiarka-samobiezna-irus-deltrak-20.jpg", alt: "Kosiarka samobieżna Irus Deltrak 20" },
+        { src: "kosiarka-lesna-bcs-630-ws-transport-1.jpg", alt: "Transport kosiarki leśnej BCS 630 WS" },
+        { src: "kosiarka-mulczujaca-na-ciagniku-boczny-ramie.jpg", alt: "Kosiarka mulczująca na ciągniku – ramię boczne" },
+        { src: "kosiarka-samobiezna-koszenie-zarosnietych-rowow-terenie.jpg", alt: "Kosiarka samobieżna – koszenie zarośniętych rowów" },
       ]}
     />
   );

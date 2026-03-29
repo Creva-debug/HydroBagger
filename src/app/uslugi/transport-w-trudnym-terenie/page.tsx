@@ -32,7 +32,7 @@ export default function TransportWTrudnymTereniePage() {
       ]}
       gallery={[
         { src: "wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg", alt: "Wozidło gąsienicowe na terenie podmokłym" },
-        { src: "koparka-plywajaca-kopanie-torfowisko01.jpg", alt: "Transport w trudno dostępnym terenie" },
+        { src: "wozidlo-budowlane-hydrema-912c.jpg", alt: "Wozidło budowlane Hydrema 912C w trudnym terenie" },
       ]}
       currentSlug="transport-w-trudnym-terenie"
     />

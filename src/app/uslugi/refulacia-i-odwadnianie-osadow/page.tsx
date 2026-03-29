@@ -31,7 +31,7 @@ export default function RefulacjaIOdwadnianiePage() {
         { n: "04", title: "Odwadnianie urobku", body: "Osad trafia do mobilnych stacji odwadniających lub geotub. Odwodniony materiał jest gotowy do wywozu." },
       ]}
       gallery={[
-        { src: "koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg", alt: "Pompa refulacyjna DRAGFLOW przy pracy na zbiorniku" },
+        { src: "koparka-plywajaca-zestaw-refulacyjny-na-wodzie-1.jpg", alt: "Zestaw refulacyjny koparki pływającej na wodzie" },
         { src: "koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg", alt: "Zestaw refulacyjny HydroBagger w akcji" },
       ]}
       currentSlug="refulacia-i-odwadnianie-osadow"

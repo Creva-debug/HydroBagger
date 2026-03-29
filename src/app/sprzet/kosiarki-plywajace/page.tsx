@@ -92,8 +92,8 @@ export default function KosiarkiPlywajacePage() {
         cols: 2,
         items: [
           {
-            name: "Kosiarka pływająca TRUXOR DM5045",
-            image: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg",
+            name: "Kosiarka pływająca H5-200 Aquatic Weed",
+            image: "h5-200-aquatic-weed-kosiarka-plywajaca.jpg",
             specs: [
               { label: "Waga", value: "1 400 kg" },
               { label: "Zasięg pracy", value: "do 2,4 m" },
@@ -101,8 +101,8 @@ export default function KosiarkiPlywajacePage() {
             ],
           },
           {
-            name: "Kosiarka pływająca TRUXOR DM5065",
-            image: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg",
+            name: "Kosiarka pływająca Truxor T40 Amphibia",
+            image: "truxor-t40-amfibia-kosiarka-plywajaca.jpg",
             specs: [
               { label: "Waga", value: "2 500 kg" },
               { label: "Zasięg koszenia", value: "1,7 m" },
@@ -112,8 +112,15 @@ export default function KosiarkiPlywajacePage() {
         ],
       }}
       gallery={[
-        { src: "koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg", alt: "Kosiarka pływająca w akcji – koszenie trzcin" },
-        { src: "koparka-plywajaca-kopanie-torfowisko01.jpg", alt: "Prace na zbiorniku wodnym" },
+        { src: "truxor-realizacja-09.jpg", alt: "Kosiarka pływająca Truxor – realizacja" },
+        { src: "truxor-realizacja-08.jpg", alt: "Kosiarka pływająca Truxor – realizacja" },
+        { src: "truxor-realizacja-07.jpg", alt: "Kosiarka pływająca Truxor – realizacja" },
+        { src: "truxor-realizacja-06.jpg", alt: "Kosiarka pływająca Truxor – realizacja" },
+        { src: "truxor-realizacja-05.jpg", alt: "Kosiarka pływająca Truxor – realizacja" },
+        { src: "truxor-realizacja-04.jpg", alt: "Kosiarka pływająca Truxor – realizacja" },
+        { src: "truxor-realizacja-03.jpg", alt: "Kosiarka pływająca Truxor – realizacja" },
+        { src: "truxor-realizacja-02.jpg", alt: "Kosiarka pływająca Truxor – realizacja" },
+        { src: "truxor-realizacja-01.jpg", alt: "Kosiarka pływająca Truxor – realizacja" },
       ]}
     />
   );

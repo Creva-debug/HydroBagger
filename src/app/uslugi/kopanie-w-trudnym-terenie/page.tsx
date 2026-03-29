@@ -37,7 +37,7 @@ export default function KopanieWTrudnymTereniePage() {
       gallery={[
         { src: "koparka-plywajaca-kopanie-torfowisko01.jpg", alt: "Koparka pływająca w pracach na torfowisku" },
         { src: "koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg", alt: "Koparka na terenie podmokłym – odmulanie" },
-        { src: "koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg", alt: "Zestaw koparkowy HydroBagger w akcji" },
+        { src: "koparka-plywajaca-remu-big-float-e2200-na-brzegu-zbiornika.jpg", alt: "Koparka pływająca przy brzegu zbiornika" },
       ]}
       currentSlug="kopanie-w-trudnym-terenie"
     />
