@@ -43,7 +43,10 @@ export default function RootLayout({
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
   return (
     <html lang="pl" className={cn("font-sans", geist.variable)}>
-      <head>
+      <body
+        id="top"
+        className={`${geist.variable} ${montserrat.variable} font-sans flex min-h-screen flex-col antialiased`}
+      >
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=window.gtag||gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',security_storage:'granted'});`,
@@ -56,11 +59,6 @@ export default function RootLayout({
             src={`https://www.googletagmanager.com/gtm.js?id=${gtmId}`}
           />
         ) : null}
-      </head>
-      <body
-        id="top"
-        className={`${geist.variable} ${montserrat.variable} font-sans flex min-h-screen flex-col antialiased`}
-      >
         <ViewportHeightFix />
         <Header />
         <div className="flex-1">{children}</div>
