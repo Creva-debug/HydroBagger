@@ -3,8 +3,10 @@
 import { useEffect } from "react";
 
 /**
- * Ustawia --real-vh = window.innerHeight (aktualizacja przy resize / orientacji),
- * żeby hero mógł dokładnie wypełniać widoczny obszar pod nagłówkiem.
+ * Ustawia --real-vh raz przy montowaniu (innnerHeight przed pierwszym scrollem),
+ * a następnie tylko przy zmianie orientacji ekranu.
+ * NIE reaguje na zwykły resize – to zapobiega glitchowi na mobile, gdy przeglądarka
+ * chowa/pokazuje pasek adresu podczas scrollowania.
  */
 export function ViewportHeightFix() {
   useEffect(() => {
@@ -12,12 +14,8 @@ export function ViewportHeightFix() {
       document.documentElement.style.setProperty("--real-vh", `${window.innerHeight}px`);
     };
     set();
-    window.addEventListener("resize", set);
     window.addEventListener("orientationchange", set);
-    return () => {
-      window.removeEventListener("resize", set);
-      window.removeEventListener("orientationchange", set);
-    };
+    return () => window.removeEventListener("orientationchange", set);
   }, []);
 
   return null;
