@@ -55,7 +55,7 @@ export function LegalPage({
           <div className="grid gap-8 lg:grid-cols-[1fr,288px] lg:items-start">
 
             {/* Main article */}
-            <article className="legal-content rounded-2xl bg-white p-5 shadow-sm sm:p-8 lg:p-10">
+            <article className="legal-content overflow-hidden rounded-2xl bg-white p-5 shadow-sm sm:p-8 lg:p-10">
               {children}
             </article>
 
