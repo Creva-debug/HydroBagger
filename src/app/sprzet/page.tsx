@@ -63,20 +63,20 @@ export default function SprzętPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16 lg:min-h-[80vh] lg:pb-24">
+      <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20 [transform:translateZ(0)]">
         <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Sprzęt hydrotechniczny HydroBagger" fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
         <div className="absolute inset-0 bg-[#071e32]/45" aria-hidden />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/35 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/45 to-transparent" />
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <SL light>Sprzęt</SL>
           <h1 className="display-heading mt-3 text-white" style={{ fontSize: "clamp(2.6rem,5.5vw,4.5rem)" }}>
-            Poznaj sprzęt <span style={{ color: "#7dd3fc" }}>HydroBagger</span>
+            Poznaj sprzęt<br /><span style={{ color: "#7dd3fc" }}>HydroBagger</span>
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-200">
+          <p className="mt-4 mx-auto max-w-2xl text-lg leading-relaxed text-slate-200">
             Dysponujemy unikalnym parkiem maszyn do pracy w wodzie, błocie i trudno dostępnym terenie. Sprzęt, którego nie spotkasz w każdej firmie.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/darmowa-konsultacja" className="btn-pulse inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white" style={{ background: "var(--hb-water)" }}>
               Bezpłatna konsultacja
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>

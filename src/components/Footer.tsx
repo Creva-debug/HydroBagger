@@ -12,18 +12,9 @@ function WaveSection() {
         preserveAspectRatio="none"
         aria-hidden
       >
-        <path
-          d="M0,48 Q300,16 600,48 T1200,48 L1200,96 L0,96 Z"
-          fill="rgba(2, 132, 199, 0.12)"
-        />
-        <path
-          d="M0,56 Q250,24 500,56 T1000,56 T1200,56 L1200,96 L0,96 Z"
-          fill="rgba(2, 132, 199, 0.18)"
-        />
-        <path
-          d="M0,52 Q400,20 800,52 T1200,52 L1200,96 L0,96 Z"
-          fill="rgba(2, 132, 199, 0.09)"
-        />
+        <path d="M0,48 Q300,16 600,48 T1200,48 L1200,96 L0,96 Z" fill="rgba(2, 132, 199, 0.12)" />
+        <path d="M0,56 Q250,24 500,56 T1000,56 T1200,56 L1200,96 L0,96 Z" fill="rgba(2, 132, 199, 0.18)" />
+        <path d="M0,52 Q400,20 800,52 T1200,52 L1200,96 L0,96 Z" fill="rgba(2, 132, 199, 0.09)" />
       </svg>
     </div>
   );
@@ -77,88 +68,93 @@ function TrackEdge() {
 export function Footer() {
   return (
     <footer className="mt-auto bg-slate-50">
-      {/* Pas slate-50 maskuje szczelinę ze sekcją nad stopką (tylko mobile); bez overflow na fali – unika obcięcia SVG w rogu. */}
       <div className="footer-contact-gradient relative z-[1] mt-0 sm:-mt-px">
+        {/* Cienka kreska maskująca ewentualną szczelinę na mobile */}
         <div
           className="pointer-events-none absolute inset-x-0 top-0 z-[5] h-1 bg-[#f8fafc] sm:hidden"
           aria-hidden
         />
-      <section
-        className="relative z-[10] overflow-x-visible bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
-      >
-        {/* Mobile: viewBox musi = szerokość ścieżki (1440). Wcześniej 1456 przy L1440,0 zostawiało ~1% pustki po prawej (kreska / „ucięta” fala). */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[72px] w-full min-w-full overflow-visible leading-none">
-          <svg
-            viewBox="0 0 1440 72"
-            preserveAspectRatio="none"
-            className="block h-full w-full min-w-full shrink-0 sm:hidden [transform:translateZ(0)]"
-            aria-hidden
-          >
-            <defs>
-              <linearGradient id="footerWaveFillMobile" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#f8fafc" />
-                <stop offset="45%" stopColor="#e0f2fe" />
-                <stop offset="100%" stopColor="#7dd3fc" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0,0 L1440,0 L1440,0 C1080,58 720,62 360,42 C200,34 0,50 0,50 Z"
-              fill="url(#footerWaveFillMobile)"
-            />
-          </svg>
-          <svg
-            viewBox="0 0 1440 72"
-            preserveAspectRatio="none"
-            className="hidden h-full w-full sm:block"
-            aria-hidden
-          >
-            <defs>
-              <linearGradient id="footerWaveFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#f8fafc" />
-                <stop offset="45%" stopColor="#e0f2fe" />
-                <stop offset="100%" stopColor="#7dd3fc" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0,0 L1440,0 L1440,0 C1080,72 720,72 360,36 C180,18 0,54 0,54 Z"
-              fill="url(#footerWaveFill)"
-            />
-          </svg>
-        </div>
 
-        <div className="relative z-10 mx-auto max-w-5xl pt-16">
-          <h2 className="mb-10 text-center text-3xl font-light tracking-tight sm:text-4xl md:text-5xl text-white">
-            Bezpośredni <span className="font-bold">kontakt</span>
-          </h2>
-          <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-center sm:gap-20">
-            <a
-              href="mailto:kontakt@hydrobagger.pl"
-              className="flex items-center gap-4 text-white/90 transition hover:text-white group"
+        <section className="relative z-[10] overflow-x-visible bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8">
+          {/*
+            Mobile wave: w-screen + left-1/2 + -translate-x-1/2 = zawsze pełna szerokość
+            viewportu niezależnie od paddingów rodzica. Eliminuje ucięcie w prawym rogu.
+            Desktop: standardowe inset-x-0 (brak tych sztuczek, nie jest potrzebne).
+          */}
+          <div className="sm:hidden pointer-events-none absolute left-1/2 top-0 z-20 h-[72px] w-screen -translate-x-1/2 leading-none">
+            <svg
+              viewBox="0 0 1440 72"
+              preserveAspectRatio="none"
+              className="h-full w-full"
+              aria-hidden
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 group-hover:bg-white/25 transition-colors">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </span>
-              <span className="text-lg font-medium underline underline-offset-4 decoration-white/40 group-hover:decoration-white">kontakt@hydrobagger.pl</span>
-            </a>
-            <a
-              href="tel:+48504026042"
-              className="flex items-center gap-4 text-white/90 transition hover:text-white group"
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 group-hover:bg-white/25 transition-colors">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-              </span>
-              <span className="text-lg font-medium underline underline-offset-4 decoration-white/40 group-hover:decoration-white">+48 504 026 042</span>
-            </a>
+              <defs>
+                <linearGradient id="footerWaveFillMobile" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#f8fafc" />
+                  <stop offset="45%" stopColor="#e0f2fe" />
+                  <stop offset="100%" stopColor="#7dd3fc" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M0,0 L1440,0 L1440,0 C1080,58 720,62 360,42 C200,34 0,50 0,50 Z"
+                fill="url(#footerWaveFillMobile)"
+              />
+            </svg>
           </div>
-        </div>
-      </section>
+          <div className="hidden sm:block pointer-events-none absolute inset-x-0 top-0 z-20 h-[72px] leading-none">
+            <svg
+              viewBox="0 0 1440 72"
+              preserveAspectRatio="none"
+              className="h-full w-full"
+              aria-hidden
+            >
+              <defs>
+                <linearGradient id="footerWaveFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#f8fafc" />
+                  <stop offset="45%" stopColor="#e0f2fe" />
+                  <stop offset="100%" stopColor="#7dd3fc" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M0,0 L1440,0 L1440,0 C1080,72 720,72 360,36 C180,18 0,54 0,54 Z"
+                fill="url(#footerWaveFill)"
+              />
+            </svg>
+          </div>
 
-      {/* Gąsienica – zęby oddzielające niebieską sekcję od czarnej stopki (tło = ten sam gradient co wyżej) */}
-      <TrackEdge />
+          <div className="relative z-10 mx-auto max-w-5xl pt-16">
+            <h2 className="mb-10 text-center text-3xl font-light tracking-tight sm:text-4xl md:text-5xl text-white">
+              Bezpośredni <span className="font-bold">kontakt</span>
+            </h2>
+            <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-center sm:gap-20">
+              <a
+                href="mailto:kontakt@hydrobagger.pl"
+                className="flex items-center gap-4 text-white/90 transition hover:text-white group"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 group-hover:bg-white/25 transition-colors">
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                <span className="text-lg font-medium underline underline-offset-4 decoration-white/40 group-hover:decoration-white">kontakt@hydrobagger.pl</span>
+              </a>
+              <a
+                href="tel:+48504026042"
+                className="flex items-center gap-4 text-white/90 transition hover:text-white group"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 group-hover:bg-white/25 transition-colors">
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                <span className="text-lg font-medium underline underline-offset-4 decoration-white/40 group-hover:decoration-white">+48 504 026 042</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Gąsienica – zęby oddzielające niebieską sekcję od czarnej stopki */}
+        <TrackEdge />
       </div>
 
       {/* Czarna stopka: CTA + kolumny + dół */}
@@ -166,7 +162,6 @@ export function Footer() {
         <div className="bg-slate-950 pt-4">
           {/* CTA */}
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 border-b border-slate-800 px-4 py-8 sm:grid-cols-4 sm:items-center sm:gap-0 lg:grid-cols-[1fr_1fr_1.5fr_1.6fr] sm:px-6 lg:px-8">
-            {/* Tekst */}
             <div className="flex items-center sm:col-span-3">
               <h3 className="w-full text-center text-xl font-bold text-white sm:text-left sm:text-2xl">
                 <span className="block sm:inline">Potrzebujesz wsparcia</span>

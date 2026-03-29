@@ -12,7 +12,15 @@ export function DlaKogoFAQ({ title, items }: { title: string; items: FAQItem[] }
         <div className="mb-10 text-center">
           <span className="section-label">Pytania i odpowiedzi</span>
           <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
-            {title}
+            {title.includes("pytania") ? (
+              <>
+                {title.split("pytania")[0]}
+                <span style={{ color: "var(--hb-water)" }}>pytania</span>
+                {title.split("pytania")[1]}
+              </>
+            ) : (
+              title
+            )}
           </h2>
         </div>
         <div className="rounded-2xl bg-white px-6 py-2 shadow-sm" style={{ border: "1px solid #e2e8f0" }}>

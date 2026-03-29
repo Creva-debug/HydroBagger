@@ -101,7 +101,7 @@ export default function InzynierHydrotechnikiPage() {
 
       <section className="bg-slate-50 py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 overflow-hidden rounded-2xl lg:hidden"><div className="relative aspect-[16/7]"><Image src={imageUrl("koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg")} alt="Prace hydrotechniczne" fill className="object-cover brightness-[0.88] saturate-[0.88]" sizes="100vw" /></div></div>
+          <div className="mb-10 overflow-hidden rounded-2xl lg:hidden"><div className="relative aspect-[16/7]"><Image src={imageUrl("55bd38c9-7630-41d5-abd2-c51022b19cdc-kierownik-robot-hydrotechnicznych.png")} alt="Prace hydrotechniczne" fill className="object-cover brightness-[0.88] saturate-[0.88]" sizes="100vw" /></div></div>
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="rounded-2xl bg-white p-7 shadow-sm" style={{ border: "1px solid #e2e8f0" }}>
               <div className="mb-8 flex items-center gap-2">

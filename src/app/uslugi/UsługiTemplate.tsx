@@ -49,7 +49,7 @@ export function UsługiTemplate({
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[70vh] items-end overflow-hidden pb-16 lg:min-h-[80vh] lg:pb-24">
+      <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20 [transform:translateZ(0)]">
         <Image src={imageUrl(heroImage)} alt={breadcrumbLabel} fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
         <div className="absolute inset-0 bg-[#071e32]/45" aria-hidden />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/35 to-transparent" />
