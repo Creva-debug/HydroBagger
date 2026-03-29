@@ -86,13 +86,12 @@ export function Footer() {
       <section
         className="relative z-[10] overflow-x-visible bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
-        {/* Mobile: szerszy viewBox + overflow visible (WebKit iPhone). Desktop: klasyczne 1440×72 – szerszy viewBox psuł skalowanie na szerokim ekranie. */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[72px] w-full min-w-0 leading-none">
+        {/* Mobile: viewBox musi = szerokość ścieżki (1440). Wcześniej 1456 przy L1440,0 zostawiało ~1% pustki po prawej (kreska / „ucięta” fala). */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[72px] w-full min-w-full overflow-visible leading-none">
           <svg
-            viewBox="0 0 1456 72"
+            viewBox="0 0 1440 72"
             preserveAspectRatio="none"
-            overflow="visible"
-            className="block h-full w-full overflow-visible sm:hidden"
+            className="block h-full w-full min-w-full shrink-0 sm:hidden [transform:translateZ(0)]"
             aria-hidden
           >
             <defs>
