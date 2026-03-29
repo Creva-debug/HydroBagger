@@ -2,6 +2,8 @@
 @import "tailwindcss";
 
 :root {
+  /* Wysokość paska: border-top 4px + treść h-[80px] + border-bottom 1px (Header.tsx) */
+  --site-header-height: 85px;
   --background: #ffffff;
   --foreground: #0f172a;
   --hb-navy:   #071e32;

@@ -125,7 +125,10 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════════════════ */}
-      <section className="relative flex flex-col overflow-hidden" style={{ minHeight: "calc(var(--real-vh, 100svh) - 5.25rem)" }}>
+      <section
+        className="relative flex flex-col overflow-hidden"
+        style={{ minHeight: "calc(var(--real-vh, 100dvh) - var(--site-header-height))" }}
+      >
         <video
           autoPlay
           muted

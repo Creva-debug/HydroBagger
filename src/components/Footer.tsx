@@ -77,7 +77,8 @@ function TrackEdge() {
 export function Footer() {
   return (
     <footer className="mt-auto bg-slate-50">
-      <div className="footer-contact-gradient relative z-[1] -mt-3 sm:-mt-px">
+      {/* -mt-px: minimalna nakładka – ukrywa subpikselową szczelinę; -mt-3 na mobile dawało widoczną linię łączenia */}
+      <div className="footer-contact-gradient relative z-[1] -mt-px">
       <section
         className="relative overflow-hidden bg-transparent px-4 py-20 text-slate-900 sm:px-6 lg:px-8"
       >
@@ -156,7 +157,7 @@ export function Footer() {
       </div>
 
       {/* Czarna stopka: CTA + kolumny + dół */}
-      <div className="relative -mt-px max-sm:-mt-[3px] text-white">
+      <div className="relative -mt-px text-white">
         <div className="bg-slate-950 pt-4">
           {/* CTA */}
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 border-b border-slate-800 px-4 py-8 sm:grid-cols-4 sm:items-center sm:gap-0 lg:grid-cols-[1fr_1fr_1.5fr_1.6fr] sm:px-6 lg:px-8">
