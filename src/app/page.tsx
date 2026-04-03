@@ -31,7 +31,7 @@ const SEKTORY = [
   },
   { 
     title: "Ochrona Środowiska",      
-    desc: "Realizujemy działania renaturyzacyjne i ochrony bioróżnorodności – z Parkami Krajobrazowymi i RDOŚ.", 
+    desc: "Realizujemy działania renaturyzacyjne i ochrony bioróżnorodności – z Parkami Narodowymi, Krajobrazowymi, RDOŚ i innymi organizacjami.", 
     href: "/dla-kogo/ochrona-srodowiska",
     icon: (
       <svg className="mb-4 h-10 w-10 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -134,14 +134,22 @@ export default function HomePage() {
           muted
           loop
           playsInline
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center brightness-[0.94] saturate-[0.84] contrast-[0.94]"
         >
           <source src={videoUrl("video-tlo.mp4")} type="video/mp4" />
         </video>
 
-        {/* Warstwa ciemności – profesjonalny, gładki overlay */}
-        <div className="absolute inset-0 bg-slate-950/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30" />
+        {/* Scrim: ciemniejszy środek pod napisy + lżejsze krawędzie (hb-navy, nie czarny slate-950) */}
+        <div
+          className="absolute inset-0"
+          aria-hidden
+          style={{
+            background: `
+              radial-gradient(ellipse 92% 58% at 50% 40%, rgba(7, 30, 50, 0.82) 0%, rgba(7, 30, 50, 0.48) 48%, rgba(19, 74, 110, 0.22) 100%),
+              linear-gradient(to top, rgba(7, 30, 50, 0.62) 0%, transparent 38%)
+            `,
+          }}
+        />
 
         {/* Dekoracyjny ukośny separator po prawej */}
         <div
@@ -152,15 +160,15 @@ export default function HomePage() {
         {/* Treść */}
         <div className="relative z-10 flex flex-1 flex-col">
           <div className="mx-auto flex w-full max-w-7xl flex-1 items-center justify-center px-4 py-20 sm:py-32 sm:px-6 lg:px-8">
-            <div className="max-w-4xl text-center flex flex-col items-center">
+            <div className="home-hero-copy max-w-4xl text-center flex flex-col items-center">
               <SL light>Specjaliści od trudnego terenu</SL>
 
               <h1 className="display-heading mt-5 text-white text-4xl sm:text-6xl lg:text-7xl leading-[1.1] tracking-tight max-w-4xl">
                 Prace hydrotechniczne<br />
-                <span className="text-[#7dd3fc]">w trudnym terenie</span>
+                <span className="home-hero-copy-accent text-[#7dd3fc]">w trudnym terenie</span>
               </h1>
 
-              <p className="mt-6 max-w-2xl text-base sm:text-xl text-slate-200 leading-relaxed font-medium">
+              <p className="mt-6 max-w-2xl text-base sm:text-xl text-slate-100 leading-relaxed font-medium">
                 Wchodzimy tam, gdzie inni się cofają.{" "}
                 <span className="text-white font-bold">Bagna, torfy, cieki wodne</span> – to nasz codzienny teren pracy.
               </p>
@@ -175,14 +183,14 @@ export default function HomePage() {
                   <ArrowRight />
                 </Link>
                 <Link
-                  href="/realizacje"
-                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/20"
+                  href="/referencje"
+                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-white/40 bg-[rgba(7,30,50,0.35)] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_16px_rgba(7,30,50,0.45)] backdrop-blur-md transition-all hover:border-white/55 hover:bg-[rgba(7,30,50,0.48)]"
                 >
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  Zobacz realizacje
+                  Sprawdź referencje
                 </Link>
               </div>
             </div>
@@ -256,9 +264,6 @@ export default function HomePage() {
               Z jakimi sektorami{" "}
               <span className="font-semibold text-[#38bdf8]">współpracujemy?</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-base text-slate-100">
-              Obsługujemy zarówno inwestycje komercyjne, jak i projekty wymagające szczególnej wrażliwości środowiskowej.
-            </p>
           </div>
 
           {/* Siatka – 3 kolumny na desktop, każda karta z lewą akcentową kreską */}

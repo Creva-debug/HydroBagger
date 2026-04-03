@@ -14,7 +14,7 @@ export default function KosiarkiPlywajacePage() {
       heroTitle="Kosiarki pływające"
       heroLead="Specjalistyczne maszyny do pracy w zbiornikach wodnych, kanałach i torfowiskach. Skutecznie usuwają roślinność, która ogranicza przepływ wody i dostępność terenów."
       heroDetails={[
-        "Wykorzystywane do koszenia trzciny i innych roślin inwazyjnych. Idealne do stawów, jezior, torfowisk i terenów przybrzeżnych.",
+        "Wykorzystywane do koszenia trzciny i innych roślin wodnych inwazyjnych. Idealne do stawów, jezior, torfowisk i terenów przybrzeżnych.",
         "Mobilne, lekkie, precyzyjne – docierają w miejsca, gdzie inne maszyny nie mają szans.",
       ]}
       applications={{
@@ -23,7 +23,7 @@ export default function KosiarkiPlywajacePage() {
           {
             icon: <path strokeLinecap="round" strokeLinejoin="round" d="M7.848 8.25l1.536.887M7.848 8.25a3 3 0 11-5.196-3 3 3 0 015.196 3zm1.536.887a2.165 2.165 0 011.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 11-5.196 3 3 3 0 015.196-3zm1.536-.887a2.165 2.165 0 001.083-1.838c.005-.352.054-.696.14-1.025m-1.223 2.863l2.077-1.199m0-3.328a4.323 4.323 0 012.068-1.379l5.325-1.628a4.5 4.5 0 012.48-.044l.803.215-7.794 4.5m-2.882-1.664A4.331 4.331 0 0010.607 12m3.736 0l7.794 4.5-.802.215a4.5 4.5 0 01-2.48-.043l-5.326-1.629a4.324 4.324 0 01-2.068-1.379M14.343 12l-2.882 1.664" />,
             title: "Koszenie roślinności wodnej",
-            body: "Usuwanie trzcin i innych roślin inwazyjnych porastających powierzchnię zbiorników i kanałów.",
+            body: "Usuwanie trzcin i innych roślin wodnych inwazyjnych porastających powierzchnię zbiorników i kanałów.",
           },
           {
             icon: <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />,
@@ -33,12 +33,12 @@ export default function KosiarkiPlywajacePage() {
           {
             icon: <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />,
             title: "Udrożnianie rowów i kanałów",
-            body: "Usuwanie porostów i roślin z dna i boków, by przywrócić przepływ i drożność rowów melioracyjnych.",
+            body: "Usuwanie porostów i roślin z dna i skarp, by przywrócić przepływ i drożność rowów melioracyjnych.",
           },
           {
             icon: <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />,
             title: "Usuwanie roślin inwazyjnych",
-            body: "Likwidacja gatunków niepożądanych – trzciny pospolitej, rdestnicy i innych gatunków ekspansywnych.",
+            body: "Likwidacja gatunków niepożądanych – wywłucznika, moczarki, grążela, rdestnicy i innych gatunków ekspansywnych.",
           },
           {
             icon: <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />,
@@ -58,7 +58,7 @@ export default function KosiarkiPlywajacePage() {
           {
             icon: <path strokeLinecap="round" strokeLinejoin="round" d="M7.848 8.25l1.536.887M7.848 8.25a3 3 0 11-5.196-3 3 3 0 015.196 3zm1.536.887a2.165 2.165 0 011.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 11-5.196 3 3 3 0 015.196-3zm1.536-.887a2.165 2.165 0 001.083-1.838c.005-.352.054-.696.14-1.025m-1.223 2.863l2.077-1.199m0-3.328a4.323 4.323 0 012.068-1.379l5.325-1.628a4.5 4.5 0 012.48-.044l.803.215-7.794 4.5m-2.882-1.664A4.331 4.331 0 0010.607 12m3.736 0l7.794 4.5-.802.215a4.5 4.5 0 01-2.48-.043l-5.326-1.629a4.324 4.324 0 01-2.068-1.379M14.343 12l-2.882 1.664" />,
             title: "Koszenie bez ograniczeń",
-            body: "Wjeżdżamy w szuwary, trzciny i zbiorniki, gdzie zwykły sprzęt nie dojedzie ani nie dotrze.",
+            body: "Wpływamy lub wjeżdżamy w szuwary, trzciny i zbiorniki, gdzie zwykły sprzęt nie dojedzie ani nie dotrze.",
           },
           {
             icon: <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />,
@@ -98,7 +98,7 @@ export default function KosiarkiPlywajacePage() {
             specs: [
               { label: "Waga", value: "1 400 kg" },
               { label: "Zasięg pracy", value: "do 2,4 m" },
-              { label: "Funkcje", value: "Koszenie, mulczowanie, grabienie, refulacja" },
+              { label: "Funkcje", value: "Koszenie i zbiór roślinności z automatycznym załadunkiem" },
             ],
           },
           {
@@ -107,7 +107,7 @@ export default function KosiarkiPlywajacePage() {
             specs: [
               { label: "Waga", value: "2 500 kg" },
               { label: "Zasięg koszenia", value: "1,7 m" },
-              { label: "Funkcje", value: "Koszenie i zbiór roślinności z automatycznym załadunkiem" },
+              { label: "Funkcje", value: "Koszenie, mulczowanie, grabienie, refulacja" },
             ],
           },
         ],

@@ -25,7 +25,7 @@ const KATEGORIE = [
   {
     href: "/dla-kogo/ochrona-srodowiska",
     title: "Ochrona środowiska",
-    desc: "Realizujemy prace hydrotechniczne na potrzeby renaturyzacji, retencji i przywracania bioróżnorodności. Działamy zgodnie z dokumentacją środowiskową.",
+    desc: "Realizujemy działania renaturyzacyjne i ochrony bioróżnorodności – z Parkami Narodowymi, Krajobrazowymi, RDOŚ i innymi organizacjami.",
     badge: "NGO i instytucje",
     icon: (
       <svg className="mb-4 h-14 w-14 text-[#38bdf8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">

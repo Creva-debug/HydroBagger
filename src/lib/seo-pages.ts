@@ -116,13 +116,6 @@ export const SEO_PAGES: Record<string, PageSEO> = {
     metaDescription:
       "Sprawdź aktualną ofertę pracy dla operatora koparki. Zapewniamy umowę o pracę, wysokie zarobki i pracę w solidnej firmie. Aplikuj do HydroBagger!",
   },
-  "/realizacje": {
-    path: "/realizacje",
-    keyword: "realizacje hydrotechniczne",
-    metaTitle: "Realizacje hydrotechniczne i ziemne | HydroBagger",
-    metaDescription:
-      "Zobacz nasze realizacje hydrotechniczne – działamy w wodzie i na lądzie: pogłębianie, refulacja, koszenie, transport w trudnym terenie.",
-  },
   "/referencje": {
     path: "/referencje",
     keyword: "referencje",

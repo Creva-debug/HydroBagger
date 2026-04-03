@@ -12,10 +12,10 @@ export default function PompyRefulacyjnePage() {
       breadcrumbLabel="Pompy refulacyjne"
       heroImage="koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg"
       heroTitle="Pompy refulacyjne"
-      heroLead="Specjalistyczne urządzenia do usuwania osadów z dna zbiorników wodnych, kanałów i torfowisk. Umożliwiają efektywne prace ziemno-wodne w miejscach, gdzie tradycyjny sprzęt nie ma szans."
+      heroLead="Specjalistyczne urządzenia do usuwania osadów z dna zbiorników wodnych, kanałów i torfowisk. Umożliwiają efektywne prace refulacyjne w miejscach, gdzie zwodowanie standardowego refulera jest niemożliwe."
       heroDetails={[
         "Stosujemy pompy DRAGFLOW w zestawie z koparkami pływającymi. Tworzą samobieżne refulery, które nie wymagają wodowania dźwigiem.",
-        "Docieramy w trudne miejsca – bez ryzyka ugrzęźnięcia, precyzyjnie nawet przy niskim poziomie wody.",
+        "Docieramy w trudne miejsca – bez ryzyka ugrzęźnięcia, precyzyjnie nawet przy niskim poziomie wody",
       ]}
       features={{
         title: "Zalety pomp refulacyjnych",

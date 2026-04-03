@@ -23,7 +23,7 @@ export default function KoszenieIMulczowaniePage() {
         "Mulczowanie zakrzaczeń",
         "Oczyszczanie linii brzegowych z roślin",
         "Udrażnianie zarośniętych rowów",
-        "Koszenie na terenach rekreacyjnych",
+        "Hakowanie roślin w dnie",
         "Pielęgnacja strefy brzegowej zbiorników",
         "Koszenie w trudno dostępnych lokalizacjach",
         "Czyszczenie zbiorników przed sezonem",

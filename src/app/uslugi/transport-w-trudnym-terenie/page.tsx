@@ -26,7 +26,7 @@ export default function TransportWTrudnymTereniePage() {
       ]}
       steps={[
         { n: "01", title: "Analiza trasy", body: "Oceniamy nośność terenu, przeszkody i odległości. Wybieramy właściwy typ pojazdu do konkretnych warunków gruntowych." },
-        { n: "02", title: "Dobór pojazdu", body: "Gąsienicowe lub kołowe, z wywrotką lub płaskim nadwoziem – dobieramy sprzęt do rodzaju ładunku i trudności terenu." },
+        { n: "02", title: "Dobór pojazdu", body: "Gąsienicowe lub kołowe, z kiprem lub platformą – dobieramy sprzęt do rodzaju ładunku i trudności terenu." },
         { n: "03", title: "Załadunek i transport", body: "Realizujemy transport zgodnie z harmonogramem – terminowo i bezpiecznie, przez najtrudniejsze tereny i bez drogi." },
         { n: "04", title: "Rozładunek w terenie", body: "Dostarczamy materiały lub sprzęt do wskazanego miejsca i dokumentujemy wykonane prace na potrzeby rozliczenia." },
       ]}

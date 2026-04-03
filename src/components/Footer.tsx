@@ -188,7 +188,6 @@ export function Footer() {
               <ul className="space-y-2.5 text-sm text-slate-300">
                 <li><Link href="/o-nas" className="transition hover:text-[#38bdf8]">O Nas</Link></li>
                 <li><Link href="/praca" className="transition hover:text-[#38bdf8]">Praca</Link></li>
-                <li><Link href="/realizacje" className="transition hover:text-[#38bdf8]">Realizacje</Link></li>
                 <li><Link href="/referencje" className="transition hover:text-[#38bdf8]">Referencje</Link></li>
                 <li><Link href="/baza-wiedzy" className="transition hover:text-[#38bdf8]">Baza wiedzy</Link></li>
               </ul>
