@@ -269,14 +269,20 @@ export default function HomePage() {
           {/* Siatka – 3 kolumny na desktop, każda karta z lewą akcentową kreską */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {SEKTORY.map((item, i) => (
-              <Link
+              <div
                 key={item.href}
+                className="group h-full rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(2,132,199,0.18)]"
+              >
+              <Link
                 href={item.href}
-                className="group relative flex flex-col rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(2,132,199,0.18)]"
+                className="relative flex h-full flex-col overflow-hidden rounded-2xl p-8"
                 style={{ background: "#0f172a", border: "1px solid rgba(255,255,255,.1)" }}
               >
-                {/* Niebieska lewa krawędź pokazująca się przy hover */}
-                <span className="pointer-events-none absolute inset-y-0 left-0 w-[3px] rounded-l-2xl bg-[#0284c7] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                {/* Niebieska lewa krawędź – od dołu do góry przy hover, w obrysie rounded-2xl (overflow-hidden na Link) */}
+                <span
+                  className="pointer-events-none absolute inset-y-0 left-0 w-[3px] origin-bottom scale-y-0 bg-[#0284c7] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-y-100 motion-reduce:transition-none motion-reduce:duration-0 motion-reduce:group-hover:scale-y-100"
+                  aria-hidden
+                />
 
                 {/* Numer w tle */}
                 <span className="display-heading absolute right-6 top-6 text-6xl font-black transition-all duration-300 group-hover:text-[#38bdf8]/10" style={{ color: "rgba(255,255,255,.03)" }}>
@@ -296,6 +302,7 @@ export default function HomePage() {
                   Dowiedz się więcej <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </Link>
+              </div>
             ))}
           </div>
         </div>
