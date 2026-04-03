@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat, Geist } from "next/font/google";
+import { Montserrat, Geist } from "next/font/google";
 import Script from "next/script";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -11,12 +11,18 @@ import { getSiteOrigin } from "@/lib/site-url";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-geist",
+  display: "swap",
+  adjustFontFallback: true,
+});
 
 const montserrat = Montserrat({
-  variable: "--font-display",
   subsets: ["latin", "latin-ext"],
+  variable: "--font-montserrat",
   display: "swap",
+  adjustFontFallback: true,
 });
 
 const defaultMetadata = {
@@ -45,11 +51,12 @@ export default function RootLayout({
 }>) {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
   return (
-    <html lang="pl" className={cn("font-sans", geist.variable)}>
-      <body
-        id="top"
-        className={`${geist.variable} ${montserrat.variable} font-sans flex min-h-screen flex-col antialiased`}
-      >
+    <html lang="pl" className={cn("font-sans", geist.variable, montserrat.variable)}>
+      <head>
+        <link rel="preconnect" href="https://creva.b-cdn.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://creva.b-cdn.net" />
+      </head>
+      <body id="top" className="font-sans flex min-h-screen flex-col antialiased">
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=window.gtag||gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',security_storage:'granted'});`,

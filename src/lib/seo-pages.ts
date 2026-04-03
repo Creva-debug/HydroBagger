@@ -100,7 +100,7 @@ export const SEO_PAGES: Record<string, PageSEO> = {
     keyword: "brak",
     metaTitle: "Polityka Prywatności – HydroBagger.pl",
     metaDescription:
-      "Poznaj zasady dotyczące prywatności i plików cookies na hydrobagger.pl. Dowiedz się, jak chronimy Twoje dane osobowe, jakie masz prawa oraz jak skontaktować się z administratorem danych.",
+      "Zasady prywatności i plików cookies na hydrobagger.pl. Jak chronimy dane osobowe, jakie masz prawa i jak skontaktować się z administratorem.",
   },
   "/praca": {
     path: "/praca",

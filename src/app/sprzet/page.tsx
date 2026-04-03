@@ -65,7 +65,15 @@ export default function SprzętPage() {
       <JsonLdWebPage seo={SPRZET_INDEX_SEO} />
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20 [transform:translateZ(0)]">
-        <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Sprzęt hydrotechniczny HydroBagger" fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />
+        <Image
+          src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")}
+          alt="Sprzęt hydrotechniczny HydroBagger"
+          fill
+          priority
+          fetchPriority="high"
+          className="object-cover brightness-[0.65] saturate-[0.85]"
+          sizes="100vw"
+        />
         <div className="absolute inset-0 bg-[#071e32]/45" aria-hidden />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/90 via-[#071e32]/35 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#071e32]/45 to-transparent" />
