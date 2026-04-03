@@ -1,3 +1,4 @@
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 import { imageUrl } from "@/lib/images";
 import { USLUGI_ZAKRES_CARDS } from "@/lib/uslugi-zakres-cards";
@@ -9,16 +10,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = (() => {
-  const seo = getSEO("/o-nas");
-  return seo
-    ? metadataFromSEO(seo)
-    : {
-        title: "O nas – specjaliści od trudnego terenu | HydroBagger",
-        description:
-          "Poznaj firmę HydroBagger – łączymy doświadczenie z unikalnym sprzętem do pracy w wodzie i trudnym terenie. Działamy tam, gdzie inni nie mogą.",
-      };
-})();
+const O_NAS_SEO = getSEO("/o-nas")!;
+export const metadata: Metadata = metadataFromSEO(O_NAS_SEO);
 
 function SL({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return <span className={`section-label${light ? " section-label--light" : ""}`}>{children}</span>;
@@ -56,6 +49,7 @@ const STATS = [
 export default function ONasPage() {
   return (
     <>
+      <JsonLdWebPage seo={O_NAS_SEO} />
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20">
         <Image src={imageUrl("koparka-z-refulacja-po-prawej.png")} alt="Koparka z zestawem refulacyjnym" fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />

@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
+import { metadataForPath } from "@/lib/seo-pages";
 
-export const metadata: Metadata = {
-  title: "Regulamin serwisu HydroBagger.pl – zasady korzystania",
-  description: "Zapoznaj się z regulaminem serwisu Hydrobagger. Znajdziesz tu ważne informacje dotyczące korzystania z naszych usług i zasad współpracy.",
-};
+export const metadata: Metadata = metadataForPath("/regulamin");
 
 export default function RegulaminPage() {
   return (
-    <LegalPage title="Regulamin" subtitle="Regulamin korzystania z serwisu Hydrobagger.pl – Zasady i warunki użytkowania">
+    <LegalPage seoPath="/regulamin" title="Regulamin" subtitle="Regulamin korzystania z serwisu Hydrobagger.pl – Zasady i warunki użytkowania">
       <p>
         Dzień dobry, cieszymy się, że znalazłeś się w sekcji dokumentów prawnych naszego Serwisu.
         Pamiętaj, że jeśli masz jakiekolwiek pytania związane z naszymi zasadami lub z naszą ofertą, napisz do nas.

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { SprzętTemplate } from "../SprzętTemplate";
 
-export const metadata: Metadata = {
-  title: "Kosiarki pływające – skuteczne koszenie z wody | HydroBagger",
-  description: "Kosiarki pływające do zbiorników, kanałów i torfowisk. Usuwają roślinność wodną i zakrzaczenia – precyzyjnie, bezpiecznie i w trudnym terenie.",
-};
+export const metadata: Metadata = metadataForPath("/sprzet/kosiarki-plywajace");
 
 export default function KosiarkiPlywajacePage() {
   return (
     <SprzętTemplate
+      seoPath="/sprzet/kosiarki-plywajace"
       breadcrumbLabel="Kosiarki pływające"
       heroImage="koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg"
       heroTitle="Kosiarki pływające"

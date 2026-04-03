@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { UsługiTemplate } from "../UsługiTemplate";
 
-export const metadata: Metadata = {
-  title: "Transport w trudnym terenie – grząskie grunty | HydroBagger",
-  description: "Realizujemy transport w błocie, torfie i na terenach zalanych. Dowozimy sprzęt i wywozimy urobek tam, gdzie inni nie wjadą.",
-};
+export const metadata: Metadata = metadataForPath("/uslugi/transport-w-trudnym-terenie");
 
 export default function TransportWTrudnymTereniePage() {
   return (
     <UsługiTemplate
+      seoPath="/uslugi/transport-w-trudnym-terenie"
       breadcrumbLabel="Transport w trudnym terenie"
       heroImage="wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg"
       heroTitleLine1="Transport w trudnym terenie"

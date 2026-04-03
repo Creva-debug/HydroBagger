@@ -1,3 +1,4 @@
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 import { imageUrl } from "@/lib/images";
 import type { Metadata } from "next";
@@ -5,16 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { PracaFAQ } from "./PracaFAQ";
 
-export const metadata: Metadata = (() => {
-  const seo = getSEO("/praca");
-  return seo
-    ? metadataFromSEO(seo)
-    : {
-        title: "Praca w HydroBagger – oferty hydrotechnika i operatora",
-        description:
-          "Sprawdź aktualne oferty pracy przy robotach ziemnych i hydrotechnicznych. Pracuj z zespołem HydroBagger i nowoczesnym sprzętem w terenie.",
-      };
-})();
+const PRACA_SEO = getSEO("/praca")!;
+export const metadata: Metadata = metadataFromSEO(PRACA_SEO);
 
 const OFERTY = [
   { href: "/praca/operator-koparki", title: "Operator koparki", subtitle: "w pracach melioracyjnych", salary: "11 000 – 19 000 zł brutto", umowa: "Umowa o pracę", wymiar: "Pełny etat", lokalizacja: "Międzychód (+ 150 km)", opis: "Samodzielna praca koparką (w tym pontonową) przy konserwacji zbiorników, cieków, wykopach i humusowaniu.", wymagania: ["Doświadczenie w pracach melioracyjnych i hydrotechnicznych", "Umiejętność pracy koparką w grząskim terenie", "Dyspozycyjność / gotowość do wyjazdów w delegacje", "Prawo jazdy kategorii B"], img: "koparka-plywajaca-kopanie-torfowisko01.jpg", tag: "Operator sprzętu" },
@@ -34,6 +27,7 @@ function MetaBadge({ icon, children }: { icon: React.ReactNode; children: React.
 export default function PracaPage() {
   return (
     <>
+      <JsonLdWebPage seo={PRACA_SEO} />
       {/* HERO */}
       <section className="relative overflow-hidden bg-white py-16 lg:py-24">
         <div className="pointer-events-none absolute inset-0 opacity-40" style={{ background: "radial-gradient(ellipse 70% 50% at 65% 50%, rgba(2,132,199,0.1) 0%, transparent 70%)" }} />

@@ -1,3 +1,4 @@
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 import { imageUrl } from "@/lib/images";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
@@ -6,16 +7,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = (() => {
-  const seo = getSEO("/referencje");
-  return seo
-    ? metadataFromSEO(seo)
-    : {
-        title: "Referencje HydroBagger – zaufali nam liderzy rynku",
-        description:
-          "Poznaj opinie klientów i przykładowe realizacje HydroBagger. Zobacz, kto nam zaufał przy pracach hydrotechnicznych i ziemno-wodnych.",
-      };
-})();
+const REFERENCJE_SEO = getSEO("/referencje")!;
+export const metadata: Metadata = metadataFromSEO(REFERENCJE_SEO);
 
 /* ────────────────────────────────────────────────────────── */
 
@@ -62,6 +55,7 @@ const STATS = [
 export default function ReferencjePage() {
   return (
     <>
+      <JsonLdWebPage seo={REFERENCJE_SEO} />
       {/* ══════════════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════════════ */}

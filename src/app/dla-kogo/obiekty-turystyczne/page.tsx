@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { DlaKogoTemplate } from "../DlaKogoTemplate";
 
-export const metadata: Metadata = {
-  title: "Prace hydrotechniczne dla obiektów turystycznych | HydroBagger",
-  description: "Profesjonalne usługi hydrotechniczne dla obiektów turystycznych. Refulacja, pogłębianie i koszenie – zadbaj o estetykę i funkcjonalność terenów wodnych.",
-};
+export const metadata: Metadata = metadataForPath("/dla-kogo/obiekty-turystyczne");
 
 export default function ObiektyTurystycznePage() {
   return (
     <DlaKogoTemplate
+      seoPath="/dla-kogo/obiekty-turystyczne"
       breadcrumbLabel="Obiekty turystyczne"
       heroImage="koparka-plywajaca-remu-big-float-e2200-na-brzegu-zbiornika.jpg"
       heroAccent="Obiektów Turystycznych"

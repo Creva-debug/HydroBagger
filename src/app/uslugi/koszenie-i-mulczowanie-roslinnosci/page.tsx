@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { UsługiTemplate } from "../UsługiTemplate";
 
-export const metadata: Metadata = {
-  title: "Koszenie i mulczowanie roślinności z lądu i z wody | HydroBagger",
-  description: "Usuwamy trzcinę, zakrzaczenia i roślinność wodną z brzegów, rowów i zbiorników – precyzyjnie i bezpiecznie, nawet w trudnym terenie.",
-};
+export const metadata: Metadata = metadataForPath("/uslugi/koszenie-i-mulczowanie-roslinnosci");
 
 export default function KoszenieIMulczowaniePage() {
   return (
     <UsługiTemplate
+      seoPath="/uslugi/koszenie-i-mulczowanie-roslinnosci"
       breadcrumbLabel="Koszenie i mulczowanie roślinności"
       heroImage="koszenie-roslinnosci-wodnej-kosiarka-plywajaca-w-akcji1.jpg"
       heroTitleLine1="Koszenie i mulczowanie roślinności"

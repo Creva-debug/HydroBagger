@@ -1,14 +1,9 @@
 import type { MetadataRoute } from "next";
 import { SEO_PAGES } from "@/lib/seo-pages";
-
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hydrobagger.pl";
-
-function normalizeBase(url: string) {
-  return url.replace(/\/$/, "");
-}
+import { getSiteOrigin } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = normalizeBase(SITE);
+  const base = getSiteOrigin();
   const lastModified = new Date();
 
   return Object.keys(SEO_PAGES).map((path) => ({

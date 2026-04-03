@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { DlaKogoTemplate } from "../DlaKogoTemplate";
 
-export const metadata: Metadata = {
-  title: "Usługi hydrotechniczne dla miast i gmin | HydroBagger",
-  description: "Realizujemy usługi hydrotechniczne dla gmin i miast – odmulanie, refulacja, czyszczenie rowów i zbiorników. Działamy tam, gdzie inni nie mogą.",
-};
+export const metadata: Metadata = metadataForPath("/dla-kogo/jednostki-administracyjne");
 
 export default function JednostkiAdministracyjnePage() {
   return (
     <DlaKogoTemplate
+      seoPath="/dla-kogo/jednostki-administracyjne"
       breadcrumbLabel="Jednostki administracyjne"
       heroImage="truxor-realizacja-01.jpg"
       heroAccent="Jednostek Administracyjnych"

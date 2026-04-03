@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { SprzętTemplate } from "../SprzętTemplate";
 
-export const metadata: Metadata = {
-  title: "Pompy refulacyjne do zbiorników i kanałów | HydroBagger",
-  description: "Pompy refulacyjne do usuwania osadów z dna zbiorników i kanałów. Skuteczne, mobilne i gotowe do pracy w trudnym terenie.",
-};
+export const metadata: Metadata = metadataForPath("/sprzet/pompy-refulacyjne");
 
 export default function PompyRefulacyjnePage() {
   return (
     <SprzętTemplate
+      seoPath="/sprzet/pompy-refulacyjne"
       breadcrumbLabel="Pompy refulacyjne"
       heroImage="koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg"
       heroTitle="Pompy refulacyjne"

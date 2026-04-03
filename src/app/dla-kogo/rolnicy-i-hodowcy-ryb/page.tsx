@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { DlaKogoTemplate } from "../DlaKogoTemplate";
 
-export const metadata: Metadata = {
-  title: "Prace ziemno-wodne dla rolników i hodowców ryb | HydroBagger",
-  description: "Prace ziemno-wodne dla rolników i hodowców ryb: czyszczenie rowów, retencja, odmulanie stawów. Skutecznie działamy w terenie podmokłym.",
-};
+export const metadata: Metadata = metadataForPath("/dla-kogo/rolnicy-i-hodowcy-ryb");
 
 export default function RolnicyHodowcyRybPage() {
   return (
     <DlaKogoTemplate
+      seoPath="/dla-kogo/rolnicy-i-hodowcy-ryb"
       breadcrumbLabel="Rolnicy i hodowcy ryb"
       heroImage="kosiarka-mulczujaca-na-ciagniku-boczny-ramie.jpg"
       heroAccent="Rolników i Hodowców Ryb"

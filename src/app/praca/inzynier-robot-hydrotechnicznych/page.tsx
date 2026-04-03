@@ -1,13 +1,14 @@
-import { imageUrl } from "@/lib/images";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { JobApplicationSection } from "@/components/JobApplicationSection";
+import { getSEO, metadataForPath } from "@/lib/seo-pages";
+import { imageUrl } from "@/lib/images";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Inżynier robót hydrotechnicznych – oferta pracy HydroBagger",
-  description: "Interesuje Cię praca jako inżynier robót hydrotechnicznych? Oferujemy odpowiedzialne stanowisko, dobre warunki i stabilną współpracę. Sprawdź!",
-};
+export const metadata: Metadata = metadataForPath("/praca/inzynier-robot-hydrotechnicznych");
+
+const INZYNIER_SEO = getSEO("/praca/inzynier-robot-hydrotechnicznych")!;
 
 const OBOWIAZKI = ["Planowanie, organizowanie i nadzorowanie robót hydrotechnicznych na placu budowy wraz z rozliczeniem", "Współpraca z pracownikami fizycznymi oraz ekipami podwykonawców", "Kontrolowanie jakości wykonania prac i materiałów, a także dbanie o terminowość realizacji inwestycji", "Nadzorowanie przestrzegania przepisów BHP", "Analiza i weryfikacja dokumentacji technicznej"] as const;
 const WYMAGANIA = ["Wykształcenie wyższe budowlane (inżynieria wodna / środowiskowa)", "Znajomość prawa budowlanego oraz związanych z nim przepisów", "Doświadczenie w pracach hydrotechnicznych", "Obsługa programów MS Office oraz AutoCAD", "Odpowiedzialność oraz samodzielność w działaniu", "Umiejętność kierowania zespołem", "Zaangażowanie w realizowane projekty", "Prawo jazdy kategorii B"] as const;
@@ -29,6 +30,7 @@ function Li({ children, dark = false }: { children: React.ReactNode; dark?: bool
 export default function InzynierHydrotechnikiPage() {
   return (
     <>
+      <JsonLdWebPage seo={INZYNIER_SEO} />
       <section className="relative overflow-hidden bg-white pb-12 pt-10 lg:pb-16 lg:pt-14">
         <div className="pointer-events-none absolute inset-0 opacity-30" style={{ background: "radial-gradient(ellipse 60% 50% at 70% 50%, rgba(2,132,199,0.1) 0%, transparent 70%)" }} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

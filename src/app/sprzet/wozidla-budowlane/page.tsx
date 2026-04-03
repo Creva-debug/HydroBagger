@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { SprzętTemplate } from "../SprzętTemplate";
 
-export const metadata: Metadata = {
-  title: "Wozidła budowlane – transport urobku | HydroBagger",
-  description: "Wozidła budowlane do przewozu materiałów w grząskim i stromym terenie. Sprawdzą się tam, gdzie nie da rady standardowy sprzęt.",
-};
+export const metadata: Metadata = metadataForPath("/sprzet/wozidla-budowlane");
 
 export default function WozidlaBudowlanePage() {
   return (
     <SprzętTemplate
+      seoPath="/sprzet/wozidla-budowlane"
       breadcrumbLabel="Wozidła budowlane"
       heroImage="wozidlo-gasienicowe-transport-koparka-podmokly-teren1.jpg"
       heroTitle="Wozidła budowlane"

@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
+import { metadataForPath } from "@/lib/seo-pages";
 
-export const metadata: Metadata = {
-  title: "Polityka Cookies – HydroBagger.pl",
-  description: "Dowiedz się, czym są ciasteczka cookies, jak działają i jakie mają znaczenie dla Twojej prywatności w sieci. Polityka cookies na hydrobagger.pl.",
-};
+export const metadata: Metadata = metadataForPath("/polityka-cookies");
 
 export default function CiasteczkaCookiesPage() {
   return (
-    <LegalPage title="Polityka Cookies" subtitle="WWW.HYDROBAGGER.PL">
+    <LegalPage seoPath="/polityka-cookies" title="Polityka Cookies" subtitle="WWW.HYDROBAGGER.PL">
       <p>
         Niniejsza Polityka cookies, będąca rozszerzeniem Polityki Prywatności Serwisu Internetowego, dotyczy szczegółowych zagadnień z zakresu stosowania przez nas plików cookies, kodów pikselowych oraz wdrażania innych technologii internetowych i przetwarzania danych osobowych za ich pomocą.
       </p>

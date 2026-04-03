@@ -4,18 +4,11 @@ import Link from "next/link";
 import { imageUrl } from "@/lib/images";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 
-export const metadata: Metadata = (() => {
-  const seo = getSEO("/dla-kogo");
-  return seo
-    ? metadataFromSEO(seo)
-    : {
-        title: "Usługi hydrotechniczne – dla kogo? | HydroBagger",
-        description:
-          "HydroBagger realizuje prace hydrotechniczne dla firm budowlanych, samorządów, rolników, obiektów turystycznych, instytucji środowiskowych i osób prywatnych.",
-      };
-})();
+const DLA_KOGO_SEO = getSEO("/dla-kogo")!;
+export const metadata: Metadata = metadataFromSEO(DLA_KOGO_SEO);
 
 const KATEGORIE = [
   {
@@ -101,6 +94,7 @@ function SL({ children, light = false }: { children: React.ReactNode; light?: bo
 export default function DlaKogoPage() {
   return (
     <>
+      <JsonLdWebPage seo={DLA_KOGO_SEO} />
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20 [transform:translateZ(0)]">
         <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Dla kogo – usługi HydroBagger" fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />

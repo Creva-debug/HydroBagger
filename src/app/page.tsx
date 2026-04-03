@@ -3,16 +3,15 @@ import { ContactConsultationSection } from "@/components/ContactConsultationSect
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { UsługiZakresCard } from "@/components/UsługiZakresCard";
 import { USLUGI_ZAKRES_CARDS } from "@/lib/uslugi-zakres-cards";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { videoUrl, imageUrl } from "@/lib/images";
 
-export const metadata: Metadata = (() => {
-  const seo = getSEO("/");
-  return seo ? metadataFromSEO(seo) : {};
-})();
+const HOME_SEO = getSEO("/")!;
+export const metadata: Metadata = metadataFromSEO(HOME_SEO);
 
 /* ════════════════════════════════════════════════════════════
    DANE
@@ -122,6 +121,7 @@ function ArrowRight({ className = "h-4 w-4" }: { className?: string }) {
 export default function HomePage() {
   return (
     <>
+      <JsonLdWebPage seo={HOME_SEO} />
       {/* ══════════════════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════════════════ */}

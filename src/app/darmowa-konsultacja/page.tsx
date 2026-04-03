@@ -1,16 +1,15 @@
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 import { imageUrl } from "@/lib/images";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = (() => {
-  const seo = getSEO("/darmowa-konsultacja");
-  return seo ? metadataFromSEO(seo) : {};
-})();
+const KONSULTACJA_SEO = getSEO("/darmowa-konsultacja")!;
+export const metadata: Metadata = metadataFromSEO(KONSULTACJA_SEO);
 
 const PYTANIA = [
   "Czy jesteście w stanie pogłębić staw bez uszkodzenia otoczenia?",
@@ -77,6 +76,7 @@ function CheckIcon() {
 export default function DarmowaKonsultacjaPage() {
   return (
     <>
+      <JsonLdWebPage seo={KONSULTACJA_SEO} />
       {/* Formularz + opis – formularz po prawej */}
       <ContactConsultationSection id="formularz-konsultacji" isPageLead />
 

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { UsługiTemplate } from "../UsługiTemplate";
 
-export const metadata: Metadata = {
-  title: "Refulacja i odwadnianie osadów – zbiorniki wodne | HydroBagger",
-  description: "Refulacja i odwadnianie osadów z HydroBagger – kompleksowe usługi odsysania mułu i mobilnych stacji odwadniających. Bez spuszczania wody zbiornika.",
-};
+export const metadata: Metadata = metadataForPath("/uslugi/refulacia-i-odwadnianie-osadow");
 
 export default function RefulacjaIOdwadnianiePage() {
   return (
     <UsługiTemplate
+      seoPath="/uslugi/refulacia-i-odwadnianie-osadow"
       breadcrumbLabel="Refulacja i odwadnianie osadów"
       heroImage="koparka-plywajaca-pompa-refulacyjna-odmulanie1.jpg"
       heroTitleLine1="Refulacja i odwadnianie osadów"

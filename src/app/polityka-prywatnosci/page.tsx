@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
+import { metadataForPath } from "@/lib/seo-pages";
 
-export const metadata: Metadata = {
-  title: "Polityka Prywatności – HydroBagger.pl",
-  description: "Poznaj zasady dotyczące prywatności na hydrobagger.pl. Dowiedz się, jak chronimy Twoje dane i jakie masz prawa.",
-};
+export const metadata: Metadata = metadataForPath("/polityka-prywatnosci");
 
 export default function PolitykaPrywatnosciPage() {
   return (
-    <LegalPage title="Polityka Prywatności" subtitle="WWW.HYDROBAGGER.PL">
+    <LegalPage seoPath="/polityka-prywatnosci" title="Polityka Prywatności" subtitle="WWW.HYDROBAGGER.PL">
 
       <h2>§ 1 INFORMACJE OGÓLNE</h2>
       <p>1. Polityka prywatności Serwisu Internetowego nie stanowi źródła obowiązków dla Użytkownika Serwisu Internetowego. Ma ona charakter informacyjny, nie jest umową ani regulaminem.</p>

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { SprzętTemplate } from "../SprzętTemplate";
 
-export const metadata: Metadata = {
-  title: "Koparki pływające do pracy w trudnym terenie | HydroBagger",
-  description: "Koparki pływające to specjalistyczny sprzęt do pracy w wodzie, na torfie i bagnach. Pozwalają realizować roboty ziemno-wodne tam, gdzie zwykłe maszyny nie dają rady.",
-};
+export const metadata: Metadata = metadataForPath("/sprzet/koparki-plywajace");
 
 export default function KoparkiPlywajacePage() {
   return (
     <SprzętTemplate
+      seoPath="/sprzet/koparki-plywajace"
       breadcrumbLabel="Koparki pływające"
       heroImage="koparka-plywajaca-kopanie-torfowisko01.jpg"
       heroTitle="Koparki pływające"

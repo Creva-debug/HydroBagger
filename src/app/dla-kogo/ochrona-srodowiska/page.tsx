@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { DlaKogoTemplate } from "../DlaKogoTemplate";
 
-export const metadata: Metadata = {
-  title: "Prace hydrotechniczne dla ochrony środowiska | HydroBagger",
-  description: "Prace hydrotechniczne dla instytucji środowiskowych – renaturyzacja, odmulanie, refulacja. Zgodność z dokumentacją, natura 2000 i RDOŚ.",
-};
+export const metadata: Metadata = metadataForPath("/dla-kogo/ochrona-srodowiska");
 
 export default function OchronaSrodowiskaPage() {
   return (
     <DlaKogoTemplate
+      seoPath="/dla-kogo/ochrona-srodowiska"
       breadcrumbLabel="Ochrona środowiska"
       heroImage="koparka-bagna-wycinka-drzew.jpg"
       heroAccent="Ochrony Środowiska"

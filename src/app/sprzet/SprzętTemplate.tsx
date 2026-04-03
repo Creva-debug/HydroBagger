@@ -4,7 +4,9 @@ import type { ReactNode } from "react";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { imageUrl } from "@/lib/images";
+import { getSEO } from "@/lib/seo-pages";
 
 export type SprzętItem = { icon: ReactNode; title: string; body: string };
 export type SprzętMachine = {
@@ -36,6 +38,8 @@ export type SprzętTemplateProps = {
   galleryCols?: 3 | 4;
   /** Gdy true, sekcja „Park maszynowy" pojawia się przed „Zaletami". */
   machinesFirst?: boolean;
+  /** Klucz z SEO_PAGES – JSON-LD WebPage. */
+  seoPath?: string;
 };
 
 function SL({ children, light = false }: { children: ReactNode; light?: boolean }) {
@@ -74,7 +78,9 @@ export function SprzętTemplate({
   gallery = [],
   galleryCols,
   machinesFirst = false,
+  seoPath,
 }: SprzętTemplateProps) {
+  const pageSeo = seoPath ? getSEO(seoPath) : undefined;
   const featBg = applications ? "bg-white" : "bg-slate-50";
   const machCols = machines ? getMachCols(machines.cols ?? machines.items.length) : "";
   const gallColsDefault =
@@ -144,6 +150,7 @@ export function SprzętTemplate({
 
   return (
     <>
+      {pageSeo ? <JsonLdWebPage seo={pageSeo} /> : null}
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20">
         <Image src={imageUrl(heroImage)} alt={heroTitle} fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />

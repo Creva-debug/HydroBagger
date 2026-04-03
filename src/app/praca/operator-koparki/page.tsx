@@ -1,13 +1,14 @@
-import { imageUrl } from "@/lib/images";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { JobApplicationSection } from "@/components/JobApplicationSection";
+import { getSEO, metadataForPath } from "@/lib/seo-pages";
+import { imageUrl } from "@/lib/images";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Operator koparki – oferta pracy HydroBagger",
-  description: "Sprawdź aktualną ofertę pracy dla operatora koparki. Zapewniamy umowę o pracę, wysokie zarobki i pracę w solidnej firmie. Aplikuj do HydroBagger!",
-};
+export const metadata: Metadata = metadataForPath("/praca/operator-koparki");
+
+const OPERATOR_SEO = getSEO("/praca/operator-koparki")!;
 
 const OBOWIAZKI = ["Konserwacja cieków oraz zbiorników wodnych (pogłębianie, odmulanie, hakowanie)", "Samodzielne wykopanie stawu oraz zagospodarowanie i rozplanowanie urobku", "Skarpowanie długim ramieniem bez systemów", "Humusowanie", "Współpraca z innymi pracownikami na kontraktach", "Przestrzeganie przepisów BHP w pracy", "Codzienne dbanie o powierzony sprzęt", "Wykonywanie drobnych napraw serwisowych na miejscu"] as const;
 const WYMAGANIA = ["Doświadczenie w pracach melioracyjnych i hydrotechnicznych", "Umiejętność pracy koparką w grząskim terenie", "Otwartość na poszerzenie kwalifikacji zawodowych", "Dyspozycyjność / gotowość do wyjazdów w delegacje", "Zaangażowanie w realizowane projekty", "Wysoka kultura osobista i zawodowa", "Prawo jazdy kategorii B", "Obszar zamieszkania: do 150 km od Międzychodu (64-400)"] as const;
@@ -29,6 +30,7 @@ function Li({ children, dark = false }: { children: React.ReactNode; dark?: bool
 export default function OperatorKoparkiPage() {
   return (
     <>
+      <JsonLdWebPage seo={OPERATOR_SEO} />
       <section className="relative overflow-hidden bg-white pb-12 pt-10 lg:pb-16 lg:pt-14">
         <div className="pointer-events-none absolute inset-0 opacity-30" style={{ background: "radial-gradient(ellipse 60% 50% at 70% 50%, rgba(2,132,199,0.1) 0%, transparent 70%)" }} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

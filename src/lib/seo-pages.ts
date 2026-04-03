@@ -3,6 +3,13 @@
  * Źródło prawdy: docs/SEO-ZASADY.md
  */
 
+import type { Metadata } from "next";
+import { imageUrl } from "./images";
+import { absoluteUrl } from "./site-url";
+
+/** Grafika Open Graph / udostępniania społecznościowego (Bunny CDN). */
+export const OG_SHARE_IMAGE_FILE = "hydrobagger-graph.jpg";
+
 export type PageSEO = {
   path: string;
   keyword: string;
@@ -21,9 +28,9 @@ export const SEO_PAGES: Record<string, PageSEO> = {
   "/polityka-cookies": {
     path: "/polityka-cookies",
     keyword: "brak",
-    metaTitle: "Polityka Cookies w HydroBagger.pl",
+    metaTitle: "Polityka Cookies – HydroBagger.pl",
     metaDescription:
-      "Dowiedz się, czym są ciasteczka cookies, jak działają i jakie mają znaczenie dla Twojej prywatności w sieci. Zrozum politykę cookies na hydrobagger.pl!",
+      "Dowiedz się, czym są ciasteczka cookies, jak działają i jakie mają znaczenie dla Twojej prywatności w sieci. Polityka cookies na hydrobagger.pl – zasady i Twoje wybory.",
   },
   "/darmowa-konsultacja": {
     path: "/darmowa-konsultacja",
@@ -91,9 +98,9 @@ export const SEO_PAGES: Record<string, PageSEO> = {
   "/polityka-prywatnosci": {
     path: "/polityka-prywatnosci",
     keyword: "brak",
-    metaTitle: "Polityka Prywatności - HydroBagger.pl",
+    metaTitle: "Polityka Prywatności – HydroBagger.pl",
     metaDescription:
-      "Poznaj zasady dotyczące prywatności i plików cookies na hydrobagger.pl. Dowiedz się, jak chronimy Twoje dane i jakie masz prawa w sieci.",
+      "Poznaj zasady dotyczące prywatności i plików cookies na hydrobagger.pl. Dowiedz się, jak chronimy Twoje dane osobowe, jakie masz prawa oraz jak skontaktować się z administratorem danych.",
   },
   "/praca": {
     path: "/praca",
@@ -227,9 +234,54 @@ export function getSEO(path: string): PageSEO | undefined {
   return SEO_PAGES[path];
 }
 
-export function metadataFromSEO(seo: PageSEO) {
+function socialMetadata(
+  path: string,
+  title: string,
+  description: string,
+): Pick<Metadata, "alternates" | "openGraph" | "twitter"> {
+  const url = absoluteUrl(path);
+  const ogImage = imageUrl(OG_SHARE_IMAGE_FILE);
+  return {
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      locale: "pl_PL",
+      siteName: "HydroBagger",
+      title,
+      description,
+      url,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: "HydroBagger" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
+
+export function metadataFromSEO(seo: PageSEO): Metadata {
   return {
     title: seo.metaTitle,
     description: seo.metaDescription,
+    ...socialMetadata(seo.path, seo.metaTitle, seo.metaDescription),
   };
+}
+
+/** Metadane (canonical, Open Graph, Twitter) dla podstron spoza SEO_PAGES. */
+export function pageMetadata(path: string, title: string, description: string): Metadata {
+  return {
+    title,
+    description,
+    ...socialMetadata(path, title, description),
+  };
+}
+
+export function metadataForPath(path: string): Metadata {
+  const seo = getSEO(path);
+  if (!seo) {
+    throw new Error(`Brak wpisu SEO dla ścieżki: ${path}`);
+  }
+  return metadataFromSEO(seo);
 }

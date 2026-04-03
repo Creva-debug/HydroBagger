@@ -4,18 +4,11 @@ import Link from "next/link";
 import { imageUrl } from "@/lib/images";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 
-export const metadata: Metadata = (() => {
-  const seo = getSEO("/sprzet");
-  return seo
-    ? metadataFromSEO(seo)
-    : {
-        title: "Sprzęt hydrotechniczny i maszyny do zadań specjalnych | HB",
-        description:
-          "Poznaj sprzęt hydrotechniczny HydroBagger: koparki pływające, pompy refulacyjne, kosiarki, wozidła i maszyny do pracy w trudnym terenie.",
-      };
-})();
+const SPRZET_INDEX_SEO = getSEO("/sprzet")!;
+export const metadata: Metadata = metadataFromSEO(SPRZET_INDEX_SEO);
 
 const KATEGORIE = [
   {
@@ -69,6 +62,7 @@ function SL({ children, light = false }: { children: React.ReactNode; light?: bo
 export default function SprzętPage() {
   return (
     <>
+      <JsonLdWebPage seo={SPRZET_INDEX_SEO} />
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20 [transform:translateZ(0)]">
         <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Sprzęt hydrotechniczny HydroBagger" fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />

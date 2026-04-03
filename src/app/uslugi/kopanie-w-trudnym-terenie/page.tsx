@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { UsługiTemplate } from "../UsługiTemplate";
 
-export const metadata: Metadata = {
-  title: "Kopanie w trudnym terenie – torf, bagno, woda | HydroBagger",
-  description: "Specjalistyczne kopanie w trudnym terenie – torfy, bagna, podmokłe działki. Działamy tam, gdzie inni nie dają rady. Sprawdź, jak możemy Ci pomóc.",
-};
+export const metadata: Metadata = metadataForPath("/uslugi/kopanie-w-trudnym-terenie");
 
 export default function KopanieWTrudnymTereniePage() {
   return (
     <UsługiTemplate
+      seoPath="/uslugi/kopanie-w-trudnym-terenie"
       breadcrumbLabel="Kopanie w trudnym terenie"
       heroImage="koparka-plywajaca-kopanie-torfowisko01.jpg"
       heroTitleLine1="Kopanie w trudnym terenie,"

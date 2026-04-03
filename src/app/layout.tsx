@@ -5,7 +5,9 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ViewportHeightFix } from "@/components/ViewportHeightFix";
 import { CookieConsent } from "@/components/cookie-consent";
+import { SiteStructuredData } from "@/components/SiteStructuredData";
 import { imageUrl } from "@/lib/images";
+import { getSiteOrigin } from "@/lib/site-url";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -27,6 +29,7 @@ const defaultMetadata = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteOrigin()),
   ...defaultMetadata,
   icons: {
     icon: [{ url: imageUrl("cropped-favicon.png"), type: "image/png" }],
@@ -60,6 +63,7 @@ export default function RootLayout({
           />
         ) : null}
         <ViewportHeightFix />
+        <SiteStructuredData />
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />

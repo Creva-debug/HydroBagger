@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { SprzętTemplate } from "../SprzętTemplate";
 
-export const metadata: Metadata = {
-  title: "Kosiarki samobieżne do trudnego terenu | HydroBagger",
-  description: "Kosiarki samobieżne idealne do trudnych warunków – zboczy, wałów i nasypów. Sprawdź, jak nasz sprzęt radzi sobie tam, gdzie inni zawodzą.",
-};
+export const metadata: Metadata = metadataForPath("/sprzet/kosiarki-samobiezne");
 
 export default function KosiarkiSamobieznePage() {
   return (
     <SprzętTemplate
+      seoPath="/sprzet/kosiarki-samobiezne"
       breadcrumbLabel="Kosiarki samobieżne"
       heroImage="koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg"
       heroTitle="Kosiarki samobieżne"

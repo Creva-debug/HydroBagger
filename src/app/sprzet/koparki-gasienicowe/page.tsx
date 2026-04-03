@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { SprzętTemplate } from "../SprzętTemplate";
 
-export const metadata: Metadata = {
-  title: "Koparki gąsienicowe do trudnego terenu | HydroBagger",
-  description: "Koparki gąsienicowe do pracy na błocie, skarpach i niestabilnym gruncie. Stabilne, wydajne i gotowe do zadań, gdzie sprzęt kołowy nie da rady.",
-};
+export const metadata: Metadata = metadataForPath("/sprzet/koparki-gasienicowe");
 
 export default function KoparkiGasienicowePage() {
   return (
     <SprzętTemplate
+      seoPath="/sprzet/koparki-gasienicowe"
       breadcrumbLabel="Koparki gąsienicowe"
       heroImage="koparka-plywajaca-kopanie-odmulanie-teren-podmokly.jpg"
       heroTitle="Koparki gąsienicowe"

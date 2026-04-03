@@ -5,11 +5,11 @@ import { imageUrl } from "@/lib/images";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
+import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 
-export const metadata: Metadata = {
-  title: "Usługi hydrotechniczne i ziemne w trudnym terenie | HydroBagger",
-  description: "Kopanie w trudnym terenie, koszenie roślinności, refulacja osadów i transport – HydroBagger działa tam, gdzie inni nie mogą. Sprawdź nasze usługi.",
-};
+const USLUGI_INDEX_SEO = getSEO("/uslugi")!;
+export const metadata: Metadata = metadataFromSEO(USLUGI_INDEX_SEO);
 
 const USLUGI = [
   {
@@ -57,6 +57,7 @@ function SL({ children }: { children: React.ReactNode }) {
 export default function UsługiPage() {
   return (
     <>
+      <JsonLdWebPage seo={USLUGI_INDEX_SEO} />
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20 [transform:translateZ(0)]">
         <Image src={imageUrl("koparka-plywajaca-kopanie-torfowisko01.jpg")} alt="Usługi HydroBagger" fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />

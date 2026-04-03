@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
+import { getSEO } from "@/lib/seo-pages";
 
 const LEGAL_LINKS = [
   { href: "/regulamin", label: "Regulamin" },
@@ -11,13 +13,18 @@ export function LegalPage({
   title,
   subtitle,
   children,
+  seoPath,
 }: {
   title: string;
   subtitle?: string;
   children: ReactNode;
+  /** Ścieżka z SEO_PAGES – JSON-LD WebPage + spójność z metadanymi. */
+  seoPath?: string;
 }) {
+  const pageSeo = seoPath ? getSEO(seoPath) : undefined;
   return (
     <>
+      {pageSeo ? <JsonLdWebPage seo={pageSeo} /> : null}
       {/* HEADER */}
       <section style={{ background: "var(--hb-navy)" }} className="py-10 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

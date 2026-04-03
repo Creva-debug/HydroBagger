@@ -7,6 +7,8 @@ import { USLUGI_ZAKRES_CARDS } from "@/lib/uslugi-zakres-cards";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
+import { getSEO } from "@/lib/seo-pages";
 import { DlaKogoFAQ, type FAQItem } from "./DlaKogoFAQ";
 
 export type DlaKogoArea = { icon: ReactNode; title: string; body: string };
@@ -20,6 +22,7 @@ export type DlaKogoTemplateProps = {
   areas: DlaKogoArea[];
   faqTitle: string;
   faqItems: FAQItem[];
+  seoPath?: string;
 };
 
 function SL({ children, light = false }: { children: ReactNode; light?: boolean }) {
@@ -35,9 +38,12 @@ export function DlaKogoTemplate({
   areas,
   faqTitle,
   faqItems,
+  seoPath,
 }: DlaKogoTemplateProps) {
+  const pageSeo = seoPath ? getSEO(seoPath) : undefined;
   return (
     <>
+      {pageSeo ? <JsonLdWebPage seo={pageSeo} /> : null}
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20 [transform:translateZ(0)]">
         <Image src={imageUrl(heroImage)} alt={breadcrumbLabel} fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />

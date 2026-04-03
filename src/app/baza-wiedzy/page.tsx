@@ -1,12 +1,11 @@
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { WiedzaGrid } from "./WiedzaGrid";
 
-export const metadata: Metadata = (() => {
-  const seo = getSEO("/baza-wiedzy");
-  return seo ? metadataFromSEO(seo) : {};
-})();
+const BAZA_WIEDZY_SEO = getSEO("/baza-wiedzy")!;
+export const metadata: Metadata = metadataFromSEO(BAZA_WIEDZY_SEO);
 
 function SL({ children }: { children: React.ReactNode }) {
   return <span className="section-label">{children}</span>;
@@ -15,6 +14,7 @@ function SL({ children }: { children: React.ReactNode }) {
 export default function BazaWiedzyPage() {
   return (
     <>
+      <JsonLdWebPage seo={BAZA_WIEDZY_SEO} />
       {/* HERO */}
       <section className="relative overflow-hidden bg-slate-50 pb-16 pt-16 lg:pb-20 lg:pt-20">
         <div className="pointer-events-none absolute inset-0 opacity-40" style={{ background: "radial-gradient(ellipse 80% 60% at 60% 40%, rgba(2,132,199,0.12) 0%, transparent 70%)" }} />

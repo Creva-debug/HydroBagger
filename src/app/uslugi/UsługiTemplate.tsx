@@ -7,6 +7,8 @@ import { ContactConsultationSection } from "@/components/ContactConsultationSect
 import { UsługiZakresCard } from "@/components/UsługiZakresCard";
 import { USLUGI_ZAKRES_CARDS } from "@/lib/uslugi-zakres-cards";
 import { imageUrl } from "@/lib/images";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
+import { getSEO } from "@/lib/seo-pages";
 
 export type UsługiStep = { n: string; title: string; body: string };
 
@@ -24,6 +26,7 @@ export type UsługiTemplateProps = {
   steps: UsługiStep[];
   gallery?: { src: string; alt: string }[];
   currentSlug: string;
+  seoPath?: string;
 };
 
 function SL({ children, light = false }: { children: ReactNode; light?: boolean }) {
@@ -42,12 +45,15 @@ export function UsługiTemplate({
   steps,
   gallery = [],
   currentSlug,
+  seoPath,
 }: UsługiTemplateProps) {
+  const pageSeo = seoPath ? getSEO(seoPath) : undefined;
   const otherServices = USLUGI_ZAKRES_CARDS.filter((s) => s.slug !== currentSlug);
   const gallCols = gallery.length <= 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3";
 
   return (
     <>
+      {pageSeo ? <JsonLdWebPage seo={pageSeo} /> : null}
       {/* HERO */}
       <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20 [transform:translateZ(0)]">
         <Image src={imageUrl(heroImage)} alt={breadcrumbLabel} fill priority className="object-cover brightness-[0.65] saturate-[0.85]" sizes="100vw" />

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { DlaKogoTemplate } from "../DlaKogoTemplate";
 
-export const metadata: Metadata = {
-  title: "Prace ziemno-wodne dla osób prywatnych | HydroBagger",
-  description: "Zbudujemy oczko wodne, pogłębimy staw lub oczyścimy działkę. Prace ziemno-wodne dla osób prywatnych – skutecznie, bezpiecznie i z efektem.",
-};
+export const metadata: Metadata = metadataForPath("/dla-kogo/osoby-prywatne");
 
 export default function OsobyPrywatnaPage() {
   return (
     <DlaKogoTemplate
+      seoPath="/dla-kogo/osoby-prywatne"
       breadcrumbLabel="Osoby prywatne"
       heroImage="koparka-plywajaca-eik-am70-praca-w-roslinnosci-wodnej.jpg"
       heroAccent="Osób Prywatnych"

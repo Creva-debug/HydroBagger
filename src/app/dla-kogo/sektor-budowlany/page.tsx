@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { metadataForPath } from "@/lib/seo-pages";
 import { DlaKogoTemplate } from "../DlaKogoTemplate";
 
-export const metadata: Metadata = {
-  title: "Usługi hydrotechniczne dla firm budowlanych | HydroBagger",
-  description: "Wspieramy firmy budowlane w trudnym terenie. Prace ziemno-wodne, kopanie, refulacja i transport – tam, gdzie standardowy sprzęt nie daje rady.",
-};
+export const metadata: Metadata = metadataForPath("/dla-kogo/sektor-budowlany");
 
 export default function SektorBudowlanyPage() {
   return (
     <DlaKogoTemplate
+      seoPath="/dla-kogo/sektor-budowlany"
       breadcrumbLabel="Sektor budowlany"
       heroImage="remu-big-float-e15-bokiem.jpg"
       heroAccent="Sektora Budowlanego"
