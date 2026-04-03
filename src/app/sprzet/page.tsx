@@ -4,11 +4,18 @@ import Link from "next/link";
 import { imageUrl } from "@/lib/images";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
+import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 
-export const metadata: Metadata = {
-  title: "Sprzęt hydrotechniczny i maszyny do zadań specjalnych | HydroBagger",
-  description: "Poznaj sprzęt hydrotechniczny HydroBagger: koparki pływające, pompy refulacyjne, kosiarki, wozidła i maszyny do pracy w trudnym terenie.",
-};
+export const metadata: Metadata = (() => {
+  const seo = getSEO("/sprzet");
+  return seo
+    ? metadataFromSEO(seo)
+    : {
+        title: "Sprzęt hydrotechniczny i maszyny do zadań specjalnych | HB",
+        description:
+          "Poznaj sprzęt hydrotechniczny HydroBagger: koparki pływające, pompy refulacyjne, kosiarki, wozidła i maszyny do pracy w trudnym terenie.",
+      };
+})();
 
 const KATEGORIE = [
   {

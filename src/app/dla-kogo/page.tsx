@@ -4,11 +4,18 @@ import Link from "next/link";
 import { imageUrl } from "@/lib/images";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
+import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
 
-export const metadata: Metadata = {
-  title: "Dla kogo? – usługi hydrotechniczne dla każdego sektora | HydroBagger",
-  description: "HydroBagger realizuje prace hydrotechniczne dla firm budowlanych, samorządów, rolników, obiektów turystycznych, instytucji środowiskowych i osób prywatnych.",
-};
+export const metadata: Metadata = (() => {
+  const seo = getSEO("/dla-kogo");
+  return seo
+    ? metadataFromSEO(seo)
+    : {
+        title: "Usługi hydrotechniczne – dla kogo? | HydroBagger",
+        description:
+          "HydroBagger realizuje prace hydrotechniczne dla firm budowlanych, samorządów, rolników, obiektów turystycznych, instytucji środowiskowych i osób prywatnych.",
+      };
+})();
 
 const KATEGORIE = [
   {

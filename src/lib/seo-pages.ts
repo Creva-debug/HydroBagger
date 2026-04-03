@@ -97,8 +97,8 @@ export const SEO_PAGES: Record<string, PageSEO> = {
   },
   "/praca": {
     path: "/praca",
-    keyword: "oferty pracy",
-    metaTitle: "Oferty pracy – prace hydrotechniczne i ziemne w HydroBagger",
+    keyword: "praca",
+    metaTitle: "Praca w HydroBagger – oferty hydrotechnika i operatora",
     metaDescription:
       "Sprawdź aktualne oferty pracy przy robotach ziemnych i hydrotechnicznych. Pracuj z zespołem HydroBagger i nowoczesnym sprzętem w terenie.",
   },
@@ -126,7 +126,7 @@ export const SEO_PAGES: Record<string, PageSEO> = {
   "/regulamin": {
     path: "/regulamin",
     keyword: "brak",
-    metaTitle: "Regulamin - HydroBagger.pl",
+    metaTitle: "Regulamin serwisu HydroBagger.pl – zasady korzystania",
     metaDescription:
       "Zapoznaj się z regulaminem naszego serwisu Hydrobagger. Znajdziesz tu ważne informacje dotyczące korzystania z naszych usług i zasad współpracy.",
   },

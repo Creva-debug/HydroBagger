@@ -7,7 +7,13 @@ import { PracaFAQ } from "./PracaFAQ";
 
 export const metadata: Metadata = (() => {
   const seo = getSEO("/praca");
-  return seo ? metadataFromSEO(seo) : { title: "Oferty pracy – prace hydrotechniczne i ziemne w HydroBagger", description: "Sprawdź aktualne oferty pracy przy robotach ziemnych i hydrotechnicznych. Pracuj z zespołem HydroBagger i nowoczesnym sprzętem w terenie." };
+  return seo
+    ? metadataFromSEO(seo)
+    : {
+        title: "Praca w HydroBagger – oferty hydrotechnika i operatora",
+        description:
+          "Sprawdź aktualne oferty pracy przy robotach ziemnych i hydrotechnicznych. Pracuj z zespołem HydroBagger i nowoczesnym sprzętem w terenie.",
+      };
 })();
 
 const OFERTY = [

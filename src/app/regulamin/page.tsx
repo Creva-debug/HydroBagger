@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Regulamin – HydroBagger.pl",
+  title: "Regulamin serwisu HydroBagger.pl – zasady korzystania",
   description: "Zapoznaj się z regulaminem serwisu Hydrobagger. Znajdziesz tu ważne informacje dotyczące korzystania z naszych usług i zasad współpracy.",
 };
 

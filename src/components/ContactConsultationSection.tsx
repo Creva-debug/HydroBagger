@@ -91,13 +91,23 @@ export function ContactConsultationSection({
                 : "lg:col-start-1 lg:row-start-2 lg:min-w-0"
             }
           >
-            <h2
-              className="display-heading mt-4 text-slate-900 lg:mt-0"
-              style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)" }}
-            >
-              Prace w trudnym terenie?{" "}
-              <span style={{ color: "var(--hb-water)" }}>Zacznijmy od rozmowy!</span>
-            </h2>
+            {isPageLead ? (
+              <h1
+                className="display-heading mt-4 text-slate-900 lg:mt-0"
+                style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)" }}
+              >
+                Prace w trudnym terenie?{" "}
+                <span style={{ color: "var(--hb-water)" }}>Zacznijmy od rozmowy!</span>
+              </h1>
+            ) : (
+              <h2
+                className="display-heading mt-4 text-slate-900 lg:mt-0"
+                style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)" }}
+              >
+                Prace w trudnym terenie?{" "}
+                <span style={{ color: "var(--hb-water)" }}>Zacznijmy od rozmowy!</span>
+              </h2>
+            )}
             <p className="mt-5 text-lg leading-relaxed text-slate-600">
               Skorzystaj z bezpłatnej 20-minutowej konsultacji – opowiesz nam o swojej sytuacji, a my podpowiemy możliwe rozwiązania.
             </p>
