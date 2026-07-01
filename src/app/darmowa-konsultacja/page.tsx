@@ -2,14 +2,16 @@ import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
-import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
+import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 import { imageUrl } from "@/lib/images";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
 const KONSULTACJA_SEO = getSEO("/darmowa-konsultacja")!;
-export const metadata: Metadata = metadataFromSEO(KONSULTACJA_SEO);
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/darmowa-konsultacja");
+}
 
 const PYTANIA = [
   "Czy jesteście w stanie pogłębić staw bez uszkodzenia otoczenia?",

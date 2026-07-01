@@ -1,4 +1,5 @@
 import { ServerClient } from "postmark";
+import { recordEmailOutbox, type AttachmentMeta } from "@/lib/email-outbox";
 
 export const postmarkClient = new ServerClient(
   process.env.POSTMARK_API_TOKEN!
@@ -6,6 +7,97 @@ export const postmarkClient = new ServerClient(
 
 export const CONTACT_EMAIL =
   process.env.CONTACT_EMAIL ?? "kontakt@hydrobagger.pl";
+
+export type TrackedEmailAttachment = {
+  Name: string;
+  Content: string;
+  ContentType: string;
+  ContentID: string;
+};
+
+export type SendTrackedEmailInput = {
+  /** Rodzaj maila widoczny w panelu, np. "contact", "job_application". */
+  kind: string;
+  /** Krótki znacznik Postmark (tag), do filtrowania w panelu i w Postmarku. */
+  tag: string;
+  to: string;
+  replyTo?: string;
+  subject: string;
+  htmlBody: string;
+  textBody: string;
+  attachments?: TrackedEmailAttachment[];
+  fromLabel?: string;
+};
+
+export type SendTrackedEmailResult = {
+  sent: boolean;
+  messageId: string | null;
+  errorMessage: string | null;
+};
+
+/**
+ * Wysyła mail przez Postmark i niezależnie od wyniku loguje próbę w
+ * `email_outbox` (widoczne w panelu: mngmt.hydrobagger.pl/wysylka-maili).
+ * Log nigdy nie blokuje ani nie psuje wysyłki — patrz `recordEmailOutbox`.
+ */
+export async function sendTrackedEmail(
+  input: SendTrackedEmailInput
+): Promise<SendTrackedEmailResult> {
+  const from = `${input.fromLabel ?? "HydroBagger"} <${CONTACT_EMAIL}>`;
+  const attachmentsMeta: AttachmentMeta[] = (input.attachments ?? []).map((a) => ({
+    name: a.Name,
+    contentType: a.ContentType,
+    sizeBytes: Math.ceil((a.Content.length * 3) / 4),
+  }));
+
+  try {
+    const result = await postmarkClient.sendEmail({
+      From: from,
+      To: input.to,
+      ReplyTo: input.replyTo,
+      Subject: input.subject,
+      HtmlBody: input.htmlBody,
+      TextBody: input.textBody,
+      Attachments: input.attachments,
+      MessageStream: "outbound",
+      Tag: input.tag,
+    });
+
+    await recordEmailOutbox({
+      kind: input.kind,
+      tag: input.tag,
+      subject: input.subject,
+      recipient: input.to,
+      status: "sent",
+      fromEmail: from,
+      replyToEmail: input.replyTo ?? "",
+      textBody: input.textBody,
+      htmlBody: input.htmlBody,
+      attachmentsMeta,
+      messageId: result.MessageID ?? null,
+    });
+
+    return { sent: true, messageId: result.MessageID ?? null, errorMessage: null };
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+
+    await recordEmailOutbox({
+      kind: input.kind,
+      tag: input.tag,
+      subject: input.subject,
+      recipient: input.to,
+      status: "failed",
+      fromEmail: from,
+      replyToEmail: input.replyTo ?? "",
+      textBody: input.textBody,
+      htmlBody: input.htmlBody,
+      attachmentsMeta,
+      errorMessage,
+    });
+
+    return { sent: false, messageId: null, errorMessage };
+  }
+}
 
 export function buildNotificationHtml({
   title,

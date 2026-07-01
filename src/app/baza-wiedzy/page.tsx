@@ -1,11 +1,13 @@
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
-import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
+import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { WiedzaGrid } from "./WiedzaGrid";
 
 const BAZA_WIEDZY_SEO = getSEO("/baza-wiedzy")!;
-export const metadata: Metadata = metadataFromSEO(BAZA_WIEDZY_SEO);
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/baza-wiedzy");
+}
 
 function SL({ children }: { children: React.ReactNode }) {
   return <span className="section-label">{children}</span>;

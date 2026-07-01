@@ -1,5 +1,5 @@
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
-import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
+import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 import { imageUrl } from "@/lib/images";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
@@ -8,7 +8,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const REFERENCJE_SEO = getSEO("/referencje")!;
-export const metadata: Metadata = metadataFromSEO(REFERENCJE_SEO);
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/referencje");
+}
 
 /* ────────────────────────────────────────────────────────── */
 

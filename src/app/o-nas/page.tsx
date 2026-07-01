@@ -1,5 +1,5 @@
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
-import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
+import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 import { imageUrl } from "@/lib/images";
 import { USLUGI_ZAKRES_CARDS } from "@/lib/uslugi-zakres-cards";
 import { UsługiZakresCard } from "@/components/UsługiZakresCard";
@@ -11,7 +11,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const O_NAS_SEO = getSEO("/o-nas")!;
-export const metadata: Metadata = metadataFromSEO(O_NAS_SEO);
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/o-nas");
+}
 
 function SL({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return <span className={`section-label${light ? " section-label--light" : ""}`}>{children}</span>;

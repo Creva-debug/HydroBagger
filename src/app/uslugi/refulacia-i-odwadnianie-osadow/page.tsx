@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { metadataForPath } from "@/lib/seo-pages";
+import { getPageMetadata } from "@/lib/seo-pages";
 import { UsługiTemplate } from "../UsługiTemplate";
 
-export const metadata: Metadata = metadataForPath("/uslugi/refulacia-i-odwadnianie-osadow");
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/uslugi/refulacia-i-odwadnianie-osadow");
+}
 
 export default function RefulacjaIOdwadnianiePage() {
   return (

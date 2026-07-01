@@ -6,6 +6,7 @@
 import type { Metadata } from "next";
 import { imageUrl } from "./images";
 import { absoluteUrl } from "./site-url";
+import { fetchSeoOverride } from "./seo-db";
 
 /** Grafika Open Graph / udostępniania społecznościowego (Bunny CDN). */
 export const OG_SHARE_IMAGE_FILE = "hydrobagger-graph.jpg";
@@ -238,9 +239,10 @@ function socialMetadata(
   path: string,
   title: string,
   description: string,
+  ogImageFile: string = OG_SHARE_IMAGE_FILE,
 ): Pick<Metadata, "alternates" | "openGraph" | "twitter"> {
   const url = absoluteUrl(path);
-  const ogImage = imageUrl(OG_SHARE_IMAGE_FILE);
+  const ogImage = imageUrl(ogImageFile);
   return {
     alternates: { canonical: url },
     openGraph: {
@@ -284,4 +286,31 @@ export function metadataForPath(path: string): Metadata {
     throw new Error(`Brak wpisu SEO dla ścieżki: ${path}`);
   }
   return metadataFromSEO(seo);
+}
+
+/**
+ * Metadane dla ścieżki z uwzględnieniem nadpisań ustawionych w panelu
+ * (mngmt.hydrobagger.pl → SEO). Gdy w bazie nie ma wiersza lub pole jest
+ * puste, używana jest wartość domyślna z `SEO_PAGES` — strona nigdy nie
+ * zostaje bez tytułu/opisu z powodu problemu z bazą danych.
+ *
+ * Do użycia w `generateMetadata()` (Server Component, per-request).
+ */
+export async function getPageMetadata(path: string): Promise<Metadata> {
+  const fallback = getSEO(path);
+  if (!fallback) {
+    throw new Error(`Brak wpisu SEO dla ścieżki: ${path}`);
+  }
+  const override = await fetchSeoOverride(path);
+  const title = override?.metaTitle.trim() || fallback.metaTitle;
+  const description = override?.metaDescription.trim() || fallback.metaDescription;
+  const keywords = override?.keywords.trim() || undefined;
+  const ogImageFile = override?.ogImage?.trim() || undefined;
+
+  return {
+    title,
+    description,
+    ...(keywords ? { keywords } : {}),
+    ...socialMetadata(path, title, description, ogImageFile),
+  };
 }

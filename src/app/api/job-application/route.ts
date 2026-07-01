@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { buildNotificationHtml, CONTACT_EMAIL, postmarkClient } from "@/lib/postmark";
+import { buildNotificationHtml, CONTACT_EMAIL, sendTrackedEmail } from "@/lib/postmark";
 import { recordLead } from "@/lib/leads";
 
 const MAX_CV_BYTES = 10 * 1024 * 1024; // 10 MB
@@ -74,35 +74,20 @@ export async function POST(req: NextRequest) {
     .filter((l) => l !== undefined)
     .join("\n");
 
-  let emailSent = true;
-  try {
-    await postmarkClient.sendEmail({
-      From: `HydroBagger Rekrutacja <${CONTACT_EMAIL}>`,
-      To: CONTACT_EMAIL,
-      ReplyTo: email,
-      Subject: `Zgłoszenie rekrutacyjne – ${position ? `${position} – ` : ""}${name}`,
-      HtmlBody: htmlBody,
-      TextBody: textBody,
-      Attachments: attachments,
-      MessageStream: "outbound",
-    });
-  } catch (err) {
-    emailSent = false;
-    console.error("[Postmark] Błąd wysyłki zgłoszenia rekrutacyjnego:", err);
-    await recordLead({
-      type: "job_application",
-      name,
-      email,
-      phone,
-      position,
-      message,
-      attachmentNames: attachments.map((a) => a.Name),
-      emailSent,
-    });
-    return NextResponse.json(
-      { error: "Wystąpił błąd podczas wysyłania zgłoszenia. Spróbuj ponownie lub napisz bezpośrednio na kontakt@hydrobagger.pl." },
-      { status: 500 }
-    );
+  const result = await sendTrackedEmail({
+    kind: "job_application",
+    tag: "rekrutacja-formularz",
+    fromLabel: "HydroBagger Rekrutacja",
+    to: CONTACT_EMAIL,
+    replyTo: email,
+    subject: `Zgłoszenie rekrutacyjne – ${position ? `${position} – ` : ""}${name}`,
+    htmlBody,
+    textBody,
+    attachments,
+  });
+
+  if (!result.sent) {
+    console.error("[Postmark] Błąd wysyłki zgłoszenia rekrutacyjnego:", result.errorMessage);
   }
 
   await recordLead({
@@ -113,8 +98,15 @@ export async function POST(req: NextRequest) {
     position,
     message,
     attachmentNames: attachments.map((a) => a.Name),
-    emailSent,
+    emailSent: result.sent,
   });
+
+  if (!result.sent) {
+    return NextResponse.json(
+      { error: "Wystąpił błąd podczas wysyłania zgłoszenia. Spróbuj ponownie lub napisz bezpośrednio na kontakt@hydrobagger.pl." },
+      { status: 500 }
+    );
+  }
 
   return NextResponse.json({ success: true });
 }

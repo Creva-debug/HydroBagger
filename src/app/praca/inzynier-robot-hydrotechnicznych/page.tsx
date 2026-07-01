@@ -1,12 +1,14 @@
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { JobApplicationSection } from "@/components/JobApplicationSection";
-import { getSEO, metadataForPath } from "@/lib/seo-pages";
+import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 import { imageUrl } from "@/lib/images";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = metadataForPath("/praca/inzynier-robot-hydrotechnicznych");
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/praca/inzynier-robot-hydrotechnicznych");
+}
 
 const INZYNIER_SEO = getSEO("/praca/inzynier-robot-hydrotechnicznych")!;
 

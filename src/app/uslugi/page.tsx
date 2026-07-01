@@ -6,10 +6,12 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
-import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
+import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 
 const USLUGI_INDEX_SEO = getSEO("/uslugi")!;
-export const metadata: Metadata = metadataFromSEO(USLUGI_INDEX_SEO);
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/uslugi");
+}
 
 const USLUGI = [
   {

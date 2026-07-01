@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { metadataForPath } from "@/lib/seo-pages";
+import { getPageMetadata } from "@/lib/seo-pages";
 import { DlaKogoTemplate } from "../DlaKogoTemplate";
 
-export const metadata: Metadata = metadataForPath("/dla-kogo/obiekty-turystyczne");
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/dla-kogo/obiekty-turystyczne");
+}
 
 export default function ObiektyTurystycznePage() {
   return (

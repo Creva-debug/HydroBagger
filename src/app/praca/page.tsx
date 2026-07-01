@@ -1,5 +1,5 @@
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
-import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
+import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 import { imageUrl } from "@/lib/images";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -7,7 +7,9 @@ import Link from "next/link";
 import { PracaFAQ } from "./PracaFAQ";
 
 const PRACA_SEO = getSEO("/praca")!;
-export const metadata: Metadata = metadataFromSEO(PRACA_SEO);
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/praca");
+}
 
 const OFERTY = [
   { href: "/praca/operator-koparki", title: "Operator koparki", subtitle: "w pracach melioracyjnych", salary: "11 000 – 19 000 zł brutto", umowa: "Umowa o pracę", wymiar: "Pełny etat", lokalizacja: "Międzychód (+ 150 km)", opis: "Samodzielna praca koparką (w tym pontonową) przy konserwacji zbiorników, cieków, wykopach i humusowaniu.", wymagania: ["Doświadczenie w pracach melioracyjnych i hydrotechnicznych", "Umiejętność pracy koparką w grząskim terenie", "Dyspozycyjność / gotowość do wyjazdów w delegacje", "Prawo jazdy kategorii B"], img: "koparka-plywajaca-kopanie-torfowisko01.jpg", tag: "Operator sprzętu" },

@@ -5,10 +5,12 @@ import { imageUrl } from "@/lib/images";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
-import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
+import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 
 const DLA_KOGO_SEO = getSEO("/dla-kogo")!;
-export const metadata: Metadata = metadataFromSEO(DLA_KOGO_SEO);
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/dla-kogo");
+}
 
 const KATEGORIE = [
   {

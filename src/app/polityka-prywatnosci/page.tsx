@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
-import { metadataForPath } from "@/lib/seo-pages";
+import { getPageMetadata } from "@/lib/seo-pages";
 
-export const metadata: Metadata = metadataForPath("/polityka-prywatnosci");
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/polityka-prywatnosci");
+}
 
 export default function PolitykaPrywatnosciPage() {
   return (

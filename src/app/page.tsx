@@ -4,14 +4,16 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { UsługiZakresCard } from "@/components/UsługiZakresCard";
 import { USLUGI_ZAKRES_CARDS } from "@/lib/uslugi-zakres-cards";
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
-import { getSEO, metadataFromSEO } from "@/lib/seo-pages";
+import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { videoUrl, imageUrl } from "@/lib/images";
 
 const HOME_SEO = getSEO("/")!;
-export const metadata: Metadata = metadataFromSEO(HOME_SEO);
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/");
+}
 
 /* ════════════════════════════════════════════════════════════
    DANE

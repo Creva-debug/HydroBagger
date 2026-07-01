@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { metadataForPath } from "@/lib/seo-pages";
+import { getPageMetadata } from "@/lib/seo-pages";
 import { SprzętTemplate } from "../SprzętTemplate";
 
-export const metadata: Metadata = metadataForPath("/sprzet/pompy-refulacyjne");
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/sprzet/pompy-refulacyjne");
+}
 
 export default function PompyRefulacyjnePage() {
   return (

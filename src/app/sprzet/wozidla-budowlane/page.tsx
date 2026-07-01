@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { metadataForPath } from "@/lib/seo-pages";
+import { getPageMetadata } from "@/lib/seo-pages";
 import { SprzętTemplate } from "../SprzętTemplate";
 
-export const metadata: Metadata = metadataForPath("/sprzet/wozidla-budowlane");
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/sprzet/wozidla-budowlane");
+}
 
 export default function WozidlaBudowlanePage() {
   return (

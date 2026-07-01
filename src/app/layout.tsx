@@ -34,6 +34,11 @@ const defaultMetadata = {
     "Prace hydrotechniczne z lądu i wody. Bagna, torfy, cieki – wchodzimy tam, gdzie inni się poddają.",
 };
 
+// Metadane (w tym nadpisania SEO z panelu mngmt.hydrobagger.pl) są czytane
+// z bazy w generateMetadata() każdej podstrony — odświeżamy je okresowo (ISR),
+// żeby zmiana w panelu była widoczna bez pełnego redeployu.
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteOrigin()),
   ...defaultMetadata,
