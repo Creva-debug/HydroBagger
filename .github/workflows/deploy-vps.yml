@@ -1,0 +1,66 @@
+# Push na `main` → SSH na VPS (ubuntu) → git sync + build + PM2.
+#
+# Sekrety w repo HydroBagger (Settings → Secrets and variables → Actions):
+#   HB_SITE_VPS_HOST     — host VPS bez portu
+#   HB_SITE_VPS_USER     — ubuntu
+#   HB_SITE_VPS_SSH_KEY  — prywatny klucz SSH (deploy key, tylko do tego celu)
+
+name: Deploy HydroBagger Site to VPS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.HB_SITE_VPS_SSH_KEY }}
+
+      - name: Trust VPS host key
+        env:
+          VPS_HOST: ${{ secrets.HB_SITE_VPS_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy over SSH
+        env:
+          VPS_HOST: ${{ secrets.HB_SITE_VPS_HOST }}
+          VPS_USER: ${{ secrets.HB_SITE_VPS_USER }}
+        run: |
+          ssh -o BatchMode=yes "${VPS_USER}@${VPS_HOST}" 'bash -s' <<'REMOTE'
+          set -e
+          APP_DIR=/home/ubuntu/hydrobagger/apps/site
+
+          if [ ! -d "$APP_DIR/.git" ]; then
+            echo "Brak repo w $APP_DIR — sklonuj HydroBagger przed pierwszym deployem."
+            exit 1
+          fi
+
+          cd "$APP_DIR"
+
+          echo "==> git sync (fetch + forced checkout to origin/main)"
+          git fetch origin main
+          git checkout -f -B main origin/main
+
+          echo "==> pm2 stop"
+          pm2 stop hydrobagger-site 2>/dev/null || true
+
+          echo "==> npm ci"
+          rm -rf node_modules
+          npm ci
+
+          echo "==> npm run build"
+          npm run build
+
+          echo "==> pm2 start"
+          pm2 delete hydrobagger-site 2>/dev/null || true
+          pm2 start npm --name hydrobagger-site --cwd "$APP_DIR" -- start
+          pm2 save
+
+          echo "==> Done"
+          REMOTE

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildNotificationHtml, CONTACT_EMAIL, postmarkClient } from "@/lib/postmark";
+import { recordLead } from "@/lib/leads";
 
 const MAX_CV_BYTES = 10 * 1024 * 1024; // 10 MB
 
@@ -73,6 +74,7 @@ export async function POST(req: NextRequest) {
     .filter((l) => l !== undefined)
     .join("\n");
 
+  let emailSent = true;
   try {
     await postmarkClient.sendEmail({
       From: `HydroBagger Rekrutacja <${CONTACT_EMAIL}>`,
@@ -85,12 +87,34 @@ export async function POST(req: NextRequest) {
       MessageStream: "outbound",
     });
   } catch (err) {
+    emailSent = false;
     console.error("[Postmark] Błąd wysyłki zgłoszenia rekrutacyjnego:", err);
+    await recordLead({
+      type: "job_application",
+      name,
+      email,
+      phone,
+      position,
+      message,
+      attachmentNames: attachments.map((a) => a.Name),
+      emailSent,
+    });
     return NextResponse.json(
       { error: "Wystąpił błąd podczas wysyłania zgłoszenia. Spróbuj ponownie lub napisz bezpośrednio na kontakt@hydrobagger.pl." },
       { status: 500 }
     );
   }
+
+  await recordLead({
+    type: "job_application",
+    name,
+    email,
+    phone,
+    position,
+    message,
+    attachmentNames: attachments.map((a) => a.Name),
+    emailSent,
+  });
 
   return NextResponse.json({ success: true });
 }

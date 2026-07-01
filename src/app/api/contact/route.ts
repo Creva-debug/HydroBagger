@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildNotificationHtml, CONTACT_EMAIL, postmarkClient } from "@/lib/postmark";
+import { recordLead } from "@/lib/leads";
 
 const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024; // 10 MB łącznie
 
@@ -71,6 +72,7 @@ export async function POST(req: NextRequest) {
     .filter((l) => l !== undefined)
     .join("\n");
 
+  let emailSent = true;
   try {
     await postmarkClient.sendEmail({
       From: `HydroBagger Formularz <${CONTACT_EMAIL}>`,
@@ -83,12 +85,30 @@ export async function POST(req: NextRequest) {
       MessageStream: "outbound",
     });
   } catch (err) {
+    emailSent = false;
     console.error("[Postmark] Błąd wysyłki maila kontaktowego:", err);
+    await recordLead({
+      type: "contact",
+      email,
+      phone,
+      message,
+      attachmentNames: attachments.map((a) => a.Name),
+      emailSent,
+    });
     return NextResponse.json(
       { error: "Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie lub napisz bezpośrednio na kontakt@hydrobagger.pl." },
       { status: 500 }
     );
   }
+
+  await recordLead({
+    type: "contact",
+    email,
+    phone,
+    message,
+    attachmentNames: attachments.map((a) => a.Name),
+    emailSent,
+  });
 
   return NextResponse.json({ success: true });
 }
