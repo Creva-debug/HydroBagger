@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { type CSSProperties, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics/analytics-provider";
 
 const FIELD_CLASS =
   "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-300 outline-none transition focus:border-[#0284c7] focus:ring-2";
@@ -49,6 +50,7 @@ export function JobApplicationSection({ jobTitle }: JobApplicationSectionProps) 
 
       setStatus("success");
       formRef.current?.reset();
+      trackEvent("form_submit", { form: "job_application", jobTitle });
     } catch {
       setErrorMsg("Nie udało się wysłać zgłoszenia. Sprawdź połączenie internetowe.");
       setStatus("error");

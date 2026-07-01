@@ -13,6 +13,7 @@ import {
 import { Switch } from "@/components/ui/switch"
 import {
   CONSENT_COOKIE,
+  CONSENT_SAVED_EVENT,
   COOKIE_SETTINGS_EVENT,
   type ConsentState,
 } from "@/lib/cookie-consent"
@@ -142,6 +143,7 @@ export function CookieConsent() {
     applyConsentUpdate(stamped)
     setShowBanner(false)
     setShowSettings(false)
+    window.dispatchEvent(new Event(CONSENT_SAVED_EVENT))
   }, [])
 
   const acceptAll = useCallback(() => {

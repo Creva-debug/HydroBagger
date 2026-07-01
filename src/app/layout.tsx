@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Montserrat, Geist } from "next/font/google";
 import Script from "next/script";
 import { Header } from "@/components/Header";
@@ -6,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { ViewportHeightFix } from "@/components/ViewportHeightFix";
 import { CookieConsent } from "@/components/cookie-consent";
 import { SiteStructuredData } from "@/components/SiteStructuredData";
+import { AnalyticsProvider } from "@/lib/analytics/analytics-provider";
 import { imageUrl } from "@/lib/images";
 import { getSiteOrigin } from "@/lib/site-url";
 import "./globals.css";
@@ -76,6 +78,9 @@ export default function RootLayout({
         ) : null}
         <ViewportHeightFix />
         <SiteStructuredData />
+        <Suspense fallback={null}>
+          <AnalyticsProvider />
+        </Suspense>
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />

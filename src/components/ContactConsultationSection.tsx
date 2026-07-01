@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { type ReactNode, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics/analytics-provider";
 
 const FORM_FIELD_CLASS =
   "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition-colors hover:border-[#0284c7] focus:border-[#0284c7] focus:outline-none focus-visible:border-[#0284c7] focus:ring-0 focus-visible:ring-0";
@@ -66,6 +67,7 @@ export function ContactConsultationSection({
 
       setStatus("success");
       formRef.current?.reset();
+      trackEvent("form_submit", { form: "contact" });
     } catch {
       setErrorMsg("Nie udało się wysłać wiadomości. Sprawdź połączenie internetowe.");
       setStatus("error");
