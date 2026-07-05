@@ -17,6 +17,21 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [{ source: "/wiedza", destination: "/baza-wiedzy", permanent: true }];
   },
+  /** Podgląd strony w iframe z panelu mngmt.hydrobagger.pl (zakładka Zdjęcia). */
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value:
+              "frame-ancestors 'self' https://mngmt.hydrobagger.pl http://localhost:3003 http://localhost:3005",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
