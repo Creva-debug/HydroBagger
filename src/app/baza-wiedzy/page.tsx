@@ -1,7 +1,8 @@
-import { JsonLdWebPage } from "@/components/JsonLdWebPage";
-import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLdWebPage } from "@/components/JsonLdWebPage";
+import { listPublishedBlogPosts } from "@/lib/blog-db";
+import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 import { WiedzaGrid } from "./WiedzaGrid";
 
 const BAZA_WIEDZY_SEO = getSEO("/baza-wiedzy")!;
@@ -13,7 +14,14 @@ function SL({ children }: { children: React.ReactNode }) {
   return <span className="section-label">{children}</span>;
 }
 
-export default function BazaWiedzyPage() {
+export default async function BazaWiedzyPage() {
+  const publishedPosts = await listPublishedBlogPosts();
+  const publishedCards = publishedPosts.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+  }));
+
   return (
     <>
       <JsonLdWebPage seo={BAZA_WIEDZY_SEO} />
@@ -53,7 +61,7 @@ export default function BazaWiedzyPage() {
       {/* FILTR + SIATKA */}
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <WiedzaGrid />
+          <WiedzaGrid publishedPosts={publishedCards} />
         </div>
       </section>
 

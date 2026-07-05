@@ -1,8 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { imageUrl } from "@/lib/images";
+
+export type PublishedBlogCard = {
+  slug: string;
+  title: string;
+  excerpt: string;
+};
+
+const DEFAULT_IMG = "koparka-plywajaca-remu-big-float-e2200-na-brzegu-zbiornika.jpg";
 
 const KATEGORIE = [
   { id: "wszystkie", label: "Wszystkie tematy" },
@@ -31,6 +40,48 @@ const ARTYKULY: {
   { id: 5, kategoria: "srodowisko", tytul: "Jak odtworzyć retencję wodną na terenie rolnym?", opis: "Melioracje, rowy, zbiorniki retencyjne – co wymaga pozwolenia, jak planować prace i na co zwrócić uwagę.", czas: "9 min czytania", img: "koparka-plywajaca-waterking-wk20-czyszczenie-rowu.jpg", gradient: "from-emerald-900/60 to-[#071e32]/80" },
   { id: 6, kategoria: "poglebiane", tytul: "Pogłębianie w trudnym terenie – bagna, torfy, woda", opis: "Specyfika pracy na gruntach podmokłych. Jak zabezpieczamy teren, sprzęt i jakie ryzyka bierzemy pod uwagę.", czas: "7 min czytania", img: "koparka-plywajaca-kopanie-torfowisko01.jpg", gradient: "from-slate-800/60 to-[#071e32]/80" },
 ];
+
+function PublishedArticleCard({ post }: { post: PublishedBlogCard }) {
+  return (
+    <Link
+      href={`/baza-wiedzy/${post.slug}`}
+      className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg"
+    >
+      <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
+        <Image
+          src={imageUrl(DEFAULT_IMG)}
+          alt={post.title}
+          fill
+          className="object-cover brightness-[0.85] saturate-[0.75] transition-transform duration-700 group-hover:scale-[1.04]"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-sky-900/60 to-[#071e32]/80" />
+        <div className="absolute left-3 top-3">
+          <span className="rounded-full bg-emerald-500/90 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
+            Opublikowany
+          </span>
+        </div>
+      </div>
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="line-clamp-2 text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-[#0284c7] sm:text-xl">
+          {post.title}
+        </h3>
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500 line-clamp-3">
+          {post.excerpt}
+        </p>
+        <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
+          <span className="text-xs text-slate-400">Artykuł</span>
+          <span className="flex items-center gap-1 text-xs font-semibold text-[#0284c7]">
+            Czytaj
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 function ArticleCard({ art }: { art: (typeof ARTYKULY)[number] }) {
   const katLabel = KATEGORIE.find((k) => k.id === art.kategoria)?.label ?? art.kategoria;
@@ -61,15 +112,19 @@ function ArticleCard({ art }: { art: (typeof ARTYKULY)[number] }) {
   );
 }
 
-export function WiedzaGrid() {
+export function WiedzaGrid({ publishedPosts = [] }: { publishedPosts?: PublishedBlogCard[] }) {
   const [aktywna, setAktywna] = useState<KategoriaId>("wszystkie");
   const filtered = aktywna === "wszystkie" ? ARTYKULY : ARTYKULY.filter((a) => a.kategoria === aktywna);
+  const totalCount = publishedPosts.length + ARTYKULY.length;
   return (
     <>
       <div className="mb-10 flex flex-wrap gap-2">
         {KATEGORIE.map((k) => {
           const isActive = aktywna === k.id;
-          const count = k.id === "wszystkie" ? ARTYKULY.length : ARTYKULY.filter((a) => a.kategoria === k.id).length;
+          const count =
+            k.id === "wszystkie"
+              ? totalCount
+              : ARTYKULY.filter((a) => a.kategoria === k.id).length;
           return (
             <button key={k.id} type="button" onClick={() => setAktywna(k.id)} className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 ${isActive ? "text-white shadow-md" : "bg-slate-100 text-slate-600 hover:bg-slate-200"}`} style={isActive ? { background: "var(--hb-water)" } : undefined}>
               {k.label}
@@ -79,7 +134,12 @@ export function WiedzaGrid() {
         })}
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((art) => <ArticleCard key={art.id} art={art} />)}
+        {(aktywna === "wszystkie" ? publishedPosts : []).map((post) => (
+          <PublishedArticleCard key={post.slug} post={post} />
+        ))}
+        {filtered.map((art) => (
+          <ArticleCard key={art.id} art={art} />
+        ))}
       </div>
       {filtered.length === 0 && <div className="py-20 text-center text-slate-400">Brak artykułów w tej kategorii.</div>}
     </>

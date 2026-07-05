@@ -8,6 +8,7 @@ import { getSEO, getPageMetadata } from "@/lib/seo-pages";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchSiteImageVersion } from "@/lib/site-images-db";
 import { videoUrl, imageUrl } from "@/lib/images";
 
 const HOME_SEO = getSEO("/")!;
@@ -120,7 +121,12 @@ function ArrowRight({ className = "h-4 w-4" }: { className?: string }) {
    PAGE
 ════════════════════════════════════════════════════════════ */
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [videoVersion, posterVersion] = await Promise.all([
+    fetchSiteImageVersion("home_hero_video"),
+    fetchSiteImageVersion("home_hero_poster"),
+  ]);
+
   return (
     <>
       <JsonLdWebPage seo={HOME_SEO} />
@@ -136,9 +142,14 @@ export default function HomePage() {
           muted
           loop
           playsInline
+          poster={
+            posterVersion != null
+              ? imageUrl("home-hero-poster.jpg", posterVersion)
+              : undefined
+          }
           className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center brightness-[0.94] saturate-[0.84] contrast-[0.94]"
         >
-          <source src={videoUrl("video-tlo.mp4")} type="video/mp4" />
+          <source src={videoUrl("video-tlo.mp4", videoVersion ?? undefined)} type="video/mp4" />
         </video>
 
         {/* Scrim: ciemniejszy środek pod napisy + lżejsze krawędzie (hb-navy, nie czarny slate-950) */}

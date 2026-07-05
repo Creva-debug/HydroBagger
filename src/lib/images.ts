@@ -15,13 +15,17 @@ function encodeFilenameForCdnPath(filename: string): string {
   return encodeURIComponent(trimmed).replace(/%28/g, "(").replace(/%29/g, ")");
 }
 
-export function imageUrl(filename: string): string {
-  return `${IMAGES_BASE_URL}${encodeFilenameForCdnPath(filename)}`;
+export function imageUrl(filename: string, version?: number): string {
+  const base = `${IMAGES_BASE_URL}${encodeFilenameForCdnPath(filename)}`;
+  if (version != null && version > 0) return `${base}?v=${version}`;
+  return base;
 }
 
 /**
  * Zwraca pełny URL do pliku wideo na CDN (ta sama baza co zdjęcia).
  */
-export function videoUrl(filename: string): string {
-  return `${IMAGES_BASE_URL}${encodeFilenameForCdnPath(filename)}`;
+export function videoUrl(filename: string, version?: number): string {
+  const base = `${IMAGES_BASE_URL}${encodeFilenameForCdnPath(filename)}`;
+  if (version != null && version > 0) return `${base}?v=${version}`;
+  return base;
 }
