@@ -135,6 +135,7 @@ export default async function HomePage() {
       ══════════════════════════════════════════════════════ */}
       <section
         className="relative flex flex-col overflow-hidden"
+        data-landing-preview-zone="hero"
         style={{ minHeight: "calc(var(--real-vh, 100dvh) - var(--site-header-height))" }}
       >
         <video
@@ -142,6 +143,8 @@ export default async function HomePage() {
           muted
           loop
           playsInline
+          data-landing-preview="video-tlo.mp4"
+          data-landing-slot-key="home_hero_video"
           poster={
             posterVersion != null
               ? imageUrl("home-hero-poster.jpg", posterVersion)

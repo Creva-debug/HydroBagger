@@ -8,6 +8,7 @@ import { ViewportHeightFix } from "@/components/ViewportHeightFix";
 import { CookieConsent } from "@/components/cookie-consent";
 import { SiteStructuredData } from "@/components/SiteStructuredData";
 import { AnalyticsProvider } from "@/lib/analytics/analytics-provider";
+import { PreviewModeInterceptor } from "@/components/PreviewModeInterceptor";
 import { imageUrl } from "@/lib/images";
 import { getSiteOrigin } from "@/lib/site-url";
 import "./globals.css";
@@ -80,6 +81,9 @@ export default function RootLayout({
         <SiteStructuredData />
         <Suspense fallback={null}>
           <AnalyticsProvider />
+        </Suspense>
+        <Suspense fallback={null}>
+          <PreviewModeInterceptor />
         </Suspense>
         <Header />
         <div className="flex-1">{children}</div>
