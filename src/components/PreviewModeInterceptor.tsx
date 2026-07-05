@@ -73,14 +73,67 @@ export function PreviewModeInterceptor() {
     const styleEl = document.createElement("style");
     styleEl.id = "landing-preview-styles";
     styleEl.textContent = `
-      img[data-landing-preview-marked], video[data-landing-preview-marked] {
+      img[data-landing-preview-marked],
+      video[data-landing-preview-marked],
+      img[data-landing-slot-key],
+      video[data-landing-slot-key] {
+        pointer-events: auto !important;
         cursor: crosshair !important;
         outline: 3px dashed transparent;
         outline-offset: 2px;
         transition: outline-color 0.15s ease;
+        position: relative;
+        z-index: 5;
       }
-      img[data-landing-preview-marked]:hover, video[data-landing-preview-marked]:hover {
+      img[data-landing-preview-marked]:hover,
+      video[data-landing-preview-marked]:hover,
+      img[data-landing-slot-key]:hover,
+      video[data-landing-slot-key]:hover {
         outline-color: rgb(139 92 246 / 0.9);
+      }
+      .landing-preview-plus-badge {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 9999px;
+        background: rgb(109 40 217);
+        color: white;
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 40px;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 8;
+        transition: opacity 0.15s ease;
+        box-shadow: 0 4px 14px rgba(109, 40, 217, 0.45);
+      }
+      .landing-preview-plus-host:hover .landing-preview-plus-badge {
+        opacity: 1;
+      }
+      div:has(> img[data-landing-preview-marked]),
+      div:has(> img[data-landing-slot-key]),
+      div:has(> video[data-landing-slot-key]) {
+        cursor: crosshair !important;
+      }
+      div:has(> img[data-landing-preview-marked]) > *:not(img):not(a):not(button),
+      div:has(> img[data-landing-slot-key]) > *:not(img):not(a):not(button) {
+        pointer-events: none !important;
+      }
+      [data-landing-preview-zone="hero"] > div.absolute {
+        pointer-events: none !important;
+      }
+      [data-landing-preview-zone="hero"] .relative.z-10 {
+        pointer-events: none !important;
+      }
+      [data-landing-preview-zone="hero"] a,
+      [data-landing-preview-zone="hero"] button {
+        pointer-events: auto !important;
+        position: relative;
+        z-index: 20;
       }
       .min-h-svh, .min-h-screen, .h-svh, .h-screen, .h-dvh, .min-h-dvh,
       .min-h-\\[100svh\\], .min-h-\\[100vh\\], .h-\\[100svh\\], .h-\\[100vh\\],
@@ -130,21 +183,45 @@ export function PreviewModeInterceptor() {
     banner.textContent = "TRYB PODGLĄDU - kliknij grafikę lub wideo, aby je podmienić";
     document.body.appendChild(banner);
 
+    const attachPlusBadge = (el: HTMLElement) => {
+      const host = el.parentElement;
+      if (!host || host.querySelector(":scope > .landing-preview-plus-badge")) return;
+      host.classList.add("landing-preview-plus-host");
+      if (getComputedStyle(host).position === "static") {
+        host.style.position = "relative";
+      }
+      const badge = document.createElement("div");
+      badge.className = "landing-preview-plus-badge";
+      badge.textContent = "+";
+      badge.setAttribute("aria-hidden", "true");
+      host.appendChild(badge);
+    };
+
     const markMedia = () => {
       document.querySelectorAll<HTMLImageElement>("img").forEach((img) => {
-        const fn = extractFilename(img);
+        const fn =
+          extractFilename(img) ??
+          img.getAttribute("data-landing-preview") ??
+          null;
         if (!fn) return;
         cacheBustMedia(img);
         img.dataset.landingPreviewMarked = "1";
         if (!img.dataset.landingPreview) img.dataset.landingPreview = fn;
+        attachPlusBadge(img);
       });
 
       document.querySelectorAll<HTMLVideoElement>("video").forEach((video) => {
-        const fn = extractFilename(video);
-        if (!fn) return;
-        cacheBustMedia(video);
+        const fn =
+          extractFilename(video) ??
+          video.getAttribute("data-landing-preview") ??
+          null;
+        if (!fn && !video.dataset.landingSlotKey) return;
+        if (fn) {
+          cacheBustMedia(video);
+          if (!video.dataset.landingPreview) video.dataset.landingPreview = fn;
+        }
         video.dataset.landingPreviewMarked = "1";
-        if (!video.dataset.landingPreview) video.dataset.landingPreview = fn;
+        attachPlusBadge(video);
       });
     };
 
@@ -170,6 +247,7 @@ export function PreviewModeInterceptor() {
 
     const handleClick = (e: MouseEvent) => {
       const el = e.target as HTMLElement;
+      if (el.closest("a, button, input, textarea, select")) return;
 
       const slotTile = el.closest("[data-landing-preview-slot]") as HTMLElement | null;
       if (slotTile) {
@@ -186,42 +264,73 @@ export function PreviewModeInterceptor() {
         }
       }
 
-      const video = el.closest("video[data-landing-preview-marked]") as HTMLVideoElement | null;
-      if (video) {
-        const filename = video.dataset.landingPreview ?? extractFilename(video);
-        if (!filename) return;
-        e.preventDefault();
-        e.stopPropagation();
-        postImageClick({
-          filename,
-          slotKey: video.dataset.landingSlotKey,
-          naturalWidth: video.videoWidth || 0,
-          naturalHeight: video.videoHeight || 0,
-          label: filename,
-        });
-        return;
-      }
-
-      let img = el.closest("img[data-landing-preview-marked]") as HTMLImageElement | null;
-      if (!img) {
-        const container = el.closest("div:has(> img[data-landing-preview-marked])");
-        if (container) {
-          img = container.querySelector<HTMLImageElement>("img[data-landing-preview-marked]");
+      const videoSlot =
+        el.closest("video[data-landing-slot-key]") ??
+        el.closest("video[data-landing-preview-marked]");
+      if (videoSlot instanceof HTMLVideoElement) {
+        const filename =
+          videoSlot.dataset.landingPreview ??
+          videoSlot.getAttribute("data-landing-preview") ??
+          extractFilename(videoSlot);
+        if (filename) {
+          e.preventDefault();
+          e.stopPropagation();
+          postImageClick({
+            filename,
+            slotKey: videoSlot.dataset.landingSlotKey,
+            naturalWidth: videoSlot.videoWidth || 0,
+            naturalHeight: videoSlot.videoHeight || 0,
+            label: "Wideo tła hero",
+          });
+          return;
         }
       }
-      if (!img) return;
 
-      const filename = img.dataset.landingPreview ?? extractFilename(img);
-      if (!filename) return;
-      e.preventDefault();
-      e.stopPropagation();
-      postImageClick({
-        filename,
-        slotKey: img.dataset.landingSlotKey,
-        naturalWidth: img.naturalWidth || 0,
-        naturalHeight: img.naturalHeight || 0,
-        label: img.alt || filename,
-      });
+      let img =
+        (el.closest("img[data-landing-slot-key]") as HTMLImageElement | null) ??
+        (el.closest("img[data-landing-preview-marked]") as HTMLImageElement | null);
+      if (!img) {
+        const container = el.closest(
+          "div:has(> img[data-landing-preview-marked]), div:has(> img[data-landing-slot-key])",
+        );
+        if (container) {
+          img =
+            container.querySelector<HTMLImageElement>("img[data-landing-slot-key]") ??
+            container.querySelector<HTMLImageElement>("img[data-landing-preview-marked]");
+        }
+      }
+      if (img) {
+        const filename = img.dataset.landingPreview ?? extractFilename(img);
+        if (filename) {
+          e.preventDefault();
+          e.stopPropagation();
+          postImageClick({
+            filename,
+            slotKey: img.dataset.landingSlotKey,
+            naturalWidth: img.naturalWidth || 0,
+            naturalHeight: img.naturalHeight || 0,
+            label: img.alt || filename,
+          });
+          return;
+        }
+      }
+
+      const heroZone = el.closest("[data-landing-preview-zone=\"hero\"]") as HTMLElement | null;
+      if (heroZone) {
+        const heroVideo = heroZone.querySelector<HTMLVideoElement>("video[data-landing-slot-key]");
+        if (heroVideo) {
+          e.preventDefault();
+          e.stopPropagation();
+          postImageClick({
+            filename:
+              heroVideo.dataset.landingPreview ??
+              heroVideo.getAttribute("data-landing-preview") ??
+              "video-tlo.mp4",
+            slotKey: heroVideo.dataset.landingSlotKey ?? "home_hero_video",
+            label: "Wideo tła hero",
+          });
+        }
+      }
     };
 
     const handleMessage = (e: MessageEvent) => {
