@@ -13,24 +13,27 @@ Sync GA4 do agenta (panel admin): `hydrobagger-admin/docs/ga4-setup.md`
 
 ## Consent Mode + komunikat GTM „0% zgody”
 
-Kod strony ustawia Consent Mode v2 **przed** GTM i gtag.js (`src/lib/gtm/consent-default-script.ts`). Po „Akceptuję wszystko” leci `gtag('consent','update',…)` + hit GA4 (direct gtag, nie tag GTM).
+**Najpierw:** źródło prawdy to **GA4 → Raporty → Realtime** (i Tag Assistant po „Akceptuję wszystko”), **nie** widget „odsetek zgody” w GTM. Ten widget agreguje historyczne odpalenia tagów z `denied` (nowi użytkownicy bez kliknięcia banera, stary ruch sprzed poprawki). Przy opt-in banerze **niski % jest normalny** i nie znaczy, że GA4 jest zepsute.
 
-Komunikat w GTM (*odsetek zgody 0%*) oznacza, że Google widzi głównie sygnały **`denied`** (domyślny stan + wizyty bez kliknięcia banera). To [typowy case](https://support.google.com/tagmanager/answer/14522438#issues) gdy:
-- użytkownik zamyka stronę bez akceptacji,
-- tagi Ads/GA4 odpalają się na **Initialization** jeszcze z `denied`,
-- dane historyczne sprzed poprawki consent.
+Kod strony (`consent-default-script.ts`):
+- Consent Mode v2 **przed** gtag.js i GTM
+- Po zapisanej zgodzie w cookie: `consent update` + eventy w dataLayer **przed** załadowaniem GTM (commit bf82fd9)
+- GA4 page_view i `form_submit` idą **z kodu** (direct gtag), GTM tylko Ads / Plausible
 
-### W GTM (zalecane)
+### W GTM (jednorazowo)
 
-1. **Ustawienia kontenera** → włącz **Przegląd ustawień uzyskiwania zgody (BETA)**.
-2. **Wstrzymaj (Pause)** tagi `[TAG] GA4 - Base` i page_view GA4 – GA4 idzie z kodu strony.
-3. Tagi **Google Ads** (`AW-…`): usuń trigger **Initialization**, zostaw tylko **`consent_marketing_granted`** (+ ewentualnie Conversion Linker na Init).
-4. Weryfikacja: [Tag Assistant](https://tagassistant.google.com/) → zakładka **Consent** → wejdź na stronę → **Akceptuję wszystko** → `analytics_storage` / `ad_storage` = **Granted**.
+| Tag | Co zrobić |
+|-----|-----------|
+| `[TAG] GA4 - Base` | **Pause** (duplikat) |
+| `[TAG] GA4 - page_view` (Init / consent / virtual) | **Pause** (duplikat – SPA też idzie z kodu) |
+| `[TAG] GA4 - form_submit` | **Pause** opcjonalnie (kod wysyła `gtag('event','form_submit')`) |
+| **Conversion Linker** | Zostaw na **All Pages** lub Initialization |
+| Tagi **Google Ads** (`AW-…`) | Usuń trigger **Initialization**; zostaw **`consent_marketing_granted`** |
+| Plausible, inne | Bez zmian |
 
-### W kodzie (już jest)
+Opcjonalnie: **Ustawienia kontenera** → Przegląd ustawień uzyskiwania zgody (BETA) – tylko diagnostyka, nie blokuje działania.
 
-- `wait_for_update: 2000` ms (czas na kliknięcie banera przed pierwszym hiten z `denied`)
-- Przywrócenie z cookie: `consent update` + `consent_analytics_granted` / `consent_marketing_granted` w dataLayer **przed** załadowaniem GTM
+Weryfikacja: [Tag Assistant](https://tagassistant.google.com/) → **Consent** → incognito → „Akceptuję wszystko” → `analytics_storage` = **Granted** → w **Network** widać `g/collect?tid=G-KJ0ZJPP8K9`.
 
 ---
 

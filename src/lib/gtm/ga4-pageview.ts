@@ -28,3 +28,11 @@ export function sendGa4PageView(): void {
     send_page_view: true,
   });
 }
+
+/** Konwersja formularza bez tagu GTM (form_submit może zostać w GTM jako backup). */
+export function sendGa4FormSubmit(params?: Record<string, unknown>): void {
+  const gtag = ensureGtag();
+  if (!gtag) return;
+
+  gtag("event", "form_submit", params ?? {});
+}

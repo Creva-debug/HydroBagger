@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { hasAnalyticsConsent } from "@/lib/gtm/consent";
 import { pushVirtualPageView } from "@/lib/gtm/data-layer";
+import { sendGa4PageView } from "@/lib/gtm/ga4-pageview";
 import { CONSENT_SAVED_EVENT } from "@/lib/cookie-consent";
 
 /**
@@ -18,6 +19,7 @@ export function GtmRouteTracker() {
   useEffect(() => {
     const handleConsentSaved = () => {
       if (hasAnalyticsConsent()) {
+        sendGa4PageView();
         pushVirtualPageView();
       }
     };
@@ -31,6 +33,7 @@ export function GtmRouteTracker() {
       return;
     }
     if (!hasAnalyticsConsent()) return;
+    sendGa4PageView();
     pushVirtualPageView();
   }, [pathname, searchParams]);
 
