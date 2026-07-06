@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/dialog"
 import { Switch } from "@/components/ui/switch"
 import {
-  CONSENT_COOKIE,
   CONSENT_SAVED_EVENT,
   COOKIE_SETTINGS_EVENT,
   type ConsentState,
 } from "@/lib/cookie-consent"
+import { readStoredConsent, syncConsentState } from "@/lib/gtm/consent"
 
 const COOKIE_MAX_AGE_SECONDS = 365 * 24 * 60 * 60
 
@@ -28,24 +28,6 @@ const DEFAULT_CONSENT: ConsentState = {
   ts: 0,
 }
 
-function readConsentCookie(): ConsentState | null {
-  if (typeof document === "undefined") return null
-  const match = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith(`${CONSENT_COOKIE}=`))
-  if (!match) return null
-  try {
-    const decoded = decodeURIComponent(match.split("=").slice(1).join("="))
-    const parsed = JSON.parse(decoded)
-    if (parsed && parsed.v === 1 && typeof parsed.analytics === "boolean") {
-      return parsed as ConsentState
-    }
-  } catch {
-    /* corrupted cookie */
-  }
-  return null
-}
-
 function writeConsentCookie(consent: ConsentState) {
   if (typeof document === "undefined") return
   const encoded = encodeURIComponent(JSON.stringify(consent))
@@ -54,47 +36,6 @@ function writeConsentCookie(consent: ConsentState) {
     cookie += "; Secure"
   }
   document.cookie = cookie
-}
-
-function ensureGtag(): ((...args: unknown[]) => void) | null {
-  if (typeof window === "undefined") return null
-  if (typeof window.gtag === "function") return window.gtag
-  if (Array.isArray(window.dataLayer)) {
-    const gtag = function () {
-      // eslint-disable-next-line prefer-rest-params
-      window.dataLayer!.push(arguments as unknown as Record<string, unknown>)
-    }
-    window.gtag = gtag
-    return gtag
-  }
-  return null
-}
-
-function applyConsentUpdate(consent: ConsentState) {
-  const gtag = ensureGtag()
-  if (!gtag) return
-  const analyticsGranted = consent.analytics
-  const marketingGranted = consent.marketing
-  gtag("consent", "update", {
-    ad_storage: marketingGranted ? "granted" : "denied",
-    ad_user_data: marketingGranted ? "granted" : "denied",
-    ad_personalization: marketingGranted ? "granted" : "denied",
-    analytics_storage: analyticsGranted ? "granted" : "denied",
-    security_storage: "granted",
-  })
-  if (window.dataLayer) {
-    window.dataLayer.push({
-      event: "consent_update",
-      analytics_storage: analyticsGranted ? "granted" : "denied",
-      ad_storage: marketingGranted ? "granted" : "denied",
-    })
-    if (analyticsGranted) {
-      window.dataLayer.push({ event: "consent_analytics_granted" })
-    }
-    if (marketingGranted) {
-      window.dataLayer.push({ event: "consent_marketing_granted" })
-    }
-  }
 }
 
 const CATEGORIES = [
@@ -125,12 +66,12 @@ export function CookieConsent() {
   const [draftConsent, setDraftConsent] = useState<ConsentState>(DEFAULT_CONSENT)
 
   useEffect(() => {
-    const existing = readConsentCookie()
+    const existing = readStoredConsent()
     if (existing) {
       setSavedConsent(existing)
       setDraftConsent(existing)
       setShowBanner(false)
-      applyConsentUpdate(existing)
+      // Zgoda przywracana w layout.tsx przed GTM - bez pushGtmEvents (unikamy podwójnego page_view).
       return
     }
     setSavedConsent(null)
@@ -152,7 +93,7 @@ export function CookieConsent() {
     writeConsentCookie(stamped)
     setSavedConsent(stamped)
     setDraftConsent(stamped)
-    applyConsentUpdate(stamped)
+    syncConsentState(stamped, { pushGtmEvents: true })
     setShowBanner(false)
     setShowSettings(false)
     window.dispatchEvent(new Event(CONSENT_SAVED_EVENT))

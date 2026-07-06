@@ -2,29 +2,16 @@
 
 import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { CONSENT_COOKIE, CONSENT_SAVED_EVENT } from "@/lib/cookie-consent";
+import { CONSENT_SAVED_EVENT } from "@/lib/cookie-consent";
 import { resolveSessionIdentity } from "@/lib/analytics/identifiers";
+import { hasAnalyticsConsent } from "@/lib/gtm/consent";
+import { pushFormSubmitEvent } from "@/lib/gtm/data-layer";
 
 const COLLECT_ENDPOINT = "/api/analytics/collect";
 
 export type AnalyticsEventType = "pageview" | "cta_click" | "form_submit";
 
 import { shouldSkipClientAnalytics } from "@/lib/analytics/internal-traffic";
-
-function hasAnalyticsConsent(): boolean {
-  if (typeof document === "undefined") return false;
-  const match = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith(`${CONSENT_COOKIE}=`));
-  if (!match) return false;
-  try {
-    const decoded = decodeURIComponent(match.split("=").slice(1).join("="));
-    const parsed = JSON.parse(decoded);
-    return parsed?.analytics === true;
-  } catch {
-    return false;
-  }
-}
 
 function sendEvent(eventType: AnalyticsEventType, pagePath: string, metadata?: Record<string, unknown>) {
   if (shouldSkipClientAnalytics()) return;
@@ -53,6 +40,10 @@ function sendEvent(eventType: AnalyticsEventType, pagePath: string, metadata?: R
   };
 
   const body = JSON.stringify(payload);
+
+  if (eventType === "form_submit") {
+    pushFormSubmitEvent(metadata);
+  }
 
   if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
     const blob = new Blob([body], { type: "application/json" });
