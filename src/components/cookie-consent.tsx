@@ -73,15 +73,27 @@ function ensureGtag(): ((...args: unknown[]) => void) | null {
 function applyConsentUpdate(consent: ConsentState) {
   const gtag = ensureGtag()
   if (!gtag) return
+  const analyticsGranted = consent.analytics
+  const marketingGranted = consent.marketing
   gtag("consent", "update", {
-    ad_storage: consent.marketing ? "granted" : "denied",
-    ad_user_data: consent.marketing ? "granted" : "denied",
-    ad_personalization: consent.marketing ? "granted" : "denied",
-    analytics_storage: consent.analytics ? "granted" : "denied",
+    ad_storage: marketingGranted ? "granted" : "denied",
+    ad_user_data: marketingGranted ? "granted" : "denied",
+    ad_personalization: marketingGranted ? "granted" : "denied",
+    analytics_storage: analyticsGranted ? "granted" : "denied",
     security_storage: "granted",
   })
-  if (consent.marketing && window.dataLayer) {
-    window.dataLayer.push({ event: "consent_marketing_granted" })
+  if (window.dataLayer) {
+    window.dataLayer.push({
+      event: "consent_update",
+      analytics_storage: analyticsGranted ? "granted" : "denied",
+      ad_storage: marketingGranted ? "granted" : "denied",
+    })
+    if (analyticsGranted) {
+      window.dataLayer.push({ event: "consent_analytics_granted" })
+    }
+    if (marketingGranted) {
+      window.dataLayer.push({ event: "consent_marketing_granted" })
+    }
   }
 }
 

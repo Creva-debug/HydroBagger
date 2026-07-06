@@ -67,7 +67,7 @@ export default function RootLayout({
       <body id="top" className="font-sans flex min-h-screen flex-col antialiased">
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=window.gtag||gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',security_storage:'granted'});`,
+            __html: `(function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=window.gtag||gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',security_storage:'granted',wait_for_update:2000});try{var m=document.cookie.match(/(?:^|; )hydrobagger_consent=([^;]*)/);if(m){var c=JSON.parse(decodeURIComponent(m[1]));if(c&&c.v===1){gtag('consent','update',{ad_storage:c.marketing?'granted':'denied',ad_user_data:c.marketing?'granted':'denied',ad_personalization:c.marketing?'granted':'denied',analytics_storage:c.analytics?'granted':'denied',security_storage:'granted'});dataLayer.push({event:'consent_defaults_restored',analytics_storage:c.analytics?'granted':'denied'});}}}catch(e){}})();`,
           }}
         />
         {gtmId ? (
