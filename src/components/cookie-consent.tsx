@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog"
 import { Switch } from "@/components/ui/switch"
 import {
+  CONSENT_COOKIE,
   CONSENT_SAVED_EVENT,
   COOKIE_SETTINGS_EVENT,
   type ConsentState,
