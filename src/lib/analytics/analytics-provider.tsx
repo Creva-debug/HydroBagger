@@ -27,10 +27,10 @@ function hasAnalyticsConsent(): boolean {
 }
 
 function sendEvent(eventType: AnalyticsEventType, pagePath: string, metadata?: Record<string, unknown>) {
-  if (!hasAnalyticsConsent()) return;
   if (shouldSkipClientAnalytics()) return;
 
-  const identity = resolveSessionIdentity();
+  const consent = hasAnalyticsConsent();
+  const identity = resolveSessionIdentity(consent);
   const search = typeof window !== "undefined" ? window.location.search : "";
   const params = new URLSearchParams(search);
   const landingQuery = search.startsWith("?") ? search.slice(1) : search;
@@ -77,9 +77,9 @@ export function trackEvent(eventType: "cta_click" | "form_submit", metadata?: Re
 }
 
 /**
- * Montowany raz w layoucie. Wysyła pageview przy każdej zmianie ścieżki oraz
- * (bez przeładowania strony) w momencie, gdy użytkownik dopiero co włączył
- * zgodę na analitykę w banerze cookies.
+ * Montowany raz w layoucie. Wysyła pageview przy każdej zmianie ścieżki
+ * (także bez zgody - tryb anon). Po włączeniu analityki w banerze cookies
+ * wysyła kolejny pageview z pełnym visitor_id.
  */
 export function AnalyticsProvider() {
   const pathname = usePathname();
@@ -99,7 +99,6 @@ export function AnalyticsProvider() {
     const search = searchParams.toString();
     const path = search ? `${pathname}?${search}` : pathname;
     sendEvent("pageview", path);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, searchParams]);
 
   return null;

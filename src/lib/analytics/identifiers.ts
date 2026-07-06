@@ -31,25 +31,29 @@ function randomId(): string {
 }
 
 export type SessionIdentity = {
-  visitorId: string;
+  visitorId: string | null;
   isNewVisitor: boolean;
   sessionId: string;
   isNewSession: boolean;
 };
 
 /**
- * Odczytuje/tworzy visitor_id (cookie na 2 lata) oraz session_id (cookie
- * "sliding" - każde wywołanie odświeża jej Max-Age o kolejne 30 minut).
- * Aktywny użytkownik nigdy nie traci sesji, a po 30 minutach bezczynności
- * kolejne zdarzenie zaczyna nową sesję.
+ * Odczytuje/tworzy session_id (cookie "sliding" - każde wywołanie odświeża
+ * Max-Age o kolejne 30 minut). visitor_id (cookie na 2 lata) tworzymy tylko
+ * po zgodzie analitycznej - bez zgody liczymy sesje w trybie anon (jak w wabne).
  */
-export function resolveSessionIdentity(): SessionIdentity {
-  let visitorId = readCookie(VISITOR_COOKIE);
-  const isNewVisitor = !visitorId;
-  if (!visitorId) {
-    visitorId = randomId();
+export function resolveSessionIdentity(hasAnalyticsConsent: boolean): SessionIdentity {
+  let visitorId: string | null = null;
+  let isNewVisitor = false;
+
+  if (hasAnalyticsConsent) {
+    visitorId = readCookie(VISITOR_COOKIE);
+    isNewVisitor = !visitorId;
+    if (!visitorId) {
+      visitorId = randomId();
+    }
+    writeCookie(VISITOR_COOKIE, visitorId, VISITOR_MAX_AGE_SECONDS);
   }
-  writeCookie(VISITOR_COOKIE, visitorId, VISITOR_MAX_AGE_SECONDS);
 
   let sessionId = readCookie(SESSION_COOKIE);
   const isNewSession = !sessionId;

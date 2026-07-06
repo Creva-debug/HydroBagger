@@ -17,10 +17,10 @@ const BOT_UA_PATTERN =
   /bot|crawl|spider|slurp|bingpreview|facebookexternalhit|headless|curl|wget|python-requests|axios|node-fetch|postman|monitor|pingdom|uptime/i;
 
 export type CollectPayload = {
-  visitorId: string;
-  isNewVisitor: boolean;
+  visitorId?: string | null;
+  isNewVisitor?: boolean;
   sessionId: string;
-  isNewSession: boolean;
+  isNewSession?: boolean;
   eventType: string;
   pagePath: string;
   referrer?: string;
@@ -93,15 +93,21 @@ export async function recordAnalyticsEvent(
   payload: CollectPayload,
   userAgent: string,
   geo: SessionGeo = { country: null, region: null, city: null },
+  hasAnalyticsConsent = false,
 ): Promise<void> {
   if (!isDatabaseConfigured()) return;
-  if (!isValidId(payload.visitorId) || !isValidId(payload.sessionId)) return;
+  if (!isValidId(payload.sessionId)) return;
   if (typeof payload.eventType !== "string" || !EVENT_TYPES.has(payload.eventType)) return;
   if (isBotUserAgent(userAgent)) return;
 
+  const visitorId =
+    hasAnalyticsConsent && isValidId(payload.visitorId) ? payload.visitorId : null;
+  const isNewVisitor = hasAnalyticsConsent && payload.isNewVisitor === true && visitorId !== null;
+  const consentLevel = hasAnalyticsConsent ? "full" : "anon";
+
   const pagePathEarly = truncate(payload.pagePath, 500) || "/";
   const referrerEarly = truncate(payload.referrer);
-  const landingQueryEarly = truncate(payload.landingQuery, 1024);
+  const landingQueryEarly = hasAnalyticsConsent ? truncate(payload.landingQuery, 1024) : "";
   if (
     shouldIgnoreAnalyticsEvent({
       pagePath: pagePathEarly,
@@ -112,9 +118,7 @@ export async function recordAnalyticsEvent(
     return;
   }
 
-  const visitorId = payload.visitorId;
   const sessionId = payload.sessionId;
-  const isNewVisitor = payload.isNewVisitor === true;
   const isNewSession = payload.isNewSession === true;
   const eventType = payload.eventType;
   const pagePath = truncate(payload.pagePath, 500) || "/";
@@ -125,7 +129,7 @@ export async function recordAnalyticsEvent(
   const utmCampaign = truncate(payload.utmCampaign, 100);
   const utmContent = truncate(payload.utmContent, 100);
   const utmTerm = truncate(payload.utmTerm, 100);
-  const landingQuery = truncate(payload.landingQuery, 1024);
+  const landingQuery = hasAnalyticsConsent ? truncate(payload.landingQuery, 1024) : "";
   const metadata = safeMetadata(payload.metadata);
   const deviceType = detectDeviceType(userAgent);
   const browser = detectBrowser(userAgent);
@@ -134,7 +138,7 @@ export async function recordAnalyticsEvent(
     referrerHost && !referrerHost.includes(SELF_HOST) ? referrerHost : null;
   const acq = classifyAcquisition({
     utm: { source: utmSource, medium: utmMedium, campaign: utmCampaign, content: utmContent, term: utmTerm },
-    clickIds: extractClickIds(landingQuery),
+    clickIds: hasAnalyticsConsent ? extractClickIds(landingQuery) : {},
     referrerDomain: externalReferrer,
   });
   const source = truncate(acq.source, 100) || "(direct)";
@@ -145,44 +149,47 @@ export async function recordAnalyticsEvent(
   try {
     await client.query("BEGIN");
 
-    if (isNewVisitor) {
-      await client.query(
-        `INSERT INTO analytics_visitors
-           (visitor_id, first_landing_page, first_referrer, first_referrer_host,
-            first_utm_source, first_utm_medium, first_utm_campaign, device_type)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-         ON CONFLICT (visitor_id) DO UPDATE SET last_seen_at = now()`,
-        [visitorId, pagePath, referrer, referrerHost, utmSource, utmMedium, utmCampaign, deviceType],
-      );
-    } else {
-      const { rowCount } = await client.query(
-        `UPDATE analytics_visitors SET last_seen_at = now() WHERE visitor_id = $1`,
-        [visitorId],
-      );
-      if (rowCount === 0) {
+    if (visitorId) {
+      if (isNewVisitor) {
         await client.query(
           `INSERT INTO analytics_visitors
              (visitor_id, first_landing_page, first_referrer, first_referrer_host,
               first_utm_source, first_utm_medium, first_utm_campaign, device_type)
            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-           ON CONFLICT (visitor_id) DO NOTHING`,
+           ON CONFLICT (visitor_id) DO UPDATE SET last_seen_at = now()`,
           [visitorId, pagePath, referrer, referrerHost, utmSource, utmMedium, utmCampaign, deviceType],
         );
+      } else {
+        const { rowCount } = await client.query(
+          `UPDATE analytics_visitors SET last_seen_at = now() WHERE visitor_id = $1`,
+          [visitorId],
+        );
+        if (rowCount === 0) {
+          await client.query(
+            `INSERT INTO analytics_visitors
+               (visitor_id, first_landing_page, first_referrer, first_referrer_host,
+                first_utm_source, first_utm_medium, first_utm_campaign, device_type)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+             ON CONFLICT (visitor_id) DO NOTHING`,
+            [visitorId, pagePath, referrer, referrerHost, utmSource, utmMedium, utmCampaign, deviceType],
+          );
+        }
       }
     }
 
     if (isNewSession) {
       const { rowCount } = await client.query(
         `INSERT INTO analytics_sessions
-           (session_id, visitor_id, landing_page, referrer, referrer_host, source, medium,
+           (session_id, visitor_id, consent_level, landing_page, referrer, referrer_host, source, medium,
             utm_source, utm_medium, utm_campaign, utm_content, utm_term,
             channel, ad_platform, is_paid, device_type, browser, os, page_view_count, is_bounce,
             country, region, city)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, true, $20, $21, $22)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, true, $21, $22, $23)
          ON CONFLICT (session_id) DO NOTHING`,
         [
           sessionId,
           visitorId,
+          consentLevel,
           pagePath,
           referrer,
           referrerHost,
@@ -206,10 +213,12 @@ export async function recordAnalyticsEvent(
         ],
       );
       if (rowCount && rowCount > 0) {
-        await client.query(
-          `UPDATE analytics_visitors SET session_count = session_count + 1 WHERE visitor_id = $1`,
-          [visitorId],
-        );
+        if (visitorId) {
+          await client.query(
+            `UPDATE analytics_visitors SET session_count = session_count + 1 WHERE visitor_id = $1`,
+            [visitorId],
+          );
+        }
         await client.query(
           `INSERT INTO analytics_daily_totals (day, new_visitors, sessions, bounced_sessions)
            VALUES (current_date, $1, 1, 1)
