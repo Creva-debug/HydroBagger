@@ -1,18 +1,27 @@
 "use client";
 
-/** Publiczny identyfikator GA4 (ten sam co w GTM / strumieniu danych). */
-export const GA4_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID?.trim() || "G-KJ0ZJPP8K9";
+import { GA4_MEASUREMENT_ID } from "@/lib/gtm/ga4-config";
 
-/**
- * Wysyła page_view bezpośrednio przez gtag do GA4 po przyznaniu zgody analitycznej.
- * Uzupełnia tag GTM: bez tego hit często nie trafia do usługi GA4 (tylko do CCM/Ads).
- */
+function ensureGtag(): ((...args: unknown[]) => void) | null {
+  if (typeof window === "undefined") return null;
+  if (typeof window.gtag === "function") return window.gtag;
+  if (Array.isArray(window.dataLayer)) {
+    const gtag = function () {
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer!.push(arguments as unknown as Record<string, unknown>);
+    };
+    window.gtag = gtag;
+    return gtag;
+  }
+  return null;
+}
+
+/** Pełny hit GA4 po zgodzie analitycznej (nie polegamy na tagach GTM). */
 export function sendGa4PageView(): void {
-  if (typeof window === "undefined") return;
-  const gtag = window.gtag;
-  if (typeof gtag !== "function") return;
+  const gtag = ensureGtag();
+  if (!gtag) return;
 
+  gtag("js", new Date());
   gtag("config", GA4_MEASUREMENT_ID, {
     page_location: window.location.href,
     page_title: document.title,

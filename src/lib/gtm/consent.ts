@@ -78,8 +78,7 @@ export function syncConsentState(consent: ConsentState, options: ConsentSyncOpti
   });
   if (analyticsGranted) {
     window.dataLayer.push({ event: "consent_analytics_granted" });
-    // Po consent update: gtag config z pełnym page_view (GTM sam często nie dowozi do GA4).
-    window.setTimeout(() => sendGa4PageView(), 150);
+    sendGa4PageView();
   }
   if (marketingGranted) {
     window.dataLayer.push({ event: "consent_marketing_granted" });

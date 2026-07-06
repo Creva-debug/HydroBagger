@@ -21,7 +21,7 @@ export function GtmRouteTracker() {
     if (sentInitialGa4PageView.current || !hasAnalyticsConsent()) return;
     sentInitialGa4PageView.current = true;
     // Powrót z zapisaną zgodą: brak consent_analytics_granted w dataLayer, więc GA4 page_view z gtag.
-    window.setTimeout(() => sendGa4PageView(), 300);
+    window.setTimeout(() => sendGa4PageView(), 500);
   }, []);
 
   useEffect(() => {
