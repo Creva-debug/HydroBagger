@@ -11,7 +11,6 @@ import { AnalyticsProvider } from "@/lib/analytics/analytics-provider";
 import { PreviewModeInterceptor } from "@/components/PreviewModeInterceptor";
 import { GtmRouteTracker } from "@/components/gtm-route-tracker";
 import { buildConsentDefaultInlineScript } from "@/lib/gtm/consent-default-script";
-import { GA4_MEASUREMENT_ID } from "@/lib/gtm/ga4-config";
 import { imageUrl } from "@/lib/images";
 import { getSiteOrigin } from "@/lib/site-url";
 import "./globals.css";
@@ -69,11 +68,6 @@ export default function RootLayout({
         <script
           id="gtm-consent-default"
           dangerouslySetInnerHTML={{ __html: buildConsentDefaultInlineScript() }}
-        />
-        <Script
-          id="ga4-gtag-js"
-          strategy="beforeInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
         />
       </head>
       <body id="top" className="font-sans flex min-h-screen flex-col antialiased">

@@ -4,12 +4,11 @@ import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { hasAnalyticsConsent } from "@/lib/gtm/consent";
 import { pushVirtualPageView } from "@/lib/gtm/data-layer";
-import { sendGa4PageView } from "@/lib/gtm/ga4-pageview";
 import { CONSENT_SAVED_EVENT } from "@/lib/cookie-consent";
 
 /**
  * Wysyła virtual_page_view do GTM przy zmianie ścieżki (bez pełnego reloadu).
- * Pierwszy page_view: gtag w head (cookie) lub sendGa4PageView po akceptacji banera.
+ * Pierwszy page_view: tag GTM na consent_analytics_granted (cookie lub baner).
  */
 export function GtmRouteTracker() {
   const pathname = usePathname();
@@ -19,7 +18,6 @@ export function GtmRouteTracker() {
   useEffect(() => {
     const handleConsentSaved = () => {
       if (hasAnalyticsConsent()) {
-        sendGa4PageView();
         pushVirtualPageView();
       }
     };
@@ -33,7 +31,6 @@ export function GtmRouteTracker() {
       return;
     }
     if (!hasAnalyticsConsent()) return;
-    sendGa4PageView();
     pushVirtualPageView();
   }, [pathname, searchParams]);
 
