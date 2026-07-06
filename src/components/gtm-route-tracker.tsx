@@ -3,26 +3,17 @@
 import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { hasAnalyticsConsent } from "@/lib/gtm/consent";
-import { sendGa4PageView } from "@/lib/gtm/ga4-pageview";
 import { pushVirtualPageView } from "@/lib/gtm/data-layer";
 import { CONSENT_SAVED_EVENT } from "@/lib/cookie-consent";
 
 /**
  * Wysyła virtual_page_view do GTM przy zmianie ścieżki (bez pełnego reloadu).
- * Pierwsze załadowanie obsługuje GA4 Base lub tag page_view po zgodzie.
+ * Pierwszy page_view: gtag w head (cookie) lub sendGa4PageView po akceptacji banera.
  */
 export function GtmRouteTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const isFirstNavigation = useRef(true);
-  const sentInitialGa4PageView = useRef(false);
-
-  useEffect(() => {
-    if (sentInitialGa4PageView.current || !hasAnalyticsConsent()) return;
-    sentInitialGa4PageView.current = true;
-    // Powrót z zapisaną zgodą: brak consent_analytics_granted w dataLayer, więc GA4 page_view z gtag.
-    window.setTimeout(() => sendGa4PageView(), 500);
-  }, []);
 
   useEffect(() => {
     const handleConsentSaved = () => {
