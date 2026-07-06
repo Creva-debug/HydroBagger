@@ -9,12 +9,7 @@ const COLLECT_ENDPOINT = "/api/analytics/collect";
 
 export type AnalyticsEventType = "pageview" | "cta_click" | "form_submit";
 
-function isPreviewRequest(): boolean {
-  if (typeof window === "undefined") return false;
-  return new URLSearchParams(window.location.search).get("preview") === "1";
-}
-
-function hasAnalyticsConsent(): boolean {
+import { shouldSkipClientAnalytics } from "@/lib/analytics/internal-traffic";
   if (typeof document === "undefined") return false;
   const match = document.cookie
     .split("; ")
@@ -31,7 +26,7 @@ function hasAnalyticsConsent(): boolean {
 
 function sendEvent(eventType: AnalyticsEventType, pagePath: string, metadata?: Record<string, unknown>) {
   if (!hasAnalyticsConsent()) return;
-  if (eventType === "pageview" && isPreviewRequest()) return;
+  if (shouldSkipClientAnalytics()) return;
 
   const identity = resolveSessionIdentity();
   const search = typeof window !== "undefined" ? window.location.search : "";

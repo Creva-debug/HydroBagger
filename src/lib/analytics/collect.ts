@@ -3,6 +3,7 @@ import "server-only";
 import type { SessionGeo } from "@/lib/analytics/enrich";
 import { parseOs } from "@/lib/analytics/enrich";
 import { classifyAcquisition, extractClickIds } from "@/lib/analytics/attribution";
+import { shouldIgnoreAnalyticsEvent } from "@/lib/analytics/internal-traffic";
 import { getPool, isDatabaseConfigured } from "@/lib/db";
 
 const SELF_HOST = "hydrobagger.pl";
@@ -97,6 +98,19 @@ export async function recordAnalyticsEvent(
   if (!isValidId(payload.visitorId) || !isValidId(payload.sessionId)) return;
   if (typeof payload.eventType !== "string" || !EVENT_TYPES.has(payload.eventType)) return;
   if (isBotUserAgent(userAgent)) return;
+
+  const pagePathEarly = truncate(payload.pagePath, 500) || "/";
+  const referrerEarly = truncate(payload.referrer);
+  const landingQueryEarly = truncate(payload.landingQuery, 1024);
+  if (
+    shouldIgnoreAnalyticsEvent({
+      pagePath: pagePathEarly,
+      referrer: referrerEarly,
+      landingQuery: landingQueryEarly,
+    })
+  ) {
+    return;
+  }
 
   const visitorId = payload.visitorId;
   const sessionId = payload.sessionId;
