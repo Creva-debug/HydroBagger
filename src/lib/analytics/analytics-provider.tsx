@@ -30,6 +30,7 @@ function sendEvent(eventType: AnalyticsEventType, pagePath: string, metadata?: R
   const identity = resolveSessionIdentity();
   const search = typeof window !== "undefined" ? window.location.search : "";
   const params = new URLSearchParams(search);
+  const landingQuery = search.startsWith("?") ? search.slice(1) : search;
 
   const payload = {
     visitorId: identity.visitorId,
@@ -42,6 +43,9 @@ function sendEvent(eventType: AnalyticsEventType, pagePath: string, metadata?: R
     utmSource: identity.isNewSession ? params.get("utm_source") ?? "" : undefined,
     utmMedium: identity.isNewSession ? params.get("utm_medium") ?? "" : undefined,
     utmCampaign: identity.isNewSession ? params.get("utm_campaign") ?? "" : undefined,
+    utmContent: identity.isNewSession ? params.get("utm_content") ?? "" : undefined,
+    utmTerm: identity.isNewSession ? params.get("utm_term") ?? "" : undefined,
+    landingQuery: identity.isNewSession ? landingQuery : undefined,
     metadata: metadata ?? {},
   };
 

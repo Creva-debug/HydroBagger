@@ -1,7 +1,11 @@
 import "server-only";
 
 import type { SessionGeo } from "@/lib/analytics/enrich";
+import { parseOs } from "@/lib/analytics/enrich";
+import { classifyAcquisition, extractClickIds } from "@/lib/analytics/attribution";
 import { getPool, isDatabaseConfigured } from "@/lib/db";
+
+const SELF_HOST = "hydrobagger.pl";
 
 const MAX_TEXT_LENGTH = 300;
 const MAX_METADATA_BYTES = 2000;
@@ -22,6 +26,9 @@ export type CollectPayload = {
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
+  utmContent?: string;
+  utmTerm?: string;
+  landingQuery?: string;
   metadata?: unknown;
 };
 
@@ -70,43 +77,6 @@ function detectBrowser(userAgent: string): string {
   return "Inne";
 }
 
-const SEARCH_ENGINES = ["google", "bing", "duckduckgo", "yahoo", "yandex", "baidu", "ecosia"];
-const SOCIAL_HOSTS = [
-  "facebook",
-  "instagram",
-  "tiktok",
-  "linkedin",
-  "twitter",
-  "x.com",
-  "t.co",
-  "pinterest",
-  "youtube",
-];
-
-/** Klasyfikacja źródła ruchu ("Google/organic", "facebook.com/social", "(direct)/none"...). */
-function classifyTraffic(
-  referrer: string,
-  utmSource: string,
-  utmMedium: string,
-): { source: string; medium: string } {
-  if (utmSource) {
-    return { source: truncate(utmSource, 100), medium: truncate(utmMedium, 100) || "campaign" };
-  }
-  if (!referrer) {
-    return { source: "(direct)", medium: "none" };
-  }
-  const host = safeHostname(referrer);
-  if (!host) return { source: "(direct)", medium: "none" };
-  if (host.includes("hydrobagger.pl")) return { source: "(direct)", medium: "none" };
-  if (SEARCH_ENGINES.some((engine) => host.includes(engine))) {
-    return { source: host, medium: "organic" };
-  }
-  if (SOCIAL_HOSTS.some((social) => host.includes(social))) {
-    return { source: host, medium: "social" };
-  }
-  return { source: host, medium: "referral" };
-}
-
 export function isBotUserAgent(userAgent: string): boolean {
   return BOT_UA_PATTERN.test(userAgent);
 }
@@ -139,10 +109,22 @@ export async function recordAnalyticsEvent(
   const utmSource = truncate(payload.utmSource, 100);
   const utmMedium = truncate(payload.utmMedium, 100);
   const utmCampaign = truncate(payload.utmCampaign, 100);
+  const utmContent = truncate(payload.utmContent, 100);
+  const utmTerm = truncate(payload.utmTerm, 100);
+  const landingQuery = truncate(payload.landingQuery, 1024);
   const metadata = safeMetadata(payload.metadata);
   const deviceType = detectDeviceType(userAgent);
   const browser = detectBrowser(userAgent);
-  const { source, medium } = classifyTraffic(referrer, utmSource, utmMedium);
+  const os = parseOs(userAgent);
+  const externalReferrer =
+    referrerHost && !referrerHost.includes(SELF_HOST) ? referrerHost : null;
+  const acq = classifyAcquisition({
+    utm: { source: utmSource, medium: utmMedium, campaign: utmCampaign, content: utmContent, term: utmTerm },
+    clickIds: extractClickIds(landingQuery),
+    referrerDomain: externalReferrer,
+  });
+  const source = truncate(acq.source, 100) || "(direct)";
+  const medium = truncate(acq.medium, 100) || "none";
   const isPageview = eventType === "pageview";
 
   const client = await getPool().connect();
@@ -179,9 +161,10 @@ export async function recordAnalyticsEvent(
       const { rowCount } = await client.query(
         `INSERT INTO analytics_sessions
            (session_id, visitor_id, landing_page, referrer, referrer_host, source, medium,
-            utm_source, utm_medium, utm_campaign, device_type, browser, page_view_count, is_bounce,
+            utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+            channel, ad_platform, is_paid, device_type, browser, os, page_view_count, is_bounce,
             country, region, city)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, true, $14, $15, $16)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, true, $20, $21, $22)
          ON CONFLICT (session_id) DO NOTHING`,
         [
           sessionId,
@@ -194,8 +177,14 @@ export async function recordAnalyticsEvent(
           utmSource,
           utmMedium,
           utmCampaign,
+          utmContent,
+          utmTerm,
+          acq.channel,
+          acq.adPlatform,
+          acq.isPaid,
           deviceType,
           browser,
+          os,
           isPageview ? 1 : 0,
           geo.country,
           geo.region,

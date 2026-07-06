@@ -15,3 +15,21 @@ export function geoFromHeaders(headers: Headers): SessionGeo {
     city: cityRaw ? decodeURIComponent(cityRaw) : null,
   };
 }
+
+const OS_PATTERNS: [RegExp, string][] = [
+  [/Windows NT 10/, "Windows 10+"],
+  [/Windows NT/, "Windows"],
+  [/Mac OS X/, "macOS"],
+  [/Android/, "Android"],
+  [/iPhone|iPad|iPod/, "iOS"],
+  [/Linux/, "Linux"],
+  [/CrOS/, "Chrome OS"],
+];
+
+export function parseOs(userAgent: string): string {
+  if (!userAgent) return "";
+  for (const [re, name] of OS_PATTERNS) {
+    if (re.test(userAgent)) return name;
+  }
+  return "";
+}
