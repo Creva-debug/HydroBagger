@@ -1,6 +1,7 @@
 "use client";
 
 import { CONSENT_COOKIE, type ConsentState } from "@/lib/cookie-consent";
+import { sendGa4PageView } from "@/lib/gtm/ga4-pageview";
 
 export function readStoredConsent(): ConsentState | null {
   if (typeof document === "undefined") return null;
@@ -77,6 +78,8 @@ export function syncConsentState(consent: ConsentState, options: ConsentSyncOpti
   });
   if (analyticsGranted) {
     window.dataLayer.push({ event: "consent_analytics_granted" });
+    // Po consent update: gtag config z pełnym page_view (GTM sam często nie dowozi do GA4).
+    window.setTimeout(() => sendGa4PageView(), 150);
   }
   if (marketingGranted) {
     window.dataLayer.push({ event: "consent_marketing_granted" });
