@@ -51,6 +51,7 @@ jobs:
           git fetch origin --prune
           git fetch origin main --force
           git checkout -f -B main origin/main
+          git clean -fd
 
           echo "==> pm2 stop"
           pm2 stop hydrobagger-site 2>/dev/null || true
