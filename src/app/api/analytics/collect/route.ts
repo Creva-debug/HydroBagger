@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { recordAnalyticsEvent, type CollectPayload } from "@/lib/analytics/collect";
+import { geoFromHeaders } from "@/lib/analytics/enrich";
 
 export const runtime = "nodejs";
 
@@ -17,9 +18,10 @@ export async function POST(req: NextRequest) {
   }
 
   const userAgent = req.headers.get("user-agent") ?? "";
+  const geo = geoFromHeaders(req.headers);
 
   // "Best-effort" - błąd zapisu analityki nigdy nie może wpłynąć na działanie strony.
-  recordAnalyticsEvent(payload, userAgent).catch(() => {});
+  recordAnalyticsEvent(payload, userAgent, geo).catch(() => {});
 
   return new NextResponse(null, { status: 204 });
 }

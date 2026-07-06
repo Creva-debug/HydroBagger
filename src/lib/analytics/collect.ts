@@ -1,5 +1,6 @@
 import "server-only";
 
+import type { SessionGeo } from "@/lib/analytics/enrich";
 import { getPool, isDatabaseConfigured } from "@/lib/db";
 
 const MAX_TEXT_LENGTH = 300;
@@ -120,6 +121,7 @@ export function isBotUserAgent(userAgent: string): boolean {
 export async function recordAnalyticsEvent(
   payload: CollectPayload,
   userAgent: string,
+  geo: SessionGeo = { country: null, region: null, city: null },
 ): Promise<void> {
   if (!isDatabaseConfigured()) return;
   if (!isValidId(payload.visitorId) || !isValidId(payload.sessionId)) return;
@@ -177,8 +179,9 @@ export async function recordAnalyticsEvent(
       const { rowCount } = await client.query(
         `INSERT INTO analytics_sessions
            (session_id, visitor_id, landing_page, referrer, referrer_host, source, medium,
-            utm_source, utm_medium, utm_campaign, device_type, browser, page_view_count, is_bounce)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, true)
+            utm_source, utm_medium, utm_campaign, device_type, browser, page_view_count, is_bounce,
+            country, region, city)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, true, $14, $15, $16)
          ON CONFLICT (session_id) DO NOTHING`,
         [
           sessionId,
@@ -194,6 +197,9 @@ export async function recordAnalyticsEvent(
           deviceType,
           browser,
           isPageview ? 1 : 0,
+          geo.country,
+          geo.region,
+          geo.city,
         ],
       );
       if (rowCount && rowCount > 0) {
