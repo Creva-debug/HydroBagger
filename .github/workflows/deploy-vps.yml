@@ -11,6 +11,10 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: hydrobagger-site-vps-deploy
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -33,7 +37,7 @@ jobs:
           VPS_USER: ${{ secrets.HB_SITE_VPS_USER }}
         run: |
           ssh -o BatchMode=yes "${VPS_USER}@${VPS_HOST}" 'bash -s' <<'REMOTE'
-          set -e
+          set -euo pipefail
           APP_DIR=/home/ubuntu/hydrobagger/apps/site
 
           if [ ! -d "$APP_DIR/.git" ]; then
@@ -50,8 +54,11 @@ jobs:
           echo "==> pm2 stop"
           pm2 stop hydrobagger-site 2>/dev/null || true
 
+          echo "==> clean node_modules + .next"
+          find node_modules -mindepth 1 -delete 2>/dev/null || true
+          rm -rf node_modules .next
+
           echo "==> npm ci"
-          rm -rf node_modules
           npm ci
 
           echo "==> npm run build"

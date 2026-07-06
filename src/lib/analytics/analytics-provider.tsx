@@ -10,6 +10,8 @@ const COLLECT_ENDPOINT = "/api/analytics/collect";
 export type AnalyticsEventType = "pageview" | "cta_click" | "form_submit";
 
 import { shouldSkipClientAnalytics } from "@/lib/analytics/internal-traffic";
+
+function hasAnalyticsConsent(): boolean {
   if (typeof document === "undefined") return false;
   const match = document.cookie
     .split("; ")
