@@ -48,20 +48,21 @@ jobs:
           cd "$APP_DIR"
 
           echo "==> git sync (fetch + forced checkout to origin/main)"
-          git fetch origin main
+          git fetch origin --prune
+          git fetch origin main --force
           git checkout -f -B main origin/main
 
           echo "==> pm2 stop"
           pm2 stop hydrobagger-site 2>/dev/null || true
 
           echo "==> clean node_modules + .next"
-          find node_modules -mindepth 1 -delete 2>/dev/null || true
           rm -rf node_modules .next
 
           echo "==> npm ci"
           npm ci
 
           echo "==> npm run build"
+          export NODE_OPTIONS="--max-old-space-size=4096"
           npm run build
 
           echo "==> pm2 start"
