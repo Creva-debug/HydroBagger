@@ -66,8 +66,9 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://creva.b-cdn.net" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://creva.b-cdn.net" />
-        <script
+        <Script
           id="gtm-consent-default"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: buildConsentDefaultInlineScript() }}
         />
         <Script

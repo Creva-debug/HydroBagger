@@ -72,7 +72,8 @@ export function CookieConsent() {
       setSavedConsent(existing)
       setDraftConsent(existing)
       setShowBanner(false)
-      // Zgoda przywracana w layout.tsx przed GTM - bez pushGtmEvents (unikamy podwójnego page_view).
+      // Powrót z zapisaną zgodą: consent update + page_view GA4 z kodu (tag GTM nie emituje).
+      syncConsentState(existing, { pushGtmEvents: true })
       return
     }
     setSavedConsent(null)
