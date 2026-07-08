@@ -1,6 +1,7 @@
 "use client";
 
 import { CONSENT_COOKIE, type ConsentState } from "@/lib/cookie-consent";
+import { sendGa4PageView } from "@/lib/gtm/ga4-pageview";
 
 export function readStoredConsent(): ConsentState | null {
   if (typeof document === "undefined") return null;
@@ -77,6 +78,7 @@ export function syncConsentState(consent: ConsentState, options: ConsentSyncOpti
   });
   if (analyticsGranted) {
     window.dataLayer.push({ event: "consent_analytics_granted" });
+    sendGa4PageView();
   }
   if (marketingGranted) {
     window.dataLayer.push({ event: "consent_marketing_granted" });

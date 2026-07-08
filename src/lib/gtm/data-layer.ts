@@ -1,6 +1,7 @@
 "use client";
 
 import { hasAnalyticsConsent } from "@/lib/gtm/consent";
+import { sendGa4FormSubmit } from "@/lib/gtm/ga4-pageview";
 
 function pushDataLayer(payload: Record<string, unknown>): void {
   if (typeof window === "undefined") return;
@@ -19,7 +20,7 @@ export function pushVirtualPageView(): void {
   });
 }
 
-/** Konwersja formularza do GA4/GAds przez GTM - wymaga tagu GTM na form_submit. */
+/** Konwersja formularza: direct gtag (GA4) + dataLayer (GTM/Ads). */
 export function pushFormSubmitEvent(metadata?: Record<string, unknown>): void {
   if (!hasAnalyticsConsent()) return;
   pushDataLayer({
@@ -28,4 +29,5 @@ export function pushFormSubmitEvent(metadata?: Record<string, unknown>): void {
     page_title: document.title,
     ...metadata,
   });
+  sendGa4FormSubmit(metadata);
 }
