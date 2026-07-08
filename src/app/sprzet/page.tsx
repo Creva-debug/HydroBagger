@@ -6,6 +6,7 @@ import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
 import { getSEO, getPageMetadata } from "@/lib/seo-pages";
+import { fetchSiteImageVersion } from "@/lib/site-images-db";
 
 const SPRZET_INDEX_SEO = getSEO("/sprzet")!;
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,6 +20,13 @@ const KATEGORIE = [
     desc: "Maszyny do kopania i pogłębiania w wodzie, bagnach i na zalewiskach. Swobodnie poruszają się po grząskim terenie.",
     img: "koparka-plywajaca-kopanie-torfowisko01.jpg",
     badge: "4 modele",
+  },
+  {
+    href: "/sprzet/koparki-kroczace",
+    title: "Koparki kroczące",
+    desc: "Menzi Muck i Kaiser do pracy na stromych zboczach, skarpach i w terenie górskim. Z mulczerem, głowicą ścinkową i frezarką do pni.",
+    img: "koparka-bagna-wycinka-drzew.jpg",
+    badge: "Menzi Muck i Kaiser",
   },
   {
     href: "/sprzet/kosiarki-plywajace",
@@ -61,7 +69,9 @@ function SL({ children, light = false }: { children: React.ReactNode; light?: bo
   return <span className={`section-label${light ? " section-label--light" : ""}`}>{children}</span>;
 }
 
-export default function SprzętPage() {
+export default async function SprzętPage() {
+  /* Kafelek koparek kroczących przełącza się na dedykowane zdjęcie po wgraniu go z panelu. */
+  const kroczaceHeroVersion = await fetchSiteImageVersion("koparka_kroczaca_hero");
   return (
     <>
       <JsonLdWebPage seo={SPRZET_INDEX_SEO} />
@@ -106,7 +116,7 @@ export default function SprzętPage() {
             <div>
               <SL>Kategorie sprzętu</SL>
               <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(2rem,3.8vw,3rem)" }}>
-                6 kategorii <span style={{ color: "var(--hb-water)" }}>maszyn</span>
+                7 kategorii <span style={{ color: "var(--hb-water)" }}>maszyn</span>
               </h2>
             </div>
             <p className="text-lg leading-relaxed text-slate-600 lg:pb-1">
@@ -115,10 +125,15 @@ export default function SprzętPage() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {KATEGORIE.map((kat) => (
+            {KATEGORIE.map((kat) => {
+              const imgSrc =
+                kat.href === "/sprzet/koparki-kroczace" && kroczaceHeroVersion != null
+                  ? imageUrl("koparka-kroczaca-hero.jpg", kroczaceHeroVersion)
+                  : imageUrl(kat.img);
+              return (
               <Link key={kat.href} href={kat.href} className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl" style={{ border: "1px solid #e2e8f0" }}>
                 <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image src={imageUrl(kat.img)} alt={kat.title} fill className="object-cover brightness-[0.85] saturate-[0.82] transition-transform duration-700 group-hover:scale-[1.05]" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw" />
+                  <Image src={imgSrc} alt={kat.title} fill className="object-cover brightness-[0.85] saturate-[0.82] transition-transform duration-700 group-hover:scale-[1.05]" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#071e32]/70 to-transparent" />
                   <div className="absolute left-3 top-3">
                     <span className="rounded-full bg-white/90 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider backdrop-blur-sm" style={{ color: "var(--hb-water)" }}>{kat.badge}</span>
@@ -133,7 +148,8 @@ export default function SprzętPage() {
                   </div>
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

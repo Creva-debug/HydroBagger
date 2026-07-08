@@ -199,6 +199,8 @@ export function PreviewModeInterceptor() {
 
     const markMedia = () => {
       document.querySelectorAll<HTMLImageElement>("img").forEach((img) => {
+        /* Już oznaczone – nie dotykaj atrybutów, żeby nie zapętlić MutationObservera. */
+        if (img.dataset.landingPreviewMarked === "1") return;
         const fn =
           extractFilename(img) ??
           img.getAttribute("data-landing-preview") ??
@@ -211,6 +213,7 @@ export function PreviewModeInterceptor() {
       });
 
       document.querySelectorAll<HTMLVideoElement>("video").forEach((video) => {
+        if (video.dataset.landingPreviewMarked === "1") return;
         const fn =
           extractFilename(video) ??
           video.getAttribute("data-landing-preview") ??
@@ -438,11 +441,23 @@ export function PreviewModeInterceptor() {
       heightRaf = requestAnimationFrame(broadcastDocumentHeight);
     };
 
+    /* Debounce przez rAF + attributeFilter: markMedia() sam zmienia atrybuty (dataset,
+       src), więc obserwowanie wszystkich atrybutów tworzyło pętlę zwrotną, która
+       potrafiła zamrozić podgląd i cały panel. */
+    let markRaf = 0;
     const observer = new MutationObserver(() => {
-      markMedia();
-      scheduleHeightBroadcast();
+      cancelAnimationFrame(markRaf);
+      markRaf = requestAnimationFrame(() => {
+        markMedia();
+        broadcastDocumentHeight();
+      });
     });
-    observer.observe(document.body, { subtree: true, childList: true, attributes: true });
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      attributeFilter: ["src", "srcset", "poster"],
+    });
 
     broadcastPath();
     scheduleHeightBroadcast();
@@ -456,6 +471,7 @@ export function PreviewModeInterceptor() {
       window.removeEventListener("resize", broadcastDocumentHeight);
       window.removeEventListener("load", scheduleHeightBroadcast);
       cancelAnimationFrame(heightRaf);
+      cancelAnimationFrame(markRaf);
       window.history.pushState = originalPushState;
       window.history.replaceState = originalReplaceState;
       observer.disconnect();

@@ -5,7 +5,9 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { BrandsMarquee } from "@/components/BrandsMarquee";
 import { ContactConsultationSection } from "@/components/ContactConsultationSection";
 import { JsonLdWebPage } from "@/components/JsonLdWebPage";
+import { DlaKogoFAQ, type FAQItem } from "@/app/dla-kogo/DlaKogoFAQ";
 import { imageUrl } from "@/lib/images";
+import { absoluteUrl } from "@/lib/site-url";
 import { getSEO } from "@/lib/seo-pages";
 
 export type SprzętItem = { icon: ReactNode; title: string; body: string };
@@ -13,19 +15,29 @@ export type SprzętMachine = {
   name: string;
   /** Zdjęcie maszyny (CDN); brak = fallback jak zdjęcie hero strony. */
   image?: string;
+  /** Wersja pliku z CMS (site_images) – cache bust ?v=. */
+  imageVersion?: number;
+  /** Gdy true, zamiast zdjęcia renderowany jest placeholder „Zdjęcie wkrótce". */
+  imagePending?: boolean;
   specs: { label: string; value: string }[];
 };
 
 export type SprzętGalleryItem = {
   src: string;
   alt: string;
+  /** Wersja pliku z CMS (site_images) – cache bust ?v=. */
+  version?: number;
   /** Nadpisuje domyślne filtry (np. stonowanie nadmiernej saturacji). */
   imageClassName?: string;
 };
 
+export type SprzętArticleBlock = { heading: string; paragraphs: string[] };
+
 export type SprzętTemplateProps = {
   breadcrumbLabel: string;
   heroImage: string;
+  /** Wersja hero z CMS (site_images) – cache bust ?v=. */
+  heroImageVersion?: number;
   heroTitle: string;
   heroLead: string;
   heroDetails?: string[];
@@ -38,6 +50,12 @@ export type SprzętTemplateProps = {
   galleryCols?: 3 | 4;
   /** Gdy true, sekcja „Park maszynowy" pojawia się przed „Zaletami". */
   machinesFirst?: boolean;
+  /** Sekcja treści SEO (nagłówki H2/H3 + akapity). */
+  article?: { label?: string; title: string; blocks: SprzętArticleBlock[] };
+  /** Sekcja FAQ + JSON-LD FAQPage. */
+  faq?: { title: string; items: FAQItem[] };
+  /** Linkowanie wewnętrzne – powiązany sprzęt i usługi. */
+  related?: { title: string; items: { href: string; label: string; desc: string }[] };
   /** Klucz z SEO_PAGES – JSON-LD WebPage. */
   seoPath?: string;
 };
@@ -66,9 +84,41 @@ function getMachCols(n: number) {
   return "sm:grid-cols-2 lg:grid-cols-4";
 }
 
+function JsonLdFaq({ path, items }: { path: string; items: FAQItem[] }) {
+  const json = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${absoluteUrl(path)}#faq`,
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }}
+    />
+  );
+}
+
+function MachineImagePlaceholder({ name }: { name: string }) {
+  return (
+    <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-slate-900/60">
+      <svg className="h-8 w-8 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+      </svg>
+      <span className="px-3 text-center text-xs text-slate-400">Zdjęcie {name} wkrótce</span>
+    </div>
+  );
+}
+
 export function SprzętTemplate({
   breadcrumbLabel,
   heroImage,
+  heroImageVersion,
   heroTitle,
   heroLead,
   heroDetails = [],
@@ -78,6 +128,9 @@ export function SprzętTemplate({
   gallery = [],
   galleryCols,
   machinesFirst = false,
+  article,
+  faq,
+  related,
   seoPath,
 }: SprzętTemplateProps) {
   const pageSeo = seoPath ? getSEO(seoPath) : undefined;
@@ -113,22 +166,28 @@ export function SprzętTemplate({
           {machines.items.map((m) => (
             <div key={m.name} className="overflow-hidden rounded-xl sm:rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}>
               <div
-                className={`relative w-full overflow-hidden bg-slate-950/70 ${machines.imageCrop === "4/3" ? "aspect-[4/3]" : ""}`}
+                className={`relative w-full overflow-hidden bg-slate-950/70 ${machines.imageCrop === "4/3" || m.imagePending ? "aspect-[4/3]" : ""}`}
               >
-                <Image
-                  src={imageUrl(m.image ?? heroImage)}
-                  alt={m.name}
-                  fill={machines.imageCrop === "4/3"}
-                  width={machines.imageCrop === "4/3" ? undefined : 1200}
-                  height={machines.imageCrop === "4/3" ? undefined : 800}
-                  sizes="(max-width:1024px) 100vw, 400px"
-                  className={
-                    machines.imageCrop === "4/3"
-                      ? "object-cover object-center brightness-[1.02] contrast-[1.04] saturate-[1.06]"
-                      : "h-auto w-full brightness-[1.02] contrast-[1.04] saturate-[1.06]"
-                  }
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071e32]/45 via-transparent to-transparent" aria-hidden />
+                {m.imagePending ? (
+                  <MachineImagePlaceholder name={m.name} />
+                ) : (
+                  <>
+                    <Image
+                      src={imageUrl(m.image ?? heroImage, m.imageVersion)}
+                      alt={m.name}
+                      fill={machines.imageCrop === "4/3"}
+                      width={machines.imageCrop === "4/3" ? undefined : 1200}
+                      height={machines.imageCrop === "4/3" ? undefined : 800}
+                      sizes="(max-width:1024px) 100vw, 400px"
+                      className={
+                        machines.imageCrop === "4/3"
+                          ? "object-cover object-center brightness-[1.02] contrast-[1.04] saturate-[1.06]"
+                          : "h-auto w-full brightness-[1.02] contrast-[1.04] saturate-[1.06]"
+                      }
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071e32]/45 via-transparent to-transparent" aria-hidden />
+                  </>
+                )}
               </div>
               <div className="p-4 sm:p-5">
               <p className="mb-3 text-base font-bold leading-snug text-white sm:mb-4 sm:text-lg">{m.name}</p>
@@ -151,10 +210,11 @@ export function SprzętTemplate({
   return (
     <>
       {pageSeo ? <JsonLdWebPage seo={pageSeo} /> : null}
+      {faq && seoPath ? <JsonLdFaq path={seoPath} items={faq.items} /> : null}
       {/* HERO */}
-      <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20">
+      <section className="relative flex min-h-[70vh] items-center overflow-hidden py-16 lg:min-h-[80vh] lg:py-20" data-landing-preview-zone="hero">
         <Image
-          src={imageUrl(heroImage)}
+          src={imageUrl(heroImage, heroImageVersion)}
           alt={heroTitle}
           fill
           priority
@@ -219,6 +279,30 @@ export function SprzętTemplate({
       {/* MACHINES po FEATURES gdy machinesFirst=false (domyślnie) */}
       {!machinesFirst && machinesSection}
 
+      {/* ARTICLE – treść SEO */}
+      {article && (
+        <section className="bg-white py-16 lg:py-20">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 text-center">
+              <SL>{article.label ?? "Warto wiedzieć"}</SL>
+              <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>{article.title}</h2>
+            </div>
+            <div className="space-y-10">
+              {article.blocks.map((block) => (
+                <div key={block.heading}>
+                  <h3 className="mb-3 text-xl font-bold text-slate-900 sm:text-2xl">{block.heading}</h3>
+                  <div className="space-y-3">
+                    {block.paragraphs.map((p, i) => (
+                      <p key={i} className="text-base leading-relaxed text-slate-600">{p}</p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* GALLERY */}
       {gallery.length > 0 && (
         <section className="bg-slate-50 py-14 lg:py-16">
@@ -233,7 +317,7 @@ export function SprzętTemplate({
               {gallery.map((img) => (
                 <div key={`${img.src}-${img.alt}`} className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                   <Image
-                    src={imageUrl(img.src)}
+                    src={imageUrl(img.src, img.version)}
                     alt={img.alt}
                     fill
                     className={
@@ -243,6 +327,37 @@ export function SprzętTemplate({
                     sizes={galleryImageSizes}
                   />
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ */}
+      {faq && <DlaKogoFAQ title={faq.title} items={faq.items} />}
+
+      {/* RELATED – linkowanie wewnętrzne */}
+      {related && related.items.length > 0 && (
+        <section className="bg-slate-50 py-14 lg:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-8">
+              <SL>Zobacz też</SL>
+              <h2 className="display-heading mt-3 text-slate-900" style={{ fontSize: "clamp(1.6rem,3vw,2.2rem)" }}>{related.title}</h2>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {related.items.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group flex flex-col gap-2 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <h3 className="text-lg font-bold text-slate-900 transition-colors group-hover:text-[#0284c7]">{item.label}</h3>
+                  <p className="flex-1 text-sm leading-relaxed text-slate-500">{item.desc}</p>
+                  <span className="mt-2 flex items-center gap-1.5 text-sm font-semibold" style={{ color: "var(--hb-water)" }}>
+                    Dowiedz się więcej
+                    <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                  </span>
+                </Link>
               ))}
             </div>
           </div>

@@ -198,6 +198,7 @@ export function Footer() {
               </p>
               <ul className="space-y-2.5 text-sm text-slate-300">
                 <li><Link href="/sprzet/koparki-plywajace" className="transition hover:text-[#38bdf8]">Koparki pływające</Link></li>
+                <li><Link href="/sprzet/koparki-kroczace" className="transition hover:text-[#38bdf8]">Koparki kroczące</Link></li>
                 <li><Link href="/sprzet/kosiarki-plywajace" className="transition hover:text-[#38bdf8]">Kosiarki pływające</Link></li>
                 <li><Link href="/sprzet/pompy-refulacyjne" className="transition hover:text-[#38bdf8]">Pompy refulacyjne</Link></li>
                 <li><Link href="/sprzet/kosiarki-samobiezne" className="transition hover:text-[#38bdf8]">Kosiarki samobieżne</Link></li>

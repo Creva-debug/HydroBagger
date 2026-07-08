@@ -152,12 +152,19 @@ export const SEO_PAGES: Record<string, PageSEO> = {
     metaDescription:
       "Koparki gąsienicowe do pracy na błocie, skarpach i niestabilnym gruncie. Stabilne, wydajne i gotowe do zadań, gdzie sprzęt kołowy nie da rady.",
   },
+  "/sprzet/koparki-kroczace": {
+    path: "/sprzet/koparki-kroczace",
+    keyword: "koparka krocząca",
+    metaTitle: "Koparka krocząca Menzi Muck i Kaiser | HydroBagger",
+    metaDescription:
+      "Koparki kroczące Menzi Muck i Kaiser do pracy na skarpach, zboczach i w terenie górskim. Mulczer, głowica ścinkowa i harvesterowa, frezarka do pni. Sprawdź!",
+  },
   "/sprzet/koparki-plywajace": {
     path: "/sprzet/koparki-plywajace",
-    keyword: "koparki pływające",
-    metaTitle: "Koparki pływające do pracy w trudnym terenie | HydroBagger",
+    keyword: "koparka pływająca",
+    metaTitle: "Koparka pływająca (amfibia) do pracy w wodzie | HydroBagger",
     metaDescription:
-      "Koparki pływające to specjalistyczny sprzęt do pracy w wodzie, na torfie i bagnach. Pozwalają realizować roboty ziemno-wodne tam, gdzie zwykłe maszyny nie wjadą.",
+      "Koparka pływająca (amfibia, koparka wodna) do prac w wodzie, na torfie i bagnach. Odmulanie, refulacja i roboty ziemno-wodne tam, gdzie inny sprzęt nie wjedzie.",
   },
   "/sprzet/kosiarki-plywajace": {
     path: "/sprzet/kosiarki-plywajace",

@@ -186,6 +186,7 @@ const NAV_USLUGI = [
 
 const NAV_SPRZET = [
   { href: "/sprzet/koparki-plywajace",    label: "Koparki pływające",    desc: "Maszyny amfibijne pracujące bezpośrednio na wodzie, bagnach i mokradłach." },
+  { href: "/sprzet/koparki-kroczace",     label: "Koparki kroczące",     desc: "Menzi Muck i Kaiser do pracy na stromych zboczach, skarpach i w górach." },
   { href: "/sprzet/koparki-gasienicowe",  label: "Koparki gąsienicowe",  desc: "Ciężki sprzęt gąsienicowy do głębokich prac ziemnych w trudnym terenie." },
   { href: "/sprzet/kosiarki-plywajace",   label: "Kosiarki pływające",   desc: "Pływające maszyny do koszenia i mulczowania roślinności wodnej i brzegowej." },
   { href: "/sprzet/kosiarki-samobiezne",  label: "Kosiarki samobieżne",  desc: "Gąsienicowe kosiarki do mulczowania skarp, rowów i podmokłych terenów." },

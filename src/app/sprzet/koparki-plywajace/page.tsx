@@ -116,6 +116,66 @@ export default function KoparkiPlywajacePage() {
           },
         ],
       }}
+      article={{
+        label: "Warto wiedzieć",
+        title: "Koparka pływająca - amfibia do zadań ziemno-wodnych",
+        blocks: [
+          {
+            heading: "Czym jest koparka pływająca?",
+            paragraphs: [
+              "Koparka pływająca (nazywana też koparką amfibijną, amfibią lub potocznie koparką wodną) to maszyna zbudowana na pływającym podwoziu pontonowym. Specjalne pontony z napędem gąsienicowym utrzymują ją na powierzchni wody i pozwalają poruszać się po grząskim, bagiennym terenie bez ryzyka ugrzęźnięcia.",
+              "Dzięki temu koparka pływająca pracuje bezpośrednio z lustra wody lub z podmokłego brzegu - bez budowy grobli, pomostów i dróg technologicznych, które przy klasycznym sprzęcie generują koszty i niszczą teren.",
+            ],
+          },
+          {
+            heading: "Koparka wodna w praktyce - jak pracuje?",
+            paragraphs: [
+              "Maszyna wpływa lub wchodzi na obszar prac o własnych siłach. Na wodzie stabilizuje się za pomocą pontonów i podpór, a następnie wykonuje prace łyżką lub osprzętem specjalistycznym: odmula dno, pogłębia zbiornik, czyści rowy, kosi roślinność lub współpracuje z pompą refulacyjną przy hydraulicznym transporcie urobku.",
+              "Nasze koparki pływające REMU Big Float i Waterking pracują w zbiornikach o głębokości nawet kilkunastu metrów, na stawach, jeziorach, rzekach, kanałach i terenach zalewowych w całej Polsce.",
+            ],
+          },
+          {
+            heading: "Koparka pływająca czy krocząca - którą wybrać?",
+            paragraphs: [
+              "Koparka pływająca to wybór do prac na wodzie, torfie i bagnach - wszędzie tam, gdzie kluczowa jest pływalność i niski nacisk na podłoże. Na stromych zboczach, skarpach i w terenie górskim lepiej sprawdzi się koparka krocząca.",
+              "Opisz nam teren i zakres prac podczas bezpłatnej konsultacji - dobierzemy maszynę do warunków, a przy złożonych realizacjach połączymy kilka typów sprzętu.",
+            ],
+          },
+        ],
+      }}
+      faq={{
+        title: "Najczęstsze pytania o koparki pływające",
+        items: [
+          {
+            q: "Czym różni się koparka pływająca od koparki wodnej i amfibii?",
+            a: "To ta sama maszyna - koparka pływająca bywa nazywana koparką wodną, amfibijną lub po prostu amfibią. Wszystkie te określenia opisują koparkę na pływającym podwoziu pontonowym, która pracuje na wodzie i w terenie bagiennym.",
+          },
+          {
+            q: "Jak głęboko może kopać koparka pływająca?",
+            a: "Nasza największa koparka pływająca REMU Big Float E2200 osiąga głębokość kopania do 13 metrów przy zasięgu ramienia 16 metrów. Mniejsze maszyny dobieramy do płytszych zbiorników i węższych kanałów.",
+          },
+          {
+            q: "Czy koparka pływająca zniszczy brzeg lub roślinność?",
+            a: "Nie - to jedna z największych zalet tej maszyny. Niski nacisk pontonów na podłoże i praca z wody minimalizują ingerencję w brzegi oraz ekosystem. Pracujemy również na obszarach chronionych, w tym Natura 2000.",
+          },
+          {
+            q: "Czy wynajmujecie koparkę pływającą z operatorem?",
+            a: "Realizujemy usługi naszym sprzętem z doświadczonym operatorem. Odpowiadamy za całość prac - od transportu i wodowania maszyny, przez realizację, po uprzątnięcie terenu.",
+          },
+          {
+            q: "Ile kosztuje praca koparki pływającej?",
+            a: "Wycena zależy od rodzaju prac, wielkości zbiornika i warunków terenowych. Skorzystaj z bezpłatnej 20-minutowej konsultacji - opisz projekt, a przygotujemy wycenę bez zobowiązań.",
+          },
+        ],
+      }}
+      related={{
+        title: "Powiązany sprzęt i usługi",
+        items: [
+          { href: "/sprzet/koparki-kroczace", label: "Koparki kroczące", desc: "Menzi Muck i Kaiser - maszyny do pracy na stromych zboczach, skarpach i w terenie górskim." },
+          { href: "/sprzet/pompy-refulacyjne", label: "Pompy refulacyjne", desc: "Hydrauliczne odsysanie osadów z dna zbiorników - naturalne uzupełnienie koparki pływającej." },
+          { href: "/uslugi/refulacia-i-odwadnianie-osadow", label: "Refulacja i odwadnianie osadów", desc: "Kompleksowe odmulanie zbiorników wodnych z transportem i odwadnianiem urobku." },
+        ],
+      }}
       gallery={[
         { src: "transport-koparka-plywajaca-remu-2200 (1).jpg", alt: "Transport koparki pływającej REMU 2200" },
         { src: "koparka-plywajaca-remu-2200-pod-mostem (1).jpg", alt: "Koparka pływająca REMU 2200 – prace pod mostem" },
