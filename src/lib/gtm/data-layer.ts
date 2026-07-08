@@ -9,17 +9,6 @@ function pushDataLayer(payload: Record<string, unknown>): void {
   window.dataLayer.push(payload);
 }
 
-/** Pageview przy nawigacji SPA (Next.js App Router) - wymaga tagu GTM na virtual_page_view. */
-export function pushVirtualPageView(): void {
-  if (!hasAnalyticsConsent()) return;
-  pushDataLayer({
-    event: "virtual_page_view",
-    page_location: window.location.href,
-    page_title: document.title,
-    page_referrer: document.referrer || undefined,
-  });
-}
-
 /** Konwersja formularza: direct gtag (GA4) + dataLayer (GTM/Ads). */
 export function pushFormSubmitEvent(metadata?: Record<string, unknown>): void {
   if (!hasAnalyticsConsent()) return;
