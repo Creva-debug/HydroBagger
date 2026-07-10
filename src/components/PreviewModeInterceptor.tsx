@@ -91,29 +91,6 @@ export function PreviewModeInterceptor() {
       video[data-landing-slot-key]:hover {
         outline-color: rgb(139 92 246 / 0.9);
       }
-      .landing-preview-plus-badge {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border-radius: 9999px;
-        background: rgb(109 40 217);
-        color: white;
-        font-size: 26px;
-        font-weight: 700;
-        line-height: 40px;
-        text-align: center;
-        opacity: 0;
-        pointer-events: none;
-        z-index: 8;
-        transition: opacity 0.15s ease;
-        box-shadow: 0 4px 14px rgba(109, 40, 217, 0.45);
-      }
-      .landing-preview-plus-host:hover .landing-preview-plus-badge {
-        opacity: 1;
-      }
       div:has(> img[data-landing-preview-marked]),
       div:has(> img[data-landing-slot-key]),
       div:has(> video[data-landing-slot-key]) {
@@ -183,20 +160,6 @@ export function PreviewModeInterceptor() {
     banner.textContent = "TRYB PODGLĄDU - kliknij grafikę lub wideo, aby je podmienić";
     document.body.appendChild(banner);
 
-    const attachPlusBadge = (el: HTMLElement) => {
-      const host = el.parentElement;
-      if (!host || host.querySelector(":scope > .landing-preview-plus-badge")) return;
-      host.classList.add("landing-preview-plus-host");
-      if (getComputedStyle(host).position === "static") {
-        host.style.position = "relative";
-      }
-      const badge = document.createElement("div");
-      badge.className = "landing-preview-plus-badge";
-      badge.textContent = "+";
-      badge.setAttribute("aria-hidden", "true");
-      host.appendChild(badge);
-    };
-
     const markMedia = () => {
       document.querySelectorAll<HTMLImageElement>("img").forEach((img) => {
         /* Już oznaczone – nie dotykaj atrybutów, żeby nie zapętlić MutationObservera. */
@@ -209,7 +172,6 @@ export function PreviewModeInterceptor() {
         cacheBustMedia(img);
         img.dataset.landingPreviewMarked = "1";
         if (!img.dataset.landingPreview) img.dataset.landingPreview = fn;
-        attachPlusBadge(img);
       });
 
       document.querySelectorAll<HTMLVideoElement>("video").forEach((video) => {
@@ -224,7 +186,6 @@ export function PreviewModeInterceptor() {
           if (!video.dataset.landingPreview) video.dataset.landingPreview = fn;
         }
         video.dataset.landingPreviewMarked = "1";
-        attachPlusBadge(video);
       });
     };
 
@@ -250,7 +211,10 @@ export function PreviewModeInterceptor() {
 
     const handleClick = (e: MouseEvent) => {
       const el = e.target as HTMLElement;
-      if (el.closest("a, button, input, textarea, select")) return;
+      if (el.closest("button, input, textarea, select")) return;
+      /* Klik w grafikę wewnątrz linku otwiera edycję slotu (nie nawiguje);
+         klik w link bez grafiki normalnie nawiguje. */
+      const insideLink = el.closest("a") != null;
 
       const slotTile = el.closest("[data-landing-preview-slot]") as HTMLElement | null;
       if (slotTile) {
@@ -292,7 +256,16 @@ export function PreviewModeInterceptor() {
       let img =
         (el.closest("img[data-landing-slot-key]") as HTMLImageElement | null) ??
         (el.closest("img[data-landing-preview-marked]") as HTMLImageElement | null);
-      if (!img) {
+      if (!img && insideLink) {
+        /* Klik w link będący kartą z grafiką (np. kafelek podstrony):
+           jeśli link zawiera oznaczoną grafikę, traktuj klik jako edycję slotu. */
+        const link = el.closest("a");
+        img =
+          link?.querySelector<HTMLImageElement>("img[data-landing-slot-key]") ??
+          link?.querySelector<HTMLImageElement>("img[data-landing-preview-marked]") ??
+          null;
+      }
+      if (!img && !insideLink) {
         const container = el.closest(
           "div:has(> img[data-landing-preview-marked]), div:has(> img[data-landing-slot-key])",
         );
@@ -318,7 +291,9 @@ export function PreviewModeInterceptor() {
         }
       }
 
-      const heroZone = el.closest("[data-landing-preview-zone=\"hero\"]") as HTMLElement | null;
+      const heroZone = insideLink
+        ? null
+        : (el.closest("[data-landing-preview-zone=\"hero\"]") as HTMLElement | null);
       if (heroZone) {
         const heroVideo = heroZone.querySelector<HTMLVideoElement>("video[data-landing-slot-key]");
         if (heroVideo) {
@@ -362,17 +337,21 @@ export function PreviewModeInterceptor() {
       };
 
       if (slotKey) {
-        document
-          .querySelectorAll<HTMLImageElement>(`img[data-landing-slot-key="${slotKey}"]`)
-          .forEach(refreshImg);
-        document.querySelectorAll<HTMLVideoElement>(`video[data-landing-slot-key="${slotKey}"]`).forEach(
-          (video) => {
-            video.src = freshSrc;
-            void video.load();
-            video.dataset.landingPreview = filename;
-          },
+        const imgs = document.querySelectorAll<HTMLImageElement>(
+          `img[data-landing-slot-key="${slotKey}"]`,
         );
-        return;
+        const videos = document.querySelectorAll<HTMLVideoElement>(
+          `video[data-landing-slot-key="${slotKey}"]`,
+        );
+        imgs.forEach(refreshImg);
+        videos.forEach((video) => {
+          video.src = freshSrc;
+          void video.load();
+          video.dataset.landingPreview = filename;
+        });
+        /* Slot ad-hoc (klucz = nazwa pliku) nie ma data-landing-slot-key
+           w markupie - odśwież wtedy po nazwie pliku poniżej. */
+        if (imgs.length > 0 || videos.length > 0) return;
       }
 
       document.querySelectorAll<HTMLImageElement>("img[data-landing-preview]").forEach((img) => {
