@@ -41,6 +41,7 @@ export default async function KoparkiKroczacePage() {
       breadcrumbLabel="Koparki kroczące"
       heroImage={heroUploaded ? HERO_SLOT.filename : HERO_FALLBACK}
       heroImageVersion={heroUploaded ? versions[HERO_SLOT.key] : undefined}
+      heroSlotKey={HERO_SLOT.key}
       heroTitle="Koparki kroczące"
       heroLead="Koparka krocząca (pająkowa) pracuje tam, gdzie żadna klasyczna maszyna nie wjedzie - na stromych zboczach, skarpach i w terenie górskim."
       heroDetails={[
