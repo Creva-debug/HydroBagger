@@ -88,7 +88,7 @@ export default function DarmowaKonsultacjaPage() {
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <SplitImage
               src="koparka-plywajaca-zestaw-refulacyjny-hydrobagger.jpg"
-              alt="Sprzęt hydrotechniczny HydroBagger przy pracy"
+              alt="Koparka pływająca HydroBagger z zestawem refulacyjnym przy pracy"
             />
             <div>
               <span className="section-label">Rozmowa</span>
@@ -100,7 +100,11 @@ export default function DarmowaKonsultacjaPage() {
                 <span style={{ color: "var(--hb-water)" }}>możesz zadać?</span>
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-slate-600">
-                Nie musisz znać technologii – wystarczy, że opiszesz problem.
+                Nie musisz znać technologii – wystarczy, że opiszesz problem. Jeśli chcesz wiedzieć, czym pracujemy, zobacz nasz{" "}
+                <Link href="/sprzet" className="font-semibold text-[var(--hb-water)] hover:underline">
+                  sprzęt hydrotechniczny
+                </Link>
+                .
               </p>
               <ul className="mt-7 space-y-3">
                 {PYTANIA.map((p) => (

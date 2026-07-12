@@ -12,6 +12,8 @@ import { getSEO } from "@/lib/seo-pages";
 
 export type UsługiStep = { n: string; title: string; body: string };
 
+export type UsługiArticleBlock = { heading: string; paragraphs: ReactNode[] };
+
 export type UsługiTemplateProps = {
   breadcrumbLabel: string;
   heroImage: string;
@@ -25,6 +27,10 @@ export type UsługiTemplateProps = {
   praceItems: string[];
   steps: UsługiStep[];
   gallery?: { src: string; alt: string }[];
+  /** Sekcja treści SEO (nagłówki H2/H3 + akapity, akapity mogą zawierać linki). */
+  article?: { label?: string; title: string; blocks: UsługiArticleBlock[] };
+  /** Linkowanie wewnętrzne – powiązany sprzęt i usługi. */
+  related?: { title: string; items: { href: string; label: string; desc: string }[] };
   currentSlug: string;
   seoPath?: string;
 };
@@ -44,6 +50,8 @@ export function UsługiTemplate({
   praceItems,
   steps,
   gallery = [],
+  article,
+  related,
   currentSlug,
   seoPath,
 }: UsługiTemplateProps) {
@@ -164,6 +172,58 @@ export function UsługiTemplate({
           </div>
         </div>
       </section>
+
+      {/* ARTICLE – treść SEO */}
+      {article && (
+        <section className="bg-white py-16 lg:py-20">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 text-center">
+              <SL>{article.label ?? "Warto wiedzieć"}</SL>
+              <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>{article.title}</h2>
+            </div>
+            <div className="space-y-10">
+              {article.blocks.map((block) => (
+                <div key={block.heading}>
+                  <h3 className="mb-3 text-xl font-bold text-slate-900 sm:text-2xl">{block.heading}</h3>
+                  <div className="space-y-3">
+                    {block.paragraphs.map((p, i) => (
+                      <p key={i} className="text-base leading-relaxed text-slate-600">{p}</p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* RELATED – linkowanie wewnętrzne */}
+      {related && related.items.length > 0 && (
+        <section className="bg-slate-50 py-14 lg:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-8">
+              <SL>Zobacz też</SL>
+              <h2 className="display-heading mt-3 text-slate-900" style={{ fontSize: "clamp(1.6rem,3vw,2.2rem)" }}>{related.title}</h2>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {related.items.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group flex flex-col gap-2 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <h3 className="text-lg font-bold text-slate-900 transition-colors group-hover:text-[#0284c7]">{item.label}</h3>
+                  <p className="flex-1 text-sm leading-relaxed text-slate-500">{item.desc}</p>
+                  <span className="mt-2 flex items-center gap-1.5 text-sm font-semibold" style={{ color: "var(--hb-water)" }}>
+                    Dowiedz się więcej
+                    <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* INNE USŁUGI – te same kafelki co „Zakres prac” na stronie głównej */}
       <section className="bg-slate-50 py-16 lg:py-20">

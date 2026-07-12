@@ -92,7 +92,18 @@ const SEKTORY = [
 ] as const;
 
 const FILARY = [
-  { n: "01", title: "Specjalistyczny sprzęt",     body: "Koparki pływające, gąsienicowe, amfibie – nasz codzienny arsenał. Docieramy tam, gdzie inni odmawiają." },
+  {
+    n: "01",
+    title: "Specjalistyczny sprzęt",
+    body: (
+      <>
+        <Link href="/sprzet/koparki-plywajace" className="font-semibold text-[var(--hb-water)] hover:underline">Koparki pływające</Link>,{" "}
+        <Link href="/sprzet/koparki-gasienicowe" className="font-semibold text-[var(--hb-water)] hover:underline">gąsienicowe</Link>,{" "}
+        <Link href="/sprzet/kosiarki-plywajace" className="font-semibold text-[var(--hb-water)] hover:underline">kosiarki pływające</Link> i{" "}
+        <Link href="/sprzet/wozidla-budowlane" className="font-semibold text-[var(--hb-water)] hover:underline">wozidła</Link> – nasz codzienny arsenał. Docieramy tam, gdzie inni odmawiają.
+      </>
+    ),
+  },
   { n: "02", title: "Kompleksowa realizacja",      body: "Refulacja, kopanie, koszenie, transport – jeden zespół, jeden plan, jeden efekt. Bez podwykonawców." },
   { n: "03", title: "Odpowiedzialność za efekt",   body: "Bierzemy odpowiedzialność za całość – od planowania po ostatni etap. Raz, a dobrze. Zgodnie z harmonogramem." },
 ] as const;

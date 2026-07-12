@@ -153,6 +153,46 @@ export default function UsługiPage() {
         </div>
       </section>
 
+      {/* TREŚĆ SEO – usługi hydrotechniczne, czerpak, prace specjalistyczne */}
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <SL>Warto wiedzieć</SL>
+            <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
+              Usługi hydrotechniczne w praktyce
+            </h2>
+          </div>
+          <div className="space-y-10">
+            <div>
+              <h3 className="mb-3 text-xl font-bold text-slate-900 sm:text-2xl">Usługi czerpakiem i praca łyżką z wody</h3>
+              <div className="space-y-3">
+                <p className="text-base leading-relaxed text-slate-600">
+                  Usługi czerpakiem wykonujemy{" "}
+                  <Link href="/sprzet/koparki-plywajace" className="font-semibold text-[var(--hb-water)] hover:underline">koparkami pływającymi</Link>{" "}
+                  – czerpak i łyżka skarpowa pozwalają wybierać osad, hakować rośliny z dna i profilować brzegi bez spuszczania wody ze zbiornika. Tam, gdzie osad jest płynny, zamiast czerpaka pracuje{" "}
+                  <Link href="/uslugi/refulacia-i-odwadnianie-osadow" className="font-semibold text-[var(--hb-water)] hover:underline">pompa refulacyjna</Link>
+                  , która odsysa muł i tłoczy go do geotub.
+                </p>
+              </div>
+            </div>
+            <div>
+              <h3 className="mb-3 text-xl font-bold text-slate-900 sm:text-2xl">Kompleksowe prace hydrotechniczne</h3>
+              <div className="space-y-3">
+                <p className="text-base leading-relaxed text-slate-600">
+                  Nasze usługi hydrotechniczne obejmują cały cykl prac przy zbiornikach i ciekach: od{" "}
+                  <Link href="/uslugi/kopanie-w-trudnym-terenie" className="font-semibold text-[var(--hb-water)] hover:underline">kopania i pogłębiania w trudnym terenie</Link>
+                  , przez{" "}
+                  <Link href="/uslugi/koszenie-i-mulczowanie-roslinnosci" className="font-semibold text-[var(--hb-water)] hover:underline">koszenie trzciny i roślinności wodnej</Link>
+                  , po refulację osadów i{" "}
+                  <Link href="/uslugi/transport-w-trudnym-terenie" className="font-semibold text-[var(--hb-water)] hover:underline">transport w grząskim gruncie</Link>
+                  . Jeden zespół i własny sprzęt oznaczają brak podwykonawców i pełną odpowiedzialność za efekt.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA STRIP */}
       <section className="relative overflow-hidden py-14 lg:py-16" style={{ background: "var(--hb-navy)" }}>
         <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-[0.07]" style={{ background: "var(--hb-water)" }} />

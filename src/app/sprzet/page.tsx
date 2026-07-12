@@ -154,6 +154,53 @@ export default async function SprzętPage() {
         </div>
       </section>
 
+      {/* TREŚĆ SEO – sprzęt ciężki + linkowanie wewnętrzne do podstron */}
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <SL>Warto wiedzieć</SL>
+            <h2 className="display-heading mt-4 text-slate-900" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
+              Sprzęt ciężki do prac ziemnych i wodnych
+            </h2>
+          </div>
+          <div className="space-y-10">
+            <div>
+              <h3 className="mb-3 text-xl font-bold text-slate-900 sm:text-2xl">Maszyny do pracy na wodzie i w błocie</h3>
+              <div className="space-y-3">
+                <p className="text-base leading-relaxed text-slate-600">
+                  Trzon naszego parku stanowi{" "}
+                  <Link href="/sprzet/koparki-plywajace" className="font-semibold text-[var(--hb-water)] hover:underline">koparka pływająca</Link>{" "}
+                  – amfibia na pontonach, która kopie i odmula bezpośrednio z lustra wody. Uzupełnia ją{" "}
+                  <Link href="/sprzet/kosiarki-plywajace" className="font-semibold text-[var(--hb-water)] hover:underline">kosiarka pływająca</Link>{" "}
+                  do koszenia trzciny i roślinności wodnej oraz{" "}
+                  <Link href="/sprzet/pompy-refulacyjne" className="font-semibold text-[var(--hb-water)] hover:underline">pompy refulacyjne</Link>{" "}
+                  DRAGFLOW do hydraulicznego transportu osadów.
+                </p>
+              </div>
+            </div>
+            <div>
+              <h3 className="mb-3 text-xl font-bold text-slate-900 sm:text-2xl">Sprzęt ciężki do prac ziemnych w trudnym terenie</h3>
+              <div className="space-y-3">
+                <p className="text-base leading-relaxed text-slate-600">
+                  Na lądzie pracujemy koparkami gąsienicowymi z poszerzonymi gąsienicami do 1200 mm, a na skarpach i zboczach –{" "}
+                  <Link href="/sprzet/koparki-kroczace" className="font-semibold text-[var(--hb-water)] hover:underline">koparką kroczącą</Link>{" "}
+                  Menzi Muck lub Kaiser. Urobek i materiały przewożą{" "}
+                  <Link href="/sprzet/wozidla-budowlane" className="font-semibold text-[var(--hb-water)] hover:underline">wozidła budowlane</Link>{" "}
+                  – kołowe i gąsienicowe, które dojeżdżają tam, gdzie klasyczny transport grzęźnie. Groble, łąki i pobocza kosimy{" "}
+                  <Link href="/sprzet/kosiarki-samobiezne" className="font-semibold text-[var(--hb-water)] hover:underline">kosiarkami samobieżnymi</Link>.
+                </p>
+                <p className="text-base leading-relaxed text-slate-600">
+                  Cały sprzęt pracuje z naszymi operatorami w ramach usług – od{" "}
+                  <Link href="/uslugi/kopanie-w-trudnym-terenie" className="font-semibold text-[var(--hb-water)] hover:underline">kopania w trudnym terenie</Link>{" "}
+                  po{" "}
+                  <Link href="/uslugi/refulacia-i-odwadnianie-osadow" className="font-semibold text-[var(--hb-water)] hover:underline">refulację i odwadnianie osadów</Link>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA PASEK */}
       <section className="relative overflow-hidden py-14 lg:py-16" style={{ background: "var(--hb-navy)" }}>
         <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-[0.07]" style={{ background: "var(--hb-water)" }} />

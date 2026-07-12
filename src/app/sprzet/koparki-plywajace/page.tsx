@@ -123,7 +123,7 @@ export default function KoparkiPlywajacePage() {
           {
             heading: "Czym jest koparka pływająca?",
             paragraphs: [
-              "Koparka pływająca (nazywana też koparką amfibijną, amfibią lub potocznie koparką wodną) to maszyna zbudowana na pływającym podwoziu pontonowym. Specjalne pontony z napędem gąsienicowym utrzymują ją na powierzchni wody i pozwalają poruszać się po grząskim, bagiennym terenie bez ryzyka ugrzęźnięcia.",
+              "Koparka pływająca (nazywana też koparką amfibijną, amfibią, koparką błotniak lub potocznie koparką wodną) to maszyna zbudowana na pływającym podwoziu pontonowym. Specjalne pontony z napędem gąsienicowym utrzymują ją na powierzchni wody i pozwalają poruszać się po grząskim, bagiennym terenie bez ryzyka ugrzęźnięcia.",
               "Dzięki temu koparka pływająca pracuje bezpośrednio z lustra wody lub z podmokłego brzegu - bez budowy grobli, pomostów i dróg technologicznych, które przy klasycznym sprzęcie generują koszty i niszczą teren.",
             ],
           },
@@ -147,8 +147,8 @@ export default function KoparkiPlywajacePage() {
         title: "Najczęstsze pytania o koparki pływające",
         items: [
           {
-            q: "Czym różni się koparka pływająca od koparki wodnej i amfibii?",
-            a: "To ta sama maszyna - koparka pływająca bywa nazywana koparką wodną, amfibijną lub po prostu amfibią. Wszystkie te określenia opisują koparkę na pływającym podwoziu pontonowym, która pracuje na wodzie i w terenie bagiennym.",
+            q: "Czym różni się koparka pływająca od koparki wodnej, błotniaka i amfibii?",
+            a: "To ta sama maszyna - koparka pływająca bywa nazywana koparką wodną, amfibijną, błotniakiem lub po prostu amfibią. Wszystkie te określenia opisują koparkę na pływającym podwoziu pontonowym, która pracuje na wodzie, bagnach i w grząskim terenie.",
           },
           {
             q: "Jak głęboko może kopać koparka pływająca?",
