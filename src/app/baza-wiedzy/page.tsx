@@ -43,11 +43,11 @@ export default async function BazaWiedzyPage() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-[#0284c7]" />
                 </span>
-                <span className="text-sm font-semibold text-[#0284c7]">Artykuły pojawiają się wkrótce</span>
+                <span className="text-sm font-semibold text-[#0284c7]">Regularnie publikujemy nowe artykuły</span>
               </div>
             </div>
             <div className="flex gap-8 lg:flex-shrink-0">
-              {[{ n: "6+", label: "Tematów w przygotowaniu" }, { n: "5", label: "Kategorii tematycznych" }].map((s) => (
+              {[{ n: String(publishedCards.length), label: "Opublikowanych artykułów" }, { n: "5", label: "Kategorii tematycznych" }].map((s) => (
                 <div key={s.label} className="text-center">
                   <p className="display-heading text-3xl font-black" style={{ color: "var(--hb-water)" }}>{s.n}</p>
                   <p className="mt-0.5 text-xs font-medium text-slate-500">{s.label}</p>
@@ -73,7 +73,7 @@ export default async function BazaWiedzyPage() {
             Chcesz wiedzieć, gdy <span style={{ color: "var(--hb-water)" }}>pojawi się nowy artykuł?</span>
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-slate-600">
-            Napisz do nas – poinformujemy Cię, gdy baza wiedzy zostanie uruchomiona. Możesz też już teraz umówić się na bezpłatną konsultację.
+            Napisz do nas – poinformujemy Cię o nowych artykułach. Możesz też już teraz umówić się na bezpłatną konsultację.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/darmowa-konsultacja" className="btn-pulse flex w-full items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white sm:w-auto" style={{ background: "var(--hb-water)" }}>

@@ -13,6 +13,9 @@ export type PublishedBlogCard = {
 
 const DEFAULT_IMG = "koparka-plywajaca-remu-big-float-e2200-na-brzegu-zbiornika.jpg";
 
+/* Zapowiedzi ("Wkrótce") ukryte do czasu publikacji kolejnych artykułów. */
+const POKAZ_ZAPOWIEDZI = false;
+
 const KATEGORIE = [
   { id: "wszystkie", label: "Wszystkie tematy" },
   { id: "poglebiane", label: "Pogłębianie" },
@@ -23,6 +26,16 @@ const KATEGORIE = [
 ] as const;
 
 type KategoriaId = (typeof KATEGORIE)[number]["id"];
+
+/* blog_posts nie ma kolumny kategorii - przypisanie slug -> kategoria
+   utrzymujemy tutaj. Nowe artykuły bez wpisu widać w "Wszystkie tematy". */
+const KATEGORIE_OPUBLIKOWANYCH: Record<string, Exclude<KategoriaId, "wszystkie">> = {
+  "budowa-stawu-krok-po-kroku": "poglebiane",
+  "czyszczenie-i-odmulanie-stawu": "refulacja",
+  "melioracje-wodne-w-praktyce": "srodowisko",
+  "jak-odwodnic-dzialke": "srodowisko",
+  "zbiornik-retencyjny-mala-retencja": "srodowisko",
+};
 
 const ARTYKULY: {
   id: number;
@@ -40,6 +53,8 @@ const ARTYKULY: {
 ];
 
 function PublishedArticleCard({ post }: { post: PublishedBlogCard }) {
+  const kategoria = KATEGORIE_OPUBLIKOWANYCH[post.slug];
+  const katLabel = kategoria ? KATEGORIE.find((k) => k.id === kategoria)?.label : null;
   return (
     <Link
       href={`/baza-wiedzy/${post.slug}`}
@@ -54,10 +69,12 @@ function PublishedArticleCard({ post }: { post: PublishedBlogCard }) {
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-sky-900/60 to-[#071e32]/80" />
-        <div className="absolute left-3 top-3">
-          <span className="rounded-full bg-emerald-500/90 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
-            Opublikowany
-          </span>
+        <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
+          {katLabel ? (
+            <span className="rounded-full bg-white/90 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-[#0284c7] backdrop-blur-sm">
+              {katLabel}
+            </span>
+          ) : null}
         </div>
       </div>
       <div className="flex flex-1 flex-col p-5">
@@ -112,8 +129,15 @@ function ArticleCard({ art }: { art: (typeof ARTYKULY)[number] }) {
 
 export function WiedzaGrid({ publishedPosts = [] }: { publishedPosts?: PublishedBlogCard[] }) {
   const [aktywna, setAktywna] = useState<KategoriaId>("wszystkie");
-  const filtered = aktywna === "wszystkie" ? ARTYKULY : ARTYKULY.filter((a) => a.kategoria === aktywna);
-  const totalCount = publishedPosts.length + ARTYKULY.length;
+  const zapowiedzi = POKAZ_ZAPOWIEDZI ? ARTYKULY : [];
+
+  const filteredPublished =
+    aktywna === "wszystkie"
+      ? publishedPosts
+      : publishedPosts.filter((p) => KATEGORIE_OPUBLIKOWANYCH[p.slug] === aktywna);
+  const filteredZapowiedzi =
+    aktywna === "wszystkie" ? zapowiedzi : zapowiedzi.filter((a) => a.kategoria === aktywna);
+
   return (
     <>
       <div className="mb-10 flex flex-wrap gap-2">
@@ -121,8 +145,9 @@ export function WiedzaGrid({ publishedPosts = [] }: { publishedPosts?: Published
           const isActive = aktywna === k.id;
           const count =
             k.id === "wszystkie"
-              ? totalCount
-              : ARTYKULY.filter((a) => a.kategoria === k.id).length;
+              ? publishedPosts.length + zapowiedzi.length
+              : publishedPosts.filter((p) => KATEGORIE_OPUBLIKOWANYCH[p.slug] === k.id).length +
+                zapowiedzi.filter((a) => a.kategoria === k.id).length;
           return (
             <button key={k.id} type="button" onClick={() => setAktywna(k.id)} className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 ${isActive ? "text-white shadow-md" : "bg-slate-100 text-slate-600 hover:bg-slate-200"}`} style={isActive ? { background: "var(--hb-water)" } : undefined}>
               {k.label}
@@ -132,14 +157,16 @@ export function WiedzaGrid({ publishedPosts = [] }: { publishedPosts?: Published
         })}
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {(aktywna === "wszystkie" ? publishedPosts : []).map((post) => (
+        {filteredPublished.map((post) => (
           <PublishedArticleCard key={post.slug} post={post} />
         ))}
-        {filtered.map((art) => (
+        {filteredZapowiedzi.map((art) => (
           <ArticleCard key={art.id} art={art} />
         ))}
       </div>
-      {filtered.length === 0 && <div className="py-20 text-center text-slate-400">Brak artykułów w tej kategorii.</div>}
+      {filteredPublished.length === 0 && filteredZapowiedzi.length === 0 && (
+        <div className="py-20 text-center text-slate-400">Brak artykułów w tej kategorii.</div>
+      )}
     </>
   );
 }
