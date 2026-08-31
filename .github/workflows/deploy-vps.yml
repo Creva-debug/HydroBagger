@@ -8,8 +8,7 @@
 name: Deploy HydroBagger Site to VPS
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 concurrency:
   group: hydrobagger-site-vps-deploy
